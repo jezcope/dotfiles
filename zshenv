@@ -10,3 +10,4 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   path=("/Users/jez/Library/Application Support/MultiMarkDown/bin" $path)
   path=(/opt/local/bin /opt/local/sbin $path)
 fi
+
