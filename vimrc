@@ -6,3 +6,6 @@ set autoindent
 set smarttab
 
 set hidden
+
+filetype plugin on
+filetype indent on
