@@ -8,5 +8,5 @@ set smarttab
 set hidden
 set autowrite
 
-filetype plugin on
-filetype indent on
+filetype plugin indent on
+syntax on
