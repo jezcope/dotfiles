@@ -10,6 +10,10 @@ set smarttab
 set hidden
 set autowrite
 
+" Some more useful stuff
+set incsearch
+set mouse=a
+
 " Enable filetype plugins and switch on syntax highlighting
 filetype plugin indent on
 syntax on
