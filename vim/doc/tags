@@ -33,6 +33,7 @@
 'NERDTreeWinPos'	NERD_tree.txt	/*'NERDTreeWinPos'*
 'NERDTreeWinSize'	NERD_tree.txt	/*'NERDTreeWinSize'*
 'NERDUsePlaceHolders'	NERD_commenter.txt	/*'NERDUsePlaceHolders'*
+'Tail_Height'	tail.txt	/*'Tail_Height'*
 'loaded_nerd_comments'	NERD_commenter.txt	/*'loaded_nerd_comments'*
 'loaded_nerd_tree'	NERD_tree.txt	/*'loaded_nerd_tree'*
 :MatchDebug	matchit.txt	/*:MatchDebug*
@@ -42,6 +43,10 @@
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
 :NERDTreeMirror	NERD_tree.txt	/*:NERDTreeMirror*
 :NERDTreeToggle	NERD_tree.txt	/*:NERDTreeToggle*
+:STail	tail.txt	/*:STail*
+:TabTail	tail.txt	/*:TabTail*
+:Tail	tail.txt	/*:Tail*
+:vim-tail.zsh	tail.txt	/*:vim-tail.zsh*
 Alph	latexhelp.txt	/*Alph*
 Alt-B	latex-suite.txt	/*Alt-B*
 Alt-C	latex-suite.txt	/*Alt-C*
@@ -175,6 +180,7 @@ TPartView	latex-suite.txt	/*TPartView*
 TSection	latex-suite.txt	/*TSection*
 TSectionAdvanced	latex-suite.txt	/*TSectionAdvanced*
 TTemplate	latex-suite.txt	/*TTemplate*
+Tail.txt	tail.txt	/*Tail.txt*
 Tex_AutoFolding	latex-suite.txt	/*Tex_AutoFolding*
 Tex_BIBINPUTS	latex-suite.txt	/*Tex_BIBINPUTS*
 Tex_CatchVisMapErrors	latex-suite.txt	/*Tex_CatchVisMapErrors*
@@ -1128,6 +1134,10 @@ tab`	latexhelp.txt	/*tab`*
 taba	latexhelp.txt	/*taba*
 tabbing	latexhelp.txt	/*tabbing*
 tabular	latexhelp.txt	/*tabular*
+tail-about	tail.txt	/*tail-about*
+tail-commands	tail.txt	/*tail-commands*
+tail-configure	tail.txt	/*tail-configure*
+tail-mappings	tail.txt	/*tail-mappings*
 theorem	latexhelp.txt	/*theorem*
 titlepage	latexhelp.txt	/*titlepage*
 twocolumn	latexhelp.txt	/*twocolumn*
