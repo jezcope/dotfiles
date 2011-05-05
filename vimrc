@@ -6,13 +6,12 @@ set smartindent
 set autoindent
 set smarttab
 
-" Hide and save buffers when editing another file
-set hidden
-set autowrite
-
 " Some more useful stuff
-set incsearch
-set mouse=a
+set incsearch     " Turn on incremental search 
+set mouse=a       " Use the mouse everywhere possible
+set hidden        " Hide buffer instead of killing when changing file
+set autowrite     " Write buffer automatically on hide
+set autoread      " Automatically re-read changed files
 
 " Enable filetype plugins and switch on syntax highlighting
 filetype plugin indent on
