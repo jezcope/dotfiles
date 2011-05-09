@@ -22,3 +22,6 @@ highlight CursorLine   cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff g
 highlight CursorColumn cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
 set cursorline
 " set cursorcolumn
+
+" NERDTree options
+let NERDTreeIgnore = ['\~$', '\.aux$', '\.log$', '\.nav$', '\.snm$', '\.toc$', '\.vrb$']
