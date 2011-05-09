@@ -24,4 +24,4 @@ set cursorline
 " set cursorcolumn
 
 " NERDTree options
-let NERDTreeIgnore = ['\~$', '\.aux$', '\.log$', '\.nav$', '\.snm$', '\.toc$', '\.vrb$']
+let NERDTreeIgnore=['\.git$', '\.aux$', '\.nav$', '\.out$', '\.snm$', '\.toc$', '\.log$', '\.vrb$', '\~$']
