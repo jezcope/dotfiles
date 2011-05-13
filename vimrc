@@ -1,3 +1,6 @@
+" Set up pathogen.vim to load bundles
+call pathogen#runtime_append_all_bundles()
+
 " Set up indentation settings
 set tabstop=2
 set shiftwidth=2
