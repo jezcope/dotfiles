@@ -2,3 +2,4 @@
 *.swo
 vim/view
 *.pyc
+vim/.netrwhist
