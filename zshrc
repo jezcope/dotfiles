@@ -55,4 +55,5 @@ fi
 if [[ $PLATFORM = 'Darwin' ]]; then
   alias l=launch
   alias gitx='launch -i nl.frim.GitX'
+  alias gvim=mvim
 fi
