@@ -21,10 +21,17 @@ filetype plugin indent on
 syntax on
 
 " Highlight the current line and/or column
-highlight CursorLine   cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
-highlight CursorColumn cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
+"highlight CursorLine   cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
+"highlight CursorColumn cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
 set cursorline
 " set cursorcolumn
 
 " NERDTree options
 let NERDTreeIgnore=['\.git$', '\.aux$', '\.nav$', '\.out$', '\.snm$', '\.toc$', '\.log$', '\.vrb$', '\~$']
+
+" GUI stuff
+if has("gui_running")
+  set background=light
+  colorscheme solarized
+  set guifont=Droid\ Sans\ Mono:h12
+endif
