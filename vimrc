@@ -34,4 +34,5 @@ if has("gui_running")
   set background=light
   colorscheme solarized
   set guifont=Droid\ Sans\ Mono:h12
+  set guioptions-=T
 endif
