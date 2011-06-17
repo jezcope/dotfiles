@@ -8,3 +8,8 @@ let g:Tex_FoldedEnvironments = 'verbatim,comment,eq,gather,align,figure,table,th
 let g:Tex_Env_frame = "\\begin{frame}\<CR>{<+title+>}\<CR><++>\<CR>\\end{frame}"
 let g:Tex_Env_column = "\\begin{column}{<+width+>}\<CR><++>\<CR>\\end{column}<++>"
 let g:Tex_Env_columns = "\\begin{columns}\<CR>\\begin{column}{<+width+>}\<CR><++>\<CR>\\end{column}\<CR><++>\<CR>\\end{columns}"
+
+" Enable <M-*> mappings in MacVim
+if has("gui_macvim")
+  set macmeta
+endif
