@@ -33,6 +33,8 @@ let NERDTreeIgnore=['\.git$', '\.aux$', '\.nav$', '\.out$', '\.snm$', '\.toc$', 
 if has("gui_running")
   set background=light
   colorscheme solarized
-  set guifont=Droid\ Sans\ Mono:h12
+
+  set guifont=Menlo:h12,Droid\ Sans\ Mono:h12
+
   set guioptions-=T
 endif
