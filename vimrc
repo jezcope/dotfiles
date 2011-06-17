@@ -38,3 +38,8 @@ if has("gui_running")
 
   set guioptions-=T
 endif
+
+" MacVim specific stuff
+if has("gui_macvim")
+  set transparency=8
+endif
