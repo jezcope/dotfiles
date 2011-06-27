@@ -40,3 +40,6 @@
 [submodule "vim/bundle/easymotion"]
 	path = vim/bundle/easymotion
 	url = https://github.com/Lokaltog/vim-easymotion
+[submodule "vim/bundle/checksyntax"]
+	path = vim/bundle/checksyntax
+	url = https://github.com/tomtom/checksyntax_vim.git
