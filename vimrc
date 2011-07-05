@@ -34,12 +34,17 @@ if has("gui_running")
   set background=light
   colorscheme solarized
 
-  set guifont=Menlo:h12,Droid\ Sans\ Mono:h12
-
   set guioptions-=T
 endif
+
+" GTK+ specific stuff
+if has("gui_gtk")
+  set guifont=Droid\ Sans\ Mono\ 12
+endif
+
 
 " MacVim specific stuff
 if has("gui_macvim")
   set transparency=8
+  set guifont=Menlo:h12,Droid\ Sans\ Mono:h12
 endif
