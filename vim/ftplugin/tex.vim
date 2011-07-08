@@ -1,5 +1,5 @@
 " LaTeX-suite options
-" let g:Tex_CompileRule_pdf = 'xelatex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'lualatex --interaction=nonstopmode $*'
 let g:Tex_DefaultTargetFormat = 'pdf'
 let g:Tex_MultipleCompileFormats = 'dvi,pdf'
 let g:Tex_FoldedEnvironments = 'verbatim,comment,eq,gather,align,figure,table,thebibliography,keywords,abstract,titlepage,frame'
