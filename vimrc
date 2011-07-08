@@ -27,7 +27,7 @@ set cursorline
 " set cursorcolumn
 
 " NERDTree options
-let NERDTreeIgnore=['\.git$', '\.aux$', '\.nav$', '\.out$', '\.snm$', '\.toc$', '\.log$', '\.vrb$', '\~$']
+let NERDTreeIgnore=['\.git$', '\v\.(aux|nav|out|toc|log|vrb|bbl|blg|snm|latexmain)$', '\~$']
 
 " GUI stuff
 if has("gui_running")
