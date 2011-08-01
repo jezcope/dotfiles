@@ -45,4 +45,4 @@
 	url = https://github.com/tomtom/checksyntax_vim.git
 [submodule "texmf/tex/latex/uniofbath"]
 	path = texmf/tex/latex/uniofbath
-	url = jc619@lcpu.bath.ac.uk:Git/uniofbath-latex
+	url = jc619@lcpu.bath.ac.uk:git/uniofbath-latex
