@@ -3,3 +3,7 @@
 vim/view
 *.pyc
 vim/.netrwhist
+*.hi
+*.o
+xmonad-i386-linux
+*.errors
