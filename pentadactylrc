@@ -1,0 +1,10 @@
+"1.0b6.1 (created: 2011/03/09 09:25:18)
+
+loadplugins '\.(js|penta)$'
+group user
+set guioptions=bCrsTn
+
+if (navigator.appVersion.indexOf("Mac")!=-1)
+  set editor='~/bin/mvim -f +<line> <file>'
+fi
+" vim: set ft=pentadactyl:
