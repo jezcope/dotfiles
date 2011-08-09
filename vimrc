@@ -20,6 +20,9 @@ set autoread      " Automatically re-read changed files
 filetype plugin indent on
 syntax on
 
+autocmd BufNewFile,BufRead *.thor setfiletype ruby
+autocmd BufNewFile,BufRead Thorfile setfiletype ruby
+
 " Highlight the current line and/or column
 "highlight CursorLine   cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
 "highlight CursorColumn cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
@@ -45,6 +48,6 @@ endif
 
 " MacVim specific stuff
 if has("gui_macvim")
-  set transparency=8
+  "set transparency=8
   set guifont=Menlo:h12,Droid\ Sans\ Mono:h12
 endif
