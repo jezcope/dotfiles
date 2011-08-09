@@ -18,5 +18,8 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   path=(/Users/jez/Scripts /Users/jez/bin /usr/local/bin $path)
   path=("/Users/jez/Library/Application Support/MultiMarkDown/bin" $path)
   path=(/opt/local/bin /opt/local/sbin $path)
+else
+  # Exclude some gems from being installed on non-Mac systems
+  BUNDLE_WITHOUT=darwin_only
 fi
 
