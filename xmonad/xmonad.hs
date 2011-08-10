@@ -21,6 +21,10 @@ import System.Exit
  
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+
+import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Tabbed
+import XMonad.Layout.Accordion
  
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -146,8 +150,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+
+    , ((modm              , xK_b     ), sendMessage ToggleStruts)
  
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -213,7 +217,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| simpleTabbed)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -323,7 +327,7 @@ defaults = defaultConfig {
  
       -- hooks, layouts
         layoutHook         = myLayout,
-        manageHook         = myManageHook,
+        manageHook         = myManageHook <+> manageDocks,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
         startupHook        = myStartupHook
