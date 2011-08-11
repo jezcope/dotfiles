@@ -8,3 +8,5 @@ vim/.netrwhist
 xmonad-i386-linux
 xmonad-x86_64-linux
 *.errors
+pentadactyl/info/default/command-history
+pentadactyl/info/default/local-marks
