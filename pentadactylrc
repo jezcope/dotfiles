@@ -2,7 +2,7 @@
 
 loadplugins '\.(js|penta)$'
 group user
-set guioptions=bCrsTn
+set guioptions=bCrsn
 
 if (navigator.appVersion.indexOf("Mac")!=-1)
   set editor='~/bin/mvim -f +<line> <file>'
