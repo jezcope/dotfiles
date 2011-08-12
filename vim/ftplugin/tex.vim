@@ -13,3 +13,7 @@ let g:Tex_Env_columns = "\\begin{columns}\<CR>\\begin{column}{<+width+>}\<CR><++
 if has("gui_macvim")
   set macmeta
 endif
+
+call IMAP("_csct", "Centre for Sustainable Chemical Technologies")
+call IMAP("_dtc", "Doctoral Training Centre")
+call IMAP("_sct", "Sustainable Chemical Technologies")

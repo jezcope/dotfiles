@@ -52,3 +52,8 @@ if has("gui_macvim")
   "set transparency=8
   set guifont=Menlo:h12,Droid\ Sans\ Mono:h12
 endif
+
+" Abbreviations
+ia _csct Centre for Sustainable Chemical Technologies
+ia _dtc Doctoral Training Centre
+ia _sct Sustainable Chemical Technologies
