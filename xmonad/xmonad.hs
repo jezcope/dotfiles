@@ -24,7 +24,7 @@ import qualified Data.Map        as M
 
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Tabbed
-import XMonad.Layout.Accordion
+import XMonad.Layout.ThreeColumns
  
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -220,10 +220,11 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| simpleTabbed)
+myLayout = avoidStruts (tiled ||| threeCol ||| simpleTabbed)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
+    threeCol= ThreeCol nmaster delta ratio
  
     -- The default number of windows in the master pane
     nmaster = 1
