@@ -8,6 +8,7 @@ set expandtab
 set smartindent
 set autoindent
 set smarttab
+set guioptions=egmt
 
 " Some more useful stuff
 set incsearch     " Turn on incremental search 
