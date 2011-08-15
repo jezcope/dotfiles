@@ -9,7 +9,26 @@ tex
 latex
 
 ./tex/latex:
+beamerposter
+personal
 uniofbath
+
+./tex/latex/beamerposter:
+beamerposter.sty
+
+./tex/latex/personal:
+jcutils.sty
 
 ./tex/latex/uniofbath:
 bathpalette.sty
+beamer
+csct-background-cropped-rgb.pdf
+csct-logo-rgb.pdf
+uob-logo-rgb.pdf
+
+./tex/latex/uniofbath/beamer:
+beamercolorthemecsct.sty
+beamerinnerthemecsct.sty
+beamerouterthemecsct.sty
+beamerthemecsct.sty
+
