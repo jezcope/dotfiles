@@ -10,6 +10,11 @@ set autoindent
 set smarttab
 set guioptions=egmt
 
+" Customize statusline
+set laststatus=2  " Always show status line
+set ruler
+"set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P <- default statusline
+
 " Some more useful stuff
 set incsearch     " Turn on incremental search 
 set mouse=a       " Use the mouse everywhere possible
@@ -32,7 +37,7 @@ set cursorline
 " set cursorcolumn
 
 " NERDTree options
-let NERDTreeIgnore=['\.git$', '\v\.(aux|nav|out|toc|log|vrb|bbl|blg|snm|latexmain)$', '\~$']
+let NERDTreeIgnore=['\.git$', '\v\.(aux|bbl|blg|latexmain|log|lol|nav|out|snm|tmproj|toc|vrb)$', '\~$']
 
 " GUI stuff
 if has("gui_running")
