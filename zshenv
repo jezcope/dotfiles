@@ -18,6 +18,8 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   path=(/Users/jez/Scripts /Users/jez/bin /usr/local/bin $path)
   path=("/Users/jez/Library/Application Support/MultiMarkDown/bin" $path)
   path=(/opt/local/bin /opt/local/sbin $path)
+elif [[ $PLATFORM = 'Linux' ]]; then
+  path=(/usr/local/texlive/2011/bin/x86_64-linux $path)
 else
   # Exclude some gems from being installed on non-Mac systems
   BUNDLE_WITHOUT=darwin_only
