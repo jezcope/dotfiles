@@ -3,3 +3,11 @@
 .sconsign.dblite
 *.pyc
 doc/tags
+
+# TeX output cruft
+*.log
+*.aux
+*.lol
+*.out
+*.toc
+*.fdb_latexmk
