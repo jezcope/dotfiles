@@ -11,3 +11,4 @@ doc/tags
 *.out
 *.toc
 *.fdb_latexmk
+.sass-cache
