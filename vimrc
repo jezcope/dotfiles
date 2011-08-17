@@ -41,7 +41,7 @@ let NERDTreeIgnore=['\.git$', '\v\.(aux|bbl|blg|latexmain|log|lol|nav|out|snm|tm
 
 " GUI stuff
 if has("gui_running")
-  set background=dark
+  set background=light
   colorscheme solarized
 
   set guioptions-=T
