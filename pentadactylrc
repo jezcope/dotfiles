@@ -2,9 +2,12 @@
 
 loadplugins '\.(js|penta)$'
 group user
+
 set guioptions=bCrsn
+set downloadsort=-active,-date,+filename
 
 if (navigator.appVersion.indexOf("Mac")!=-1)
   set editor='~/bin/mvim -f +<line> <file>'
 fi
+
 " vim: set ft=pentadactyl:
