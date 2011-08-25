@@ -4,8 +4,7 @@ PLATFORM=`uname -s`
 
 fpath=(~/.zsh/zsh-completions $fpath)
 
-# The following lines were added by compinstall
-
+setopt dvorak
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
@@ -13,21 +12,28 @@ zstyle :compinstall filename "~/.zshrc"
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt sharehistory appendhistory extendedglob notify histignorealldups
-bindkey -e
-# End of lines configured by zsh-newuser-install
+bindkey -v
+
+VIMODE=I
+
+function zle-keymap-select {
+  VIMODE="${${KEYMAP/vicmd/C}/(main|viins)/I}"
+  zle reset-prompt
+}
+
+zle -N zle-keymap-select
 
 # Set up locale
 export LANG=en_GB.UTF-8
 
 # Set up prompt
-PS1="[%h] %n %# "
+setopt prompt_subst
+PS1='[%h] %n (${VIMODE})%# '
 autoload -U promptinit
 promptinit
 prompt bart
