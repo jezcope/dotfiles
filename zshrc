@@ -2,8 +2,8 @@
 
 PLATFORM=`uname -s`
 
+# Set up completion
 fpath=(~/.zsh/zsh-completions $fpath)
-
 setopt dvorak
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -13,12 +13,17 @@ zstyle :compinstall filename "~/.zshrc"
 autoload -Uz compinit
 compinit
 
+# Set up history
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt sharehistory appendhistory extendedglob notify histignorealldups
-bindkey -v
 
+# Set up key bindings
+bindkey -v    # vi-like bindings
+bindkey  history-incremental-search-backward
+
+# Widget to show which mode we're in
 VIMODE=I
 
 function zle-keymap-select {
