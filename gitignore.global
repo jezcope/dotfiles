@@ -10,5 +10,10 @@ doc/tags
 *.lol
 *.out
 *.toc
+*.bcf
+*.bbl
+*.nav
+*.run.xml
+*.snm
 *.fdb_latexmk
 .sass-cache
