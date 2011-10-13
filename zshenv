@@ -19,6 +19,8 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   path=("/Users/jez/Library/Application Support/MultiMarkDown/bin" $path)
   path=(/opt/local/bin /opt/local/sbin $path)
   path=(/usr/local/texlive/2011/bin/universal-darwin $path)
+
+  manpath=(/opt/local/share/man $manpath)
 elif [[ $PLATFORM = 'Linux' ]]; then
   path=(/usr/local/texlive/2011/bin/x86_64-linux $path)
 else
