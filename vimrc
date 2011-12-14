@@ -64,3 +64,13 @@ ia _csct Centre for Sustainable Chemical Technologies
 ia _dtc Doctoral Training Centre
 ia _sct Sustainable Chemical Technologies
 ia _uob University of Bath
+
+" Disable the arrow keys(!)
+map  <Up>    <nop>
+map  <Down>  <nop>
+map  <Left>  <nop>
+map  <Right> <nop>
+imap <Up>    <nop>
+imap <Down>  <nop>
+imap <Left>  <nop>
+imap <Right> <nop>
