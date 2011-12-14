@@ -16,7 +16,8 @@ export HTML_TIDY=~/.htmltidy.conf
 
 if [[ $PLATFORM = 'Darwin' ]]; then
   path=(/Users/jez/Scripts /Users/jez/bin /usr/local/bin $path)
-  path=("/Users/jez/Library/Application Support/MultiMarkDown/bin" $path)
+  path=(~"/Library/Application Support/MultiMarkDown/bin" $path)
+  path=(~"/Library/Haskell/bin" $path)
   path=(/opt/local/bin /opt/local/sbin $path)
   path=(/usr/local/texlive/2011/bin/universal-darwin $path)
 
