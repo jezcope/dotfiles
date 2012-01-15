@@ -30,6 +30,9 @@ autocmd BufNewFile,BufRead *.thor     setfiletype ruby
 autocmd BufNewFile,BufRead Thorfile   setfiletype ruby
 autocmd BufNewFile,BufRead SConstruct setfiletype python
 
+" Tweak mkd highlighting to recognise nanoc YAML front matter
+autocmd BufNewFile,BufRead *.md       syntax match Comment /\%^---\_.\{-}---$/
+
 " Highlight the current line and/or column
 "highlight CursorLine   cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 
 "highlight CursorColumn cterm=NONE ctermbg=lightblue ctermfg=NONE guibg=#e4e4ff guifg=NONE 

@@ -11,4 +11,3 @@ setlocal expandtab
 
 nmap <Leader>ft vip:!~/Library/Application\ Support/MultiMarkdown/Utilities/table_cleanup.pl<CR>
 
-syntax match Comment /\%^---\_.\{-}---$/
