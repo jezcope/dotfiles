@@ -68,6 +68,9 @@ ia _dtc Doctoral Training Centre
 ia _sct Sustainable Chemical Technologies
 ia _uob University of Bath
 
+" Make the Y key mapping work like D and C
+map Y y$
+
 " Disable the arrow keys(!)
 map  <Up>    <nop>
 map  <Down>  <nop>
