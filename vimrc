@@ -44,10 +44,8 @@ let NERDTreeIgnore=['\.git$', '\v\.(aux|bbl|blg|latexmain|log|lol|nav|out|snm|tm
 
 " GUI stuff
 if has("gui_running")
-  set background=light
-  colorscheme solarized
-
-  set guioptions-=T
+  "set background=light
+  colorscheme clouds_midnight
 endif
 
 " GTK+ specific stuff
@@ -59,7 +57,7 @@ endif
 " MacVim specific stuff
 if has("gui_macvim")
   "set transparency=8
-  set guifont=Menlo:h12,Droid\ Sans\ Mono:h12
+  set guifont=Menlo:h14,Droid\ Sans\ Mono:h14
 endif
 
 " Abbreviations
