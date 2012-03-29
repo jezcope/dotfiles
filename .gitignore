@@ -10,3 +10,5 @@ xmonad-x86_64-linux
 *.errors
 pentadactyl/info/default/command-history
 pentadactyl/info/default/local-marks
+pentadactyl/info/default/registers
+pentadactyl/info/default/register-ring
