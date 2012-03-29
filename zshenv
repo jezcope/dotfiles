@@ -14,11 +14,12 @@ export JAVA_OPTS='-server -Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=5
 
 export HTML_TIDY=~/.htmltidy.conf
 
+# Platform specific config
 if [[ $PLATFORM = 'Darwin' ]]; then
-  path=(/Users/jez/Scripts /Users/jez/bin /usr/local/bin $path)
+  path=(~/Scripts /usr/local/bin $path)
   path=(~"/Library/Application Support/MultiMarkDown/bin" $path)
   path=(~"/Library/Haskell/bin" $path)
-  path=(/opt/local/bin /opt/local/sbin $path)
+  #path=(/opt/local/bin /opt/local/sbin $path)
   path=(/usr/local/texlive/2011/bin/universal-darwin $path)
 
   manpath=(/opt/local/share/man $manpath)
