@@ -1,5 +1,6 @@
 .*.sw[op]
 .DS_Store
+._*
 .sconsign.dblite
 *.pyc
 doc/tags
