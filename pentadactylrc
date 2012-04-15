@@ -3,7 +3,7 @@
 loadplugins '\.(js|penta)$'
 group user
 
-set guioptions=bCrsn
+set guioptions=bCrsN
 set downloadsort=-active,-date,+filename
 
 if (navigator.appVersion.indexOf("Mac")!=-1)
