@@ -30,3 +30,4 @@ else
   BUNDLE_WITHOUT=darwin_only
 fi
 
+whence keychain > /dev/null && eval $(keychain --eval -Q -q id_rsa id_ecdsa jezcope_aws.pem) || echo "keychain not found"
