@@ -50,7 +50,7 @@ endif
 
 " GTK+ specific stuff
 if has("gui_gtk")
-  set guifont=Droid\ Sans\ Mono\ 12
+  set guifont=Droid\ Sans\ Mono\ 10
 endif
 
 
