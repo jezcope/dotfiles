@@ -10,4 +10,6 @@ if (navigator.appVersion.indexOf("Mac")!=-1)
   set editor='/opt/local/bin/mvim -f +<line> <file>'
 fi
 
+highlight FontFixed font-family: Droid Sans Mono, monospace;
+
 " vim: set ft=pentadactyl:
