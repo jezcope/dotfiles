@@ -8,7 +8,6 @@ set expandtab
 set smartindent
 set autoindent
 set smarttab
-set guioptions=egmt
 
 " Customize statusline
 set laststatus=2  " Always show status line
@@ -42,7 +41,12 @@ set cursorline
 " NERDTree options
 let NERDTreeIgnore=['\.git$', '\v\.(aux|bbl|blg|latexmain|log|lol|nav|out|snm|tmproj|toc|vrb)$', '\~$']
 
-" GUI stuff
+" If compiled with a GUI
+if has("gui")
+  set guioptions=egt
+endif
+
+" If the GUI is actually running
 if has("gui_running")
   "set background=light
   colorscheme clouds_midnight
@@ -52,7 +56,6 @@ endif
 if has("gui_gtk")
   set guifont=Droid\ Sans\ Mono\ 10
 endif
-
 
 " MacVim specific stuff
 if has("gui_macvim")
