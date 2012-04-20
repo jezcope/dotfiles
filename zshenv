@@ -25,6 +25,8 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   manpath=(/opt/local/share/man $manpath)
 elif [[ $PLATFORM = 'Linux' ]]; then
   path=(/usr/local/texlive/2011/bin/x86_64-linux $path)
+
+  whence pacman-color > /dev/null && alias -g pacman=pacman-color
 else
   # Exclude some gems from being installed on non-Mac systems
   BUNDLE_WITHOUT=darwin_only
@@ -32,4 +34,4 @@ fi
 
 export PATH
 
-whence keychain > /dev/null && eval $(keychain --eval -Q -q id_rsa id_ecdsa jezcope_aws.pem) || echo "keychain not found"
+whence keychain > /dev/null && eval $(keychain --eval -Q -q id_rsa id_ecdsa jezcope_aws.pem)
