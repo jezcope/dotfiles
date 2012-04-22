@@ -37,11 +37,11 @@ zle -N zle-keymap-select
 export LANG=en_GB.UTF-8
 
 # Set up prompt
+fpath=(~/.zsh/zsh-git/functions $fpath)
 setopt prompt_subst
-PS1='[%h] %n (${VIMODE})%# '
 autoload -U promptinit
 promptinit
-prompt bart
+prompt wunjo
 
 # Enable colour in programs that notice $CLICOLOR
 export CLICOLOR=1
