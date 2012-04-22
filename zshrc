@@ -1,72 +1,36 @@
-# Mental note: this is sourced for *interactive* sessions
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.zsh/oh-my-zsh
 
-PLATFORM=`uname -s`
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="fishy"
 
-# Set up completion
-fpath=(~/.zsh/zsh-completions $fpath)
-setopt dvorak
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle :compinstall filename "~/.zshrc"
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-autoload -Uz compinit
-compinit
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-# Set up history
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt sharehistory appendhistory extendedglob notify histignorealldups
+# Comment this out to disable weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-# Set up key bindings
-bindkey -v    # vi-like bindings
-bindkey  history-incremental-search-backward
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-# Widget to show which mode we're in
-VIMODE=I
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-function zle-keymap-select {
-  VIMODE="${${KEYMAP/vicmd/C}/(main|viins)/I}"
-  zle reset-prompt
-}
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
-zle -N zle-keymap-select
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git mercurial)
 
-# Set up locale
-export LANG=en_GB.UTF-8
+source $ZSH/oh-my-zsh.sh
 
-# Set up prompt
-fpath=(~/.zsh/zsh-git/functions $fpath)
-setopt prompt_subst
-autoload -U promptinit
-promptinit
-prompt wunjo
-
-# Enable colour in programs that notice $CLICOLOR
-export CLICOLOR=1
-
-# Some useful aliases
-alias g=git
-alias r=rails
-alias rvim='gvim --remote'
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-  #alias dir='dir --color=auto'
-  #alias vdir='vdir --color=auto'
-
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
-fi
-
-
-# Platform-specific sections
-if [[ $PLATFORM = 'Darwin' ]]; then
-  alias l=launch
-  alias gitx='launch -i nl.frim.GitX'
-  alias gvim=mvim
-fi
+# Customize to your needs...
