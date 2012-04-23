@@ -23,6 +23,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
  
@@ -161,6 +162,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Toggle showing docks
     , ((modm              , xK_b     ), sendMessage ToggleStruts)
+
+    -- Lock the screen
+    , ((modm .|. shiftMask, xK_z     ), spawn "xlock")
     ]
     ++
  
@@ -220,7 +224,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| threeCol ||| simpleTabbed)
+myLayout = avoidStruts (simpleTabbed ||| threeCol ||| tiled)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -305,7 +309,7 @@ myStartupHook = return ()
  
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = xmonad =<< xmobar defaults
  
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
