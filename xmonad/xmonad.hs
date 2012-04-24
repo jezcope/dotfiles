@@ -16,6 +16,7 @@
 --
  
 import XMonad
+import Control.Monad
 import Data.Monoid
 import System.Exit
  
@@ -273,6 +274,32 @@ myManageHook = composeAll
 -- combining them with ewmhDesktopsEventHook.
 --
 myEventHook = mempty
+
+-- Hacky focus fix from http://mth.io/posts/xmonad-java-focus/
+atom_WM_TAKE_FOCUS ::
+  X Atom
+atom_WM_TAKE_FOCUS =
+  getAtom "WM_TAKE_FOCUS"
+
+takeFocusX ::
+  Window
+  -> X ()
+takeFocusX w =
+  withWindowSet . const $ do
+    dpy <- asks display
+    wmtakef <- atom_WM_TAKE_FOCUS
+    wmprot <- atom_WM_PROTOCOLS
+    protocols <- io $ getWMProtocols dpy w
+    when (wmtakef `elem` protocols) $
+      io . allocaXEvent $ \ev -> do
+          setEventType ev clientMessage
+          setClientMessageEvent ev w wmprot 32 wmtakef currentTime
+          sendEvent dpy w False noEventMask ev
+
+takeTopFocus ::
+  X ()
+takeTopFocus =
+  withWindowSet $ maybe (setFocusX =<< asks theRoot) takeFocusX . W.peek
  
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -286,7 +313,7 @@ myEventHook = mempty
 -- It will add EWMH logHook actions to your custom log hook by
 -- combining it with ewmhDesktopsLogHook.
 --
-myLogHook = return ()
+myLogHook = takeTopFocus >> setWMName "LG3D"
  
 ------------------------------------------------------------------------
 -- Startup hook
