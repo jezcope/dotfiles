@@ -8,6 +8,9 @@ setlocal equalprg=pandoc\ -f\ markdown\ -t\ markdown\ --columns=79 "\ --referenc
 setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal expandtab
+setlocal breakindent
+setlocal breakindentshift=2
+setlocal linebreak
 
 nmap <Leader>ft vip:!~/Library/Application\ Support/MultiMarkdown/Utilities/table_cleanup.pl<CR>
 

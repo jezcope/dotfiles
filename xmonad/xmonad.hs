@@ -16,6 +16,7 @@
 --
  
 import XMonad
+import Control.Monad
 import Data.Monoid
 import System.Exit
  
@@ -23,6 +24,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
  
@@ -78,7 +80,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = map show [1..9]
+myWorkspaces    = ["Home", "Mail", "Work 1", "Work 2"] ++ map show [5..8] ++ ["Win"]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -161,6 +163,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Toggle showing docks
     , ((modm              , xK_b     ), sendMessage ToggleStruts)
+
+    -- Lock the screen
+    , ((modm .|. shiftMask, xK_z     ), spawn "xlock")
     ]
     ++
  
@@ -220,7 +225,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| threeCol ||| simpleTabbed)
+myLayout = avoidStruts (simpleTabbed ||| threeCol ||| tiled)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -269,6 +274,32 @@ myManageHook = composeAll
 -- combining them with ewmhDesktopsEventHook.
 --
 myEventHook = mempty
+
+-- Hacky focus fix from http://mth.io/posts/xmonad-java-focus/
+atom_WM_TAKE_FOCUS ::
+  X Atom
+atom_WM_TAKE_FOCUS =
+  getAtom "WM_TAKE_FOCUS"
+
+takeFocusX ::
+  Window
+  -> X ()
+takeFocusX w =
+  withWindowSet . const $ do
+    dpy <- asks display
+    wmtakef <- atom_WM_TAKE_FOCUS
+    wmprot <- atom_WM_PROTOCOLS
+    protocols <- io $ getWMProtocols dpy w
+    when (wmtakef `elem` protocols) $
+      io . allocaXEvent $ \ev -> do
+          setEventType ev clientMessage
+          setClientMessageEvent ev w wmprot 32 wmtakef currentTime
+          sendEvent dpy w False noEventMask ev
+
+takeTopFocus ::
+  X ()
+takeTopFocus =
+  withWindowSet $ maybe (setFocusX =<< asks theRoot) takeFocusX . W.peek
  
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -282,7 +313,7 @@ myEventHook = mempty
 -- It will add EWMH logHook actions to your custom log hook by
 -- combining it with ewmhDesktopsLogHook.
 --
-myLogHook = return ()
+myLogHook = takeTopFocus >> setWMName "LG3D"
  
 ------------------------------------------------------------------------
 -- Startup hook
@@ -305,7 +336,7 @@ myStartupHook = return ()
  
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = xmonad =<< xmobar defaults
  
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
