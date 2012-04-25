@@ -1,7 +1,7 @@
 # Mental note: this is sourced for *interactive* sessions
 
 ZSH=$HOME/.zsh/oh-my-zsh
-ZSH_THEME="fishy"
+ZSH_THEME="jez"
 plugins=(git extract)
 source $ZSH/oh-my-zsh.sh
 
