@@ -1,8 +1,24 @@
 # Mental note: this is sourced for *interactive* sessions
 
+PLATFORM=$(uname -s)
+
 ZSH=$HOME/.zsh/oh-my-zsh
 ZSH_THEME="jez"
-plugins=(git extract)
+plugins=(git thor rake rvm extract vi-mode)
+
+# Platform-specific sections
+if [[ $PLATFORM = 'Darwin' ]]; then
+  alias l=launch
+  alias gitx='launch -i nl.frim.GitX'
+  alias gvim=mvim
+
+  plugins=($plugins brew osx)
+elif [[ $PLATFORM = 'Linux' ]]; then
+  if [[ $(uname -r) =~ ARCH ]]; then
+    plugins=($plugins archlinux)
+  fi
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # Set up completion
@@ -46,10 +62,3 @@ export LANG=en_GB.UTF-8
 
 # A few more options
 setopt noclobber multios
-
-# Platform-specific sections
-if [[ $PLATFORM = 'Darwin' ]]; then
-  alias l=launch
-  alias gitx='launch -i nl.frim.GitX'
-  alias gvim=mvim
-fi
