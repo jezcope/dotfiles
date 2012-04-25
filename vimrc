@@ -55,6 +55,7 @@ endif
 " GTK+ specific stuff
 if has("gui_gtk")
   set guifont=Droid\ Sans\ Mono\ 10
+  set nomousehide " Disable mousehide to workaround an xmonad bug
 endif
 
 " MacVim specific stuff
