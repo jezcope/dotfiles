@@ -24,6 +24,8 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
@@ -255,11 +257,19 @@ myLayout = avoidStruts (simpleTabbed ||| threeCol ||| tiled)
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+-- myManageHook = isDialog --> doF W.shiftMaster <+> doF W.swapDown
+myManageHook = fmap not isDialog --> doF avoidMaster
+-- myManageHook = composeAll
+--     [ className =? "MPlayer"        --> doFloat
+--     , className =? "Gimp"           --> doFloat
+--     , resource  =? "desktop_window" --> doIgnore
+--     , resource  =? "kdesktop"       --> doIgnore
+--     , avoidMaster]
+
+avoidMaster :: W.StackSet i l a s sd -> W.StackSet i l a s sd
+avoidMaster = W.modify' $ \c -> case c of
+     W.Stack t [] (r:rs) ->  W.Stack t [r] rs
+     otherwise           -> c
  
 ------------------------------------------------------------------------
 -- Event handling
