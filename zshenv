@@ -35,3 +35,5 @@ fi
 export PATH
 
 whence keychain > /dev/null && eval $(keychain --eval -Q -q id_rsa id_ecdsa jezcope_aws.pem)
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
