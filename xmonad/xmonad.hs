@@ -257,13 +257,15 @@ myLayout = avoidStruts (tiled ||| simpleTabbed)
 -- 'className' and 'resource' are used below.
 --
 -- myManageHook = isDialog --> doF W.shiftMaster <+> doF W.swapDown
-myManageHook = fmap not isDialog --> doF avoidMaster
--- myManageHook = composeAll
---     [ className =? "MPlayer"        --> doFloat
---     , className =? "Gimp"           --> doFloat
---     , resource  =? "desktop_window" --> doIgnore
---     , resource  =? "kdesktop"       --> doIgnore
---     , avoidMaster]
+-- myManageHook = fmap not isDialog --> doF avoidMaster
+myManageHook = composeAll
+    [ className =? "MPlayer"        --> doFloat
+    , className =? "Gimp"           --> doFloat
+    , resource  =? "desktop_window" --> doIgnore
+    , resource  =? "kdesktop"       --> doIgnore
+    , resource  =? "Do"             --> doIgnore
+    , className =? "Pidgin"         --> doFloat
+    , fmap not isDialog             --> doF avoidMaster]
 
 avoidMaster :: W.StackSet i l a s sd -> W.StackSet i l a s sd
 avoidMaster = W.modify' $ \c -> case c of
