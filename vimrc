@@ -48,13 +48,14 @@ endif
 
 " If the GUI is actually running
 if has("gui_running")
-  "set background=light
-  colorscheme clouds_midnight
+  set background=dark
+  "colorscheme clouds_midnight
+  colorscheme solarized
 endif
 
 " GTK+ specific stuff
 if has("gui_gtk")
-  set guifont=Droid\ Sans\ Mono\ 10
+  set guifont=Droid\ Sans\ Mono\ 11
   set nomousehide " Disable mousehide to workaround an xmonad bug
 endif
 
