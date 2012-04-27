@@ -1,0 +1,19 @@
+[alias]
+	st = status
+	a = add
+	ci = commit
+	h = help
+	co = checkout
+	shl = log --oneline --graph --decorate
+[color]
+	ui = auto
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 943x632+66+24
+	history-view-vpane-position = 357
+	main-window-view = HistoryView
+	file-view-vpane-position = 582
+[core]
+  excludesfile = ~/.gitignore.global
+[include]
+  path = .gitconfig.local
