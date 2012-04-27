@@ -1,7 +1,13 @@
 # Make $path array ignore non-unique elements
 typeset -U path
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+if [[ -s "$HOME/.rvmrc" ]]; then
+  source "$HOME/.rvmrc"
+fi
+if [[ -s "${rvm_path:=$HOME/.rvm}/scripts/rvm" ]]; then
+  source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
+fi
+PATH=$PATH:$rvm_path/bin # Add RVM to PATH for scripting
 
 PLATFORM=`uname -s`
 
@@ -35,5 +41,3 @@ fi
 export PATH
 
 whence keychain > /dev/null && eval $(keychain --eval -Q -q id_rsa id_ecdsa jezcope_aws.pem)
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
