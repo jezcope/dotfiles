@@ -36,7 +36,7 @@ compinit
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt sharehistory appendhistory extendedglob notify histignorealldups
+setopt sharehistory appendhistory extendedglob notify histignorealldups nohistverify
 
 # Set up key bindings
 #bindkey -v    # vi-like bindings
@@ -61,4 +61,4 @@ export LANG=en_GB.UTF-8
 #fi
 
 # A few more options
-setopt noclobber multios
+setopt noclobber multios noautopushd
