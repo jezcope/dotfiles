@@ -9,7 +9,7 @@
   m = merge
   l = log
   graph = log --oneline --graph
-  shl = log --oneline --graph --decorate--short
+  shl = log --oneline --graph --decorate
 [color]
   ui = auto
 [giggle]
