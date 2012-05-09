@@ -19,6 +19,8 @@ elif [[ $PLATFORM = 'Linux' ]]; then
   fi
 fi
 
+DISABLE_AUTO_UPDATE="true"
+
 source $ZSH/oh-my-zsh.sh
 
 # Set up completion
