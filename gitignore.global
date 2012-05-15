@@ -17,4 +17,6 @@ doc/tags
 *.run.xml
 *.snm
 *.fdb_latexmk
+*.vrb
+
 .sass-cache
