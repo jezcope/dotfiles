@@ -4,7 +4,12 @@ typeset -U path
 if [[ -s "$HOME/.rvmrc" ]]; then
   source "$HOME/.rvmrc"
 fi
-if [[ -s "${rvm_path:=$HOME/.rvm}/scripts/rvm" ]]; then
+
+if [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
+  rvm_path=/usr/local/rvm
+  source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
+elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  rvm_path=$HOME/.rvm
   source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
 fi
 PATH=$PATH:$rvm_path/bin # Add RVM to PATH for scripting
