@@ -1,5 +1,5 @@
-setlocal formatoptions+=tn
 setlocal textwidth=79
+setlocal formatoptions=q
 "setlocal formatlistpat=^\\s*(\\d\\+[\\]:.)}\\t\\ ]|\\*)\\s*
 "setlocal formatlistpat=^\\s\*[\\*-\\s]\\s*
 setlocal spell spelllang=en_gb
