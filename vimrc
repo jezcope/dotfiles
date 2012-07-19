@@ -25,8 +25,7 @@ set autoread      " Automatically re-read changed files
 filetype plugin indent on
 syntax on
 
-autocmd BufNewFile,BufRead *.thor     setfiletype ruby
-autocmd BufNewFile,BufRead Thorfile   setfiletype ruby
+autocmd BufNewFile,BufRead *.thor,Thorfile,Guardfile setfiletype ruby
 autocmd BufNewFile,BufRead SConstruct setfiletype python
 
 " Tweak mkd highlighting to recognise nanoc YAML front matter
