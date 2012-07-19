@@ -27,6 +27,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
  
@@ -82,7 +83,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["Home", "Mail", "Work 1", "Work 2"] ++ map show [5..8] ++ ["Win"]
+myWorkspaces    = ["Home", "Mail", "Work 1", "Work 2"] ++ map show [5..6] ++ ["Music", "Sys", "Win"]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -167,7 +168,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Lock the screen
-    , ((modm .|. shiftMask, xK_z     ), spawn "xlock -mode fzort")
+    , ((modm .|. shiftMask, xK_z     ), spawn "xscreensaver-command -lock")
     ]
     ++
  
@@ -261,6 +262,8 @@ myLayout = avoidStruts (tiled ||| simpleTabbed)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "Sonata"         --> doFloat
+    , className =? "Skype"          --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , resource  =? "Do"             --> doIgnore
@@ -347,7 +350,7 @@ myStartupHook = return ()
  
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad =<< xmobar defaults
+main = xmonad =<< (xmobar $ ewmh $ defaults)
  
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
