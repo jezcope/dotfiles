@@ -12,4 +12,6 @@ fi
 
 highlight FontFixed font-family: Droid Sans Mono, monospace;
 
+command firebug :emenu Tools.Web Developer.Firebug.Open Firebug
+
 " vim: set ft=pentadactyl:
