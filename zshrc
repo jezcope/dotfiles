@@ -63,4 +63,4 @@ export LANG=en_GB.UTF-8
 #fi
 
 # A few more options
-setopt noclobber multios noautopushd
+setopt noclobber multios
