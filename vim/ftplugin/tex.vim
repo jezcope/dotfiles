@@ -18,3 +18,7 @@ call IMAP("_csct", "Centre for Sustainable Chemical Technologies", "")
 call IMAP("_dtc" , "Doctoral Training Centre"                    , "")
 call IMAP("_sct" , "Sustainable Chemical Technologies"           , "")
 call IMAP("_uob" , "University of Bath"                          , "")
+
+set linebreak
+set breakindent
+set breakindentshift=2
