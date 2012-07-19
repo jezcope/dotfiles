@@ -31,7 +31,7 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   path=(~"/Library/Application Support/MultiMarkDown/bin" $path)
   path=(~"/Library/Haskell/bin" $path)
   #path=(/opt/local/bin /opt/local/sbin $path)
-  path=(/usr/local/texlive/2011/bin/universal-darwin $path)
+  path=(/usr/local/texlive/2012/bin/universal-darwin $path)
 
   manpath=(/opt/local/share/man $manpath)
 elif [[ $PLATFORM = 'Linux' ]]; then
