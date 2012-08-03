@@ -82,3 +82,6 @@ imap <Up>    <nop>
 imap <Down>  <nop>
 imap <Left>  <nop>
 imap <Right> <nop>
+
+" Return EasyMotion plugin to default behaviour
+let g:EasyMotion_leader_key = '<Leader>'
