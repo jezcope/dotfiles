@@ -38,7 +38,7 @@ set cursorline
 " set cursorcolumn
 
 " NERDTree options
-let NERDTreeIgnore=['\.git$', '\v\.(aux|bbl|blg|latexmain|log|lol|nav|out|snm|tmproj|toc|vrb)$', '\~$']
+let NERDTreeIgnore=['\.git$', '\v\.(aux|bbl|blg|latexmain|log|lol|nav|out|snm|tmproj|toc|vrb|fls|fdb_latexmk)$', '\~$']
 
 " If compiled with a GUI
 if has("gui")
