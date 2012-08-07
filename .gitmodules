@@ -61,3 +61,6 @@
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
+[submodule "texmf/tex/latex/beamer-uob"]
+	path = texmf/tex/latex/beamer-uob
+	url = http://github.com/jezcope/beamer-uob.git
