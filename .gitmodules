@@ -64,3 +64,6 @@
 [submodule "texmf/tex/latex/beamer-uob"]
 	path = texmf/tex/latex/beamer-uob
 	url = http://github.com/jezcope/beamer-uob.git
+[submodule "vim/bundle/taskpaper"]
+	path = vim/bundle/taskpaper
+	url = https://github.com/davidoc/taskpaper.vim.git
