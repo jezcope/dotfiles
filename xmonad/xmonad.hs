@@ -87,8 +87,8 @@ myWorkspaces    = ["Home", "Mail", "Cal", "Work 1", "Work 2", "Files", "Misc", "
  
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#aaaadd"
+myNormalBorderColor  = "#333333"
+myFocusedBorderColor = "#ffaa00"
  
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
