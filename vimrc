@@ -85,3 +85,6 @@ imap <Right> <nop>
 
 " Return EasyMotion plugin to default behaviour
 let g:EasyMotion_leader_key = '<Leader>'
+
+" Autosave on switch buffers and on lose focus
+autocmd FocusLost * silent! wa
