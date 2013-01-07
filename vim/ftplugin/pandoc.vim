@@ -9,7 +9,7 @@ setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal expandtab
 setlocal breakindent
-setlocal breakindentshift=2
+setlocal breakindentshift=4
 setlocal linebreak
 
 nmap <Leader>ft vip:!~/Library/Application\ Support/MultiMarkdown/Utilities/table_cleanup.pl<CR>
