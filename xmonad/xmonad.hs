@@ -30,6 +30,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.LayoutHints
  
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -228,7 +229,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+myLayout = layoutHints $ avoidStruts (tiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -292,9 +293,9 @@ avoidMaster = W.modify' $ \c -> case c of
 myEventHook = mempty
 
 -- Hacky focus fix from http://mth.io/posts/xmonad-java-focus/
-atom_WM_TAKE_FOCUS ::
+local_atom_WM_TAKE_FOCUS ::
   X Atom
-atom_WM_TAKE_FOCUS =
+local_atom_WM_TAKE_FOCUS =
   getAtom "WM_TAKE_FOCUS"
 
 takeFocusX ::
@@ -303,7 +304,7 @@ takeFocusX ::
 takeFocusX w =
   withWindowSet . const $ do
     dpy <- asks display
-    wmtakef <- atom_WM_TAKE_FOCUS
+    wmtakef <- local_atom_WM_TAKE_FOCUS
     wmprot <- atom_WM_PROTOCOLS
     protocols <- io $ getWMProtocols dpy w
     when (wmtakef `elem` protocols) $
