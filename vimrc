@@ -88,3 +88,6 @@ let g:EasyMotion_leader_key = '<Leader>'
 
 " Autosave on switch buffers and on lose focus
 autocmd FocusLost * silent! wa
+
+" Regenerate vim-spell file
+silent mkspell! ~/.vim/spell/en.utf-8.add
