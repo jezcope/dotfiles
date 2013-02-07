@@ -20,5 +20,5 @@ call IMAP("_sct" , "Sustainable Chemical Technologies"           , "")
 call IMAP("_uob" , "University of Bath"                          , "")
 
 set linebreak
-set breakindent
-set breakindentshift=2
+silent! set breakindent
+silent! set breakindentshift=2
