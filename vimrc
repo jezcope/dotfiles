@@ -6,8 +6,6 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
-set autoindent
-set smarttab
 
 " Customize statusline
 set laststatus=2  " Always show status line
@@ -15,11 +13,8 @@ set ruler
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P <- default statusline
 
 " Some more useful stuff
-set incsearch     " Turn on incremental search 
 set mouse=a       " Use the mouse everywhere possible
 set hidden        " Hide buffer instead of killing when changing file
-set autowrite     " Write buffer automatically on hide
-set autoread      " Automatically re-read changed files
 
 " Enable filetype plugins and switch on syntax highlighting
 filetype plugin indent on
