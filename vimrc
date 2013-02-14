@@ -16,6 +16,11 @@ set ruler
 set mouse=a       " Use the mouse everywhere possible
 set hidden        " Hide buffer instead of killing when changing file
 
+" Set up <F2> to toggle paste mode in normal and insert mode
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
 " Enable filetype plugins and switch on syntax highlighting
 filetype plugin indent on
 syntax on
