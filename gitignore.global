@@ -23,3 +23,4 @@ doc/tags
 .sass-cache
 ~$*
 .*.un~
+*~

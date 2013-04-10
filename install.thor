@@ -1,7 +1,7 @@
 class Dotfiles < Thor
   include Thor::Actions
 
-  DOTLINKS = %w(zshrc zshenv zsh vimrc vim pentadactyl pentadactylrc xmonad gitconfig gitignore.global htmltidy.conf ackrc)
+  DOTLINKS = %w(zshrc zshenv zsh vimrc vim emacs emacs.d pentadactyl pentadactylrc xmonad gitconfig gitignore.global htmltidy.conf ackrc)
 
   desc "install", "Set up symlinks in the right places"
   def install(dest="~")
