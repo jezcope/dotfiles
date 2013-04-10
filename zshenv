@@ -27,7 +27,7 @@ export HTML_TIDY=~/.htmltidy.conf
 
 # Platform specific config
 if [[ $PLATFORM = 'Darwin' ]]; then
-  path=(~/Scripts /usr/local/bin $path)
+  path=(/usr/local/sbin ~/Scripts /usr/local/bin $path)
   path=(~"/Library/Application Support/MultiMarkDown/bin" $path)
   path=(~"/Library/Haskell/bin" $path)
   #path=(/opt/local/bin /opt/local/sbin $path)
