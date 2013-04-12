@@ -4,7 +4,7 @@ PLATFORM=$(uname -s)
 
 ZSH=$HOME/.zsh/oh-my-zsh
 ZSH_THEME="jez"
-plugins=(git thor rake rvm extract vi-mode)
+plugins=(git thor rake rvm extract)
 
 # Platform-specific sections
 if [[ $PLATFORM = 'Darwin' ]]; then
