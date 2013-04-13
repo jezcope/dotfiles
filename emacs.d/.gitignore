@@ -4,3 +4,4 @@ archives
 *-readme.txt
 *.elc
 elpa
+el-get
