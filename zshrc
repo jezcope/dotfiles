@@ -19,6 +19,9 @@ elif [[ $PLATFORM = 'Linux' ]]; then
   fi
 fi
 
+alias e='emacsclient -c'
+alias et='emacsclient -t'
+
 DISABLE_AUTO_UPDATE="true"
 
 source $ZSH/oh-my-zsh.sh
