@@ -33,7 +33,7 @@
        :pkgname "joostkremers/pandoc-mode")))
 (setq my-packages
   (append
-      '(el-get ack markdown-mode pandoc-mode)
+      '(el-get ack markdown-mode pandoc-mode magit)
       (mapcar 'el-get-source-name el-get-sources)))
 (el-get 'sync my-packages)
 
