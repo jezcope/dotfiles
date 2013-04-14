@@ -7,7 +7,7 @@
  '(custom-safe-themes (quote ("d6a00ef5e53adf9b6fe417d2b4404895f26210c52bb8716971be106550cea257" default)))
  '(ecb-options-version "2.40")
  '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
- '(ecb-source-path (quote ("~/Documents/Personal/Projects" ("~/Documents/Personal/eRambler" "eRambler") ("/" "/"))))
+ '(ecb-source-path (quote ("~" "~/Documents/Personal/Projects" ("~/Documents/Personal/eRambler" "eRambler") ("/" "/"))))
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 (custom-set-faces
@@ -43,7 +43,16 @@
 	(:name pandoc-mode
 	       :type github
 	       :description "Emacs mode for interacting with Pandoc."
-	       :pkgname "joostkremers/pandoc-mode")))
+	       :pkgname "joostkremers/pandoc-mode")
+	(:name ruby-electric
+	       :type github
+	       :description "Improved ruby-electric mode"
+	       :pkgname "qoobaa/ruby-electric")
+	(:name ruby-tools
+	       :type github
+	       :description "Collection of handy functions for Emacs ruby-mode"
+	       :pkgname "rejeep/ruby-tools")
+	))
 (setq my-packages
   (append
       '(el-get
@@ -61,7 +70,11 @@
 ;; Setup theme
 (load-theme 'tango-dark t)
 
-;; Setup markdown-mode
+;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook 'turn-on-pandoc)
+(add-hook 'markdown-mode-hook 'auto-fill-mode)
+
+;; Setup for ruby
+(require 'ruby-tools)
