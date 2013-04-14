@@ -6,7 +6,10 @@
  '(TeX-PDF-mode t)
  '(custom-safe-themes (quote ("d6a00ef5e53adf9b6fe417d2b4404895f26210c52bb8716971be106550cea257" default)))
  '(ecb-options-version "2.40")
- '(tool-bar-mode nil))
+ '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+ '(ecb-source-path (quote ("~/Documents/Personal/Projects" ("~/Documents/Personal/eRambler" "eRambler") ("/" "/"))))
+ '(tool-bar-mode nil)
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
