@@ -52,6 +52,10 @@
 	       :type github
 	       :description "Collection of handy functions for Emacs ruby-mode"
 	       :pkgname "rejeep/ruby-tools")
+	(:name zencoding-mode
+	       :type github
+	       :description "A neat way to write markup quickly in emacs"
+	       :pkgname "smihica/zencoding")
 	))
 (setq my-packages
   (append
@@ -63,7 +67,6 @@
 	auctex
 	magit
 	zenburn-theme
-	zencoding-mode
 	)
       (mapcar 'el-get-source-name el-get-sources)))
 (el-get 'sync my-packages)
