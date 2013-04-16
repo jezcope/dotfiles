@@ -38,7 +38,7 @@
 	       :description "Emacs Code Browser"
 	       :type github
 	       :pkgname "alexott/ecb"
-	       ;:depends cedet
+	       :depends cedet
 	       :build `(("make" "CEDET=../cedet" ,(concat "EMACS=" (shell-quote-argument el-get-emacs)))))
 	(:name pandoc-mode
 	       :type github
@@ -63,6 +63,7 @@
 	auctex
 	magit
 	zenburn-theme
+	zencoding-mode
 	)
       (mapcar 'el-get-source-name el-get-sources)))
 (el-get 'sync my-packages)
@@ -78,3 +79,6 @@
 
 ;; Setup for ruby
 (require 'ruby-tools)
+
+;; Setup for HTML/XML/etc
+(add-hook 'sgml-mode-hook 'zencoding-mode)
