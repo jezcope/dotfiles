@@ -1,29 +1,10 @@
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(TeX-PDF-mode t)
- '(custom-safe-themes (quote ("d6a00ef5e53adf9b6fe417d2b4404895f26210c52bb8716971be106550cea257" default)))
- '(ecb-options-version "2.40")
- '(ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
- '(ecb-source-path (quote ("~" "~/Documents/Personal/Projects" ("~/Documents/Personal/eRambler" "eRambler") ("/" "/"))))
- '(tool-bar-mode nil)
- '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 ;; Set up package.el
 (require 'package)
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-;; Set up el-get
+;; Bootstrap el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -32,6 +13,7 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
+;; Custom el-get recipes
 (setq el-get-sources
       '(
         (:name ecb
@@ -57,6 +39,8 @@
 	       :description "A neat way to write markup quickly in emacs"
 	       :pkgname "smihica/zencoding")
 	))
+
+;; Packages to install
 (setq my-packages
   (append
       '(el-get
@@ -71,17 +55,42 @@
       (mapcar 'el-get-source-name el-get-sources)))
 (el-get 'sync my-packages)
 
-;; Setup theme
+;; General setup
+(setq tool-bar-mode nil)
+(require 'uniquify)
+(setq uniquify-buffer-name-style (quote post-forward))
+
+;; Choose theme
 (load-theme 'tango-dark t)
 
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook 'turn-on-pandoc)
-(add-hook 'markdown-mode-hook 'auto-fill-mode)
+(add-hook 'markdown-mode-hook 'visual-line-mode)
 
 ;; Setup for ruby
 (require 'ruby-tools)
 
 ;; Setup for HTML/XML/etc
 (add-hook 'sgml-mode-hook 'zencoding-mode)
+
+;; Setup for TeX
+(setq TeX-PDF-mode t)
+
+;; Setup for ECB
+(setq ecb-options-version "2.40")
+(setq ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+
+;; Setup for editing mail
+(add-to-list 'auto-mode-alist '("\\.eml\\'" . mail-mode))
+
+;; Setup for org-mode
+(setq org-startup-indented t)
+
+;; Load local settings
+(load "init-local" t)
+
+;; Machine-local customizations
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file t)
