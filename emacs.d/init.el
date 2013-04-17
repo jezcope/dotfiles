@@ -87,6 +87,7 @@
 
 ;; Setup for org-mode
 (setq org-startup-indented t)
+(setq org-startup-folded (quote content))
 
 ;; Load local settings
 (load "init-local" t)
