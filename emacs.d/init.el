@@ -9,6 +9,10 @@
 ;; Choose theme
 (load-theme 'tango-dark t)
 
+;; Activate IDO-mode
+(require 'ido)
+(ido-mode t)
+
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
