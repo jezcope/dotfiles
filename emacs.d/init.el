@@ -12,6 +12,7 @@
 ;; Activate IDO-mode
 (require 'ido)
 (ido-mode t)
+(setq ido-enable-flex-matching t)
 
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
