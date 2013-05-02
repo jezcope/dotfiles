@@ -60,3 +60,6 @@
 ;; Machine-local customizations
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file t)
+
+;; And finally start the server
+(server-start)
