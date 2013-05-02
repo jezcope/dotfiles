@@ -50,13 +50,15 @@
 (setq my-packages
   (append
       '(el-get
-        ;ecb
+	org-mode
         ack
         markdown-mode
         pandoc-mode
         auctex
         magit
         zenburn-theme
+	slime
+	filladapt
         )
       (mapcar 'el-get-source-name el-get-sources)))
 

@@ -11,6 +11,10 @@
 ;; Choose theme
 (load-theme 'tango-dark t)
 
+;; Activate filladapt-mode
+(require 'filladapt)
+(setq-default filladapt-mode t)
+
 ;; Activate IDO-mode
 (require 'ido)
 (ido-mode t)
