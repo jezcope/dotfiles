@@ -14,7 +14,7 @@ if [[ $PLATFORM = 'Darwin' ]]; then
 
   plugins=($plugins brew osx)
 elif [[ $PLATFORM = 'Linux' ]]; then
-  if [[ $(uname -r) =~ ARCH ]]; then
+  if [[ $(uname -r) == *ARCH ]]; then
     plugins=($plugins archlinux)
   fi
 fi

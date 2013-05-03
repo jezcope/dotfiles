@@ -2,18 +2,30 @@
 (load "~/.emacs.d/init-el-get")
 
 ;; General setup
-(setq tool-bar-mode nil)
 (require 'uniquify)
-(setq uniquify-buffer-name-style (quote post-forward))
+(setq tool-bar-mode nil
+      uniquify-buffer-name-style (quote post-forward)
+      indent-tabs-mode nil)
+(global-auto-revert-mode)
 
 ;; Choose theme
 (load-theme 'tango-dark t)
+
+;; Activate filladapt-mode
+(require 'filladapt)
+(setq-default filladapt-mode t)
+
+;; Activate IDO-mode
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
 
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook 'turn-on-pandoc)
 (add-hook 'markdown-mode-hook 'visual-line-mode)
+(add-hook 'markdown-mode-hook 'flyspell-mode)
 
 ;; Setup for ruby
 (require 'ruby-tools)
@@ -32,10 +44,17 @@
 
 ;; Setup for editing mail
 (add-to-list 'auto-mode-alist '("\\.eml\\'" . mail-mode))
+(add-hook 'mail-mode-hook 'visual-line-mode)
 
 ;; Setup for org-mode
 (setq org-startup-indented t)
 (setq org-startup-folded (quote content))
+
+;; Setup for whitespace-mode
+(setq whitespace-style
+      (quote (face tabs spaces trailing lines space-before-tab
+                   newline empty space-after-tab space-mark tab-mark
+                   newline-mark)))
 
 ;; Load local settings
 (load "init-local" t)
@@ -43,3 +62,6 @@
 ;; Machine-local customizations
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file t)
+
+;; And finally start the server
+(server-start)
