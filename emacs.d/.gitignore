@@ -8,3 +8,4 @@ el-get
 srecode-map.el
 custom*.el
 eshell/lastdir
+tramp
