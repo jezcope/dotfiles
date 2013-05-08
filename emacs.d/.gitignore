@@ -6,5 +6,5 @@ archives
 elpa
 el-get
 srecode-map.el
-custom.el
+custom*.el
 eshell/lastdir
