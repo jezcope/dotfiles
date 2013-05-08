@@ -8,8 +8,7 @@
       uniquify-buffer-name-style (quote post-forward)
       indent-tabs-mode nil
       standard-indent 2
-      ;; TODO: There must be a more concise way to express this:
-      tab-stop-list (quote (2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32))
+      tab-stop-list (loop for n from 2 below 80 by 2 collect n)
       tab-width 2)
 (global-auto-revert-mode)
 
