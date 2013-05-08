@@ -35,6 +35,8 @@
 
 ;; Setup for ruby
 (require 'ruby-tools)
+(add-to-list 'auto-mode-alist '("\\.thor\\'" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Thorfile\\'" . ruby-mode))
 
 ;; Setup for HTML/XML/etc
 (add-hook 'sgml-mode-hook 'zencoding-mode)
