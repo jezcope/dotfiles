@@ -59,6 +59,7 @@
         zenburn-theme
 	slime
 	filladapt
+	haskell-mode
         )
       (mapcar 'el-get-source-name el-get-sources)))
 
