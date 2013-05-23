@@ -13,7 +13,7 @@
 (global-auto-revert-mode)
 
 ;; Choose theme
-(load-theme 'tango-dark t)
+(load-theme 'solarized-dark t)
 
 ;; Activate filladapt-mode
 (require 'filladapt)

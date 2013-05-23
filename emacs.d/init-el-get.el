@@ -62,6 +62,7 @@
 	haskell-mode
 	lacarte
 	yaml-mode
+	color-theme-solarized
         )
       (mapcar 'el-get-source-name el-get-sources)))
 
