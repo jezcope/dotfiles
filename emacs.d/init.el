@@ -24,6 +24,9 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+;; Activate multiple-cursors
+(require 'multiple-cursors)
+
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -63,6 +66,7 @@
 
 ;; Setup for shell scripts
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("PKGBUILD\\'" . sh-mode))
 
 ;; Load local settings
 (load "init-local" t)
