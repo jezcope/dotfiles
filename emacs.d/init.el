@@ -13,7 +13,7 @@
 (global-auto-revert-mode)
 
 ;; Choose theme
-(load-theme 'tango-dark t)
+(load-theme 'solarized-dark t)
 
 ;; Activate filladapt-mode
 (require 'filladapt)
@@ -27,6 +27,9 @@
 ;; Activate Yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
+
+;; Activate multiple-cursors
+(require 'multiple-cursors)
 
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
@@ -67,6 +70,7 @@
 
 ;; Setup for shell scripts
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("PKGBUILD\\'" . sh-mode))
 
 ;; Load local settings
 (load "init-local" t)

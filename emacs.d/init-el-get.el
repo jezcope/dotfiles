@@ -69,6 +69,9 @@
 	haskell-mode
 	lacarte
 	yaml-mode
+	lorem-ipsum
+	multiple-cursors
+	color-theme-solarized
         )
       (mapcar 'el-get-source-name el-get-sources)))
 
