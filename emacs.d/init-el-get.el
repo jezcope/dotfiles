@@ -44,7 +44,14 @@
 	       :description "Perform smart line-wrapping with wrap-prefix"
 	       :type github
 	       :pkgname "emacsmirror/adaptive-wrap-prefix")
-        ))
+	(:name yasnippet
+	       :website "https://github.com/capitaomorte/yasnippet.git"
+	       :description "YASnippet is a template system for Emacs."
+	       :type github
+	       :pkgname "capitaomorte/yasnippet"
+	       :features "yasnippet"
+	       :compile "yasnippet.el")
+	))
 
 ;; Packages to install
 (setq my-packages

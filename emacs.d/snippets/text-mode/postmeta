@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Blog post metadata
+# key: postmeta
+# --
+---
+title: '${1:Title}'
+kind: article
+created_at: ${2:`(format-time-string "%c")`}
+categories:
+- $3
+tags:
+- $4
+---
+
+$0

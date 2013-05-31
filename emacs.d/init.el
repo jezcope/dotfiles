@@ -24,6 +24,10 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+;; Activate Yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
