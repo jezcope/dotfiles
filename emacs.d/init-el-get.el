@@ -72,6 +72,7 @@
 	lorem-ipsum
 	multiple-cursors
 	color-theme-solarized
+	coffee-mode
         )
       (mapcar 'el-get-source-name el-get-sources)))
 
