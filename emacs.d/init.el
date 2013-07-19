@@ -24,6 +24,13 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+;; Activate Yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
+;; Activate multiple-cursors
+(require 'multiple-cursors)
+
 ;; Setup for markdown
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -63,6 +70,15 @@
 
 ;; Setup for shell scripts
 (add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("PKGBUILD\\'" . sh-mode))
+
+;; unfill-paragraph http://www.emacswiki.org/emacs/UnfillParagraph
+;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
+(defun unfill-paragraph ()
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
 
 ;; Load local settings
 (load "init-local" t)
