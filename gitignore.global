@@ -13,6 +13,7 @@ doc/tags
 *.toc
 *.bcf
 *.bbl
+*.blg
 *.nav
 *.run.xml
 *.snm
