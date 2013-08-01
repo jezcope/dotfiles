@@ -22,6 +22,8 @@ fi
 alias e='emacsclient -c'
 alias et='emacsclient -t'
 
+alias gA='git add --all'
+
 DISABLE_AUTO_UPDATE="true"
 
 source $ZSH/oh-my-zsh.sh
