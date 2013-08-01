@@ -9,3 +9,4 @@ srecode-map.el
 custom*.el
 eshell/lastdir
 tramp
+url

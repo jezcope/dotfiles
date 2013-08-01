@@ -5,6 +5,7 @@
 (require 'uniquify)
 (setq tool-bar-mode nil
       menu-bar-mode nil
+      scroll-bar-mode nil
       uniquify-buffer-name-style (quote post-forward)
       indent-tabs-mode nil
       standard-indent 2
@@ -51,16 +52,21 @@
 (setq TeX-PDF-mode t)
 
 ;; Setup for ECB
-(setq ecb-options-version "2.40")
-(setq ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+(setq ecb-options-version "2.40"
+      ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)
+      ecb-compilation-major-modes (quote (compilation-mode TeX-output-mode)))
 
 ;; Setup for editing mail
 (add-to-list 'auto-mode-alist '("\\.eml\\'" . mail-mode))
 (add-hook 'mail-mode-hook 'visual-line-mode)
 
 ;; Setup for org-mode
-(setq org-startup-indented t)
-(setq org-startup-folded (quote content))
+(setq org-startup-indented t
+      org-startup-folded (quote content)
+      org-babel-load-languages (quote ((emacs-lisp . t) (ruby . t) (sh . t))))
+
+;; Setup for dired/sunrise
+(setq dired-omit-files "^\\.")
 
 ;; Setup for whitespace-mode
 (setq whitespace-style
