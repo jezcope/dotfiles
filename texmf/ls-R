@@ -11,6 +11,7 @@ latex
 ./tex/latex:
 beamerposter
 beamer-uob
+easychair
 personal
 uniofbath
 
@@ -22,11 +23,25 @@ bathpalette.sty
 beamercolorthemeBath.sty
 beamerfontthemeBath.sty
 beamerinnerthemeBath.sty
+beamerouterthemeBath.log
 beamerouterthemeBath.sty
 beamerthemeBath.sty
+bg-csct.pdf
 bg-research.pdf
+cleanup.sh
 example.tex
 README.md
+
+./tex/latex/easychair:
+chairEC.pdf
+debug.pdf
+easychair-a4.pdf
+easychair.bib
+easychair.cls
+easychair.pdf
+easychair.tex
+logoEC.pdf
+throneEC.jpg
 
 ./tex/latex/personal:
 jcutils.sty
