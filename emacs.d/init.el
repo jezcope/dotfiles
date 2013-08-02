@@ -10,7 +10,9 @@
       indent-tabs-mode nil
       standard-indent 2
       tab-stop-list (loop for n from 2 below 80 by 2 collect n)
-      tab-width 2)
+      tab-width 2
+      ispell-dictionary "british"
+      )
 (global-auto-revert-mode)
 
 ;; Choose theme
