@@ -71,6 +71,10 @@
                :post-init (progn
                             (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
                             (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)))
+	(:name jade-mode
+	       :description "Emacs major mode for jade template highlighting"
+	       :type github
+	       :pkgname "brianc/jade-mode")
         ))
 
 ;; Packages to install
