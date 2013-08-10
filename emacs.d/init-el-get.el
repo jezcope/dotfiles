@@ -1,10 +1,6 @@
-;; Set up package.el
-;(require 'package)
-;(add-to-list 'package-archives
-;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;(package-initialize)
-
-;;(setq-default el-get-byte-compile t)
+;; Make sure we can find the tools we need
+(setq exec-path
+      (append exec-path '("/usr/local/bin")))
 
 ;; Bootstrap el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -45,6 +41,7 @@
 	ecb
 	org-mode
         sunrise-commander
+	erc
 	magit
         ack
         markdown-mode
