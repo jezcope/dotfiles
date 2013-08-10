@@ -91,6 +91,12 @@
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
 
+;; Save backups and autosaves somewhere more sensible
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory))
+      auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 ;; Load local settings
 (load "init-local" t)
 
