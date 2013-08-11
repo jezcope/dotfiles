@@ -4,6 +4,13 @@
 
 ** Pre-setup
 
+*** Disable menu bar and toolbar
+
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+#+END_SRC
+
 *** Set exec-path to find some key programs
 
 #+BEGIN_SRC emacs-lisp
@@ -40,6 +47,7 @@
            sunrise-commander
            erc
            magit
+           ecb
            )))
 #+END_SRC
 
