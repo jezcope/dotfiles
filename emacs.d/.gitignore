@@ -10,3 +10,8 @@ custom*.el
 eshell/lastdir
 tramp
 url
+.org-id-locations
+bookmarks
+.mc-lists.el
+init-main.el
+session.*
