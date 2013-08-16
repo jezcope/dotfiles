@@ -271,6 +271,20 @@
         ecb-compilation-major-modes (quote (compilation-mode TeX-output-mode)))
 #+END_SRC
 
+**** Source files (include/exclude)
+
+#+BEGIN_SRC emacs-lisp
+  (setq ecb-source-file-regexps
+        '(
+          ;; In all folders:
+          (".*"
+           ;; Exclude
+           ("\\(^\\(\\.\\|#\\)\\|\\(~$\\|\\.\\(elc\\|obj\\|o\\|class\\|lib\\|dll\\|a\\|so\\|cache\\|pyc\\)$\\)\\)")
+           ;; Include
+           ("^\\.\\(emacs\\|gnus\\)$"))
+          ))
+#+END_SRC
+
 *** Dired/sunrise
 
 #+BEGIN_SRC emacs-lisp
