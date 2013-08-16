@@ -277,6 +277,13 @@
   (setq dired-omit-files "^\\.")
 #+END_SRC
 
+*** Magit
+
+**** Global key bindings
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key "\C-c\C-s" 'magit-status)
+#+END_SRC
 
 ** Extra functions
 
