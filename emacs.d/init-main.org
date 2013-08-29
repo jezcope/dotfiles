@@ -31,31 +31,28 @@
 
 #+BEGIN_SRC emacs-lisp
   (setq my-packages
-        (append
          '(
            el-get
            org-mode
-           )))
+           ))
 #+END_SRC
 
 **** Applications
 
 #+BEGIN_SRC emacs-lisp
-  (setq my-packages
-        (append my-packages
+  (nconc my-packages
          '(
            sunrise-commander
            erc
            magit
            ecb
-           )))
+           ))
 #+END_SRC
 
 **** Global customizations
 
 #+BEGIN_SRC emacs-lisp
-  (setq my-packages
-        (append my-packages
+  (nconc my-packages
          '(
            ack
            yasnippet
@@ -64,38 +61,35 @@
            lorem-ipsum
            multiple-cursors
            adaptive-wrap
-           )))
+           ))
 #+END_SRC
 
 **** Color themes
 
 #+BEGIN_SRC emacs-lisp
-  (setq my-packages
-        (append my-packages
+  (nconc my-packages
          '(
            zenburn-theme
            color-theme-solarized
-           )))
+           ))
 #+END_SRC
 
 **** Text/document editing
 
 #+BEGIN_SRC emacs-lisp
-  (setq my-packages
-        (append my-packages
+  (nconc my-packages
          '(
            markdown-mode
            pandoc-mode
            zencoding-mode
            auctex
-           )))
+           ))
 #+END_SRC
 
 **** Programming languages
 
 #+BEGIN_SRC emacs-lisp
-  (setq my-packages
-        (append my-packages
+  (nconc my-packages
          '(
            ruby-mode
            ruby-electric
@@ -107,7 +101,7 @@
            jade-mode
            scss-mode
            puppet-mode
-           )))
+           ))
 #+END_SRC
 
 *** And finally, install everything
