@@ -145,7 +145,7 @@
 
 *** Activate filladapt-mode
 
-#+BEGIN_SRC
+#+BEGIN_SRC emacs-lisp
   (require 'filladapt)
   (setq-default filladapt-mode t)
 #+END_SRC
