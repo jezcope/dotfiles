@@ -46,6 +46,7 @@
            erc
            magit
            ecb
+           emacs-w3m
            ))
 #+END_SRC
 
