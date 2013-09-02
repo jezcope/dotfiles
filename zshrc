@@ -4,7 +4,7 @@ PLATFORM=$(uname -s)
 
 ZSH=$HOME/.zsh/oh-my-zsh
 ZSH_THEME="jez"
-plugins=(git thor rake rvm extract)
+plugins=(git thor rake rvm extract vagrant git-flow)
 
 # Platform-specific sections
 if [[ $PLATFORM = 'Darwin' ]]; then
@@ -69,3 +69,5 @@ export LANG=en_GB.UTF-8
 
 # A few more options
 setopt noclobber multios
+
+# -*- mode: sh -*-
