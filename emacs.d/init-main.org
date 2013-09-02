@@ -157,6 +157,13 @@
   (require 'ido)
   (ido-mode t)
   (setq ido-enable-flex-matching t)
+
+  ;; Disable auto-merging but trigger it with C-c C-s
+  (setq ido-auto-merge-work-directories-length -1)
+  (define-key ido-file-dir-completion-map (kbd "C-c C-s")
+    (lambda()
+      (interactive)
+      (ido-initiate-auto-merge (current-buffer))))
 #+END_SRC
 
 *** Activate yasnippet
