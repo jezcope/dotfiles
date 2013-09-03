@@ -70,4 +70,6 @@ export LANG=en_GB.UTF-8
 # A few more options
 setopt noclobber multios
 
-# -*- mode: sh -*-
+# Local Variables:
+# mode: sh
+# End:
