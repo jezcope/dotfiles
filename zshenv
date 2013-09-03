@@ -1,19 +1,6 @@
 # Make $path array ignore non-unique elements
 typeset -U path
 
-if [[ -s "$HOME/.rvmrc" ]]; then
-  source "$HOME/.rvmrc"
-fi
-
-if [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
-  rvm_path=/usr/local/rvm
-  source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
-elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-  rvm_path=$HOME/.rvm
-  source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
-fi
-PATH=$PATH:$rvm_path/bin # Add RVM to PATH for scripting
-
 PLATFORM=`uname -s`
 
 path=($HOME/bin $HOME/bin/shared $path)
@@ -41,6 +28,20 @@ else
   BUNDLE_WITHOUT=darwin_only
 fi
 
+# Source local rvm config
+if [[ -s "$HOME/.rvmrc" ]]; then
+  source "$HOME/.rvmrc"
+fi
+
+# Try some common options for rvm location
+if [[ -z "$rvm_path" ]]; then
+  if [[ -s "/usr/local/rvm/scripts/rvm" ]]; then
+    rvm_path=/usr/local/rvm
+  elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    rvm_path=$HOME/.rvm
+  fi
+fi
+
 export PATH
 
 export EDITOR="$(which emacsclient) -t"
@@ -51,3 +52,13 @@ whence keychain > /dev/null && eval $(keychain --eval --ignore-missing -Q -q id_
 if [[ -s "$HOME/.zshenv.local" ]]; then
   source "$HOME/.zshenv.local"
 fi
+
+# Source rvm if it seems to be installed (i.e. $rvm_path set)
+if [[ -n "$rvm_path" ]]; then
+  source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
+  PATH=$PATH:$rvm_path/bin # Add RVM to PATH for scripting
+fi
+
+# Local Variables:
+# mode: sh
+# End:
