@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Beamer columns
+# --
+\begin{columns}
+
+  \begin{column}{${1:width}}
+    $0
+  \end{column}
+
+\end{columns}
