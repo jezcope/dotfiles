@@ -171,6 +171,8 @@
 #+BEGIN_SRC emacs-lisp
   (require 'yasnippet)
   (yas-global-mode 1)
+  (setq yas-also-indent-first-line t
+        yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-ido-prompt yas-no-prompt))
 #+END_SRC
 
 *** Activate multiple-cursors
