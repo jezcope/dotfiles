@@ -1,5 +1,19 @@
+module Helpers
+
+  def texmf_location
+    case RUBY_PLATFORM
+    when /darwin/
+      "Library/texmf"
+    else
+      "texmf"
+    end
+  end
+
+end
+
 class Dotfiles < Thor
   include Thor::Actions
+  include Helpers
 
   DOTLINKS = %w(zshrc zshenv zsh vimrc vim emacs.d pentadactyl pentadactylrc xmonad gitconfig gitignore.global htmltidy.conf ackrc)
 
@@ -13,7 +27,7 @@ class Dotfiles < Thor
       link_file f, ".#{f}"
     end
 
-    link_file 'texmf', "texmf"
+    link_file 'texmf', texmf_location
     link_file 'sharedbin', "bin/shared"
   end
 
