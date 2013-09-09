@@ -359,7 +359,7 @@ Ignore some more boring file extensions
 **** Global key bindings
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key "\C-c\C-s" 'magit-status)
+  (global-set-key (kbd "C-S-g") 'magit-status)
 #+END_SRC
 
 ** Extra functions
