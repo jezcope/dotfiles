@@ -233,6 +233,7 @@ Ignore some more boring file extensions
         org-startup-folded (quote content)
         org-babel-load-languages (quote ((emacs-lisp . t) (ruby . t) (sh . t))))
   (add-hook 'org-mode-hook 'turn-off-filladapt-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode)
 #+END_SRC
 
 **** Global key bindings
