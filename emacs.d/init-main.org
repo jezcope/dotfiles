@@ -7,8 +7,14 @@
 *** Disable menu bar and toolbar
 
 #+BEGIN_SRC emacs-lisp
-  (menu-bar-mode -1)
   (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+END_SRC
+
+Enable menu bar on Mac, as it doesn't make any difference:
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode
+   (if (eq system-type 'darwin) 1 -1))
 #+END_SRC
 
 *** Set exec-path to find some key programs
