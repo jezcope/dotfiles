@@ -283,6 +283,11 @@
   (add-to-list 'auto-mode-alist '("PKGBUILD\\'" . sh-mode))
 #+END_SRC
 
+**** JavaScript
+
+#+BEGIN_SRC emacs-lisp
+  (setq js-indent-level 2)
+#+END_SRC
 *** Mail editing
 
 #+BEGIN_SRC emacs-lisp
