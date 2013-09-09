@@ -23,6 +23,11 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (setq exec-path (append exec-path '("/usr/local/bin")))
 #+END_SRC
 
+*** Set load-path
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/lisp")
+#+END_SRC
 
 ** Install packages via el-get
 
@@ -142,6 +147,14 @@ Enable menu bar on Mac, as it doesn't make any difference:
         `((".*" . ,temporary-file-directory))
         auto-save-file-name-transforms
         `((".*" ,temporary-file-directory t)))
+#+END_SRC
+
+*** Allow periodic saving of buffers
+
+Use =M-x turn-on-real-auto-save= to activate for a given button. Default save period is 10s.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'real-auto-save)
 #+END_SRC
 
 *** Choose theme
