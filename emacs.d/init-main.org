@@ -93,7 +93,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
          '(
            markdown-mode
            pandoc-mode
-           zencoding-mode
+           emmet-mode ;; from local recipe
            auctex
            ))
 #+END_SRC
@@ -279,7 +279,13 @@ Ignore some more boring file extensions
 **** HTML/XML/etc
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'sgml-mode-hook 'zencoding-mode)
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+#+END_SRC
+
+***** Configure emmet-mode
+
+#+BEGIN_SRC emacs-lisp
+  (setq emmet-indentation 4)
 #+END_SRC
 
 **** TeX
