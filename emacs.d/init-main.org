@@ -304,6 +304,7 @@ Ignore some more boring file extensions
 #+BEGIN_SRC emacs-lisp
   (require 'ruby-tools)
   (add-to-list 'auto-mode-alist '("\\.thor\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Thorfile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Gemfile\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Guardfile\\'" . ruby-mode))
