@@ -4,7 +4,7 @@
        :type github
        :pkgname "magit/magit"
        :branch "maint"
-       :depends (cl-lib git-modes)
+       :depends (cl-lib)
        :info "."
        ;; let el-get care about autoloads so that it works with all OSes
        :build (if (version<= "24.3" emacs-version)
