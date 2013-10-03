@@ -230,8 +230,12 @@ Ignore some more boring file extensions
 
 #+BEGIN_SRC emacs-lisp
   (setq org-startup-indented t
-        org-startup-folded (quote content)
-        org-babel-load-languages (quote ((emacs-lisp . t) (ruby . t) (sh . t))))
+        org-startup-folded 'content
+        org-export-backends '(ascii html icalendar latex md odt)
+        org-babel-load-languages '((emacs-lisp . t) (ruby . t) (sh . t))
+        org-use-fast-tag-selection t
+        )
+
   (add-hook 'org-mode-hook 'turn-off-filladapt-mode)
   (add-hook 'org-mode-hook 'visual-line-mode)
 #+END_SRC
@@ -252,6 +256,15 @@ Ignore some more boring file extensions
   (add-hook 'org-shiftleft-final-hook 'windmove-left)
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right)
+#+END_SRC
+
+**** Capture
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-capture-templates '(
+                                ("t" "Todo" entry (file "") "* TODO %? %U")
+                                ("n" "Note" entry (file "") "* %? %U")
+                                ))
 #+END_SRC
 
 **** Encryption
