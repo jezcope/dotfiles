@@ -225,12 +225,13 @@ Ignore some more boring file extensions
     (windmove-default-keybindings))
 #+END_SRC
 
-*** Enable typopunct for 
+*** Enable typopunct for typographical punctuation
 
 See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographical Punctuation Marks on EmacsWiki]] for documentation
 
 #+BEGIN_SRC emacs-lisp
   (require 'typopunct)
+  (setq typopunct-buffer-language 'english)
 #+END_SRC
 
 *** Org-mode
