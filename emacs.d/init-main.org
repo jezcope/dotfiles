@@ -76,6 +76,18 @@ Enable menu bar on Mac, as it doesn't make any difference:
            ))
 #+END_SRC
 
+**** Auto complete mode
+
+#+BEGIN_SRC emacs-lisp
+  (nconc my-packages
+         '(
+           auto-complete
+           ac-python
+           auto-complete-latex
+           auto-complete-ruby
+           ))
+#+END_SRC
+
 **** Color themes
 
 #+BEGIN_SRC emacs-lisp
@@ -284,6 +296,14 @@ See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographica
   (require 'org-crypt)
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+#+END_SRC
+
+*** Auto complete mode
+
+#+BEGIN_SRC emacs-lisp
+  (setq ac-dictionary-directories '("~/.emacs.d/dict"))
+  (require 'auto-complete-config)
+  (ac-config-default)
 #+END_SRC
 
 ** File-type specific
