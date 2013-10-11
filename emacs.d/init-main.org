@@ -114,6 +114,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            jade-mode
            scss-mode
            puppet-mode
+           php-mode-improved
            ))
 #+END_SRC
 
