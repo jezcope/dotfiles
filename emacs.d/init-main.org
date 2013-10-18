@@ -58,6 +58,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            magit
            ecb
            emacs-w3m
+           wanderlust
            ))
 #+END_SRC
 
@@ -140,18 +141,29 @@ Enable menu bar on Mac, as it doesn't make any difference:
 ** Global setup
 
 #+BEGIN_SRC emacs-lisp
-  (require 'uniquify)
   (setq tool-bar-mode nil
         menu-bar-mode nil
         scroll-bar-mode nil
-        uniquify-buffer-name-style (quote post-forward)
         indent-tabs-mode nil
         standard-indent 2
         tab-stop-list (loop for n from 2 below 80 by 2 collect n)
         tab-width 2
         ispell-dictionary "british"
         )
+  
+  ;; Allow narrow-to-region (which is disabled by default)
+  (put 'narrow-to-region 'disabled nil)
+  
   (global-auto-revert-mode)
+#+END_SRC
+
+*** Configure how to make buffer titles unique
+
+This adds (to the filename) enough of the path after a vertical bar to make the title unique.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'uniquify)
+  (setq uniquify-buffer-name-style 'post-forward)
 #+END_SRC
 
 *** Save backups and autosaves somewhere more sensible
