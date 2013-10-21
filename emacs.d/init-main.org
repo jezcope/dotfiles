@@ -245,13 +245,6 @@ Ignore some more boring file extensions
                      newline-mark)))
 #+END_SRC
 
-*** Enable windmove key bindings
-
-#+BEGIN_SRC emacs-lisp
-  (when (fboundp 'windmove-default-keybindings)
-    (windmove-default-keybindings))
-#+END_SRC
-
 *** Enable typopunct for typographical punctuation
 
 See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographical Punctuation Marks on EmacsWiki]] for documentation
@@ -318,6 +311,21 @@ See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographica
   (setq ac-dictionary-directories '("~/.emacs.d/dict"))
   (require 'auto-complete-config)
   (ac-config-default)
+#+END_SRC
+
+** Key bindings
+
+*** Set print screen key to paste from X clipboard
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<print>") 'clipboard-yank)
+#+END_SRC
+
+*** Enable windmove key bindings
+
+#+BEGIN_SRC emacs-lisp
+  (when (fboundp 'windmove-default-keybindings)
+    (windmove-default-keybindings))
 #+END_SRC
 
 ** File-type specific
