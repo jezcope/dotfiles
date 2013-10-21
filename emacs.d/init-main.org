@@ -175,12 +175,14 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
         `((".*" ,temporary-file-directory t)))
 #+END_SRC
 
-*** Allow periodic saving of buffers
+*** Enable periodic saving of buffers
 
-Use =M-x turn-on-real-auto-save= to activate for a given button. Default save period is 10s.
+Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save period is 10s.  Enable it by default for =text-mode= and any derived modes.
 
 #+BEGIN_SRC emacs-lisp
   (require 'real-auto-save)
+  (setq real-auto-save-interval 5) ;; in seconds
+  (add-hook 'text-mode-hook 'turn-on-real-auto-save)
 #+END_SRC
 
 *** Choose theme
