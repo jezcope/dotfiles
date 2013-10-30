@@ -89,6 +89,27 @@ Enable menu bar on Mac, as it doesn't make any difference:
            ))
 #+END_SRC
 
+**** Icicles
+
+#+BEGIN_SRC emacs-lisp
+  (nconc my-packages
+         '(
+           icicles
+           icicles-chg
+           icicles-cmd1
+           icicles-cmd2
+           icicles-doc1
+           icicles-doc2
+           icicles-face
+           icicles-fn
+           icicles-mac
+           icicles-mcmd
+           icicles-mode
+           icicles-opt
+           icicles-var
+           ))
+#+END_SRC
+
 **** Color themes
 
 #+BEGIN_SRC emacs-lisp
@@ -198,29 +219,6 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
   (setq-default filladapt-mode t)
 #+END_SRC
 
-*** Activate IDO-mode
-
-#+BEGIN_SRC emacs-lisp
-  (require 'ido)
-  (ido-mode t)
-  (setq ido-enable-flex-matching t)
-#+END_SRC
-
-Disable auto-merging but trigger it with =C-c C-s=
-#+BEGIN_SRC emacs-lisp
-  (setq ido-auto-merge-work-directories-length -1)
-  (define-key ido-file-dir-completion-map (kbd "C-c C-s")
-    (lambda()
-      (interactive)
-      (ido-initiate-auto-merge (current-buffer))))
-#+END_SRC
-
-Ignore some more boring file extensions
-#+BEGIN_SRC emacs-lisp
-  (setq completion-ignored-extensions '(".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".fls" ".nav" ".snm" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".dfsl" ".pfsl" ".d64fsl" ".p64fsl" ".lx64fsl" ".lx32fsl" ".dx64fsl" ".dx32fsl" ".fx64fsl" ".fx32fsl" ".sx64fsl" ".sx32fsl" ".wx64fsl" ".wx32fsl" ".fasl" ".ufsl" ".fsl" ".dxl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" ".fdb_latexmk")
-        ido-ignore-extensions t)
-#+END_SRC
-
 *** Activate yasnippet
 
 #+BEGIN_SRC emacs-lisp
@@ -320,6 +318,34 @@ See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographica
   (ac-config-default)
 #+END_SRC
 
+*** Icicles
+
+#+BEGIN_SRC emacs-lisp
+  (icy-mode 1)
+#+END_SRC
+
+*** COMMENT Activate IDO-mode
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (require 'ido)
+  (ido-mode t)
+  (setq ido-enable-flex-matching t)
+#+END_SRC
+
+Disable auto-merging but trigger it with =C-c C-s=
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq ido-auto-merge-work-directories-length -1)
+  (define-key ido-file-dir-completion-map (kbd "C-c C-s")
+    (lambda()
+      (interactive)
+      (ido-initiate-auto-merge (current-buffer))))
+#+END_SRC
+
+Ignore some more boring file extensions
+#+BEGIN_SRC emacs-lisp
+  (setq completion-ignored-extensions '(".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".fls" ".nav" ".snm" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".dfsl" ".pfsl" ".d64fsl" ".p64fsl" ".lx64fsl" ".lx32fsl" ".dx64fsl" ".dx32fsl" ".fx64fsl" ".fx32fsl" ".sx64fsl" ".sx32fsl" ".wx64fsl" ".wx32fsl" ".fasl" ".ufsl" ".fsl" ".dxl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" ".fdb_latexmk")
+        ido-ignore-extensions t)
+#+END_SRC
 ** Key bindings
 
 *** Set print screen key to paste from X clipboard
