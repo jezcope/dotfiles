@@ -461,6 +461,8 @@ Ignore some more boring file extensions
 
 #+BEGIN_SRC emacs-lisp
   (setq dired-omit-files "^\\.")
+  
+  (global-set-key (kbd "<f9>") 'sunrise)
 #+END_SRC
 
 *** Magit
