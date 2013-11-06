@@ -133,7 +133,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            ))
 #+END_SRC
 
-**** Programming languages
+**** Programming languages and similar
 
 #+BEGIN_SRC emacs-lisp
   (nconc my-packages
@@ -149,6 +149,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            scss-mode
            puppet-mode
            php-mode-improved
+           abc-mode
            ))
 #+END_SRC
 
