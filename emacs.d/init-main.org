@@ -442,6 +442,8 @@ Ignore some more boring file extensions
   (setq ecb-options-version "2.40"
         ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)
         ecb-compilation-major-modes (quote (compilation-mode TeX-output-mode)))
+  
+  (global-set-key (kbd "<f8>") 'ecb-activate)
 #+END_SRC
 
 **** Source files (include/exclude)
