@@ -321,6 +321,8 @@ See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographica
 
 *** Icicles
 
+Turn on Icicles by default
+
 #+BEGIN_SRC emacs-lisp
   (icy-mode 1)
 #+END_SRC
@@ -360,6 +362,22 @@ Ignore some more boring file extensions
 #+BEGIN_SRC emacs-lisp
   (when (fboundp 'windmove-default-keybindings)
     (windmove-default-keybindings))
+#+END_SRC
+
+*** Function keys
+
+  +----+------+------+--------+----+------+--------+--------+-------+-----+-----+-----+
+  | F1 | F2   | F3   | F4     | F5 | F6   |   F7   |   F8   |  F9   | F10 | F11 | F12 |
+  +----+------+------+--------+----+------+--------+--------+-------+-----+-----+-----+
+  |Help| 2col |Macro | Macro  |    |Magit | Toggle |Activate|Toggle |Menu |(Mac)|(Mac)|
+  |    |prefix|record|call/end|    |status|icy-mode|  ECB   |sunrise|     |     |     |
+  +----+------+------+--------+----+------+--------+--------+-------+-----+-----+-----+
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<f6>") 'magit-status)
+  (global-set-key (kbd "<f7>") 'icy-mode)
+  (global-set-key (kbd "<f8>") 'ecb-activate)
+  (global-set-key (kbd "<f9>") 'sunrise)
 #+END_SRC
 
 ** File-type specific
@@ -443,7 +461,6 @@ Ignore some more boring file extensions
         ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)
         ecb-compilation-major-modes (quote (compilation-mode TeX-output-mode)))
   
-  (global-set-key (kbd "<f8>") 'ecb-activate)
 #+END_SRC
 
 **** Source files (include/exclude)
@@ -464,16 +481,6 @@ Ignore some more boring file extensions
 
 #+BEGIN_SRC emacs-lisp
   (setq dired-omit-files "^\\.")
-  
-  (global-set-key (kbd "<f9>") 'sunrise)
-#+END_SRC
-
-*** Magit
-
-**** Global key bindings
-
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-S-g") 'magit-status)
 #+END_SRC
 
 ** Extra functions
