@@ -160,6 +160,11 @@ Enable menu bar on Mac, as it doesn't make any difference:
 (el-get 'sync my-packages)
 #+END_SRC
 
+** Additional setup files
+
+#+BEGIN_SRC emacs-lisp
+  (jsc/require-org-file "init-org.org")
+#+END_SRC
 
 ** Global setup
 
@@ -261,68 +266,6 @@ See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographica
   (setq typopunct-buffer-language 'english)
 #+END_SRC
 
-*** Org-mode
-
-**** General setup
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-startup-indented t
-        org-startup-folded 'content
-        org-export-backends '(ascii html icalendar latex md odt)
-        org-babel-load-languages '((emacs-lisp . t) (ruby . t) (sh . t))
-        org-use-fast-tag-selection t
-        )
-
-  (add-hook 'org-mode-hook 'turn-off-filladapt-mode)
-  (add-hook 'org-mode-hook 'visual-line-mode)
-#+END_SRC
-
-**** Global key bindings
-
-#+BEGIN_SRC emacs-lisp
-  (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key "\C-cc" 'org-capture)
-  (global-set-key "\C-ca" 'org-agenda)
-  (global-set-key "\C-cb" 'org-iswitchb)
-#+END_SRC
-
-**** Make windmove work in org-mode
-
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'org-shiftup-final-hook 'windmove-up)
-  (add-hook 'org-shiftleft-final-hook 'windmove-left)
-  (add-hook 'org-shiftdown-final-hook 'windmove-down)
-  (add-hook 'org-shiftright-final-hook 'windmove-right)
-#+END_SRC
-
-**** Capture
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-capture-templates '(
-                                ("t" "Todo" entry (file "") "* TODO %?\n%U")
-                                ("n" "Note" entry (file "") "* %?\n%U")
-                                ))
-#+END_SRC
-
-**** Encryption
-
-#+BEGIN_SRC emacs-lisp
-  (require 'org-crypt)
-  (org-crypt-use-before-save-magic)
-  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-#+END_SRC
-
-**** Todo states
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "|" "DONE(d)")
-          (sequence "|" "ONHOLD(h)" "CANCELED(c)"))
-        
-        org-todo-keyword-faces
-        '(("ONHOLD" . org-agenda-dimmed-todo-face))
-        )
-#+END_SRC
 *** Auto complete mode
 
 #+BEGIN_SRC emacs-lisp

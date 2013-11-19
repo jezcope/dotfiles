@@ -13,5 +13,5 @@ url
 .org-id-locations
 bookmarks
 .mc-lists.el
-init-main.el
+init-*.el
 session.*

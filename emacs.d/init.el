@@ -19,4 +19,8 @@
 
 ;; Load up main init file
 (require 'ob-tangle)
-(org-babel-load-file (expand-file-name "init-main.org" dotfiles-dir))
+
+(defun jsc/require-org-file (name)
+  (org-babel-load-file (expand-file-name name dotfiles-dir)))
+
+(jsc/require-org-file "init-main.org")
