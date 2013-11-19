@@ -150,6 +150,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            puppet-mode
            php-mode-improved
            abc-mode
+           graphviz-dot-mode
            ))
 #+END_SRC
 
