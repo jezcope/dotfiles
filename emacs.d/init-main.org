@@ -298,8 +298,8 @@ See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographica
 
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates '(
-                                ("t" "Todo" entry (file "") "* TODO %? %U")
-                                ("n" "Note" entry (file "") "* %? %U")
+                                ("t" "Todo" entry (file "") "* TODO %?\n%U")
+                                ("n" "Note" entry (file "") "* %?\n%U")
                                 ))
 #+END_SRC
 
@@ -311,6 +311,17 @@ See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographica
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 #+END_SRC
 
+**** Todo states
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "|" "DONE(d)")
+          (sequence "|" "ONHOLD(h)" "CANCELED(c)"))
+        
+        org-todo-keyword-faces
+        '(("ONHOLD" . org-agenda-dimmed-todo-face))
+        )
+#+END_SRC
 *** Auto complete mode
 
 #+BEGIN_SRC emacs-lisp
