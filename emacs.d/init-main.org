@@ -59,6 +59,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            ecb
            emacs-w3m
            wanderlust
+           bbdb
            ))
 #+END_SRC
 
@@ -129,7 +130,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
            pandoc-mode
            emmet-mode ;; from local recipe
            auctex
-           typopunct
            ))
 #+END_SRC
 
@@ -139,8 +139,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (nconc my-packages
          '(
            ruby-mode
-           ruby-electric
-           ruby-tools
            haskell-mode
            slime ;; for lisp
            yaml-mode
@@ -257,15 +255,6 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
                      newline-mark)))
 #+END_SRC
 
-*** Enable typopunct for typographical punctuation
-
-See [[http://www.emacswiki.org/emacs/TypographicalPunctuationMarks][Typographical Punctuation Marks on EmacsWiki]] for documentation
-
-#+BEGIN_SRC emacs-lisp
-  (require 'typopunct)
-  (setq typopunct-buffer-language 'english)
-#+END_SRC
-
 *** Auto complete mode
 
 #+BEGIN_SRC emacs-lisp
@@ -379,7 +368,6 @@ Ignore some more boring file extensions
 **** Ruby
 
 #+BEGIN_SRC emacs-lisp
-  (require 'ruby-tools)
   (add-to-list 'auto-mode-alist '("\\.thor\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Thorfile\\'" . ruby-mode))

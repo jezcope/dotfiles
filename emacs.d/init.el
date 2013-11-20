@@ -18,7 +18,7 @@
 (el-get 'sync '(el-get org-mode)) ;; NB - need to install org-mode here!
 
 ;; Load up main init file
-(require 'ob-tangle)
+(require 'org)
 
 (defun jsc/require-org-file (name)
   (org-babel-load-file (expand-file-name name dotfiles-dir)))
