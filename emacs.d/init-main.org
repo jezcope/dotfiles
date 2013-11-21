@@ -180,7 +180,13 @@ Enable menu bar on Mac, as it doesn't make any difference:
   ;; Allow narrow-to-region (which is disabled by default)
   (put 'narrow-to-region 'disabled nil)
   
+  ;; Auto-revert all buffers by default
   (global-auto-revert-mode)
+  
+  ;; Show date/time in modeline
+  (setq display-time-mode t
+        display-time-day-and-date t
+        )
 #+END_SRC
 
 *** Configure how to make buffer titles unique
