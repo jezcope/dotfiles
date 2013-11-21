@@ -337,14 +337,12 @@ Ignore some more boring file extensions
   (add-hook 'markdown-mode-hook 'turn-on-pandoc)
   (add-hook 'markdown-mode-hook 'auto-fill-mode)
   (add-hook 'markdown-mode-hook 'flyspell-mode)
-  (add-hook 'markdown-mode-hook 'typopunct-mode)
 #+END_SRC
 
 **** HTML/XML/etc
 
 #+BEGIN_SRC emacs-lisp
   (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'sgml-mode-hook 'typopunct-mode)
 #+END_SRC
 
 ***** Configure emmet-mode
@@ -359,7 +357,6 @@ Ignore some more boring file extensions
   (setq TeX-PDF-mode t)
   (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
   (add-hook 'LaTeX-mode-hook 'reftex-mode)
-  (add-hook 'LaTeX-mode-hook 'typopunct-mode)
   (setq reftex-plug-into-AUCTeX t)
 #+END_SRC
 
