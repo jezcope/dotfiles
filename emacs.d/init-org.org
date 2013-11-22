@@ -42,6 +42,11 @@
         )
 #+END_SRC
 
+* Archive
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-archive-location "%s_archive::datetree/")
+#+END_SRC
 * Encryption
 
 #+BEGIN_SRC emacs-lisp
