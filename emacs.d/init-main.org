@@ -140,7 +140,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
          '(
            ruby-mode
            haskell-mode
-           slime ;; for lisp
            yaml-mode
            coffee-mode
            jade-mode
