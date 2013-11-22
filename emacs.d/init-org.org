@@ -60,7 +60,7 @@
         org-todo-keyword-faces
         '(("NEXT" . "red")
           ("ONHOLD" . org-agenda-dimmed-todo-face)
-          ("WAITING" . org-agenda-dimmed-todo-face)
+          ("WAITING" . "yellow")
           ("MONITOR" . "yellow"))
         )
 #+END_SRC
