@@ -13,7 +13,9 @@
   (add-hook 'org-mode-hook 'visual-line-mode)
 #+END_SRC
 
-* Global key bindings
+* Key bindings
+
+** Global key bindings
 
 #+BEGIN_SRC emacs-lisp
   (global-set-key "\C-cl" 'org-store-link)
@@ -22,7 +24,7 @@
   (global-set-key "\C-cb" 'org-iswitchb)
 #+END_SRC
 
-* Make windmove work in org-mode
+** Make windmove work in org-mode
 
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-shiftup-final-hook 'windmove-up)
@@ -50,7 +52,7 @@
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 #+END_SRC
 
-* Todo states
+* Todo
 
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
