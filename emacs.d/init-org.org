@@ -5,7 +5,7 @@
         org-startup-folded 'content
         org-export-backends '(ascii html icalendar latex md odt)
         org-babel-load-languages '((emacs-lisp . t) (ruby . t) (python . t) (sh . t))
-        org-use-fast-tag-selection t
+        org-use-fast-tag-selection 'auto
         org-time-stamp-custom-formats '("<%a %e %b %Y>" . "<%a %e %b %Y %H:%M>")
         )
   
