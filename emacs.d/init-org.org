@@ -92,7 +92,17 @@
           ("ONHOLD" . org-agenda-dimmed-todo-face)
           ("WAITING" . "yellow")
           ("MONITOR" . "yellow"))
+  
+        org-enforce-todo-dependencies t
         )
+#+END_SRC
+
+** Additional checklist features
+
+Allows resetting of checklist items in repeating TODO's.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-checklist)
 #+END_SRC
 
 * Agenda
@@ -112,4 +122,20 @@
 
 #+BEGIN_SRC emacs-lisp
   (setq org-export-backends '(ascii beamer html icalendar latex md odt))
+#+END_SRC
+
+* Additional features (not already loaded)
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-bbdb)
+  (require 'org-bibtex)
+  (require 'org-crypt)
+  (require 'org-docview)
+  (require 'org-gnus)
+  (require 'org-info)
+  (require 'org-irc)
+  (require 'org-mhe)
+  (require 'org-rmail)
+  (require 'org-w3m)
+  (require 'org-wl)
 #+END_SRC
