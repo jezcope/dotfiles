@@ -101,3 +101,9 @@
   (setq org-agenda-todo-ignore-scheduled 'future
         org-agenda-dim-blocked-tasks 'invisible)
 #+END_SRC
+
+* Export
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-export-backends '(ascii beamer html icalendar latex md odt))
+#+END_SRC
