@@ -13,6 +13,17 @@
   (add-hook 'org-mode-hook 'visual-line-mode)
 #+END_SRC
 
+* File locations
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-directory (expand-file-name "Notes/Todo" jc/dropbox-location)
+        org-default-notes-file (expand-file-name "Notes/@Inbox/@Inbox.org" jc/dropbox-location)
+        org-agenda-files (expand-file-name "agenda-files" org-directory)
+        org-mobile-inbox-for-pull org-default-notes-file
+        org-mobile-directory (expand-file-name "Apps/MobileOrg" jc/dropbox-location)
+        )
+#+END_SRC
+
 * Key bindings
 
 ** Global key bindings
@@ -44,6 +55,18 @@
         )
 #+END_SRC
 
+* Refile
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-refile-use-outline-path t
+        org-refile-targets
+        '(
+          (nil :maxlevel . 5)
+          (org-agenda-files :maxlevel . 4)
+          ((expand-file-name "someday.org" org-directory) :maxlevel . 1)
+          )
+        )
+#+END_SRC
 * Archive
 
 #+BEGIN_SRC emacs-lisp
