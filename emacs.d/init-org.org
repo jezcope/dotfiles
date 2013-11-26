@@ -60,10 +60,10 @@
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-use-outline-path t
         org-refile-targets
-        '(
+        `(
           (nil :maxlevel . 5)
           (org-agenda-files :maxlevel . 4)
-          ((expand-file-name "someday.org" org-directory) :maxlevel . 1)
+          (,(expand-file-name "someday.org" org-directory) :maxlevel . 1)
           )
         )
 #+END_SRC
