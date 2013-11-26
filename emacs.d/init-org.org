@@ -73,5 +73,6 @@
 * Agenda
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-todo-ignore-scheduled 'future)
+  (setq org-agenda-todo-ignore-scheduled 'future
+        org-agenda-dim-blocked-tasks 'invisible)
 #+END_SRC
