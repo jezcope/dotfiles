@@ -5,7 +5,7 @@
         org-startup-folded 'content
         org-export-backends '(ascii html icalendar latex md odt)
         org-babel-load-languages '((emacs-lisp . t) (ruby . t) (python . t) (sh . t))
-        org-use-fast-tag-selection t
+        org-use-fast-tag-selection 'auto
         org-time-stamp-custom-formats '("<%a %e %b %Y>" . "<%a %e %b %Y %H:%M>")
         )
   
@@ -44,6 +44,11 @@
         )
 #+END_SRC
 
+* Archive
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-archive-location "%s_archive::datetree/")
+#+END_SRC
 * Encryption
 
 #+BEGIN_SRC emacs-lisp
@@ -62,7 +67,7 @@
         org-todo-keyword-faces
         '(("NEXT" . "red")
           ("ONHOLD" . org-agenda-dimmed-todo-face)
-          ("WAITING" . org-agenda-dimmed-todo-face)
+          ("WAITING" . "yellow")
           ("MONITOR" . "yellow"))
         )
 #+END_SRC
@@ -70,5 +75,6 @@
 * Agenda
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-todo-ignore-scheduled 'future)
+  (setq org-agenda-todo-ignore-scheduled 'future
+        org-agenda-dim-blocked-tasks 'invisible)
 #+END_SRC

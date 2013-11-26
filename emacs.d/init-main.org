@@ -149,7 +149,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
          '(
            ruby-mode
            haskell-mode
-           slime ;; for lisp
            yaml-mode
            coffee-mode
            jade-mode
@@ -414,9 +413,11 @@ Ignore some more boring file extensions
 
 #+BEGIN_SRC emacs-lisp
   (setq ecb-options-version "2.40"
-        ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)
-        ecb-compilation-major-modes (quote (compilation-mode TeX-output-mode)))
+        ecb-tip-of-the-day nil
   
+        ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)
+        ecb-compilation-major-modes (quote (compilation-mode TeX-output-mode))
+        )
 #+END_SRC
 
 **** Source files (include/exclude)
