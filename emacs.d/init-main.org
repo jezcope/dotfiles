@@ -17,6 +17,15 @@ Enable menu bar on Mac, as it doesn't make any difference:
    (if (eq system-type 'darwin) 1 -1))
 #+END_SRC
 
+*** Set some useful variables
+
+#+BEGIN_SRC emacs-lisp
+  (setq jc/dropbox-location
+        (expand-file-name "~/Dropbox/"))
+  
+  (when (file-exists-p (expand-file-name "~/.emacs.d/init-local.org"))
+    (jsc/require-org-file "init-local.org"))
+#+END_SRC
 *** Set exec-path to find some key programs
 
 #+BEGIN_SRC emacs-lisp
