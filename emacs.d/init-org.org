@@ -119,6 +119,36 @@ Allows resetting of checklist items in repeating TODO's.
         )
 #+END_SRC
 
+* Agenda views
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-agenda-custom-commands
+        '(
+          ("n"
+           "Agenda and all TODO's"
+           (
+            (agenda "")
+            (alltodo "")
+            )
+           )
+          ("u"
+           "TODO categories"
+           (
+            (tags-todo "/!NEXT"
+                       ((org-agenda-overriding-header "Things to do next")))
+            (tags-todo "/!TODO"
+                       ((org-agenda-overriding-header "Things to do")
+                        (org-agenda-dim-blocked-tasks 'invisible)
+                        (org-agenda-todo-ignore-scheduled 'future)))
+            (tags-todo "/!WAITING"
+                       ((org-agenda-overriding-header "Waiting for")))
+            (tags-todo "/!MONITOR"
+                       ((org-agenda-overriding-header "Monitor")))
+            )
+           )
+          )
+        )
+#+END_SRC
 * Export
 
 #+BEGIN_SRC emacs-lisp
