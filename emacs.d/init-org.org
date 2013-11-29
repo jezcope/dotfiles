@@ -63,7 +63,8 @@
         `(
           (nil :maxlevel . 5)
           (org-agenda-files :maxlevel . 4)
-          (,(expand-file-name "someday.org" org-directory) :maxlevel . 1)
+          (,(expand-file-name "someday.org" org-directory) :maxlevel . 2)
+          (,(expand-file-name "agendas.org" org-directory) :maxlevel . 1)
           )
         )
 #+END_SRC
@@ -119,7 +120,7 @@ Allows resetting of checklist items in repeating TODO's.
         )
 #+END_SRC
 
-* Agenda views
+** Custom agenda views
 
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
