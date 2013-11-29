@@ -148,6 +148,8 @@ Allows resetting of checklist items in repeating TODO's.
             )
            )
           )
+        
+        org-agenda-tags-todo-honor-ignore-options t
         )
 #+END_SRC
 * Export
