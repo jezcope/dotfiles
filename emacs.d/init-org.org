@@ -154,6 +154,13 @@ Allows resetting of checklist items in repeating TODO's.
 #+BEGIN_SRC emacs-lisp
   (setq org-export-backends '(ascii beamer html icalendar latex md odt))
 #+END_SRC
+* Mobile
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-mobile-files `(org-agenda-files
+                           ,(expand-file-name "someday.org" org-directory)
+                           ,(expand-file-name "agendas.org" org-directory)))
+#+END_SRC
 
 * Additional features (not already loaded)
 
