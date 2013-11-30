@@ -447,7 +447,9 @@ Ignore some more boring file extensions
   (setq lx-sunrise-external-viewer
         (cond ((eq system-type 'darwin) "open")
               (t "xdg-open")))
-  (define-key sr-mode-map '[\C-return] 'lx-sunrise-display-external)
+  
+  (eval-after-load 'sunrise-commander
+    '(define-key sr-mode-map '[\C-return] 'lx-sunrise-display-external))
 #+END_SRC
 
 ** Extra functions
