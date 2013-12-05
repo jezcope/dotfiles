@@ -181,9 +181,11 @@ Enable menu bar on Mac, as it doesn't make any difference:
         indent-tabs-mode nil
         standard-indent 2
         tab-stop-list (loop for n from 2 below 80 by 2 collect n)
-        tab-width 2
         ispell-dictionary "british"
         )
+  
+  (setq-default tab-width 2
+                indent-tabs-mode nil)
   
   ;; Allow narrow-to-region (which is disabled by default)
   (put 'narrow-to-region 'disabled nil)
