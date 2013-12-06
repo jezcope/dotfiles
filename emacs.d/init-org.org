@@ -145,6 +145,8 @@ Allows resetting of checklist items in repeating TODO's.
                        ((org-agenda-overriding-header "Waiting for")))
             (tags-todo "/!MONITOR"
                        ((org-agenda-overriding-header "Monitor")))
+            (tags-todo "/!ONHOLD"
+                       ((org-agenda-overriding-header "On hold")))
             )
            )
           )
