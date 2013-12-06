@@ -452,6 +452,20 @@ Ignore some more boring file extensions
     '(define-key sr-mode-map '[\C-return] 'lx-sunrise-display-external))
 #+END_SRC
 
+*** Wanderlust (email)
+
+Set wanderlust as default for mail composition
+#+BEGIN_SRC emacs-lisp
+  (if (boundp 'mail-user-agent)
+      (setq mail-user-agent 'wl-user-agent))
+  (if (fboundp 'define-mail-user-agent)
+      (define-mail-user-agent
+        'wl-user-agent
+        'wl-user-agent-compose
+        'wl-draft-send
+        'wl-draft-kill
+        'mail-send-hook))
+#+END_SRC
 ** Extra functions
 
 *** [[http://www.emacswiki.org/emacs/UnfillParagraph][unfill-paragraph]] function
