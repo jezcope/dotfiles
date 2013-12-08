@@ -460,6 +460,21 @@ Ignore some more boring file extensions
 #+BEGIN_SRC emacs-lisp
   (setq bbdb-file-remote (expand-file-name "Emacs/bbdb" jc/dropbox-location))
 #+END_SRC
+
+*** Wanderlust (email)
+
+Set wanderlust as default for mail composition
+#+BEGIN_SRC emacs-lisp
+  (if (boundp 'mail-user-agent)
+      (setq mail-user-agent 'wl-user-agent))
+  (if (fboundp 'define-mail-user-agent)
+      (define-mail-user-agent
+        'wl-user-agent
+        'wl-user-agent-compose
+        'wl-draft-send
+        'wl-draft-kill
+        'mail-send-hook))
+#+END_SRC
 ** Extra functions
 
 *** [[http://www.emacswiki.org/emacs/UnfillParagraph][unfill-paragraph]] function
