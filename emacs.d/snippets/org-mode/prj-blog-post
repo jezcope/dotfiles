@@ -1,0 +1,10 @@
+# name: Project template: blog post
+# key: prj
+# contributor: Jez Cope
+# --
+`(make-string (org-current-level) ?*)` Blog about $1
+- [ ] Freewrite/brainstorm
+- [ ] Flesh out post
+- [ ] Add image
+- [ ] Choose keywords and category
+- [ ] Publish
