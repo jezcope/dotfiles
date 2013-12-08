@@ -69,6 +69,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            emacs-w3m
            wanderlust
            bbdb
+           bbdbv3-wl
            ))
 #+END_SRC
 
@@ -454,6 +455,11 @@ Ignore some more boring file extensions
     '(define-key sr-mode-map '[\C-return] 'lx-sunrise-display-external))
 #+END_SRC
 
+*** BBDB
+
+#+BEGIN_SRC emacs-lisp
+  (setq bbdb-file-remote (expand-file-name "Emacs/bbdb" jc/dropbox-location))
+#+END_SRC
 ** Extra functions
 
 *** [[http://www.emacswiki.org/emacs/UnfillParagraph][unfill-paragraph]] function
