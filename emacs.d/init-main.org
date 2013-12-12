@@ -85,6 +85,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            lorem-ipsum
            multiple-cursors
            adaptive-wrap
+           dropdown-list
            ))
 #+END_SRC
 
@@ -246,8 +247,14 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 #+BEGIN_SRC emacs-lisp
   (require 'yasnippet)
   (yas-global-mode 1)
+  
+  (require 'dropdown-list)
   (setq yas-also-indent-first-line t
-        yas-prompt-functions '(yas-dropdown-prompt yas-completing-prompt yas-ido-prompt yas-no-prompt))
+        yas-prompt-functions '(yas-dropdown-prompt
+                               yas-x-prompt
+                               yas-ido-prompt
+                               yas-completing-prompt
+                               yas-no-prompt))
 #+END_SRC
 
 **** Disable in some modes
