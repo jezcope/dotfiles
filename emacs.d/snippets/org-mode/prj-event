@@ -2,5 +2,5 @@
 # key: prj
 # contributor: Jez Cope
 # --
-`(make-string (org-current-level) ?*)` ${1:Event description}
-- [ ] Create event page
+${1:`(make-string (org-current-level) ?*)` ${2:Event description}
+}- [ ] Create event page
