@@ -1,0 +1,14 @@
+# name: Email template: blog post published
+# key: blog
+# contributor: 
+# --
+Hi ${1:there},
+
+Thanks for your blog post - it's now online here:
+
+${2:`(current-kill 0)`}
+
+Please let me know ASAP if you'd like any amendments.
+
+Cheers,
+Jez

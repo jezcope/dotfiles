@@ -247,6 +247,7 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 #+BEGIN_SRC emacs-lisp
   (require 'yasnippet)
   (yas-global-mode 1)
+  (add-hook 'wl-draft-mode-hook 'yas-minor-mode-on)
   
   (require 'dropdown-list)
   (setq yas-also-indent-first-line t
