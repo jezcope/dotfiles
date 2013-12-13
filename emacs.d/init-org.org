@@ -93,7 +93,9 @@
 * Todo
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-todo-keywords
+  (setq org-log-into-drawer t
+  
+        org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
           (sequence "ONHOLD(h)" "WAITING(w)" "MONITOR(m)" "|" "CANCELED(c)"))
         
