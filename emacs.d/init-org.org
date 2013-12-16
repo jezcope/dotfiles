@@ -178,6 +178,15 @@ Allows resetting of checklist items in repeating TODO's.
                            ,(expand-file-name "people-agendas.org" org-directory)))
 #+END_SRC
 
+** Check periodically for new changes
+
+#+BEGIN_SRC emacs-lisp
+  (setq jc/org-mobile-poll-interval
+        (* 60 5))
+  
+  (run-at-time "1 min" jc/org-mobile-poll-interval 'org-mobile-pull)
+#+END_SRC
+
 * Additional features (not already loaded)
 
 #+BEGIN_SRC emacs-lisp
