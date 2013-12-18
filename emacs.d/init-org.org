@@ -17,7 +17,7 @@
 
 #+BEGIN_SRC emacs-lisp
   (setq org-directory (expand-file-name "Notes/Todo" jc/dropbox-location)
-        org-default-notes-file (expand-file-name "Notes/@Inbox/@Inbox.org" jc/dropbox-location)
+        org-default-notes-file (expand-file-name "Notes/Inbox/_Inbox.org" jc/dropbox-location)
         org-agenda-files (expand-file-name "agenda-files" org-directory)
         org-mobile-inbox-for-pull org-default-notes-file
         org-mobile-directory (expand-file-name "Apps/MobileOrg" jc/dropbox-location)
