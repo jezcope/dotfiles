@@ -170,6 +170,32 @@ Allows resetting of checklist items in repeating TODO's.
 #+BEGIN_SRC emacs-lisp
   (setq org-export-backends '(ascii beamer html icalendar latex md odt))
 #+END_SRC
+
+** LaTeX/PDF
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-default-packages-alist
+        '(("a4paper" "geometry" nil)
+          ("" "fontspec" t)
+          ("" "fixltx2e" nil)
+          ("" "graphicx" t)
+          ("" "longtable" nil)
+          ("" "float" nil)
+          ("" "wrapfig" nil)
+          ("" "rotating" nil)
+          ("normalem" "ulem" t)
+          ("" "amsmath" t)
+          ("" "textcomp" t)
+          ("" "marvosym" t)
+          ("" "wasysym" t)
+          ("" "amssymb" t)
+          ("" "hyperref" nil)
+          "\\tolerance=1000")
+  
+        org-latex-pdf-process
+        '("latexmk -xelatex -recorder -output-directory=%o %f"))
+#+END_SRC
+
 * Mobile
 
 #+BEGIN_SRC emacs-lisp
