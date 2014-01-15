@@ -226,7 +226,6 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 #+BEGIN_SRC emacs-lisp
   (require 'real-auto-save)
   (setq real-auto-save-interval 5) ;; in seconds
-  (add-hook 'text-mode-hook 'turn-on-real-auto-save)
 #+END_SRC
 
 *** Choose theme
