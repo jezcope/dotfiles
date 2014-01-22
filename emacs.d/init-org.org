@@ -220,6 +220,19 @@ Allows resetting of checklist items in repeating TODO's.
   (run-at-time "1 min" jc/org-mobile-poll-interval 'org-mobile-pull)
 #+END_SRC
 
+* Org Velocity
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-velocity)
+  
+  (setq org-velocity-bucket
+        (expand-file-name "Notes/Reference/snippets.org" jc/dropbox-location)
+  
+        org-velocity-always-use-bucket t)
+  
+  (global-set-key (kbd "C-c v") 'org-velocity-read)
+#+END_SRC
+
 * Additional features (not already loaded)
 
 #+BEGIN_SRC emacs-lisp
