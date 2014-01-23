@@ -215,6 +215,18 @@ Allows resetting of checklist items in repeating TODO's.
   (run-at-time "1 min" jc/org-mobile-poll-interval 'org-mobile-pull)
 #+END_SRC
 
+* Contacts
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-contacts)
+  
+  (setq org-contacts-files
+        `(,(expand-file-name "contacts.org" org-directory)))
+  
+  (add-to-list 'org-capture-templates
+               '("c" "Contacts" entry (file+headline (car org-contacts-files) "To file")
+                 "* %(org-contacts-template-name)\n:PROPERTIES:%(org-contacts-template-email)\n:END:"))
+#+END_SRC
 * Additional features (not already loaded)
 
 #+BEGIN_SRC emacs-lisp
