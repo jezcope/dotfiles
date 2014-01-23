@@ -230,15 +230,20 @@ Allows resetting of checklist items in repeating TODO's.
 * Additional features (not already loaded)
 
 #+BEGIN_SRC emacs-lisp
-  (require 'org-bbdb)
-  (require 'org-bibtex)
-  (require 'org-crypt)
-  (require 'org-docview)
-  (require 'org-gnus)
-  (require 'org-info)
-  (require 'org-irc)
-  (require 'org-mhe)
-  (require 'org-rmail)
-  (require 'org-w3m)
-  (require 'org-wl)
+  (let ((packages '(org-bbdb
+                    org-bibtex
+                    org-crypt
+                    org-docview
+                    org-gnus
+                    org-info
+                    org-irc
+                    org-mhe
+                    org-protocol
+                    org-rmail
+                    org-w3m
+                    org-wl)))
+    (dolist (p packages)
+      (require p)))
+  
+  
 #+END_SRC
