@@ -60,7 +60,9 @@
                                 ("t" "Todo" entry (file "") "* TODO %?")
                                 ("n" "Note" entry (file "") "* %?")
                                 )
-        org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 4))
+        org-refile-targets `((nil :maxlevel . 5)
+                             (org-agenda-files :maxlevel . 4)
+                             (,(expand-file-name "someday.org" org-directory) :maxlevel . 2))
         )
 #+END_SRC
 
