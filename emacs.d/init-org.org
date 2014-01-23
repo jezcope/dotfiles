@@ -53,6 +53,13 @@
               (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
 #+END_SRC
 
+* Completion
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-completion-use-ido t
+        org-outline-path-complete-in-steps nil)
+#+END_SRC
+
 * Capture
 
 #+BEGIN_SRC emacs-lisp
@@ -227,6 +234,20 @@ Allows resetting of checklist items in repeating TODO's.
                '("c" "Contacts" entry (file+headline (car org-contacts-files) "To file")
                  "* %(org-contacts-template-name)\n:PROPERTIES:%(org-contacts-template-email)\n:END:"))
 #+END_SRC
+
+* Org Velocity
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-velocity)
+  
+  (setq org-velocity-bucket
+        (expand-file-name "Notes/Reference/snippets.org" jc/dropbox-location)
+  
+        org-velocity-always-use-bucket t)
+  
+  (global-set-key (kbd "C-c v") 'org-velocity-read)
+#+END_SRC
+
 * Additional features (not already loaded)
 
 #+BEGIN_SRC emacs-lisp
