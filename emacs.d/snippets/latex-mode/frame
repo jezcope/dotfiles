@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
 # name: Beamer frame
 # --
-\begin{frame}
-  \frametitle{${1:Title}}
+\begin{frame} %===============================================================
+  \frametitle{${1:Title}}${2:
+  \framesubtitle{${3:Subtitle}}}
   $0
 \end{frame}
