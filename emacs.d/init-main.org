@@ -268,6 +268,8 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 
 #+BEGIN_SRC emacs-lisp
   (require 'multiple-cursors)
+  
+  (global-set-key (kbd "<C-M-return>") 'mc/edit-ends-of-lines)
 #+END_SRC
 
 *** Customise whitespace-mode
