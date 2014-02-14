@@ -22,9 +22,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
 #+BEGIN_SRC emacs-lisp
   (setq jc/dropbox-location
         (expand-file-name "~/Dropbox/"))
-  
-  (when (file-exists-p (expand-file-name "~/.emacs.d/init-local.org"))
-    (jsc/require-org-file "init-local.org"))
 #+END_SRC
 *** Set exec-path to find some key programs
 
@@ -172,6 +169,9 @@ Enable menu bar on Mac, as it doesn't make any difference:
 ** Additional setup files
 
 #+BEGIN_SRC emacs-lisp
+  (when (file-exists-p (expand-file-name "init-local.org" dotfiles-dir))
+    (jsc/require-org-file "init-local.org"))
+  
   (jsc/require-org-file "init-org.org")
 #+END_SRC
 
@@ -520,10 +520,6 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
 #+END_SRC
 
 ** Load local settings
-
-#+BEGIN_SRC emacs-lisp
-  (load "init-local" t)
-#+END_SRC
 
 *** Make customizations machine-local
 
