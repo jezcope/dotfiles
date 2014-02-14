@@ -67,7 +67,8 @@ Enable menu bar on Mac, as it doesn't make any difference:
            magit
            ecb
            emacs-w3m
-           wanderlust
+           mu4e
+           ;; wanderlust
            bbdb
            bbdbv3-wl
            ))
@@ -199,6 +200,11 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (setq display-time-mode t
         display-time-day-and-date t
         )
+  
+  ;; Make sure authinfo is encrypted
+  (setq auth-sources '("~/.authinfo.gpg")
+        auth-source-gpg-encrypt-to '("j.cope@erambler.co.uk")
+        )
 #+END_SRC
 
 *** Configure how to make buffer titles unique
@@ -328,18 +334,18 @@ Ignore some more boring file extensions
 
 *** Function keys
 
-  +----+------+------+--------+--------+------+--------+----------+-------+-----+-----+-----+
-  | F1 |  F2  |  F3  |   F4   |   F5   |  F6  |   F7   |    F8    |  F9   | F10 | F11 | F12 |
-  +----+------+------+--------+--------+------+--------+----------+-------+-----+-----+-----+
-  |Help| 2col |Macro | Macro  |Activate|Magit | Toggle |Wanderlust|Toggle |Menu |(Mac)|(Mac)|
-  |    |prefix|record|call/end|  ECB   |status|icy-mode|          |sunrise|     |     |     |
-  +----+------+------+--------+--------+------+--------+----------+-------+-----+-----+-----+
+  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
+  | F1 |  F2  |  F3  |   F4   |   F5   |  F6  |   F7   | F8  |  F9   | F10 | F11 | F12 |
+  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
+  |Help| 2col |Macro | Macro  |Activate|Magit | Toggle |mu4e |Toggle |Menu |(Mac)|(Mac)|
+  |    |prefix|record|call/end|  ECB   |status|icy-mode|     |sunrise|     |     |     |
+  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
   
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<f5>") 'ecb-activate)
   (global-set-key (kbd "<f6>") 'magit-status)
   (global-set-key (kbd "<f7>") 'icy-mode)
-  (global-set-key (kbd "<f8>") 'wl)
+  (global-set-key (kbd "<f8>") 'mu4e)
   (global-set-key (kbd "<f9>") 'sunrise)
 #+END_SRC
 
@@ -475,14 +481,7 @@ Ignore some more boring file extensions
 Set wanderlust as default for mail composition
 #+BEGIN_SRC emacs-lisp
   (if (boundp 'mail-user-agent)
-      (setq mail-user-agent 'wl-user-agent))
-  (if (fboundp 'define-mail-user-agent)
-      (define-mail-user-agent
-        'wl-user-agent
-        'wl-user-agent-compose
-        'wl-draft-send
-        'wl-draft-kill
-        'mail-send-hook))
+      (setq mail-user-agent 'mu4e-user-agent))
 #+END_SRC
 ** Extra functions
 
