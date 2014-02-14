@@ -184,8 +184,7 @@ Allows resetting of checklist items in repeating TODO's.
 
 #+BEGIN_SRC emacs-lisp
   (setq org-latex-default-packages-alist
-        '(("a4paper" "geometry" nil)
-          ("" "fontspec" t)
+        '(("" "fontspec" t)
           ("" "fixltx2e" nil)
           ("" "graphicx" t)
           ("" "longtable" nil)
@@ -193,16 +192,25 @@ Allows resetting of checklist items in repeating TODO's.
           ("" "wrapfig" nil)
           ("" "rotating" nil)
           ("normalem" "ulem" t)
-          ("" "amsmath" t)
-          ("" "textcomp" t)
-          ("" "marvosym" t)
-          ("" "wasysym" t)
-          ("" "amssymb" t)
+          ;; ("" "amsmath" t)
+          ;; ("" "textcomp" t)
+          ;; ("" "marvosym" t)
+          ;; ("" "wasysym" t)
+          ;; ("" "amssymb" t)
           ("" "hyperref" nil)
-          "\\tolerance=1000")
+          "\\tolerance=1000"
+          )
+  
+        org-latex-packages-alist
+        '(("a4paper" "geometry" nil)
+          ("" "booktabs" nil)
+          )
   
         org-latex-pdf-process
-        '("latexmk -xelatex -recorder -output-directory=%o %f"))
+        '("latexmk -xelatex -recorder -output-directory=%o %f")
+  
+        org-latex-tables-booktabs t
+        )
 #+END_SRC
 
 * Mobile
