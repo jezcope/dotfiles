@@ -60,6 +60,8 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (nconc my-packages
          '(
            sunrise-commander
+           sunrise-x-loop
+           sunrise-x-checkpoints
            erc
            magit
            ecb
