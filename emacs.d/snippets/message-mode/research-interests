@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Research interest request
+# key: rint
+# --
+Dear $0,
+
+As you are a current supervisor of one or more DTC students, I'd like to invite you to be added to the list of academic members of the CSCT:
+
+http://www.bath.ac.uk/csct/people#academics
+
+If you're happy with this, please could you send me three short bullet points describing your research interests (see the page above for examples), along with a link to your profile page or website if you have one?
+
+Many thanks,
+Jez

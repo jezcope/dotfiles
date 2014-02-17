@@ -1,7 +1,7 @@
 # name: Brief thanks message
 # key: ta
 # --
-Thanks, that's great.
+Thanks${ PERSON}, that's great.
 
 Cheers,
 Jez

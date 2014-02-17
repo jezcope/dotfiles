@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: Email template: project web page
+# key: web-project
+# --
+${1:Hi} ${2:Project Leader},
+
+Do you think it would be appropriate for ${3:your project} to be associated with the CSCT and listed on our project page, please?
+
+http://www.bath.ac.uk/csct/research/projects
+
+If you've already got a website, I can simply link to that. If not, I can put together a short page based on the information from the research council web pages, like this example:
+
+http://gow.epsrc.ac.uk/NGBOViewGrant.aspx?GrantRef=EP/K026380/1
+
+http://www.bath.ac.uk/csct/research/projects/20130318-clever.html
+
+Please could you give me a yes or no ASAP.
+
+Many thanks,
+Jez
