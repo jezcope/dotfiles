@@ -390,6 +390,11 @@ Ignore some more boring file extensions
   (setq reftex-plug-into-AUCTeX t)
 #+END_SRC
 
+**** Haml/Sass
+
+#+BEGIN_SRC emacs-lisp
+  (setq scss-compile-at-save nil)
+#+END_SRC
 *** Programming languages
 
 **** Ruby
