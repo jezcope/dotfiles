@@ -157,6 +157,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
            yaml-mode
            coffee-mode
            jade-mode
+           haml-mode
            scss-mode
            puppet-mode
            php-mode-improved
