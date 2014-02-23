@@ -172,9 +172,9 @@ Enable menu bar on Mac, as it doesn't make any difference:
 
 #+BEGIN_SRC emacs-lisp
   (when (file-exists-p (expand-file-name "init-local.org" dotfiles-dir))
-    (jsc/require-org-file "init-local.org"))
+    (jc/require-org-file "init-local.org"))
   
-  (jsc/require-org-file "init-org.org")
+  (jc/require-org-file "init-org.org")
 #+END_SRC
 
 ** Global setup

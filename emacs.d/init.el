@@ -20,7 +20,7 @@
 ;; Load up main init file
 (require 'org)
 
-(defun jsc/require-org-file (name)
+(defun jc/require-org-file (name)
   (org-babel-load-file (expand-file-name name dotfiles-dir)))
 
-(jsc/require-org-file "init-main.org")
+(jc/require-org-file "init-main.org")
