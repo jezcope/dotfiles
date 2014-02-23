@@ -26,7 +26,10 @@ Enable menu bar on Mac, as it doesn't make any difference:
 *** Set exec-path to find some key programs
 
 #+BEGIN_SRC emacs-lisp
-  (setq exec-path (append exec-path '("/usr/local/bin")))
+  (add-to-list 'exec-path "/usr/local/bin")
+  
+  (if (eq system-type 'darwin)
+      (add-to-list 'exec-path "/usr/local/texlive/2013/bin/universal-darwin" t))
 #+END_SRC
 
 *** Set load-path
@@ -239,7 +242,7 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 *** Choose theme
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'tango-dark t)
+  (load-theme 'zenburn t)
 #+END_SRC
 
 *** Activate filladapt-mode
