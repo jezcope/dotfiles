@@ -1,6 +1,0 @@
-(:name bbdbv3-wl
-       :website "http://gna.org/projects/bbdbv3-wl/"
-       :description "Integration between BBDB 3.0 and Wanderlust."
-       :type svn
-       :url "http://svn.gna.org/svn/bbdbv3-wl/branches/development"
-       :load-path ("lisp/"))

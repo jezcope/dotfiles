@@ -1,5 +1,0 @@
-(:name taskjuggler-mode
-       :description "Taskjuggler (http://www.taskjuggler.org) is a project planning software which uses a plain text file for the definition of tasks which is then processed to create the schedule."
-       :type http
-       :url "http://www.skamphausen.de/cgi-bin/ska/download/taskjuggler-mode.el"
-       :website "http://www.skamphausen.de/cgi-bin/ska/taskjuggler-mode")

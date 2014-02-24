@@ -43,3 +43,6 @@
 [submodule "vim/bundle/pandoc"]
 	path = vim/bundle/pandoc
 	url = https://github.com/vim-pandoc/vim-pandoc.git
+[submodule "emacs.d/recipes"]
+	path = emacs.d/recipes
+	url = git@github.com:jezcope/el-get-recipes
