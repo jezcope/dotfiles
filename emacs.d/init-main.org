@@ -142,6 +142,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
          '(
            markdown-mode
            pandoc-mode
+           criticmarkup-emacs
            emmet-mode ;; from local recipe
            auctex
            ))
