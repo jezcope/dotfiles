@@ -399,11 +399,15 @@ Ignore some more boring file extensions
 **** Markdown
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-  (add-hook 'markdown-mode-hook 'turn-on-pandoc)
-  (add-hook 'markdown-mode-hook 'auto-fill-mode)
-  (add-hook 'markdown-mode-hook 'flyspell-mode)
+  (dolist (ext '("\\.markdown\\'" "\\.md\\'"))
+    (add-to-list 'auto-mode-alist `(,ext . markdown-mode)))
+  
+  (dolist (func '(turn-on-pandoc
+                  flyspell-mode
+                  visual-line-mode
+                  adaptive-wrap-prefix-mode
+                  (lambda () (variable-pitch-mode t))))
+    (add-hook 'markdown-mode-hook func))
 #+END_SRC
 
 **** HTML/XML/etc
