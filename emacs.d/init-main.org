@@ -83,6 +83,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
          '(
            ack
            yasnippet
+           mmm-mode
            filladapt
            lacarte
            lorem-ipsum
@@ -275,6 +276,41 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 #+BEGIN_SRC emacs-lisp
   (add-hook 'term-mode-hook (lambda()
                               (yas-minor-mode -1)))
+#+END_SRC
+
+*** Configure MMM-mode
+
+=mmm-mode= allows multiple major modes to be active in different regions of a single buffer.n
+
+#+BEGIN_SRC emacs-lisp
+  (require 'mmm-auto)
+  
+  (setq mmm-global-mode 'maybe)
+#+END_SRC
+
+**** Detect YAML front matter in some files
+
+[[http://nanoc.ws/][Nanoc]] uses [[http://nanoc.ws/docs/basics/#attributes][YAML sections at the start of files]] to define metadata.
+
+#+BEGIN_SRC emacs-lisp
+  (mmm-add-classes
+   '((yaml-front-matter
+      :submode yaml-mode
+      :front "\\`---\n"
+      :back "^---$")))
+  
+  (mmm-add-mode-ext-class 'markdown-mode nil 'yaml-front-matter)
+#+END_SRC
+
+**** Check for new major mode regions after yas expansion
+
+=yasnippet= needs to ask mmm-mode to reparse after completing a snippet.
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'yas-after-exit-snippet-hook
+            '(lambda ()
+               (if mmm-mode
+                   (mmm-parse-region yas-snippet-beg yas-snippet-end))))
 #+END_SRC
 
 *** Activate multiple-cursors
