@@ -406,8 +406,12 @@ Ignore some more boring file extensions
                   flyspell-mode
                   visual-line-mode
                   adaptive-wrap-prefix-mode
-                  (lambda () (variable-pitch-mode t))))
+                  orgstruct++-mode
+                  variable-pitch-mode))
     (add-hook 'markdown-mode-hook func))
+  
+  (setq-mode-local markdown-mode
+                   orgstruct-heading-prefix-regexp "#\\+")
 #+END_SRC
 
 **** HTML/XML/etc
