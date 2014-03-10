@@ -190,7 +190,11 @@ Use this with =org-agenda-skip-function= instead of =(org-agenda-todo-ignore-sch
         org-agenda-custom-commands
         `(("p" "Personal tasks" ,jc/org-agenda-common-cmds
            ((org-agenda-files `(,jc/agenda-file-personal))))
-          ("w" "Work tasks" ,jc/org-agenda-common-cmds
+          ("w" "Work tasks" 
+           ,(append jc/org-agenda-common-cmds
+                    `((tags-todo "atwork/!TODO"
+                                ((org-agenda-files `(,jc/agenda-file-personal))
+                                 (org-agenda-overriding-header "Personal tasks at work")))))
            ((org-agenda-files `(,jc/agenda-file-work)))
            )
           )
