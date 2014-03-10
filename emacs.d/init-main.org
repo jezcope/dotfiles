@@ -21,7 +21,9 @@ Enable menu bar on Mac, as it doesn't make any difference:
 
 #+BEGIN_SRC emacs-lisp
   (setq jc/dropbox-location
-        (expand-file-name "~/Dropbox/"))
+        (expand-file-name "~/Dropbox/")
+  
+        viper-mode nil)
 #+END_SRC
 *** Set exec-path to find some key programs
 
