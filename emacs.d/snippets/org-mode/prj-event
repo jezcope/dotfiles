@@ -1,6 +1,0 @@
-# name: Project template: event
-# key: prj
-# contributor: Jez Cope
-# --
-${1:`(make-string (org-current-level) ?*)` ${2:Event description}
-}- [ ] Create event page
