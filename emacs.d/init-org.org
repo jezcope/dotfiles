@@ -140,6 +140,29 @@ Allows resetting of checklist items in repeating TODO's.
         )
 #+END_SRC
 
+** Agenda helper functions (for skipping etc.)
+
+Use this with =org-agenda-skip-function= instead of =(org-agenda-todo-ignore-scheduled 'future)= to ignore tasks scheduled in the future /and/ their subtasks.
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-get-schedule-with-inheritance ()
+    "If the current entry doesn't have a SCHEDULED date, check to see if
+    one can be inherited."
+    (let ((schedule (org-entry-get nil "SCHEDULED"))
+          (inheritable-schedule (org-entry-get-with-inheritance "SCHEDULED")))
+      (if (org-not-nil schedule) schedule inheritable-schedule)))
+  
+  (defun jc/skip-future-tasks-with-inheritance ()
+    "Skip tasks that are scheduled in the future, including inherited
+    schedule dates."
+    (let ((scheduled (jc/org-get-schedule-with-inheritance))
+          (subtree-end (save-excursion (org-end-of-subtree t))))
+      (if (and scheduled
+               (time-less-p (current-time) (org-time-string-to-time scheduled)))
+          subtree-end
+        nil)))
+#+END_SRC
+
 ** Custom agenda views
 
 #+BEGIN_SRC emacs-lisp
@@ -160,7 +183,8 @@ Allows resetting of checklist items in repeating TODO's.
             (tags-todo "/!TODO"
                        ((org-agenda-overriding-header "Things to do")
                         (org-agenda-dim-blocked-tasks 'invisible)
-                        (org-agenda-todo-ignore-scheduled 'future)))
+                        ;; (org-agenda-todo-ignore-scheduled 'future)
+                        (org-agenda-skip-function 'jc/skip-future-tasks-with-inheritance)))
             (tags-todo "/!WAITING"
                        ((org-agenda-overriding-header "Waiting for")))
             (tags-todo "/!MONITOR"
