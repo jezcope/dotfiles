@@ -21,7 +21,9 @@ Enable menu bar on Mac, as it doesn't make any difference:
 
 #+BEGIN_SRC emacs-lisp
   (setq jc/dropbox-location
-        (expand-file-name "~/Dropbox/"))
+        (expand-file-name "~/Dropbox/")
+  
+        viper-mode nil)
 #+END_SRC
 *** Set exec-path to find some key programs
 
@@ -162,7 +164,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
            haml-mode
            scss-mode
            puppet-mode
-           php-mode-improved
            abc-mode
            graphviz-dot-mode
            ))
@@ -259,6 +260,7 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 
 #+BEGIN_SRC emacs-lisp
   (require 'yasnippet)
+  (add-to-list 'yas-snippet-dirs (expand-file-name "snippets-local" dotfiles-dir))
   (yas-global-mode 1)
   (add-hook 'wl-draft-mode-hook 'yas-minor-mode-on)
   

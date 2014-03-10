@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: YAML front matter for nanoc
+# key: yfm
+# --
+---
+$0
+---

@@ -7,7 +7,11 @@
 (setq dotfiles-dir (file-name-directory (or (buffer-file-name) load-file-name)))
 
 ;; Bootstrap el-get and org mode
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(load (expand-file-name "el-get-local.el" dotfiles-dir) t)
+(add-to-list 'load-path
+	     (expand-file-name "el-get" (if (boundp 'el-get-dir)
+					    el-get-dir
+					    "~/.emacs.d/el-get/")))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously

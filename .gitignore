@@ -17,3 +17,5 @@ pentadactyl/info/default/register-ring
 /emacs.d/init-local.org
 /emacs.d/bbdb
 /texmf/ls-R
+/emacs.d/el-get-local.el
+/emacs.d/snippets-local/
