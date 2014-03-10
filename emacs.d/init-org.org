@@ -259,7 +259,10 @@ Allows resetting of checklist items in repeating TODO's.
 * Additional features (not already loaded)
 
 #+BEGIN_SRC emacs-lisp
-  (let ((packages '(org-bbdb
+  (add-to-list 'load-path (expand-file-name "lisp/org" dotfiles-dir))
+  
+  (let ((packages '(;; Built-in packages (from contrib)
+                    org-bbdb
                     org-bibtex
                     org-crypt
                     org-docview
@@ -270,9 +273,10 @@ Allows resetting of checklist items in repeating TODO's.
                     org-protocol
                     org-rmail
                     org-w3m
-                    org-wl)))
+                    org-wl
+                    ;; Custom packages
+                    org-subtask-reset
+                    )))
     (dolist (p packages)
       (require p)))
-  
-  
 #+END_SRC
