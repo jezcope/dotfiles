@@ -419,8 +419,10 @@ Ignore some more boring file extensions
 ***** Pandoc
 
 #+BEGIN_SRC emacs-lisp
-  (define-key pandoc-mode-map (kbd "C-c / o") 'pandoc-set-output)
+  (eval-after-load 'pandoc-mode
+    '(define-key pandoc-mode-map (kbd "C-c / o") 'pandoc-set-output))
 #+END_SRC
+
 **** HTML/XML/etc
 
 #+BEGIN_SRC emacs-lisp
