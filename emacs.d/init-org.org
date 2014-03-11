@@ -18,7 +18,11 @@
 #+BEGIN_SRC emacs-lisp
   (setq org-directory (expand-file-name "Notes/Todo" jc/dropbox-location)
         org-default-notes-file (expand-file-name "Notes/Inbox/_Inbox.txt" jc/dropbox-location)
-        org-agenda-files (expand-file-name "agenda-files" org-directory)
+  
+        jc/agenda-file-work (expand-file-name "work.org" org-directory)
+        jc/agenda-file-personal (expand-file-name "personal.org" org-directory)
+        org-agenda-files `(,jc/agenda-file-work ,jc/agenda-file-personal)
+  
         org-mobile-inbox-for-pull org-default-notes-file
         org-mobile-directory (expand-file-name "Apps/MobileOrg" jc/dropbox-location)
         )
@@ -140,34 +144,58 @@ Allows resetting of checklist items in repeating TODO's.
         )
 #+END_SRC
 
+** Agenda helper functions (for skipping etc.)
+
+Use this with =org-agenda-skip-function= instead of =(org-agenda-todo-ignore-scheduled 'future)= to ignore tasks scheduled in the future /and/ their subtasks.
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-get-schedule-with-inheritance ()
+    "If the current entry doesn't have a SCHEDULED date, check to see if
+    one can be inherited."
+    (let ((schedule (org-entry-get nil "SCHEDULED"))
+          (inheritable-schedule (org-entry-get-with-inheritance "SCHEDULED")))
+      (if (org-not-nil schedule) schedule inheritable-schedule)))
+  
+  (defun jc/skip-future-tasks-with-inheritance ()
+    "Skip tasks that are scheduled in the future, including inherited
+    schedule dates."
+    (let ((scheduled (jc/org-get-schedule-with-inheritance))
+          (subtree-end (save-excursion (org-end-of-subtree t))))
+      (if (and scheduled
+               (time-less-p (current-time) (org-time-string-to-time scheduled)))
+          subtree-end
+        nil)))
+#+END_SRC
+
 ** Custom agenda views
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-custom-commands
+  (setq jc/org-agenda-common-cmds
         '(
-          ("n"
-           "Agenda and all TODO's"
-           (
-            (agenda "")
-            (alltodo "")
-            )
-           )
-          ("u"
-           "TODO categories"
-           (
-            (tags-todo "/!NEXT"
-                       ((org-agenda-overriding-header "Things to do next")))
-            (tags-todo "/!TODO"
-                       ((org-agenda-overriding-header "Things to do")
-                        (org-agenda-dim-blocked-tasks 'invisible)
-                        (org-agenda-todo-ignore-scheduled 'future)))
-            (tags-todo "/!WAITING"
-                       ((org-agenda-overriding-header "Waiting for")))
-            (tags-todo "/!MONITOR"
-                       ((org-agenda-overriding-header "Monitor")))
-            (tags-todo "/!ONHOLD"
-                       ((org-agenda-overriding-header "On hold")))
-            )
+          (todo "NEXT"
+                ((org-agenda-overriding-header "Things to do next")))
+          (todo "TODO"
+                ((org-agenda-overriding-header "Things to do")
+                 (org-agenda-dim-blocked-tasks 'invisible)
+                 (org-agenda-skip-function 'jc/skip-future-tasks-with-inheritance)
+                 ))
+          (todo "WAITING"
+                ((org-agenda-overriding-header "Waiting for")))
+          (todo "MONITOR"
+                ((org-agenda-overriding-header "Monitor")))
+          (todo "ONHOLD"
+                ((org-agenda-overriding-header "On hold")))
+          )
+        
+        org-agenda-custom-commands
+        `(("p" "Personal tasks" ,jc/org-agenda-common-cmds
+           ((org-agenda-files `(,jc/agenda-file-personal))))
+          ("w" "Work tasks" 
+           ,(append jc/org-agenda-common-cmds
+                    `((tags-todo "atwork/!TODO"
+                                ((org-agenda-files `(,jc/agenda-file-personal))
+                                 (org-agenda-overriding-header "Personal tasks at work")))))
+           ((org-agenda-files `(,jc/agenda-file-work)))
            )
           )
         
