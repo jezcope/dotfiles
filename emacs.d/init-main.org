@@ -521,12 +521,14 @@ Ignore some more boring file extensions
 
 #+BEGIN_SRC emacs-lisp
   (defun jc/sunrise-display-external ()
-    "Open file at point in an external application."
+    "Open marked files or file at point in an external application."
     (interactive)
-    (let ((file (dired-get-filename)))
-      (start-process "sunrise external viewer" "*sunrise external viewer*"
-                     shell-file-name shell-command-switch
-                     (format "%s \"%s\"" lx-sunrise-external-viewer file))))
+    (let ((files (or (dired-get-marked-files)
+                     (list (dired-get-filename)))))
+      (dolist (file files)
+        (start-process "sunrise external viewer" "*sunrise external viewer*"
+                       shell-file-name shell-command-switch
+                       (format "%s \"%s\"" lx-sunrise-external-viewer file)))))
   
   (setq jc/sunrise-external-viewer
         (cond ((eq system-type 'darwin) "open")
