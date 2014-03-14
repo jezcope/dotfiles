@@ -517,22 +517,23 @@ Ignore some more boring file extensions
 
 **** Open file in external viewer using C-RET
 
-[[http://www.emacswiki.org/emacs/Sunrise_Commander][Found on EmacsWiki]]
+[[http://www.emacswiki.org/emacs/Sunrise_Commander][Found on EmacsWiki]] and subsequently modified to run asynchronously
 
 #+BEGIN_SRC emacs-lisp
-  (defun lx-sunrise-display-external ()
+  (defun jc/sunrise-display-external ()
     "Open file at point in an external application."
     (interactive)
     (let ((file (dired-get-filename)))
-      (call-process shell-file-name nil nil nil shell-command-switch
-                    (format "%s \"%s\"" lx-sunrise-external-viewer file))))
+      (start-process "sunrise external viewer" "*sunrise external viewer*"
+                     shell-file-name shell-command-switch
+                     (format "%s \"%s\"" lx-sunrise-external-viewer file))))
   
-  (setq lx-sunrise-external-viewer
+  (setq jc/sunrise-external-viewer
         (cond ((eq system-type 'darwin) "open")
               (t "xdg-open")))
   
   (eval-after-load 'sunrise-commander
-    '(define-key sr-mode-map '[\C-return] 'lx-sunrise-display-external))
+    '(define-key sr-mode-map (kbd "<C-return>") 'jc/sunrise-display-external))
 #+END_SRC
 
 *** BBDB
