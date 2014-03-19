@@ -395,6 +395,23 @@ Ignore some more boring file extensions
   (global-set-key (kbd "<f9>") 'sunrise)
 #+END_SRC
 
+*** Special keys on keyboards that have them
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<XF86Search>") 'ido-switch-buffer)
+  (global-set-key (kbd "<S-XF86Search>") 'ido-find-file)
+  
+  (global-set-key (kbd "<XF86Favorites>") 'execute-extended-command)
+  (global-set-key (kbd "<menu>") 'execute-extended-command)
+  (global-set-key (kbd "<S-XF86Favorites>") 'eval-expression)
+  (global-set-key (kbd "<S-menu>") 'eval-expression)
+#+END_SRC
+
+*** Other key bindings
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x k") 'kill-this-buffer)
+#+END_SRC
 ** File-type specific
 
 *** Text/documents
