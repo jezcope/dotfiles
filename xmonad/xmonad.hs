@@ -31,7 +31,8 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.LayoutHints
- 
+import XMonad.Actions.CycleWS
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -210,6 +211,8 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster))
  
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
+    , ((modm, button4), (\w -> nextWS))
+    , ((modm, button5), (\w -> prevWS))
     ]
  
 ------------------------------------------------------------------------
