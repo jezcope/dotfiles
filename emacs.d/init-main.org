@@ -207,9 +207,8 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (global-auto-revert-mode)
   
   ;; Show date/time in modeline
-  (setq display-time-mode t
-        display-time-day-and-date t
-        )
+  (setq display-time-day-and-date t)
+  (display-time-mode 1)
   
   ;; Make sure authinfo is encrypted
   (setq auth-sources '("~/.authinfo.gpg")
