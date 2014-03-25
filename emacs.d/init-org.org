@@ -116,7 +116,9 @@
         '(("NEXT" . "red")
           ("ONHOLD" . org-agenda-dimmed-todo-face)
           ("WAITING" . "yellow")
-          ("MONITOR" . "yellow"))
+          ("MONITOR" . "yellow")
+          ("CANCELLED" . "goldenrod")
+          )
   
         org-enforce-todo-dependencies t
         )
