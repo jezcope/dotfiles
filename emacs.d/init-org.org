@@ -67,10 +67,25 @@
 * Capture
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-capture-templates '(
-                                ("t" "Todo" entry (file "") "* TODO %?")
-                                ("n" "Note" entry (file "") "* %?")
+  (setq org-capture-templates `(
+                                ("t" "Todo"
+                                 entry
+                                 (file "")
+                                 "* TODO %?")
+                                ("n" "Note"
+                                 entry
+                                 (file "")
+                                 "* %?")
+                                ("d" "CPD log"
+                                 entry
+                                 (file+datetree+prompt ,(expand-file-name "CPD/CPD log.org" jc/dropbox-location))
+                                 "* %? %^{Type}p %^{PlannedTime}p %^{ActualTime}p")
+                                ("j" "Journal entry"
+                                 entry
+                                 (file+datetree+prompt ,(expand-file-name "journal.org" org-directory))
+                                 "* %?")
                                 )
+  
         org-refile-targets `((nil :maxlevel . 5)
                              (org-agenda-files :maxlevel . 4)
                              (,(expand-file-name "someday.org" org-directory) :maxlevel . 2))
