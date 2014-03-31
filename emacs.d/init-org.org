@@ -575,6 +575,7 @@ And now add some of my own based on the above...
                     org-bbdb
                     org-bibtex
                     org-crypt
+                    org-depend
                     org-docview
                     org-gnus
                     org-info
