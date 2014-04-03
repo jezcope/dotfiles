@@ -362,6 +362,29 @@ Ignore some more boring file extensions
   (setq completion-ignored-extensions '(".o" "~" ".bin" ".lbin" ".so" ".a" ".ln" ".blg" ".bbl" ".elc" ".lof" ".glo" ".idx" ".lot" ".fls" ".nav" ".snm" ".svn/" ".hg/" ".git/" ".bzr/" "CVS/" "_darcs/" "_MTN/" ".fmt" ".tfm" ".class" ".fas" ".lib" ".mem" ".x86f" ".sparcf" ".dfsl" ".pfsl" ".d64fsl" ".p64fsl" ".lx64fsl" ".lx32fsl" ".dx64fsl" ".dx32fsl" ".fx64fsl" ".fx32fsl" ".sx64fsl" ".sx32fsl" ".wx64fsl" ".wx32fsl" ".fasl" ".ufsl" ".fsl" ".dxl" ".lo" ".la" ".gmo" ".mo" ".toc" ".aux" ".cp" ".fn" ".ky" ".pg" ".tp" ".vr" ".cps" ".fns" ".kys" ".pgs" ".tps" ".vrs" ".pyc" ".pyo" ".fdb_latexmk")
         ido-ignore-extensions t)
 #+END_SRC
+
+*** Use kill ring as X clipboard history                     :experimental:
+
+This should ensure the X clipboard contents isn't lost during normal editing.
+
+#+BEGIN_SRC emacs-lisp
+  (setq save-interprogram-paste-before-kill t)
+#+END_SRC
+
+This doesn't work as I want it to right now - needs reworking.
+
+#+BEGIN_SRC emacs-lisp
+  ;; (defun jc/clipboard-to-kill-ring ()
+  ;;   (interactive)
+  ;;   (let ((clipboard (x-get-clipboard)))
+  ;;     (when (not (string= clipboard (car kill-ring)))
+  ;;       (kill-new (x-get-clipboard)))))
+  
+  ;; (setq jc/clipboard-to-kill-ring-timer
+  ;;       (run-with-timer 0.5 0.5 'jc/clipboard-to-kill-ring))
+#+END_SRC
+
+
 ** Key bindings
 
 *** Set print screen key to paste from X clipboard
