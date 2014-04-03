@@ -452,6 +452,30 @@ And now add some of my own based on the above...
         (if (bh/is-project-p) next-heading nil))))
 #+END_SRC
 
+*** Deadline-skipping functions
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/deadline-passed ()
+    (let ((deadline (org-entry-get (point) "DEADLINE")))
+      (and deadline
+           (time-less-p (apply 'encode-time (org-parse-time-string deadline)) (current-time)))))
+  
+  (defun jc/skip-if-deadline-passed ()
+    "Skip any task with a deadline in the past"
+    (save-restriction
+      (widen)
+      (let ((next-heading (save-excursion (or (outline-next-heading) (point-max)))))
+        (when (jc/deadline-passed)
+          next-heading))))
+   
+  (defun jc/skip-if-deadline-not-passed ()
+      (save-restriction
+      (widen)
+      (let ((next-heading (save-excursion (or (outline-next-heading) (point-max)))))
+        (unless (jc/deadline-passed)
+          next-heading))))
+#+END_SRC
+
 ** Custom agenda views
 
 #+BEGIN_SRC emacs-lisp
@@ -466,8 +490,14 @@ And now add some of my own based on the above...
                                                 (jc/skip-future-tasks-with-inheritance)))
                  ))
           (todo "WAITING"
+                ((org-agenda-overriding-header "Waiting for (deadline passed)")
+                 (org-agenda-skip-function '(or (jc/skip-if-deadline-not-passed)
+                                                (jc/skip-future-tasks-with-inheritance)))
+                 ))
+          (todo "WAITING"
                 ((org-agenda-overriding-header "Waiting for")
-                 (org-agenda-skip-function 'jc/skip-future-tasks-with-inheritance)
+                 (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
+                                                (jc/skip-future-tasks-with-inheritance)))
                  ))
           (todo "MONITOR"
                 ((org-agenda-overriding-header "Monitor")))
