@@ -80,9 +80,13 @@
                                  entry
                                  (file+datetree+prompt ,(expand-file-name "CPD/CPD log.org" jc/dropbox-location))
                                  "* %? %^{Type}p %^{PlannedTime}p %^{ActualTime}p")
-                                ("j" "Journal entry"
+                                ("l" "Logbook entry"
                                  entry
-                                 (file+datetree+prompt ,(expand-file-name "journal.org" org-directory))
+                                 (file+datetree ,(expand-file-name "logbook.org" org-directory))
+                                 "* %?")
+                                ("L" "Logbook entry (date prompt)"
+                                 entry
+                                 (file+datetree+prompt ,(expand-file-name "logbook.org" org-directory))
                                  "* %?")
                                 )
         )
