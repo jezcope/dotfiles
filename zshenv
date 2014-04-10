@@ -19,10 +19,14 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   path=(/usr/local/texlive/2013/bin/universal-darwin $path)
 
   manpath=(/opt/local/share/man $manpath)
+
+  export GOPATH=~/Library/Go
 elif [[ $PLATFORM = 'Linux' ]]; then
   path=(/usr/local/texlive/2011/bin/x86_64-linux $path)
 
   whence pacman-color > /dev/null && alias -g pacman=pacman-color
+
+  export GOPATH=~/.go
 else
   # Exclude some gems from being installed on non-Mac systems
   BUNDLE_WITHOUT=darwin_only
@@ -52,6 +56,9 @@ whence keychain > /dev/null && eval $(keychain --eval --agents ssh --ignore-miss
 if [[ -s "$HOME/.zshenv.local" ]]; then
   source "$HOME/.zshenv.local"
 fi
+
+# Create $GOPATH if it doesn't exist
+mkdir -p $GOPATH
 
 # Source rvm if it seems to be installed (i.e. $rvm_path set)
 if [[ -n "$rvm_path" ]]; then
