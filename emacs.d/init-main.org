@@ -47,6 +47,14 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (add-to-list 'el-get-recipe-path "~/.emacs.d/recipes")
 #+END_SRC
 
+*** Set up for ELPA packages
+
+Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to install any packages from elpa otherwise.
+
+#+BEGIN_SRC emacs-lisp
+  (make-directory package-user-dir t)
+#+END_SRC
+
 *** Packages to install
 
 **** Basics
