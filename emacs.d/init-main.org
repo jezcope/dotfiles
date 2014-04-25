@@ -134,7 +134,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
 #+BEGIN_SRC emacs-lisp
   (nconc my-packages
          '(
-           zenburn-theme
+           color-theme-zenburn
            color-theme-solarized
            ))
 #+END_SRC
