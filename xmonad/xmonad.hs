@@ -171,6 +171,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Lock the screen
     , ((modm .|. shiftMask, xK_z     ), spawn "xscreensaver-command -lock")
+
+    -- Next/previous WS
+    , ((modm              , xK_Page_Down), nextWS)
+    , ((modm              , xK_Page_Up), prevWS)
     ]
     ++
  
@@ -186,11 +190,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ++
  
     --
-    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+    -- Arrange screens {8,*9*,0} where *9* is the primary display
+    -- mod-{8,9,0}, Switch to physical/Xinerama screens
+    -- mod-shift-{8,9,0}, Move client to screen
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_9, xX_8, xK_0] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
  
  
