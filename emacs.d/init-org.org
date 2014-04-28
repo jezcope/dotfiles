@@ -585,6 +585,8 @@ And now add some of my own based on the above...
   (add-to-list 'org-capture-templates
                '("c" "Contacts" entry (file+headline (car org-contacts-files) "To file")
                  "* %(org-contacts-template-name)\n:PROPERTIES:%(org-contacts-template-email)\n:END:"))
+  
+  (define-key org-mode-map (kbd "C-c m") 'org-contacts-view-send-email)
 #+END_SRC
 
 * Org Velocity
