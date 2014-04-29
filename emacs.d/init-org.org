@@ -147,6 +147,20 @@ Allows resetting of checklist items in repeating TODO's.
   (require 'org-checklist)
 #+END_SRC
 
+** Advanced dependencies
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-depend)
+  
+  (defun jc/org-goto-blocker ()
+    (interactive)
+    (let ((blocker (org-entry-get (point) "BLOCKER")))
+      (if blocker
+        (org-id-goto blocker)
+        (message "This entry does not seem to have a blocker"))))
+  
+  (define-key org-mode-map (kbd "C-c B") 'jc/org-goto-blocker)
+#+END_SRC
 * Agenda
 
 #+BEGIN_SRC emacs-lisp
@@ -611,7 +625,6 @@ And now add some of my own based on the above...
                     org-bbdb
                     org-bibtex
                     org-crypt
-                    org-depend
                     org-docview
                     org-gnus
                     org-info
