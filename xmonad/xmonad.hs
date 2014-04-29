@@ -195,7 +195,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-{8,9,0}, Move client to screen
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_9, xX_8, xK_0] [0..]
+        | (key, sc) <- zip [xK_9, xK_8, xK_0] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
  
  
