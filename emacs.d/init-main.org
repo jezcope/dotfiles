@@ -76,7 +76,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            sunrise-x-loop
            sunrise-x-checkpoints
            sunrise-x-tree
-           erc
            magit
            ecb
            emacs-w3m
