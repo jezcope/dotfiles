@@ -42,6 +42,7 @@ class Dotfiles < Thor
       link_file f, ".#{f}"
     end
 
+    link_file 'awesomerc.lua', '.config/awesome/rc.lua'
     link_file 'texmf', texmf_location
     link_file 'sharedbin', "bin/shared"
   end
