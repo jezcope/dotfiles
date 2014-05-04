@@ -6,6 +6,9 @@
 ;; Make dotfiles-dir point to "~/.emacs.d/"
 (setq dotfiles-dir (file-name-directory (or (buffer-file-name) load-file-name)))
 
+;; Add ~/.emacs.d/elpa if it doesn't exist
+(make-directory (expand-file-name "elpa" dotfiles-dir) t)
+
 ;; Bootstrap el-get and org mode
 (load (expand-file-name "el-get-local.el" dotfiles-dir) t)
 (add-to-list 'load-path
