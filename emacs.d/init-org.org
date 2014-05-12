@@ -577,9 +577,29 @@ And now add some of my own based on the above...
         '("latexmk -xelatex -recorder -output-directory=%o %f")
   
         org-latex-tables-booktabs t
+        org-export-latex-image-default-option "width=\\textwidth"
+        org-latex-image-default-width "\\textwidth"
         )
 #+END_SRC
 
+*** Custom link types for PDF export (showing the URL on the printed page)
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-export-inline-link (path desc format)
+    (case format
+      ((latex) (format "%s (\\url{%s})" desc path))
+      ((html) (format "<a href=\"%s\">%s</a>" path desc))
+      ((t) desc)))
+  
+  (defun jc/org-export-expanded-link (path desc format)
+    (case format
+      ((latex) (format "%s: \\url{%s}" desc path))
+      ((html) (format "<a href=\"%s\">%s</a>" path desc))
+      ((t) desc)))
+  
+  (org-add-link-type "inline" nil 'jc/org-export-inline-link)
+  (org-add-link-type "expanded" nil 'jc/org-export-expanded-link)
+#+END_SRC
 * Mobile
 
 #+BEGIN_SRC emacs-lisp
