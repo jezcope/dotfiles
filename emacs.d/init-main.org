@@ -91,6 +91,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 #+BEGIN_SRC emacs-lisp
   (nconc my-packages
          '(
+           god-mode
            ack
            yasnippet
            popwin
@@ -324,6 +325,16 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
                    (mmm-parse-region yas-snippet-beg yas-snippet-end))))
 #+END_SRC
 
+*** God mode
+
+#+BEGIN_SRC emacs-lisp
+  (require 'god-mode)
+  
+  (global-set-key (kbd "<escape>") 'god-local-mode)
+  
+  (define-key god-local-mode-map (kbd ".") 'repeat)
+  (define-key god-local-mode-map (kbd "i") 'god-local-mode)
+#+END_SRC
 *** Activate multiple-cursors
 
 #+BEGIN_SRC emacs-lisp
