@@ -409,9 +409,37 @@ This doesn't work as I want it to right now - needs reworking.
 
 #+BEGIN_SRC emacs-lisp
   (require 'popwin)
-  (popwin-mode 1)
 
   (global-set-key (kbd "C-z") popwin:keymap)
+
+  (setq popwin:special-display-config
+        '(("*Miniedit Help*" :noselect t)
+          help-mode
+          (completion-list-mode :noselect t)
+          (compilation-mode :noselect t)
+          (grep-mode :noselect t)
+          (occur-mode :noselect t)
+          ("*Pp Macroexpand Output*" :noselect t)
+          "*Shell Command Output*"
+          "*vc-diff*"
+          "*vc-change-log*"
+          (" *undo-tree*" :width 60 :position right)
+          ("^\\*anything.*\\*$" :regexp t)
+          "*slime-apropos*"
+          "*slime-macroexpansion*"
+          "*slime-description*"
+          ("*slime-compilation*" :noselect t)
+          "*slime-xref*"
+          (sldb-mode :stick t)
+          slime-repl-mode
+          slime-connection-list-mode
+          (magit-status-mode :width 100 :position right)
+          ("^\\*Org Src.*" :regexp t)
+          (apropos-mode :width 70 :position left)
+          ))
+
+  (popwin-mode 1)
+
 #+END_SRC
 
 ** Key bindings
