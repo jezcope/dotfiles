@@ -102,6 +102,8 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            multiple-cursors
            adaptive-wrap
            dropdown-list
+           expand-region
+           change-inner
            ))
 #+END_SRC
 
@@ -411,6 +413,15 @@ This doesn't work as I want it to right now - needs reworking.
   (popwin-mode 1)
 
   (global-set-key (kbd "C-z") popwin:keymap)
+#+END_SRC
+
+*** Configure expand-region and change-inner
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-=") 'er/expand-region)
+  
+  (global-set-key (kbd "M-i") 'change-inner)
+  (global-set-key (kbd "M-o") 'change-outer)
 #+END_SRC
 
 ** Key bindings
