@@ -1,3 +1,3 @@
 #!/bin/sh
 
-emacs -nw $*
+emacs -Q -nw $*
