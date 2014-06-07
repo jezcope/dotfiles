@@ -118,20 +118,42 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 --  Network usage widget
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">↓ ${wifi0 down_kb}</span> <span color="#7F9F7F">↑${wifi0 up_kb}</span>', 3)
+netlayout = wibox.layout.align.vertical()
+netlayout:set_middle(netwidget)
+netlabel = wibox.widget.textbox()
+netlabel.text = "wifi0"
+netlayout:set_bottom(netlabel)
+
 -- CPU usage widget
 cpuwidget = awful.widget.graph()
 -- Graph properties
 cpuwidget:set_width(50)
 cpuwidget:set_background_color("#494B4F")
 cpuwidget:set_color({ type = "linear", from = { 0, 0 }, to = { 10,0 }, stops = { {0, "#FF5656"}, {0.5, "#88A175"}, 
-                    {1, "#AECF96" }}})
+                         {1, "#AECF96" }}})
+
+cpulayout = wibox.layout.margin()
+cpulayout:set_widget(cpuwidget)
+cpulayout:set_left(5)
+
 -- Register widget
 vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
+
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
--- Separator
-separator = wibox.widget.textbox()
-separator.text = "   "
+
+batwidget = wibox.widget.textbox()
+vicious.register(batwidget, vicious.widgets.bat, " Bat: $2% ", 13, "BAT0")
+
+batbar = awful.widget.progressbar()
+batbar:set_width(8)
+batbar:set_height(10)
+batbar:set_vertical(true)
+batbar:set_background_color("#494B4F")
+batbar:set_border_color(nil)
+batbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
+                      stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } } })
+vicious.register(batbar, vicious.widgets.bat, "$2", 61, "BAT0")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -211,10 +233,10 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(netwidget)
-    right_layout:add(separator)
-    right_layout:add(cpuwidget)
-    right_layout:add(separator)
+    right_layout:add(netlayout)
+    right_layout:add(cpulayout)
+    right_layout:add(batwidget)
+    right_layout:add(batbar)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
