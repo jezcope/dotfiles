@@ -242,10 +242,12 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 *** Save backups and autosaves somewhere more sensible
 
 #+BEGIN_SRC emacs-lisp
+  (setq jc/autosave-directory
+        (expand-file-name "../.autosave" dotfiles-dir))
   (setq backup-directory-alist
-        `((".*" . ,temporary-file-directory))
+        `((".*" . ,jc/autosave-directory))
         auto-save-file-name-transforms
-        `((".*" ,temporary-file-directory t)))
+        `((".*" ,jc/autosave-directory t)))
 #+END_SRC
 
 *** Enable periodic saving of buffers
