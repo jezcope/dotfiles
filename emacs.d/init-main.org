@@ -474,6 +474,16 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "M-o") 'change-outer)
 #+END_SRC
 
+*** Change M-z to leave the character alone
+
+#+BEGIN_SRC emacs-lisp
+  (autoload 'zap-up-to-char "misc"
+    "Kill up to, but not including ARGth occurrence of CHAR.
+  
+  \(fn arg char)"
+    'interactive)
+  (global-set-key (kbd "M-z") 'zap-up-to-char)
+#+END_SRC
 ** Key bindings
 
 *** Set print screen key to paste from X clipboard
