@@ -449,18 +449,27 @@ This doesn't work as I want it to right now - needs reworking.
 *** Diminish some stuff in the modeline
 
 #+BEGIN_SRC emacs-lisp
-  (when (member "FontAwesome" (font-family-list))
-    (diminish 'auto-fill-function " [A]")
-    (diminish 'visual-line-mode   " [V]")
-    (diminish 'auto-complete-mode " ")
-    (diminish 'filladapt-mode     " ")
-    (diminish 'yas-minor-mode     " ")
-    (diminish 'god-local-mode     " ")
+  (defun jc/diminish ()
+    (message "Just about to do diminishing")
+    (message (prin1-to-string (x-family-fonts "FontAwesome")))
+    (when (x-family-fonts "FontAwesome")
+      (diminish 'auto-fill-function " [A]")
+      (diminish 'visual-line-mode   " [V]")
+      (diminish 'auto-complete-mode " ")
+      (diminish 'filladapt-mode     " ")
+      (diminish 'yas-minor-mode     " ")
+      (diminish 'god-local-mode     " ")
   
-    (eval-after-load 'org-indent
-      '(progn
-         (diminish 'org-indent-mode "I")))
-    )
+      (eval-after-load 'org-indent
+        '(progn
+           (diminish 'org-indent-mode "I")))
+      
+      (remove-hook 'server-visit-hook 'jc/diminish)
+      (remove-hook 'server-switch-hook 'jc/diminish)
+      ))
+  (add-hook 'server-visit-hook 'jc/diminish)
+  (add-hook 'server-switch-hook 'jc/diminish)
+  
 #+END_SRC
 
 *** Configure expand-region and change-inner
@@ -524,6 +533,12 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "<menu>") 'execute-extended-command)
   (global-set-key (kbd "<S-XF86Favorites>") 'eval-expression)
   (global-set-key (kbd "<S-menu>") 'eval-expression)
+#+END_SRC
+
+*** Extra special character bindings
+
+#+BEGIN_SRC emacs-lisp
+  (define-key 'iso-transl-ctl-x-8-map "l" [?£])
 #+END_SRC
 
 *** Other key bindings
