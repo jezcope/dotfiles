@@ -83,9 +83,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            ecb
            emacs-w3m
            mu4e
-           ;; wanderlust
-           bbdb
-           bbdbv3-wl
            ))
 #+END_SRC
 
@@ -95,7 +92,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   (nconc my-packages
          '(
            god-mode
-           ack
            yasnippet
            popwin
            mmm-mode
