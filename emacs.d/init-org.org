@@ -607,7 +607,18 @@ And now add some of my own based on the above...
    '((emacs-lisp . t)
      (ruby . t)
      (python . t)
-     (sh . t)))
+     (sh . t)
+     (ditaa . t)))
+#+END_SRC
+
+** Don't ask before evaluating some languages
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-confirm-babel-evaluate (lang body)
+    (not (string= lang "ditaa")))
+  
+  (setq org-confirm-babel-evaluate 'jc/org-confirm-babel-evaluate)
+  
 #+END_SRC
 
 * Mobile
