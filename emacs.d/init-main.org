@@ -537,6 +537,12 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "<S-menu>") 'eval-expression)
 #+END_SRC
 
+*** Extra special character bindings
+
+#+BEGIN_SRC emacs-lisp
+  (define-key 'iso-transl-ctl-x-8-map "l" [?£])
+#+END_SRC
+
 *** Other key bindings
 
 #+BEGIN_SRC emacs-lisp
