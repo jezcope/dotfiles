@@ -160,6 +160,16 @@ Allows resetting of checklist items in repeating TODO's.
   
   (define-key org-mode-map (kbd "C-c B") 'jc/org-goto-blocker)
 #+END_SRC
+
+** Inline tasks
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-inlinetask)
+  
+  (setq org-inlinetask-default-state "TODO"
+        org-inlinetask-show-first-star t)
+#+END_SRC
+
 * Agenda
 
 #+BEGIN_SRC emacs-lisp
