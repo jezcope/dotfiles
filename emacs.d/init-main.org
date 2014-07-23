@@ -510,17 +510,19 @@ This doesn't work as I want it to right now - needs reworking.
 
 *** Function keys
 
-  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
-  | F1 |  F2  |  F3  |   F4   |   F5   |  F6  |   F7   | F8  |  F9   | F10 | F11 | F12 |
-  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
-  |Help| 2col |Macro | Macro  |Activate|Magit | Toggle |mu4e |Toggle |Menu |(Mac)|(Mac)|
-  |    |prefix|record|call/end|  ECB   |status|icy-mode|     |sunrise|     |     |     |
-  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
+  +------+------+------+--------+--------+------+--------+------+-------+------+------+------+
+  |  F1  |  F2  |  F3  |   F4   |   F5   |  F6  |   F7   |  F8  |  F9   | F10  | F11  | F12  |
+  +------+------+------+--------+--------+------+--------+------+-------+------+------+------+
+  |Help  |Org   |Macro |Macro   |Activate|Magit |Org     |mu4e  |Toggle |Menu  |      |      |
+  |      |agenda|record|call/end|ECB     |status|velocity|      |sunrise|      |      |      |
+  +------+------+------+--------+--------+------+--------+------+-------+------+------+------+
   
 #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<f1>") 'org-capture)
+  (global-set-key (kbd "<f2>") 'org-agenda)
   (global-set-key (kbd "<f5>") 'ecb-activate)
   (global-set-key (kbd "<f6>") 'magit-status)
-  (global-set-key (kbd "<f7>") 'icy-mode)
+  (global-set-key (kbd "<f7>") 'org-velocity-read)
   (global-set-key (kbd "<f8>") 'mu4e)
   (global-set-key (kbd "<f9>") 'sunrise)
 #+END_SRC
