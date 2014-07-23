@@ -508,21 +508,30 @@ This doesn't work as I want it to right now - needs reworking.
 
 *** Function keys
 
-  +------+------+------+--------+--------+------+--------+------+-------+------+------+------+
-  |  F1  |  F2  |  F3  |   F4   |   F5   |  F6  |   F7   |  F8  |  F9   | F10  | F11  | F12  |
-  +------+------+------+--------+--------+------+--------+------+-------+------+------+------+
-  |Help  |Org   |Macro |Macro   |Activate|Magit |Org     |mu4e  |Toggle |Menu  |      |      |
-  |      |agenda|record|call/end|ECB     |status|velocity|      |sunrise|      |      |      |
-  +------+------+------+--------+--------+------+--------+------+-------+------+------+------+
+  +-------+-------+------+------+--------+----------+------+--------+------+-------+------+------+------+
+  |  Mod  |  F1   |  F2  |  F3  |   F4   |   F5     |  F6  |   F7   |  F8  |  F9   | F10  | F11  | F12  |
+  +-------+-------+------+------+--------+----------+------+--------+------+-------+------+------+------+
+  |       |Org    |Org   |Macro |Macro   |Activate  |Magit |Org     |mu4e  |Toggle |Menu  |      |      |
+  |       |capture|agenda|record|call/end|ECB       |status|velocity|      |sunrise|      |      |      |
+  +-------+-------+------+------+--------+----------+------+--------+------+-------+------+------+------+
+  | Ctrl  |Open   |      |      |        |Deactivate|      |        |      |       |      |      |      |
+  |       |inbox  |      |      |        |ECB       |      |        |      |       |      |      |      |
+  +-------+-------+------+------+--------+----------+------+--------+------+-------+------+------+------+
   
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<f1>") 'org-capture)
+  (global-set-key (kbd "<C-f1>") 'jc/find-inbox-file)
   (global-set-key (kbd "<f2>") 'org-agenda)
   (global-set-key (kbd "<f5>") 'ecb-activate)
+  (global-set-key (kbd "<C-f5>") 'ecb-activate)
   (global-set-key (kbd "<f6>") 'magit-status)
   (global-set-key (kbd "<f7>") 'org-velocity-read)
   (global-set-key (kbd "<f8>") 'mu4e)
   (global-set-key (kbd "<f9>") 'sunrise)
+  
+  (defun jc/find-inbox-file ()
+    (interactive)
+    (find-file org-default-notes-file))
 #+END_SRC
 
 *** Special keys on keyboards that have them
