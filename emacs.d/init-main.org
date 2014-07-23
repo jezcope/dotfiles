@@ -32,6 +32,8 @@ Enable menu bar on Mac, as it doesn't make any difference:
   
   (if (eq system-type 'darwin)
       (add-to-list 'exec-path "/usr/local/texlive/2013/bin/universal-darwin" t))
+  
+  (setenv "PATH" (mapconcat 'identity exec-path ":"))
 #+END_SRC
 
 *** Set load-path
@@ -81,9 +83,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            ecb
            emacs-w3m
            mu4e
-           ;; wanderlust
-           bbdb
-           bbdbv3-wl
            ))
 #+END_SRC
 
@@ -93,7 +92,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   (nconc my-packages
          '(
            god-mode
-           ack
            yasnippet
            popwin
            mmm-mode
