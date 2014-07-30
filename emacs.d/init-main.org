@@ -32,6 +32,8 @@ Enable menu bar on Mac, as it doesn't make any difference:
   
   (if (eq system-type 'darwin)
       (add-to-list 'exec-path "/usr/local/texlive/2013/bin/universal-darwin" t))
+  
+  (setenv "PATH" (mapconcat 'identity exec-path ":"))
 #+END_SRC
 
 *** Set load-path
@@ -63,6 +65,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   (setq my-packages
          '(
            el-get
+           package
            org-mode
            ))
 #+END_SRC
@@ -80,9 +83,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            ecb
            emacs-w3m
            mu4e
-           ;; wanderlust
-           bbdb
-           bbdbv3-wl
            ))
 #+END_SRC
 
@@ -92,7 +92,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   (nconc my-packages
          '(
            god-mode
-           ack
            yasnippet
            popwin
            mmm-mode
@@ -450,16 +449,27 @@ This doesn't work as I want it to right now - needs reworking.
 *** Diminish some stuff in the modeline
 
 #+BEGIN_SRC emacs-lisp
-  (when (member "FontAwesome" (font-family-list))
-    (diminish 'auto-fill-function (concat " " [#xF039] "A"))
-    (diminish 'visual-line-mode   (concat " " [#xF039] "V"))
-    (diminish 'auto-complete-mode (concat " " [#xF054]))
-    (diminish 'filladapt-mode     (concat " " [#xF03C]))
-
-    (eval-after-load 'org-indent
-      '(progn
-         (diminish 'org-indent-mode)))
-    )
+  (defun jc/diminish ()
+    (message "Just about to do diminishing")
+    (message (prin1-to-string (x-family-fonts "FontAwesome")))
+    (when (x-family-fonts "FontAwesome")
+      (diminish 'auto-fill-function " [A]")
+      (diminish 'visual-line-mode   " [V]")
+      (diminish 'auto-complete-mode " ")
+      (diminish 'filladapt-mode     " ")
+      (diminish 'yas-minor-mode     " ")
+      (diminish 'god-local-mode     " ")
+  
+      (eval-after-load 'org-indent
+        '(progn
+           (diminish 'org-indent-mode "I")))
+      
+      (remove-hook 'server-visit-hook 'jc/diminish)
+      (remove-hook 'server-switch-hook 'jc/diminish)
+      ))
+  (add-hook 'server-visit-hook 'jc/diminish)
+  (add-hook 'server-switch-hook 'jc/diminish)
+  
 #+END_SRC
 
 *** Configure expand-region and change-inner
@@ -471,6 +481,16 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "M-o") 'change-outer)
 #+END_SRC
 
+*** Change M-z to leave the character alone
+
+#+BEGIN_SRC emacs-lisp
+  (autoload 'zap-up-to-char "misc"
+    "Kill up to, but not including ARGth occurrence of CHAR.
+  
+  \(fn arg char)"
+    'interactive)
+  (global-set-key (kbd "M-z") 'zap-up-to-char)
+#+END_SRC
 ** Key bindings
 
 *** Set print screen key to paste from X clipboard
@@ -488,19 +508,30 @@ This doesn't work as I want it to right now - needs reworking.
 
 *** Function keys
 
-  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
-  | F1 |  F2  |  F3  |   F4   |   F5   |  F6  |   F7   | F8  |  F9   | F10 | F11 | F12 |
-  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
-  |Help| 2col |Macro | Macro  |Activate|Magit | Toggle |mu4e |Toggle |Menu |(Mac)|(Mac)|
-  |    |prefix|record|call/end|  ECB   |status|icy-mode|     |sunrise|     |     |     |
-  +----+------+------+--------+--------+------+--------+-----+-------+-----+-----+-----+
+  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
+  |  Mod  |  F1   |  F2    |  F3  |   F4   |   F5     |  F6  |  F7  |  F8  |  F9   | F10  | F11  | F12  |
+  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
+  |       |Org    |Org     |Macro |Macro   |Activate  |Magit |      |mu4e  |Toggle |Menu  |      |      |
+  |       |capture|agenda  |record|call/end|ECB       |status|      |      |sunrise|      |      |      |
+  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
+  | Ctrl  |Open   |Org     |      |        |Deactivate|      |      |      |       |      |      |      |
+  |       |inbox  |velocity|      |        |ECB       |      |      |      |       |      |      |      |
+  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
   
 #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<f1>") 'org-capture)
+  (global-set-key (kbd "<C-f1>") 'jc/find-inbox-file)
+  (global-set-key (kbd "<f2>") 'org-agenda)
+  (global-set-key (kbd "<C-f2>") 'org-velocity-read)
   (global-set-key (kbd "<f5>") 'ecb-activate)
+  (global-set-key (kbd "<C-f5>") 'ecb-activate)
   (global-set-key (kbd "<f6>") 'magit-status)
-  (global-set-key (kbd "<f7>") 'icy-mode)
   (global-set-key (kbd "<f8>") 'mu4e)
   (global-set-key (kbd "<f9>") 'sunrise)
+  
+  (defun jc/find-inbox-file ()
+    (interactive)
+    (find-file org-default-notes-file))
 #+END_SRC
 
 *** Special keys on keyboards that have them
@@ -513,6 +544,12 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "<menu>") 'execute-extended-command)
   (global-set-key (kbd "<S-XF86Favorites>") 'eval-expression)
   (global-set-key (kbd "<S-menu>") 'eval-expression)
+#+END_SRC
+
+*** Extra special character bindings
+
+#+BEGIN_SRC emacs-lisp
+  (define-key 'iso-transl-ctl-x-8-map "l" [?£])
 #+END_SRC
 
 *** Other key bindings

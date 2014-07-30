@@ -4,7 +4,6 @@
   (setq org-startup-indented t
         org-startup-folded 'content
         org-export-backends '(ascii html icalendar latex md odt)
-        org-babel-load-languages '((emacs-lisp . t) (ruby . t) (python . t) (sh . t))
         org-use-fast-tag-selection 'auto
         org-time-stamp-custom-formats '("<%a %e %b %Y>" . "<%a %e %b %Y %H:%M>")
         )
@@ -161,6 +160,16 @@ Allows resetting of checklist items in repeating TODO's.
   
   (define-key org-mode-map (kbd "C-c B") 'jc/org-goto-blocker)
 #+END_SRC
+
+** Inline tasks
+
+#+BEGIN_SRC emacs-lisp
+  (require 'org-inlinetask)
+  
+  (setq org-inlinetask-default-state "TODO"
+        org-inlinetask-show-first-star t)
+#+END_SRC
+
 * Agenda
 
 #+BEGIN_SRC emacs-lisp
@@ -600,6 +609,28 @@ And now add some of my own based on the above...
   (org-add-link-type "inline" nil 'jc/org-export-inline-link)
   (org-add-link-type "expanded" nil 'jc/org-export-expanded-link)
 #+END_SRC
+* Babel
+
+#+BEGIN_SRC emacs-lisp
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (ruby . t)
+     (python . t)
+     (sh . t)
+     (ditaa . t)))
+#+END_SRC
+
+** Don't ask before evaluating some languages
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-confirm-babel-evaluate (lang body)
+    (not (string= lang "ditaa")))
+  
+  (setq org-confirm-babel-evaluate 'jc/org-confirm-babel-evaluate)
+  
+#+END_SRC
+
 * Mobile
 
 #+BEGIN_SRC emacs-lisp
