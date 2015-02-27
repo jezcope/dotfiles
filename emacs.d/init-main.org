@@ -180,6 +180,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            lua-mode
            abc-mode
            graphviz-dot-mode
+           ess ; S/R and related languages
            ))
 #+END_SRC
 
