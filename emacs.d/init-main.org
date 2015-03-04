@@ -402,6 +402,7 @@ Set global helm-mode and some specific key bindings.
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-x b") 'helm-mini)
+  (global-set-key (kbd "C-s") 'helm-swoop)
 #+END_SRC
 
 Enable fuzzy matching in some useful places.
