@@ -590,17 +590,18 @@ This doesn't work as I want it to right now - needs reworking.
 #+BEGIN_SRC emacs-lisp
   (dolist (ext '("\\.markdown\\'" "\\.md\\'"))
     (add-to-list 'auto-mode-alist `(,ext . markdown-mode)))
-  
-  (dolist (func '(turn-on-pandoc
+
+  (dolist (func '(
                   flyspell-mode
                   visual-line-mode
                   adaptive-wrap-prefix-mode
                   orgstruct++-mode
-                  variable-pitch-mode))
+                  variable-pitch-mode
+                  (lambda ()
+                    (setq orgstruct-heading-prefix-regexp "#\\+")
+                    (pandoc-mode 1))
+                  ))
     (add-hook 'markdown-mode-hook func))
-  
-  (setq-mode-local markdown-mode
-                   orgstruct-heading-prefix-regexp "#\\+")
 #+END_SRC
 
 ***** Pandoc
