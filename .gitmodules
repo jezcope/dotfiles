@@ -22,9 +22,6 @@
 [submodule "vim/bundle/colors-solarized"]
 	path = vim/bundle/colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "texmf/tex/latex/uniofbath"]
-	path = texmf/tex/latex/uniofbath
-	url = jc619@lcpu.bath.ac.uk:git/uniofbath-latex
 [submodule "vim/bundle/xml"]
 	path = vim/bundle/xml
 	url = https://github.com/othree/xml.vim.git
