@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Date/Time stamp
+# key: _dts
+# binding: direct-keybinding
+# --
+`(format-time-string "%c")`

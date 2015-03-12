@@ -769,6 +769,22 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
   (global-set-key (kbd "C-c C-=") 'my-increment-number-decimal)
 #+END_SRC
 
+** Blogging helpers
+
+*** Update created_at date/time
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/update-created-date ()
+    (interactive)
+    (save-excursion
+      (goto-char 0)
+      (when (re-search-forward "^created_at: ")
+        (kill-line)
+        (insert-string (format-time-string "%c"))))
+    )
+
+  (add-hook 'markdown-mode-hook (lambda () (local-set-key (kbd "C-c j b d") 'jc/update-created-date)))
+#+END_SRC
 ** Load local settings
 
 *** Make customizations machine-local
