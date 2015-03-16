@@ -107,6 +107,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            change-inner
            buffer-move
            diminish
+           powerline
            ))
 #+END_SRC
 
@@ -516,6 +517,15 @@ This doesn't work as I want it to right now - needs reworking.
     'interactive)
   (global-set-key (kbd "M-z") 'zap-up-to-char)
 #+END_SRC
+
+*** Enable powerline to prettify
+
+#+BEGIN_SRC emacs-lisp
+  (setq powerline-default-separator 'arrow
+        powerline-default-separator-dir '(left . right))
+  (powerline-default-theme)
+#+END_SRC
+
 ** Key bindings
 
 *** Set print screen key to paste from X clipboard
