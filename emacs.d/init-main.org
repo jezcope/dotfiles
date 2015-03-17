@@ -95,6 +95,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            yasnippet
            helm
            helm-swoop
+           projectile
            popwin
            mmm-mode
            filladapt
@@ -485,17 +486,18 @@ This doesn't work as I want it to right now - needs reworking.
       (diminish 'filladapt-mode     " ")
       (diminish 'yas-minor-mode     " ")
       (diminish 'god-local-mode     " ")
-  
+      (diminish 'helm-mode          " ")
+
       (eval-after-load 'org-indent
         '(progn
            (diminish 'org-indent-mode "I")))
-      
+    
       (remove-hook 'server-visit-hook 'jc/diminish)
       (remove-hook 'server-switch-hook 'jc/diminish)
       ))
   (add-hook 'server-visit-hook 'jc/diminish)
   (add-hook 'server-switch-hook 'jc/diminish)
-  
+
 #+END_SRC
 
 *** Configure expand-region and change-inner
@@ -526,6 +528,17 @@ This doesn't work as I want it to right now - needs reworking.
   (powerline-default-theme)
 #+END_SRC
 
+*** Projectile
+
+#+BEGIN_SRC emacs-lisp
+  (setq projectile-mode-line '(:eval
+                               (format " P[%s]"
+                                       (projectile-project-name)))
+        projectile-completion-system 'helm)
+
+  (projectile-global-mode)
+  (helm-projectile-on)
+#+END_SRC
 ** Key bindings
 
 *** Set print screen key to paste from X clipboard
