@@ -274,7 +274,10 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 *** Choose theme
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'zenburn t)
+  (setq frame-background-mode 'dark
+        solarized-bold nil)
+  (mapc 'frame-set-background-mode (frame-list))
+  (load-theme 'solarized t)
 #+END_SRC
 
 *** Activate filladapt-mode
