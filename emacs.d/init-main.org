@@ -242,6 +242,30 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
         initial-buffer-choice t)
 #+END_SRC
 
+*** Fonts
+
+Add a hotkey to toggle variable pitch mode
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c j f v") 'variable-pitch-mode)
+#+END_SRC
+
+Make some modes variable pitch by default
+#+BEGIN_SRC emacs-lisp
+  (dolist (hook '(
+               org-mode-hook
+               python-mode-hook
+               markdown-mode-hook
+               ))
+    (add-hook hook 'variable-pitch-mode))
+#+END_SRC
+
+Make some faces fixed pitch (mostly to fix vertical alignment issues)
+#+BEGIN_SRC emacs-lisp
+  (eval-after-load 'org-indent
+    '(set-face-attribute 'org-indent nil :inherit 'fixed-pitch))
+  (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+#+END_SRC
+
 *** Configure how to make buffer titles unique
 
 This adds (to the filename) enough of the path after a vertical bar to make the title unique.
@@ -631,7 +655,6 @@ This doesn't work as I want it to right now - needs reworking.
                   visual-line-mode
                   adaptive-wrap-prefix-mode
                   orgstruct++-mode
-                  variable-pitch-mode
                   (lambda ()
                     (setq orgstruct-heading-prefix-regexp "#\\+")
                     (pandoc-mode 1))
