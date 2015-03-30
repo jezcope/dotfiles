@@ -234,6 +234,14 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
         )
 #+END_SRC
 
+*** Initial buffer
+
+#+BEGIN_SRC emacs-lisp
+  (setq initial-scratch-message "* Scratch\n\n# This buffer is for notes you don't want to save, and for Lisp evaluation.\n\n#+BEGIN_SRC emacs lisp\n\n#+END_SRC\n"
+        initial-major-mode 'org-mode
+        initial-buffer-choice t)
+#+END_SRC
+
 *** Configure how to make buffer titles unique
 
 This adds (to the filename) enough of the path after a vertical bar to make the title unique.
