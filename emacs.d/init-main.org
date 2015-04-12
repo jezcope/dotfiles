@@ -595,7 +595,7 @@ This doesn't work as I want it to right now - needs reworking.
   +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
   |  Mod  |  F1   |  F2    |  F3  |   F4   |   F5     |  F6  |  F7  |  F8  |  F9   | F10  | F11  | F12  |
   +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
-  |       |Org    |Org     |Macro |Macro   |Activate  |Magit |      |mu4e  |Toggle |Menu  |      |      |
+  |       |Org    |Org     |Macro |Macro   |Activate  |Magit |Term  |mu4e  |Toggle |Menu  |      |      |
   |       |capture|agenda  |record|call/end|ECB       |status|      |      |sunrise|      |      |      |
   +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
   | Ctrl  |Open   |Org     |      |        |Deactivate|      |      |      |       |      |      |      |
@@ -610,12 +610,19 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "<f5>") 'ecb-activate)
   (global-set-key (kbd "<C-f5>") 'ecb-activate)
   (global-set-key (kbd "<f6>") 'magit-status)
+  (global-set-key (kbd "<f7>") 'jc/ansi-term-with-zsh)
   (global-set-key (kbd "<f8>") 'mu4e)
   (global-set-key (kbd "<f9>") 'sunrise)
-  
+
   (defun jc/find-inbox-file ()
     (interactive)
     (find-file org-default-notes-file))
+
+  (defcustom jc/zsh-location "/usr/bin/zsh"
+    "Location of zsh executable")
+  (defun jc/ansi-term-with-zsh ()
+    (interactive)
+    (ansi-term jc/zsh-location "ansi-term[zsh]"))
 #+END_SRC
 
 *** Special keys on keyboards that have them

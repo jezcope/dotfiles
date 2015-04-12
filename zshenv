@@ -48,8 +48,12 @@ fi
 
 export PATH
 
-export EDITOR="$(which emacsclient) -t"
-export ALTERNATE_EDITOR=$(which emacs-terminal.sh)
+if [[ $TERM =~ '^eterm' ]]; then # If we're running a terminal inside emacs
+  export EDITOR=$(which emacsclient)
+else
+  export EDITOR="$(which emacsclient) -t"
+  export ALTERNATE_EDITOR=$(which emacs-terminal.sh)
+fi
 
 whence keychain > /dev/null && eval $(keychain --eval --agents ssh --ignore-missing -Q -q id_rsa id_ecdsa jezcope_aws.pem)
 
