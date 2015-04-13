@@ -21,3 +21,5 @@ pentadactyl/info/default/register-ring
 /emacs.d/snippets-local/
 /emacs.d/recentf
 /emacs.d/projectile-bookmarks.eld
+/emacs.d/projectile.cache
+/emacs.d/request/
