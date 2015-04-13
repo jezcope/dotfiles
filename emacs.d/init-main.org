@@ -255,6 +255,7 @@ Make some modes variable pitch by default
                org-mode-hook
                python-mode-hook
                markdown-mode-hook
+               TeX-mode-hook
                ))
     (add-hook hook 'variable-pitch-mode))
 #+END_SRC
