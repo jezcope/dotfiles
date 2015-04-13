@@ -688,6 +688,8 @@ This doesn't work as I want it to right now - needs reworking.
   (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
   (add-hook 'LaTeX-mode-hook 'reftex-mode)
   (setq reftex-plug-into-AUCTeX t)
+
+  (put 'LaTeX-narrow-to-environment 'disabled nil)
 #+END_SRC
 
 **** Haml/Sass
