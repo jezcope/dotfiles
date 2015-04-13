@@ -843,7 +843,9 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
         (insert-string (format-time-string "%c"))))
     )
 
-  (add-hook 'markdown-mode-hook (lambda () (local-set-key (kbd "C-c j b d") 'jc/update-created-date)))
+  (dolist (hook '(markdown-mode-hook yaml-mode-hook))
+    (add-hook hook
+              (lambda () (local-set-key (kbd "C-c j b d") 'jc/update-created-date))))
 #+END_SRC
 ** Load local settings
 
