@@ -244,11 +244,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 
 *** Fonts
 
-Add a hotkey to toggle variable pitch mode
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c j f v") 'variable-pitch-mode)
-#+END_SRC
-
 Make some modes variable pitch by default
 #+BEGIN_SRC emacs-lisp
   (dolist (hook '(
@@ -589,6 +584,45 @@ This doesn't work as I want it to right now - needs reworking.
 #+BEGIN_SRC emacs-lisp
   (when (fboundp 'windmove-default-keybindings)
     (windmove-default-keybindings))
+#+END_SRC
+
+*** Launcher map
+
+Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-standalone-features.html][Endless Parentheses]] for this.
+
+#+BEGIN_SRC emacs-lisp
+  (define-prefix-command 'jc/launcher-map)
+  (define-key ctl-x-map "l" 'jc/launcher-map)
+  (global-set-key (kbd "s-l") 'jc/launcher-map)
+
+  (dolist (binding '(
+                     ("e" . ecb-activate)
+                     ("g" . magit-status)
+                     ("t" . jc/ansi-term-with-zsh)
+                     ("m" . mu4e)
+                     ("f" . sunrise)
+                     ("i" . jc/find-inbox-file)
+                     ))
+    (define-key jc/launcher-map (car binding) (cdr binding)))
+#+END_SRC
+
+*** Toggle map
+
+Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
+
+#+BEGIN_SRC emacs-lisp
+  (define-prefix-command 'jc/toggle-map)
+  (define-key ctl-x-map "t" 'jc/toggle-map)
+
+  (dolist (binding '(
+                     ("c" . column-number-mode)
+                     ("l" . line-number-mode)
+                     ("f" . auto-fill-mode)
+                     ("v" . variable-pitch-mode)
+                     ("w" . visual-line-mode)
+                     ("W" . whitespace-mode)
+                     ))
+    (define-key jc/toggle-map (car binding) (cdr binding)))
 #+END_SRC
 
 *** Function keys
