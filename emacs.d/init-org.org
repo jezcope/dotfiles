@@ -638,8 +638,8 @@ And now add some of my own based on the above...
                            ,(expand-file-name "someday.org" org-directory)
                            ,(expand-file-name "people-agendas.org" org-directory)))
 
-  (when (boundp 'focus-in-hook)
-    (add-hook 'focus-in-hook 'org-mobile-pull))
+  ;; (when (boundp 'focus-in-hook)
+  ;;   (add-hook 'focus-in-hook 'org-mobile-pull))
 #+END_SRC
 
 * Contacts
