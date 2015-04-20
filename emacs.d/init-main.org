@@ -618,6 +618,20 @@ This one toggles some minor modes.  Also inspired by [[http://endlessparentheses
       ("W" whitespace-mode "whitespace")))
 #+END_SRC
 
+These functions are required for some of the above.
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/find-inbox-file ()
+    (interactive)
+    (find-file org-default-notes-file))
+
+  (defcustom jc/zsh-location "/usr/bin/zsh"
+    "Location of zsh executable")
+  (defun jc/ansi-term-with-zsh ()
+    (interactive)
+    (ansi-term jc/zsh-location "ansi-term[zsh]"))
+#+END_SRC
+
 *** Special keys on keyboards that have them
 
 #+BEGIN_SRC emacs-lisp
