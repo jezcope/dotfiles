@@ -96,6 +96,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
            helm
            helm-swoop
            projectile
+           hydra
            popwin
            mmm-mode
            filladapt
@@ -588,76 +589,32 @@ This doesn't work as I want it to right now - needs reworking.
 
 *** Launcher map
 
-Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-standalone-features.html][Endless Parentheses]] for this.
+Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-standalone-features.html][Endless Parentheses]] for these.  This one launches some handy commands.
 
 #+BEGIN_SRC emacs-lisp
-  (define-prefix-command 'jc/launcher-map)
-  (define-key ctl-x-map "l" 'jc/launcher-map)
-  (global-set-key (kbd "s-l") 'jc/launcher-map)
-
-  (dolist (binding '(
-                     ("e" . ecb-activate)
-                     ("g" . magit-status)
-                     ("t" . jc/ansi-term-with-zsh)
-                     ("m" . mu4e)
-                     ("f" . sunrise)
-                     ("i" . jc/find-inbox-file)
-                     ))
-    (define-key jc/launcher-map (car binding) (cdr binding)))
+  (define-key ctl-x-map "l"
+    (defhydra jc/launcher-hydra (:exit t)
+      "launch"
+      ("e" ecb-activate "ecb")
+      ("g" magit-status "magit status")
+      ("t" jc/ansi-term-with-zsh "terminal")
+      ("m" mu4e "mu4e")
+      ("f" sunrise "sunrise")
+      ("i" jc/find-inbox-file "find inbox")))
 #+END_SRC
 
-*** Toggle map
-
-Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
+This one toggles some minor modes.  Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
 
 #+BEGIN_SRC emacs-lisp
-  (define-prefix-command 'jc/toggle-map)
-  (define-key ctl-x-map "t" 'jc/toggle-map)
-
-  (dolist (binding '(
-                     ("c" . column-number-mode)
-                     ("l" . line-number-mode)
-                     ("f" . auto-fill-mode)
-                     ("v" . variable-pitch-mode)
-                     ("w" . visual-line-mode)
-                     ("W" . whitespace-mode)
-                     ))
-    (define-key jc/toggle-map (car binding) (cdr binding)))
-#+END_SRC
-
-*** Function keys
-
-  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
-  |  Mod  |  F1   |  F2    |  F3  |   F4   |   F5     |  F6  |  F7  |  F8  |  F9   | F10  | F11  | F12  |
-  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
-  |       |Org    |Org     |Macro |Macro   |Activate  |Magit |Term  |mu4e  |Toggle |Menu  |      |      |
-  |       |capture|agenda  |record|call/end|ECB       |status|      |      |sunrise|      |      |      |
-  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
-  | Ctrl  |Open   |Org     |      |        |Deactivate|      |      |      |       |      |      |      |
-  |       |inbox  |velocity|      |        |ECB       |      |      |      |       |      |      |      |
-  +-------+-------+--------+------+--------+----------+------+------+------+-------+------+------+------+
-  
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "<f1>") 'org-capture)
-  (global-set-key (kbd "<C-f1>") 'jc/find-inbox-file)
-  (global-set-key (kbd "<f2>") 'org-agenda)
-  (global-set-key (kbd "<C-f2>") 'org-velocity-read)
-  (global-set-key (kbd "<f5>") 'ecb-activate)
-  (global-set-key (kbd "<C-f5>") 'ecb-activate)
-  (global-set-key (kbd "<f6>") 'magit-status)
-  (global-set-key (kbd "<f7>") 'jc/ansi-term-with-zsh)
-  (global-set-key (kbd "<f8>") 'mu4e)
-  (global-set-key (kbd "<f9>") 'sunrise)
-
-  (defun jc/find-inbox-file ()
-    (interactive)
-    (find-file org-default-notes-file))
-
-  (defcustom jc/zsh-location "/usr/bin/zsh"
-    "Location of zsh executable")
-  (defun jc/ansi-term-with-zsh ()
-    (interactive)
-    (ansi-term jc/zsh-location "ansi-term[zsh]"))
+  (define-key ctl-x-map "t"
+    (defhydra jc/toggle-hydra ()
+      "toggle"
+      ("c" column-number-mode "col num")
+      ("l" line-number-mode "line num")
+      ("f" auto-fill-mode "auto fill")
+      ("v" variable-pitch-mode "var pitch")
+      ("w" visual-line-mode "vis line")
+      ("W" whitespace-mode "whitespace")))
 #+END_SRC
 
 *** Special keys on keyboards that have them
