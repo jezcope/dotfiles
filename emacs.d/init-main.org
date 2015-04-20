@@ -152,7 +152,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   (nconc my-packages
          '(
            color-theme-zenburn
-           color-theme-solarized
            ))
 #+END_SRC
 
@@ -295,10 +294,12 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 *** Choose theme
 
 #+BEGIN_SRC emacs-lisp
-  (setq frame-background-mode 'dark
-        solarized-bold nil)
-  (mapc 'frame-set-background-mode (frame-list))
-  (load-theme 'solarized t)
+  (load-theme 'zenburn t)
+  (eval-after-load 'hydra
+    '(zenburn-with-color-variables
+       (set-face-foreground 'hydra-face-red zenburn-red)
+       (set-face-foreground 'hydra-face-blue zenburn-blue)
+       (set-face-foreground 'hydra-face-pink zenburn-magenta)))
 #+END_SRC
 
 *** Activate filladapt-mode
