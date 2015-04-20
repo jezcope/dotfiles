@@ -356,8 +356,9 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
       :submode yaml-mode
       :front "\\`---\n"
       :back "^---$")))
-  
+
   (mmm-add-mode-ext-class 'markdown-mode nil 'yaml-front-matter)
+  (mmm-add-mode-ext-class 'gfm-mode nil 'yaml-front-matter)
 #+END_SRC
 
 **** Check for new major mode regions after yas expansion
@@ -667,7 +668,8 @@ This doesn't work as I want it to right now - needs reworking.
                     (setq orgstruct-heading-prefix-regexp "#\\+")
                     (pandoc-mode 1))
                   ))
-    (add-hook 'markdown-mode-hook func))
+    (add-hook 'markdown-mode-hook func)
+    (add-hook 'gfm-mode-hook func))
 #+END_SRC
 
 ***** Pandoc
@@ -850,7 +852,7 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
         (insert-string (format-time-string "%c"))))
     )
 
-  (dolist (hook '(markdown-mode-hook yaml-mode-hook))
+  (dolist (hook '(markdown-mode-hook gfm-mode-hook yaml-mode-hook))
     (add-hook hook
               (lambda () (local-set-key (kbd "C-c j b d") 'jc/update-created-date))))
 #+END_SRC
