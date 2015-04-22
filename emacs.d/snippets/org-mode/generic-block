@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Generic org-mode block
+# key: <b
+# --
+#+BEGIN_${1:info}
+$0
+#+END_$1
