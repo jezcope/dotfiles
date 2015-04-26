@@ -4,6 +4,20 @@
 
 ** Pre-setup
 
+*** Load customisations
+
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file "~/.emacs.d/custom.el"
+        jc/old-custom-file (concat "~/.emacs.d/custom." (system-name) ".el"))
+
+  ;; Migrate seamlessly from old system
+  (if (and (not (file-exists-p custom-file))
+           (file-exists-p jc/old-custom-file))
+      (rename-file jc/old-custom-file custom-file))
+
+  (load custom-file t)
+#+END_SRC
+
 *** Disable menu bar and toolbar
 
 #+BEGIN_SRC emacs-lisp
@@ -864,14 +878,11 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
 #+END_SRC
 ** Load local settings
 
-*** Make customizations machine-local
+The ~t~ argument ensures no error is thrown if the file doesn't exist.
 
 #+BEGIN_SRC emacs-lisp
-  (setq custom-file
-        (concat "~/.emacs.d/custom." (system-name) ".el"))
-  (load custom-file t)
+  (load "local.el" t)
 #+END_SRC
-
 
 ** Start the server
 
