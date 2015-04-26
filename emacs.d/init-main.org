@@ -73,139 +73,105 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 
 *** Packages to install
 
-**** Basics
-
 #+BEGIN_SRC emacs-lisp
   (setq my-packages
          '(
-           el-get
-           package
-           org-mode
-           ))
+#+END_SRC
+
+**** Basics
+
+#+BEGIN_SRC emacs-lisp
+  el-get
+  package
+  org-mode
 #+END_SRC
 
 **** Applications
 
 #+BEGIN_SRC emacs-lisp
-  (nconc my-packages
-         '(
-           sunrise-commander
-           sunrise-x-loop
-           sunrise-x-checkpoints
-           sunrise-x-tree
-           magit
-           ecb
-           emacs-w3m
-           mu4e
-           ))
+  sunrise-commander
+  sunrise-x-loop
+  sunrise-x-checkpoints
+  sunrise-x-tree
+  magit
+  ecb
+  emacs-w3m
+  mu4e
 #+END_SRC
 
 **** Global customizations
 
 #+BEGIN_SRC emacs-lisp
-  (nconc my-packages
-         '(
-           god-mode
-           yasnippet
-           helm
-           helm-swoop
-           projectile
-           hydra
-           popwin
-           mmm-mode
-           filladapt
-           lacarte
-           lorem-ipsum
-           multiple-cursors
-           adaptive-wrap
-           dropdown-list
-           expand-region
-           change-inner
-           buffer-move
-           diminish
-           powerline
-           ))
+  god-mode
+  yasnippet
+  helm
+  helm-swoop
+  projectile
+  hydra
+  popwin
+  mmm-mode
+  filladapt
+  lacarte
+  lorem-ipsum
+  multiple-cursors
+  adaptive-wrap
+  dropdown-list
+  expand-region
+  change-inner
+  buffer-move
+  diminish
+  ;powerline
 #+END_SRC
 
 **** Auto complete mode
 
 #+BEGIN_SRC emacs-lisp
-  (nconc my-packages
-         '(
-           auto-complete
-           ac-python
-           auto-complete-latex
-           auto-complete-ruby
-           ))
+  auto-complete
+  ac-python
+  auto-complete-latex
+  auto-complete-ruby
 #+END_SRC
 
-**** Icicles
+**** Appearance
 
 #+BEGIN_SRC emacs-lisp
-  (nconc my-packages
-         '(
-           icicles
-           icicles-chg
-           icicles-cmd1
-           icicles-cmd2
-           icicles-doc1
-           icicles-doc2
-           icicles-face
-           icicles-fn
-           icicles-mac
-           icicles-mcmd
-           icicles-mode
-           icicles-opt
-           icicles-var
-           ))
-#+END_SRC
-
-**** Color themes
-
-#+BEGIN_SRC emacs-lisp
-  (nconc my-packages
-         '(
-           color-theme-zenburn
-           ))
+  color-theme-darktooth
+  svg-mode-line-themes
 #+END_SRC
 
 **** Text/document editing
 
 #+BEGIN_SRC emacs-lisp
-  (nconc my-packages
-         '(
-           markdown-mode
-           pandoc-mode
-           criticmarkup-emacs
-           emmet-mode ;; from local recipe
-           auctex
-           ))
+  markdown-mode
+  pandoc-mode
+  criticmarkup-emacs
+  emmet-mode ;; from local recipe
+  auctex
 #+END_SRC
 
 **** Programming languages and similar
 
 #+BEGIN_SRC emacs-lisp
-  (nconc my-packages
-         '(
-           ruby-mode
-           haskell-mode
-           yaml-mode
-           coffee-mode
-           jade-mode
-           haml-mode
-           scss-mode
-           puppet-mode
-           lua-mode
-           abc-mode
-           graphviz-dot-mode
-           ess ; S/R and related languages
-           ))
+  ruby-mode
+  haskell-mode
+  yaml-mode
+  coffee-mode
+  jade-mode
+  haml-mode
+  scss-mode
+  puppet-mode
+  lua-mode
+  abc-mode
+  graphviz-dot-mode
+  ess ; S/R and related languages
 #+END_SRC
 
 *** And finally, install everything
 
 #+BEGIN_SRC emacs-lisp
-(el-get 'sync my-packages)
+  ))
+
+  (el-get 'sync my-packages)
 #+END_SRC
 
 ** Additional setup files
@@ -305,15 +271,23 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
   (setq real-auto-save-interval 5) ;; in seconds
 #+END_SRC
 
-*** Choose theme
+*** Choose appearance
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'zenburn t)
-  (eval-after-load 'hydra
-    '(zenburn-with-color-variables
-       (set-face-foreground 'hydra-face-red zenburn-red)
-       (set-face-foreground 'hydra-face-blue zenburn-blue)
-       (set-face-foreground 'hydra-face-pink zenburn-magenta)))
+  (load-theme 'darktooth t)
+  (with-eval-after-load 'hydra
+    (set-face-foreground 'hydra-face-red
+                         (if (display-graphic-p) "#FB4933" "color-167"))
+    (set-face-foreground 'hydra-face-blue
+                         (if (display-graphic-p) "#83A598" "color-109"))
+    (set-face-foreground 'hydra-face-pink
+                         (if (display-graphic-p) "#D3869B" "color-175"))
+    (set-face-foreground 'hydra-face-teal
+                         (if (display-graphic-p) "#8EC07C" "color-108"))
+    (set-face-foreground 'hydra-face-amaranth
+                         (if (display-graphic-p) "#AF3A03" "color-130")))
+
+  (require 'ocodo-grass-smt "themes/ocodo-grass-smt.el")
 #+END_SRC
 
 *** Activate filladapt-mode
@@ -566,14 +540,6 @@ This doesn't work as I want it to right now - needs reworking.
   \(fn arg char)"
     'interactive)
   (global-set-key (kbd "M-z") 'zap-up-to-char)
-#+END_SRC
-
-*** Enable powerline to prettify
-
-#+BEGIN_SRC emacs-lisp
-  (setq powerline-default-separator 'wave
-        powerline-default-separator-dir '(left . right))
-  (powerline-default-theme)
 #+END_SRC
 
 *** Projectile
