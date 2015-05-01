@@ -578,7 +578,7 @@ And now add some of my own based on the above...
           )
   
         org-latex-packages-alist
-        '(("a4paper" "geometry" nil)
+        '(("" "geometry" nil)
           ("" "booktabs" nil)
           )
   
