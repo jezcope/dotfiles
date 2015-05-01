@@ -96,8 +96,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   sunrise-x-tree
   magit
   ecb
-  emacs-w3m
-  mu4e
 #+END_SRC
 
 **** Global customizations
@@ -112,7 +110,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   popwin
   mmm-mode
   filladapt
-  lacarte
   lorem-ipsum
   multiple-cursors
   adaptive-wrap
@@ -160,7 +157,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   coffee-mode
   haml-mode
   scss-mode
-  puppet-mode
   lua-mode
   abc-mode
   graphviz-dot-mode
