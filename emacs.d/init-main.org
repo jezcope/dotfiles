@@ -137,6 +137,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 #+BEGIN_SRC emacs-lisp
   color-theme-darktooth
   svg-mode-line-themes
+  ocodo-svg-modelines
 #+END_SRC
 
 **** Text/document editing
@@ -287,7 +288,8 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
     (set-face-foreground 'hydra-face-amaranth
                          (if (display-graphic-p) "#AF3A03" "color-130")))
 
-  (require 'ocodo-grass-smt "themes/ocodo-grass-smt.el")
+  (ocodo-svg-modelines/init)
+  (smt/set-theme 'ocodo-mesh-aqua:smt)
 #+END_SRC
 
 *** Activate filladapt-mode
