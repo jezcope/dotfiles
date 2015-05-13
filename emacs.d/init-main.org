@@ -286,8 +286,8 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
     (set-face-foreground 'hydra-face-amaranth
                          (if (display-graphic-p) "#AF3A03" "color-130")))
 
-  (ocodo-svg-modelines/init)
-  (smt/set-theme 'ocodo-mesh-aqua:smt)
+  (ocodo-svg-modelines-init)
+  (smt/set-theme 'ocodo-mesh-aqua-smt)
 #+END_SRC
 
 *** Activate filladapt-mode
