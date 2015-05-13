@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Wikipedia link
+# key: wp
+# --
+[${1:Wikipedia topic}](http://en.wikipedia.org/wiki/${1:$(url-hexify-string (replace-regexp-in-string " " "_" yas-text))})
