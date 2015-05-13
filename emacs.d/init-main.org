@@ -119,6 +119,9 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   expand-region
   change-inner
   buffer-move
+  avy
+  ace-window
+  ace-link
 #+END_SRC
 
 **** Auto complete mode
@@ -573,6 +576,27 @@ These functions are required for some of the above.
 
 #+BEGIN_SRC emacs-lisp
   (define-key 'iso-transl-ctl-x-8-map "l" [?£])
+#+END_SRC
+
+*** ~avy~ and ~ace-*~
+
+Overall setup:
+
+#+BEGIN_SRC emacs-lisp
+  (setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+#+END_SRC
+
+~ace-link~:
+
+#+BEGIN_SRC emacs-lisp
+  (ace-link-setup-default)
+  (define-key org-mode-map (kbd "M-o") 'ace-link-org)
+#+END_SRC
+
+~ace-window~:
+
+#+BEGIN_SRC emacs-lisp
+  (define-key ctl-x-map (kbd "w") 'ace-window)
 #+END_SRC
 
 *** Other key bindings
