@@ -154,10 +154,8 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 
 #+BEGIN_SRC emacs-lisp
   ruby-mode
-  haskell-mode
   yaml-mode
   coffee-mode
-  jade-mode
   haml-mode
   scss-mode
   puppet-mode
