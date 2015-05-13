@@ -84,6 +84,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   el-get
   package
   org-mode
+  dash
 #+END_SRC
 
 **** Applications
@@ -172,6 +173,12 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   ))
 
   (el-get 'sync my-packages)
+#+END_SRC
+
+** Require some key utilities
+
+#+BEGIN_SRC emacs-lisp
+  (require 'dash)
 #+END_SRC
 
 ** Additional setup files
@@ -299,7 +306,9 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 
 #+BEGIN_SRC emacs-lisp
   (require 'yasnippet)
-  (add-to-list 'yas-snippet-dirs (expand-file-name "snippets-local" dotfiles-dir))
+  (setq yas-snippet-dirs
+        (-insert-at 1 (expand-file-name "snippets-local" dotfiles-dir) yas-snippet-dirs))
+
   (yas-global-mode 1)
   (add-hook 'wl-draft-mode-hook 'yas-minor-mode-on)
 
