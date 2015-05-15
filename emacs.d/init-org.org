@@ -553,7 +553,7 @@ And now add some of my own based on the above...
 * Export
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-export-backends '(ascii beamer html icalendar latex md odt))
+  (setq org-export-backends '(ascii beamer html icalendar latex md odt gfm))
 #+END_SRC
 
 ** LaTeX/PDF
