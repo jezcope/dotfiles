@@ -642,9 +642,9 @@ And now add some of my own based on the above...
   ;;   (add-hook 'focus-in-hook 'org-mobile-pull))
 #+END_SRC
 
-* Contacts
+* Contacts                                                         :disabled:
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (require 'org-contacts)
   
   (setq org-contacts-files
