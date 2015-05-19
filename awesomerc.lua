@@ -116,7 +116,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 --  Network usage widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">↓ ${wifi0 down_kb}</span> <span color="#7F9F7F">↑${wifi0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">↓ ${wlo1 down_kb}</span> <span color="#7F9F7F">↑${wlo1 up_kb}</span>', 3)
 netlayout = wibox.layout.align.vertical()
 netlayout:set_middle(netwidget)
 netlabel = wibox.widget.textbox()
