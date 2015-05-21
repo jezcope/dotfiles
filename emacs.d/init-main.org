@@ -675,7 +675,8 @@ Overall setup:
 **** TeX
 
 #+BEGIN_SRC emacs-lisp
-  (setq TeX-PDF-mode t)
+  (setq TeX-PDF-mode t
+        TeX-engine 'luatex)
   (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
   (add-hook 'LaTeX-mode-hook 'reftex-mode)
   (setq reftex-plug-into-AUCTeX t)
