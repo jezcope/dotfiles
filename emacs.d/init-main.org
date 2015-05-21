@@ -275,17 +275,18 @@ Use =M-x turn-on-real-auto-save= to activate for a given buffer.  Default save p
 
 #+BEGIN_SRC emacs-lisp
   (load-theme 'darktooth t)
-  (with-eval-after-load 'hydra
-    (set-face-foreground 'hydra-face-red
-                         (if (display-graphic-p) "#FB4933" "color-167"))
-    (set-face-foreground 'hydra-face-blue
-                         (if (display-graphic-p) "#83A598" "color-109"))
-    (set-face-foreground 'hydra-face-pink
-                         (if (display-graphic-p) "#D3869B" "color-175"))
-    (set-face-foreground 'hydra-face-teal
-                         (if (display-graphic-p) "#8EC07C" "color-108"))
-    (set-face-foreground 'hydra-face-amaranth
-                         (if (display-graphic-p) "#AF3A03" "color-130")))
+  (eval-after-load 'hydra
+    '(progn
+       (set-face-foreground 'hydra-face-red
+                            (if (display-graphic-p) "#FB4933" "color-167"))
+       (set-face-foreground 'hydra-face-blue
+                            (if (display-graphic-p) "#83A598" "color-109"))
+       (set-face-foreground 'hydra-face-pink
+                            (if (display-graphic-p) "#D3869B" "color-175"))
+       (set-face-foreground 'hydra-face-teal
+                            (if (display-graphic-p) "#8EC07C" "color-108"))
+       (set-face-foreground 'hydra-face-amaranth
+                            (if (display-graphic-p) "#AF3A03" "color-130"))))
 
   (ocodo-svg-modelines-init)
   (smt/set-theme 'ocodo-mesh-aqua-smt)
