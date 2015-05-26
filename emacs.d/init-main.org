@@ -741,6 +741,9 @@ Overall setup:
         ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1)
         ecb-compilation-major-modes (quote (compilation-mode TeX-output-mode))
         )
+
+  (add-hook 'ecb-activate-hook (lambda () (popwin-mode -1)))
+  (add-hook 'ecb-deactivate-hook (lambda () (popwin-mode 1)))
 #+END_SRC
 
 **** Source files (include/exclude)
