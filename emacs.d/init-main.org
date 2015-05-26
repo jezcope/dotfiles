@@ -695,6 +695,11 @@ Overall setup:
   (setq scss-compile-at-save nil)
 #+END_SRC
 *** Programming languages
+**** Lisp
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'lisp-mode-hook 'show-paren-mode)
+#+END_SRC
 
 **** Ruby
 
