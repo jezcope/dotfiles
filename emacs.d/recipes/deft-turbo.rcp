@@ -1,0 +1,7 @@
+(:name deft-turbo
+       :description "Deft Turbo mode"
+       :website "https://github.com/cpbotha/deft-turbo"
+       :type github
+       :pkgname "cpbotha/deft-turbo"
+       :features deft
+       :compile "deft.el")

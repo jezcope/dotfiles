@@ -7,9 +7,6 @@
 [submodule "texmf/tex/latex/beamer-uob"]
 	path = texmf/tex/latex/beamer-uob
 	url = http://github.com/jezcope/beamer-uob.git
-[submodule "emacs.d/recipes"]
-	path = emacs.d/recipes
-	url = git@github.com:jezcope/el-get-recipes
 [submodule "texmf/tex/latex/personal"]
 	path = texmf/tex/latex/personal
 	url = git@bitbucket.org:jezcope/latex-personal.git
