@@ -102,6 +102,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 
 #+BEGIN_SRC emacs-lisp
   god-mode
+  deft-turbo
   yasnippet
   helm
   helm-swoop
@@ -555,6 +556,7 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
   (define-key ctl-x-map "l"
     (defhydra jc/launcher-hydra (:exit t)
       "launch"
+      ("d" deft "deft")
       ("e" ecb-activate "ecb")
       ("g" magit-status "magit status")
       ("t" jc/ansi-term-with-zsh "terminal")
