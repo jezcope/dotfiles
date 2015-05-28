@@ -588,9 +588,12 @@ These functions are required for some of the above.
 
   (defcustom jc/zsh-location "/usr/bin/zsh"
     "Location of zsh executable")
-  (defun jc/ansi-term-with-zsh ()
-    (interactive)
-    (ansi-term jc/zsh-location "ansi-term[zsh]"))
+  (defun jc/ansi-term-with-zsh (arg)
+    (interactive "P")
+    (if arg
+        (ansi-term jc/zsh-location "ansi-term[zsh]")
+        (let ((shell-file-name jc/zsh-location))
+        (shell "shell[zsh]"))))
 #+END_SRC
 
 *** Special keys on keyboards that have them
