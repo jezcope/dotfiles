@@ -534,10 +534,10 @@ This doesn't work as I want it to right now - needs reworking.
   (helm-projectile-on)
 #+END_SRC
 
-*** Deft
+*** Deft (for quick reference)
 
 #+BEGIN_SRC emacs-lisp
-  (setq deft-directory (expand-file-name "Notes/QuickRef" jc/dropbox-location))
+  (setq deft-directory (expand-file-name "Notes/Reference" jc/dropbox-location))
 #+END_SRC
 
 ** Key bindings
