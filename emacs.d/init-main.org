@@ -662,17 +662,12 @@ Overall setup:
                   visual-line-mode
                   adaptive-wrap-prefix-mode
                   orgstruct++-mode
-                  (lambda () (setq orgstruct-heading-prefix-regexp "#\\+"))
+                  (lambda ()
+                    (setq orgstruct-heading-prefix-regexp "#\\+")
+                    (pandoc-mode 1))
                   ))
     (add-hook 'markdown-mode-hook func)
     (add-hook 'gfm-mode-hook func))
-#+END_SRC
-
-***** Pandoc
-
-#+BEGIN_SRC emacs-lisp
-  (eval-after-load 'pandoc-mode
-    '(define-key pandoc-mode-map (kbd "C-c / o") 'pandoc-set-output))
 #+END_SRC
 
 **** HTML/XML/etc
