@@ -662,9 +662,7 @@ Overall setup:
                   visual-line-mode
                   adaptive-wrap-prefix-mode
                   orgstruct++-mode
-                  (lambda ()
-                    (setq orgstruct-heading-prefix-regexp "#\\+")
-                    (pandoc-mode 1))
+                  (lambda () (setq orgstruct-heading-prefix-regexp "#\\+"))
                   ))
     (add-hook 'markdown-mode-hook func)
     (add-hook 'gfm-mode-hook func))
