@@ -645,7 +645,14 @@ Overall setup:
 *** Other key bindings
 
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x k") 'kill-this-buffer)
+  (define-key ctl-x-map "k" 'kill-this-buffer)
+
+  (defun jc/mark-whole-line ()
+    (interactive)
+    (beginning-of-line)
+    (set-mark (point))
+    (end-of-line))
+  (define-key ctl-x-map (kbd "C-h") 'jc/mark-whole-line)
 #+END_SRC
 ** File-type specific
 
