@@ -46,7 +46,7 @@ end
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "urxvtc"
 editor_cmd = "emacsclient -c"
 
 -- Default modkey.
