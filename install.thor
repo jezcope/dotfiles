@@ -32,6 +32,8 @@ class Dotfiles < Thor
     keysnail.js
   )
 
+  GPGLINKS = %w(gpg.conf dirmngr.conf certs)
+
   desc "install", "Set up symlinks in the right places"
   def install(dest="~")
     self.destination_root = dest
@@ -40,6 +42,10 @@ class Dotfiles < Thor
 
     DOTLINKS.each do |f|
       link_file f, ".#{f}"
+    end
+
+    GPGLINKS.each do |f|
+      link_file f, ".gnupg/#{f}"
     end
 
     link_file 'awesomerc.lua', '.config/awesome/rc.lua'
