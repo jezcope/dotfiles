@@ -121,6 +121,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   avy
   ace-window
   ace-link
+  linum-relative
 #+END_SRC
 
 **** Auto complete mode
