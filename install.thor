@@ -32,7 +32,7 @@ class Dotfiles < Thor
     keysnail.js
   )
 
-  GPGLINKS = %w(gpg.conf dirmngr.conf certs)
+  GPGLINKS = %w(gpg.conf dirmngr.conf scdaemon.conf certs)
 
   desc "install", "Set up symlinks in the right places"
   def install(dest="~")
