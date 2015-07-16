@@ -48,7 +48,7 @@ fi
 
 export PATH
 
-if [[ $TERM =~ '^eterm' ]]; then # If we're running a terminal inside emacs
+if [[ -n "$EMACS" ]]; then # If we're running a terminal inside emacs
   export EDITOR=$(which emacsclient)
 else
   export EDITOR="$(which emacsclient) -t"
