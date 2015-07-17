@@ -288,6 +288,13 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (add-hook 'prog-mode-hook 'turn-on-real-auto-save))
 #+END_SRC
 
+*** Don't query about running processes on exit
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'comint-exec-hook 
+        (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
+#+END_SRC
+
 *** Choose appearance
 
 #+BEGIN_SRC emacs-lisp
