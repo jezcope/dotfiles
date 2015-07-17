@@ -163,6 +163,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   abc-mode
   graphviz-dot-mode
   ess ; S/R and related languages
+  puppet-mode
 #+END_SRC
 
 *** And finally, install everything

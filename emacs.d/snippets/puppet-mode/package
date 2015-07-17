@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: package declaration
+# key: package
+# --
+package { '$1':
+  ensure => ${2:installed},
+}
