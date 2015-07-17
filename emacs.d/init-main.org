@@ -95,7 +95,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   sunrise-x-checkpoints
   sunrise-x-tree
   magit
-  ecb
+  ;ecb
 #+END_SRC
 
 **** Global customizations
