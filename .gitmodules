@@ -4,9 +4,3 @@
 [submodule "zsh/oh-my-zsh"]
 	path = zsh/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "texmf/tex/latex/beamer-uob"]
-	path = texmf/tex/latex/beamer-uob
-	url = http://github.com/jezcope/beamer-uob.git
-[submodule "texmf/tex/latex/personal"]
-	path = texmf/tex/latex/personal
-	url = git@bitbucket.org:jezcope/latex-personal.git
