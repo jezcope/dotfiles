@@ -101,7 +101,9 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 **** Global customizations
 
 #+BEGIN_SRC emacs-lisp
-  god-mode
+  evil
+  evil-numbers
+  evil-surround
   deft-turbo
   yasnippet
   helm
@@ -216,6 +218,12 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   (setq auth-sources '("~/.authinfo.gpg")
         auth-source-gpg-encrypt-to '("j.cope@erambler.co.uk")
         )
+#+END_SRC
+
+*** Evil
+
+#+BEGIN_SRC emacs-lisp
+  (evil-mode 1)
 #+END_SRC
 
 *** Initial buffer
@@ -407,16 +415,6 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
                    (mmm-parse-region yas-snippet-beg yas-snippet-end))))
 #+END_SRC
 
-*** God mode
-
-#+BEGIN_SRC emacs-lisp
-  (require 'god-mode)
-  
-  (global-set-key (kbd "<escape>") 'god-local-mode)
-  
-  (define-key god-local-mode-map (kbd ".") 'repeat)
-  (define-key god-local-mode-map (kbd "i") 'god-local-mode)
-#+END_SRC
 *** Activate multiple-cursors
 
 #+BEGIN_SRC emacs-lisp
