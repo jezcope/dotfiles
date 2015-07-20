@@ -48,6 +48,9 @@ fi
 
 export PATH
 
+TEXMFHOME=~/.texmf:~/Dropbox/TeX
+export TEXMFHOME
+
 if [[ -n "$EMACS" ]]; then # If we're running a terminal inside emacs
   export EDITOR=$(which emacsclient)
 else
