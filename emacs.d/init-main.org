@@ -95,6 +95,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   sunrise-x-checkpoints
   sunrise-x-tree
   magit
+  mu4e
   ;ecb
 #+END_SRC
 
@@ -840,6 +841,11 @@ If the homebrew version of coreutils is installed under Mac, use that:
   (setq bbdb-file-remote (expand-file-name "Emacs/bbdb" jc/dropbox-location))
 #+END_SRC
 
+*** Mu4e
+
+#+BEGIN_SRC emacs-lisp
+  (jc/require-org-file "init-mu4e.org")
+#+END_SRC
 ** Extra functions
 
 *** [[http://www.emacswiki.org/emacs/UnfillParagraph][unfill-paragraph]] function
