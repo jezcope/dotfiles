@@ -1,0 +1,16 @@
+* Evil mode configuration
+
+** Basic setup
+
+#+BEGIN_SRC emacs-lisp
+  (setq evil-shift-width 2
+        evil-shift-round t)
+#+END_SRC
+
+** Mode-specific stuff
+
+*** Mu4e
+
+#+BEGIN_SRC emacs-lisp
+  (evil-define-key 'normal message-mode-map "^" 'message-beginning-of-line)
+#+END_SRC
