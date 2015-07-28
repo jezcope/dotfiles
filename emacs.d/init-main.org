@@ -647,6 +647,15 @@ These functions are required for some of the above.
         (shell "shell[zsh]"))))
 #+END_SRC
 
+*** Shortcuts to commonly used files
+
+#+BEGIN_SRC emacs-lisp
+  (define-key global-map (kbd "C-c f")
+    (defhydra jc/file-hydra (:exit t)
+      "files"
+      ("i" (find-file org-default-notes-file) "inbox")
+      ("w" (find-file jc/agenda-file-work) "work projects")))
+#+END_SRC
 *** Special keys on keyboards that have them
 
 #+BEGIN_SRC emacs-lisp
