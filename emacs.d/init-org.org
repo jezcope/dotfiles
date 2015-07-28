@@ -177,6 +177,13 @@ Allows resetting of checklist items in repeating TODO's.
         org-inlinetask-show-first-star t)
 #+END_SRC
 
+* Links
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-link-abbrev-alist
+        '(("twitter" . "http://twitter.com/")))
+#+END_SRC
+
 * Agenda
 
 #+BEGIN_SRC emacs-lisp
