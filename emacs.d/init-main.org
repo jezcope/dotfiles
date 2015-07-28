@@ -553,6 +553,29 @@ This doesn't work as I want it to right now - needs reworking.
 
   (projectile-global-mode)
   (helm-projectile-on)
+
+  ;; Taken from http://oremacs.com/2015/07/20/hydra-columns/
+  (defhydra jc/projectile-hydra (:color blue :columns 4)
+    "Projectile"
+    ("a" projectile-ag "ag")
+    ("b" projectile-switch-to-buffer "switch to buffer")
+    ("c" projectile-invalidate-cache "cache clear")
+    ("d" projectile-find-dir "dir")
+    ("s-f" projectile-find-file "file")
+    ("ff" projectile-find-file-dwim "file dwim")
+    ("fd" projectile-find-file-in-directory "file curr dir")
+    ("g" ggtags-update-tags "update gtags")
+    ("i" projectile-ibuffer "Ibuffer")
+    ("K" projectile-kill-buffers "Kill all buffers")
+    ("o" projectile-multi-occur "multi-occur")
+    ("p" projectile-switch-project "switch")
+    ("r" projectile-recentf "recent file")
+    ("x" projectile-remove-known-project "remove known")
+    ("X" projectile-cleanup-known-projects "cleanup non-existing")
+    ("z" projectile-cache-current-file "cache current")
+    ("q" nil "cancel"))
+  (global-unset-key (kbd "C-c p"))
+  (global-set-key (kbd "C-c p") 'jc/projectile-hydra/body)
 #+END_SRC
 
 *** Deft (for quick reference)
