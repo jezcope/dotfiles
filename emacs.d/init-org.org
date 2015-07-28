@@ -32,6 +32,9 @@
         org-mobile-inbox-for-pull org-default-notes-file
         org-mobile-directory (expand-file-name "Apps/MobileOrg" jc/dropbox-location)
         )
+
+  (if (file-exists-p "~/calendar.org")
+      (add-to-list 'org-agenda-files "~/calendar.org"))
 #+END_SRC
 
 * Key bindings
