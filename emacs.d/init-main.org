@@ -803,7 +803,8 @@ Overall setup:
 *** Dired/sunrise
 
 #+BEGIN_SRC emacs-lisp
-  (setq dired-omit-files "^\\.")
+  (setq dired-omit-files "^\\."
+        dired-listing-switches "-alh")
 #+END_SRC
 
 If the homebrew version of coreutils is installed under Mac, use that:
