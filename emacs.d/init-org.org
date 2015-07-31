@@ -89,6 +89,10 @@
                                  entry
                                  (file+datetree+prompt ,(expand-file-name "CPD/CPD log.org" jc/dropbox-location))
                                  "* %? %^{Type}p %^{PlannedTime}p %^{ActualTime}p\n\n** Goals\n\n** Outcomes\n\n** Actions\n\n** Notes\n")
+                                ("m" "Meeting notes"
+                                 entry
+                                 (file+datetree ,(expand-file-name "meeting-notes.org" org-directory))
+                                 "* %?")
                                 ("l" "Logbook entry"
                                  entry
                                  (file+datetree ,(expand-file-name "logbook.org" org-directory))
