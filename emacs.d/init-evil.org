@@ -7,6 +7,20 @@
         evil-shift-round t)
 #+END_SRC
 
+** Leader
+
+#+BEGIN_SRC emacs-lisp
+  (setq evil-leader/leader ",")
+
+  (evil-leader/set-key
+    "c" 'org-capture
+    "a" 'org-agenda
+    "l" 'jc/launcher-hydra/body
+    "f" 'jc/file-hydra/body)
+
+  (global-evil-leader-mode 1)
+#+END_SRC
+
 ** Mode-specific stuff
 
 *** Mu4e
