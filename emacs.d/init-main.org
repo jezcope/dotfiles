@@ -880,7 +880,8 @@ If the homebrew version of coreutils is installed under Mac, use that:
 *** Mu4e
 
 #+BEGIN_SRC emacs-lisp
-  (jc/require-org-file "init-mu4e.org")
+  (when (file-exists-p (expand-file-name "init-mu4e.org" dotfiles-dir))
+    (jc/require-org-file "init-mu4e.org"))
 #+END_SRC
 ** Extra functions
 
