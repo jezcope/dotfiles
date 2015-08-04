@@ -329,7 +329,14 @@ globalkeys = awful.util.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
 
-    awful.key({ modkey, "Shift"   }, "z", function () awful.util.spawn("xscreensaver-command -lock") end)
+    -- Screensaver
+    awful.key({ modkey, "Shift"   }, "z", function () awful.util.spawn("xscreensaver-command -lock") end),
+
+    -- Music
+    awful.key({ modkey, "Control" }, "Up",    function () awful.util.spawn("mpc play") end),
+    awful.key({ modkey, "Control" }, "Down",  function () awful.util.spawn("mpc pause") end),
+    awful.key({ modkey, "Control" }, "Left",  function () awful.util.spawn("mpc prev") end),
+    awful.key({ modkey, "Control" }, "Right", function () awful.util.spawn("mpc next") end)
 )
 
 clientkeys = awful.util.table.join(
