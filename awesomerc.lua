@@ -12,6 +12,20 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+local status, localprefs = pcall(require, "localprefs")
+
+if not status then
+   naughty.notify({ title = "Warning: couldn't load localprefs.lua",
+                    text = localprefs,
+                    bg = "#ff9900" })
+
+   localprefs = {}
+
+   localprefs.terminal = "urxvtc"
+   localprefs.editor_cmd = "emacsclient -c"
+   localprefs.main_iface = "wlo1"
+end
+
 -- Load Debian menu entries
 -- TODO: conditionally add these to the menu
 -- pcall(require, "debian.menu")
@@ -44,10 +58,6 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
-
--- This is used later as the default terminal and editor to run.
-terminal = "urxvtc"
-editor_cmd = "emacsclient -c"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -94,15 +104,15 @@ end
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "manual", localprefs.terminal .. " -e man awesome" },
+   { "edit config", localprefs.editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     -- { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "open terminal", terminal }
+                                    { "open terminal", localprefs.terminal }
                                   }
                         })
 
@@ -110,13 +120,13 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = localprefs.terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- {{{ Wibox
 --  Network usage widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">↓ ${wlo1 down_kb}</span> <span color="#7F9F7F">↑${wlo1 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⯅${' .. localprefs.main_iface .. ' down_kb}</span> <span color="#7F9F7F">⯆${' .. localprefs.main_iface .. ' up_kb}</span>', 3)
 netlayout = wibox.layout.align.vertical()
 netlayout:set_middle(netwidget)
 netlabel = wibox.widget.textbox()
