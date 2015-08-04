@@ -613,8 +613,10 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
       ("g" magit-status "magit status")
       ("t" jc/ansi-term-with-zsh "terminal")
       ("m" mu4e "mu4e")
+      ("C" mu4e-compose-new "compose")
+      ("i" (mu4e~headers-jump-to-maildir "/INBOX") "inbox")
       ("f" sunrise "sunrise")
-      ("i" jc/find-inbox-file "find inbox")))
+      ))
 #+END_SRC
 
 This one toggles some minor modes.  Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
