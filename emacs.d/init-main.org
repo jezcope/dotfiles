@@ -885,6 +885,12 @@ If the homebrew version of coreutils is installed under Mac, use that:
   (when (file-exists-p (expand-file-name "init-mu4e.org" dotfiles-dir))
     (jc/require-org-file "init-mu4e.org"))
 #+END_SRC
+
+*** Magit
+
+#+BEGIN_SRC emacs-lisp
+  (setq magit-push-always-verify nil)
+#+END_SRC
 ** Extra functions
 
 *** [[http://www.emacswiki.org/emacs/UnfillParagraph][unfill-paragraph]] function
