@@ -706,6 +706,8 @@ Overall setup:
     (set-mark (point))
     (end-of-line))
   (define-key ctl-x-map (kbd "C-h") 'jc/mark-whole-line)
+
+  (define-key global-map (kbd "C-h a") 'apropos)
 #+END_SRC
 ** File-type specific
 
