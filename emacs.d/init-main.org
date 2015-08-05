@@ -285,20 +285,17 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 *** Enable automatic saving of buffers
 
 #+BEGIN_SRC emacs-lisp
+  (defun jc/save-everything-no-prompt ()
+    (interactive)
+    (let ((buffer-list-update-hook nil))
+      (cl-letf (((symbol-function 'message) #'ignore))
+        (save-some-buffers t))))
+
+  (add-hook 'buffer-list-update-hook 'jc/save-everything-no-prompt)
+
+  ;; If we're in emacs ≥24.4 save everything on focus-out too
   (if (fboundp 'handle-focus-out)
-      ;; If we're in emacs ≥24.4 just save everything on focus-out
-      (progn
-        (defun jc/save-everything-no-prompt ()
-          (interactive)
-          (save-some-buffers t))
-
-        (add-hook 'focus-out-hook 'jc/save-everything-no-prompt))
-
-    ;; Otherwise use real-auto-save mode
-    (require 'real-auto-save)
-    (setq real-auto-save-interval 5) ;; in seconds
-    (add-hook 'text-mode-hook 'turn-on-real-auto-save)
-    (add-hook 'prog-mode-hook 'turn-on-real-auto-save))
+      (add-hook 'focus-out-hook 'jc/save-everything-no-prompt))
 #+END_SRC
 
 *** Don't query about running processes on exit
