@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Done
+# key: done
+# binding: direct-keybinding
+# --
+Done.${ :\)}
+
+Cheers,
+Jez

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Thanks for getting in touch
+# key: tfgit
+# binding: direct-keybinding
+# --
+Hi ${1:name}, thanks for getting in touch.  
