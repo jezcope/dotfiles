@@ -645,6 +645,8 @@ These functions are required for some of the above.
         (ansi-term jc/zsh-location "ansi-term[zsh]")
         (let ((shell-file-name jc/zsh-location))
         (shell "shell[zsh]"))))
+
+  (autoload 'mu4e~headers-jump-to-maildir "mu4e.el")
 #+END_SRC
 
 *** Shortcuts to commonly used files
