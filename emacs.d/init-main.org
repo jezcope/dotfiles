@@ -289,9 +289,9 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (interactive)
     (let ((buffer-list-update-hook nil))
       (cl-letf (((symbol-function 'message) #'ignore))
-        (save-some-buffers t))))
+        (save-some-buffers t nil))))
 
-  (add-hook 'buffer-list-update-hook 'jc/save-everything-no-prompt)
+  ;(add-hook 'buffer-list-update-hook 'jc/save-everything-no-prompt)
 
   ;; If we're in emacs ≥24.4 save everything on focus-out too
   (if (fboundp 'handle-focus-out)
