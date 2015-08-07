@@ -654,7 +654,9 @@ These functions are required for some of the above.
     (defhydra jc/file-hydra (:exit t)
       "files"
       ("i" (find-file org-default-notes-file) "inbox")
-      ("w" (find-file jc/agenda-file-work) "work projects")))
+      ("w" (find-file jc/agenda-file-work) "work projects")
+      ("'" org-cycle-agenda-files "org agenda files")
+      ))
 #+END_SRC
 *** Special keys on keyboards that have them
 
