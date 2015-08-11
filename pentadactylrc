@@ -10,8 +10,12 @@ if (navigator.appVersion.indexOf("Mac")!=-1)
   set editor='/opt/local/bin/mvim -f +<line> <file>'
 fi
 
-highlight FontFixed font-family: Droid Sans Mono, monospace;
+highlight FontFixed font-family: Input Mono Condensed, Droid Sans Mono, monospace; font-size: 10pt;
 
 command firebug :emenu Tools.Web Developer.Firebug.Open Firebug
 
 " vim: set ft=pentadactyl:
+
+" Local Variables:
+" mode: vimrc
+" End:
