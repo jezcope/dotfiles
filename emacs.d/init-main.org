@@ -56,6 +56,21 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (add-to-list 'load-path "~/.emacs.d/lisp")
 #+END_SRC
 
+*** File locations
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-directory (expand-file-name "Notes/Todo" jc/dropbox-location)
+        org-default-notes-file (expand-file-name "Notes/Inbox/_Inbox.txt" jc/dropbox-location)
+
+        jc/agenda-file-work (expand-file-name "work.org" org-directory)
+        jc/agenda-file-personal (expand-file-name "personal.org" org-directory)
+        jc/agenda-file-calendar (expand-file-name "~/calendar.org")
+
+        jc/logbook-file (expand-file-name "logbook.org" org-directory)
+        )
+
+#+END_SRC
+
 ** Install packages via el-get
 
 *** Path for custom recipes

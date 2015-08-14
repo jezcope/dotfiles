@@ -22,19 +22,13 @@
 * File locations
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-directory (expand-file-name "Notes/Todo" jc/dropbox-location)
-        org-default-notes-file (expand-file-name "Notes/Inbox/_Inbox.txt" jc/dropbox-location)
-  
-        jc/agenda-file-work (expand-file-name "work.org" org-directory)
-        jc/agenda-file-personal (expand-file-name "personal.org" org-directory)
-        org-agenda-files `(,jc/agenda-file-work ,jc/agenda-file-personal)
-  
-        org-mobile-inbox-for-pull org-default-notes-file
+  (setq org-mobile-inbox-for-pull org-default-notes-file
         org-mobile-directory (expand-file-name "Apps/MobileOrg" jc/dropbox-location)
+        org-agenda-files `(,jc/agenda-file-work ,jc/agenda-file-personal)
         )
 
-  (if (file-exists-p "~/calendar.org")
-      (add-to-list 'org-agenda-files "~/calendar.org"))
+  (if (file-exists-p jc/agenda-file-calendar)
+      (add-to-list 'org-agenda-files jc/agenda-file-calendar))
 #+END_SRC
 
 * Key bindings
@@ -95,11 +89,11 @@
                                  "* %?")
                                 ("l" "Logbook entry"
                                  entry
-                                 (file+datetree ,(expand-file-name "logbook.org" org-directory))
+                                 (file+datetree ,jc/logbook-file)
                                  "* %?")
                                 ("L" "Logbook entry (date prompt)"
                                  entry
-                                 (file+datetree+prompt ,(expand-file-name "logbook.org" org-directory))
+                                 (file+datetree+prompt ,jc/logbook-file)
                                  "* %?")
                                 )
         )
