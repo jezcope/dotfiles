@@ -565,6 +565,18 @@ And now add some of my own based on the above...
         org-agenda-tags-todo-honor-ignore-options t
         )
 #+END_SRC
+
+* Markup
+
+Disable strike-through formatting because I don't use it and it messes up ~table.el~ formatting.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-emphasis-alist '(("*" bold)
+                             ("/" italic)
+                             ("_" underline)
+                             ("=" org-verbatim verbatim)
+                             ("~" org-code verbatim)))
+#+END_SRC
 * Export
 
 #+BEGIN_SRC emacs-lisp
