@@ -670,13 +670,17 @@ These functions are required for some of the above.
 
 #+BEGIN_SRC emacs-lisp
   (define-key global-map (kbd "C-c f")
-    (defhydra jc/file-hydra (:exit t)
+    (defhydra jc/file-hydra (:exit t :columns 3)
       "files"
       ("i" (find-file org-default-notes-file) "inbox")
+      ("l" (find-file jc/logbook-file) "logbook")
+      ("c" (find-file jc/agenda-file-calendar) "calendar")
       ("w" (find-file jc/agenda-file-work) "work projects")
       ("'" org-cycle-agenda-files "org agenda files")
+      ("," org-refile-goto-last-stored "last refile")
       ))
 #+END_SRC
+
 *** Special keys on keyboards that have them
 
 #+BEGIN_SRC emacs-lisp
