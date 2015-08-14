@@ -801,6 +801,27 @@ Overall setup:
   (add-hook 'lisp-mode-hook 'show-paren-mode)
 #+END_SRC
 
+***** Useful functions for customising emacs
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/insert-variable-value (var)
+    "Insert the value of a variable at point"
+    (interactive "v")
+    (insert (prin1-to-string (symbol-value var))))
+#+END_SRC
+
+This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-face-under-cursor-in-emacs][Trey Jackson on StackOverflow]]:
+
+#+BEGIN_SRC emacs-lisp
+  (defun what-face (pos)
+    "Display the face currently under the cursor"
+    (interactive "d")
+    (let ((face (or (get-char-property (point) 'read-face-name)
+                    (get-char-property (point) 'face))))
+      (if face (message "Face: %s" face)
+      (message "No face at %d" pos))))
+#+END_SRC
+
 **** Ruby
 
 #+BEGIN_SRC emacs-lisp
