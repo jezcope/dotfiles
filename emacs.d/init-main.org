@@ -279,6 +279,12 @@ Make some faces fixed pitch (mostly to fix vertical alignment issues)
               (set-face-attribute 'org-block nil :inherit '(fixed-pitch))))
 #+END_SRC
 
+*** Editing preferences
+
+#+BEGIN_SRC emacs-lisp
+  (setq sentence-end-double-space nil)
+#+END_SRC
+
 *** Configure how to make buffer titles unique
 
 This adds (to the filename) enough of the path after a vertical bar to make the title unique.
