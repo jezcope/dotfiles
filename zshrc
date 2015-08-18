@@ -5,7 +5,7 @@ PLATFORM=$(uname -s)
 ZSH=$HOME/.zsh/oh-my-zsh
 ZSH_CUSTOM=$HOME/.zsh/omz-custom
 ZSH_THEME="jez"
-plugins=(git thor rake rvm extract vagrant git-flow archlinux)
+plugins=(git thor rake rvm extract vagrant git-flow archlinux gpg-agent)
 
 # Platform-specific sections
 if [[ $PLATFORM = 'Darwin' ]]; then

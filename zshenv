@@ -58,8 +58,6 @@ else
   export ALTERNATE_EDITOR=$(which emacs-terminal.sh)
 fi
 
-whence keychain > /dev/null && eval $(keychain --eval --agents ssh --ignore-missing -Q -q id_rsa id_ecdsa jezcope_aws.pem)
-
 if [[ -s "$HOME/.zshenv.local" ]]; then
   source "$HOME/.zshenv.local"
 fi
