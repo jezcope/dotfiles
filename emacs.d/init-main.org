@@ -255,7 +255,46 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 
 *** Fonts
 
-Make some modes variable pitch by default
+Set default fonts in order of preference:
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/first-available-font (stack)
+    (loop for f in stack
+          if (member f (font-family-list))
+          do (return f)))
+
+  (setq jc/font-fixed
+        (jc/first-available-font '("Input Mono Condensed"
+                                   "Inconsolata"
+                                   "Droid Sans Mono"
+                                   "Ubuntu Mono"
+                                   "Menlo"
+                                   "Monaco"))
+
+        jc/font-variable
+        (jc/first-available-font '("Input Sans Condensed"
+                                   "Droid Sans"
+                                   "Ubuntu Sans"
+                                   "sans"))
+        )
+
+  (when (not (null jc/font-fixed))
+    (set-face-font 'default jc/font-fixed))
+  (set-face-attribute 'default nil
+                      :height 100
+                      :width 'condensed
+                      :weight 'light)
+
+  (when (not (null jc/font-variable))
+    (set-face-font 'variable-pitch jc/font-variable))
+  (set-face-attribute 'variable-pitch nil
+                      :height 100
+                      :width 'condensed
+                      :weight 'light)
+#+END_SRC
+
+Make some modes variable pitch by default:
+
 #+BEGIN_SRC emacs-lisp
   (dolist (hook '(
                org-mode-hook
@@ -268,7 +307,8 @@ Make some modes variable pitch by default
     (add-hook hook 'variable-pitch-mode))
 #+END_SRC
 
-Make some faces fixed pitch (mostly to fix vertical alignment issues)
+Make some faces fixed pitch (mostly to fix vertical alignment issues):
+
 #+BEGIN_SRC emacs-lisp
   (eval-after-load 'org-indent
     '(set-face-attribute 'org-indent nil :inherit '(fixed-pitch)))
