@@ -24,6 +24,7 @@ if not status then
    localprefs.terminal = "urxvtc"
    localprefs.editor_cmd = "emacsclient -c"
    localprefs.main_iface = "wlo1"
+   localprefs.battery = "BAT0"
 end
 
 -- Load Debian menu entries
@@ -152,7 +153,7 @@ vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
 mytextclock = awful.widget.textclock()
 
 batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, " Bat: $2% ", 13, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, " Bat: $2% ", 13, localprefs.battery)
 
 batbar = awful.widget.progressbar()
 batbar:set_width(8)
@@ -162,7 +163,7 @@ batbar:set_background_color("#494B4F")
 batbar:set_border_color(nil)
 batbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
                       stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } } })
-vicious.register(batbar, vicious.widgets.bat, "$2", 61, "BAT0")
+vicious.register(batbar, vicious.widgets.bat, "$2", 61, localprefs.battery)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
