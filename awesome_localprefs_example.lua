@@ -3,4 +3,5 @@ return {
     editor_cmd = "emacsclient -c";
 
     main_iface = "eth0";
+    battery = "NONE";
 }

@@ -152,18 +152,20 @@ vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
-batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, " Bat: $2% ", 13, localprefs.battery)
+if localprefs.battery ~= "NONE" then
+   batwidget = wibox.widget.textbox()
+   vicious.register(batwidget, vicious.widgets.bat, " Bat: $2% ", 13, localprefs.battery)
 
-batbar = awful.widget.progressbar()
-batbar:set_width(8)
-batbar:set_height(10)
-batbar:set_vertical(true)
-batbar:set_background_color("#494B4F")
-batbar:set_border_color(nil)
-batbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
+   batbar = awful.widget.progressbar()
+   batbar:set_width(8)
+   batbar:set_height(10)
+   batbar:set_vertical(true)
+   batbar:set_background_color("#494B4F")
+   batbar:set_border_color(nil)
+   batbar:set_color({ type = "linear", from = { 0, 0 }, to = { 0, 10 },
                       stops = { { 0, "#AECF96" }, { 0.5, "#88A175" }, { 1, "#FF5656" } } })
-vicious.register(batbar, vicious.widgets.bat, "$2", 61, localprefs.battery)
+   vicious.register(batbar, vicious.widgets.bat, "$2", 61, localprefs.battery)
+end
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -245,8 +247,10 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(netlayout)
     right_layout:add(cpulayout)
-    right_layout:add(batwidget)
-    right_layout:add(batbar)
+    if localprefs.battery ~= "NONE" then
+       right_layout:add(batwidget)
+       right_layout:add(batbar)
+    end
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
