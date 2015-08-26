@@ -258,39 +258,42 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 Set default fonts in order of preference:
 
 #+BEGIN_SRC emacs-lisp
-  (defun jc/first-available-font (stack)
+  (defun jc/first-available-font (&rest stack)
     (loop for f in stack
           if (member f (font-family-list))
           do (return f)))
 
   (setq jc/font-fixed
-        (jc/first-available-font '("Input Mono Condensed"
-                                   "Inconsolata"
-                                   "Droid Sans Mono"
-                                   "Ubuntu Mono"
-                                   "Menlo"
-                                   "Monaco"))
+        (jc/first-available-font
+         "Input Mono Compressed"
+         "Inconsolata"
+         "Droid Sans Mono"
+         "Ubuntu Mono"
+         "Menlo"
+         "Monaco"
+         "fixed"
+         )
 
         jc/font-variable
-        (jc/first-available-font '("Input Sans Condensed"
-                                   "Droid Sans"
-                                   "Ubuntu Sans"
-                                   "sans"))
+        (jc/first-available-font
+         "Input Sans Condensed"
+         "Droid Sans"
+         "Ubuntu Sans"
+         "sans"
+         )
         )
 
-  (when (not (null jc/font-fixed))
-    (set-face-font 'default jc/font-fixed))
   (set-face-attribute 'default nil
-                      :height 100
-                      :width 'condensed
-                      :weight 'light)
+                      :family jc/font-fixed
+                      :height 110
+                      :weight 'light
+                      )
 
-  (when (not (null jc/font-variable))
-    (set-face-font 'variable-pitch jc/font-variable))
   (set-face-attribute 'variable-pitch nil
-                      :height 100
-                      :width 'condensed
-                      :weight 'light)
+                      :family jc/font-variable
+                      :height 110
+                      :weight 'light
+                      )
 #+END_SRC
 
 Make some modes variable pitch by default:
