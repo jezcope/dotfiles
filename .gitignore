@@ -26,3 +26,8 @@ pentadactyl/info/default/register-ring
 /emacs.d/var/
 /emacs.d/init-mu4e.org
 /pentadactyl/info/default/cache
+/vimperator/info/default/quickmarks
+/vimperator/info/default/history-command
+/vimperator/info/default/history-search
+/vimperator/info/default/local-marks
+/vimperator/info/default/macros

@@ -1,0 +1,16 @@
+"3.9 (created: 2015/02/15 15:49:05)
+
+set tabnumbers
+set toolbars+=nonavigation
+
+nmap s :open duckduckgo 
+nmap S :tabopen duckduckgo 
+
+cmap <C-g> <Esc>
+
+source! ~/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+" Local Variables:
+" mode: vimrc
+" End:
