@@ -32,6 +32,19 @@ else
   BUNDLE_WITHOUT=darwin_only
 fi
 
+local GPG_ENV=~/.gnupg/gpg-agent.env
+if [[ -s ${GPG_ENV} ]]; then
+  # GnuPG version 2.0
+  . ${GPG_ENV} > /dev/null
+  export GPG_AGENT_INFO
+  export SSH_AUTH_SOCK
+  export SSH_AGENT_PID
+else
+  # GnuPG version 2.1+
+  export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
+fi
+export GPG_TTY=$(tty)
+
 # Source local rvm config
 if [[ -s "$HOME/.rvmrc" ]]; then
   source "$HOME/.rvmrc"
