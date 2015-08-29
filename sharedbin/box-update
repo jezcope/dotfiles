@@ -1,0 +1,18 @@
+#!/usr/bin/zsh
+
+if which pacman &> /dev/null; then
+  echo "${fg[yellow]}Performing pacman system upgrade${reset_color}"
+  sudo pacman -Syu
+elif which apt-get &> /dev/null; then
+  echo "${fg[yellow]}Performing apt-get system upgrade${reset_color}"
+  sudo apt-get update
+  sudo apt-get upgrade
+fi
+
+echo "${fg[yellow]}Updating puppet configuration${reset_color}"
+(cd /etc/puppet && sudo -E git pull)
+echo "${fg[yellow]}Updating dotfiles${reset_color}"
+(cd ~/.dotfiles && git pull && git submodule update)
+
+echo "${fg[yellow]}Applying updated puppet configuration${reset_color}"
+sudo puppet apply /etc/puppet/default.pp
