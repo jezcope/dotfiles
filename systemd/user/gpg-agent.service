@@ -4,3 +4,6 @@ Description=Start gpg-agent
 [Service]
 Type=forking
 ExecStart=/usr/bin/gpg-agent --daemon --enable-ssh-support --write-env-file=~/.gnupg/gpg-agent.env
+
+[Install]
+WantedBy=default.target
