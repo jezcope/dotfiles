@@ -121,6 +121,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   evil-numbers
   evil-surround
   evil-leader
+  evil-nerd-commenter
   deft-turbo
   yasnippet
   helm

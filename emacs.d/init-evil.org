@@ -3,8 +3,10 @@
 ** Basic setup
 
 #+BEGIN_SRC emacs-lisp
-  (setq evil-shift-width 2
-        evil-shift-round t)
+  (setq-default evil-shift-width 2
+                evil-shift-round t)
+
+  (evilnc-default-hotkeys)
 #+END_SRC
 
 ** Leader
@@ -13,7 +15,7 @@
   (setq evil-leader/leader ",")
 
   (evil-leader/set-key
-    "c" 'org-capture
+    "C" 'org-capture
     "a" 'org-agenda
     "l" 'jc/launcher-hydra/body
     "f" 'jc/file-hydra/body)
