@@ -127,7 +127,7 @@ menubar.utils.terminal = localprefs.terminal -- Set the terminal for application
 -- {{{ Wibox
 --  Network usage widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">⯅${' .. localprefs.main_iface .. ' down_kb}</span> <span color="#7F9F7F">⯆${' .. localprefs.main_iface .. ' up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">↓${' .. localprefs.main_iface .. ' down_kb}</span> <span color="#7F9F7F">↑${' .. localprefs.main_iface .. ' up_kb}</span>', 3)
 netlayout = wibox.layout.align.vertical()
 netlayout:set_middle(netwidget)
 netlabel = wibox.widget.textbox()
