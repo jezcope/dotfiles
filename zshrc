@@ -71,6 +71,8 @@ export LANG=en_GB.UTF-8
 # A few more options
 setopt noclobber multios
 
+source ~/.zshenv.path
+
 # Local Variables:
 # mode: sh
 # End:

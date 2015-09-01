@@ -1,0 +1,14 @@
+path=($HOME/bin $HOME/bin/shared $path)
+
+if [[ $PLATFORM = 'Darwin' ]]; then
+  path=(/usr/local/sbin ~/Scripts /usr/local/bin $path)
+  path=(~"/Library/Application Support/MultiMarkDown/bin" $path)
+  path=(~"/Library/Haskell/bin" $path)
+  path=(/usr/local/texlive/2013/bin/universal-darwin $path)
+fi
+
+export PATH
+
+# Local Variables:
+# mode: sh
+# End:
