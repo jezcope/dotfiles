@@ -9,6 +9,17 @@
   (evilnc-default-hotkeys)
 #+END_SRC
 
+*** Save on leaving insert state
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/save-current ()
+    (interactive)
+    (unless (null buffer-file-name)
+      (save-buffer)))
+
+  (add-hook 'evil-insert-state-exit-hook #'jc/save-current)
+#+END_SRC
+
 ** Leader
 
 #+BEGIN_SRC emacs-lisp
