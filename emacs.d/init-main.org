@@ -993,6 +993,8 @@ If the homebrew version of coreutils is installed under Mac, use that:
 #+BEGIN_SRC emacs-lisp
   (when (file-exists-p (expand-file-name "init-mu4e.org" dotfiles-dir))
     (jc/require-org-file "init-mu4e.org"))
+
+  (add-hook 'message-mode-hook 'flyspell-mode)
 #+END_SRC
 
 *** Magit
