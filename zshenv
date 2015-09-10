@@ -34,7 +34,7 @@ else
   export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
 fi
 export GPG_TTY=$(tty)
-echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2&>1
+echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1
 
 # Source local rvm config
 if [[ -s "$HOME/.rvmrc" ]]; then
