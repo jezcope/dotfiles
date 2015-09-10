@@ -13,7 +13,7 @@ fi
 
 echo "\nUpdating puppet configuration"
 echo "============================="
-(cd /etc/box-config && sudo -E git pull)
+(cd /etc/box-config && git pull)
 
 echo "\nUpdating dotfiles"
 echo "================="
