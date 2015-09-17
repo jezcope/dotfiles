@@ -111,6 +111,8 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   sunrise-x-tree
   magit
   mu4e
+  erc
+  twittering-mode
   ;ecb
 #+END_SRC
 
