@@ -6,7 +6,7 @@
   (setq-default evil-shift-width 2
                 evil-shift-round t)
 
-  (evilnc-default-hotkeys)
+  (setq evil-cross-lines t)
 #+END_SRC
 
 *** Save on leaving insert state
