@@ -161,8 +161,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 
 #+BEGIN_SRC emacs-lisp
   color-theme-darktooth
-  svg-mode-line-themes
-  ocodo-svg-modelines
+  powerline
 #+END_SRC
 
 **** Text/document editing
@@ -392,8 +391,21 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
        (set-face-foreground 'hydra-face-amaranth
                             (if (display-graphic-p) "#AF3A03" "color-130"))))
 
-  (ocodo-svg-modelines-init)
-  (smt/set-theme 'ocodo-mesh-aqua-smt)
+  (setq powerline-default-separator 'wave)
+  (powerline-default-theme)
+
+  (with-eval-after-load 'helm-mode
+    (diminish 'helm-mode))
+  (with-eval-after-load 'yasnippet
+    (diminish 'yas-minor-mode))
+  (diminish 'undo-tree-mode)
+  (diminish 'filladapt-mode)
+  (add-hook 'buffer-face-mode-hook
+            (lambda () (diminish 'buffer-face-mode)))
+  (add-hook 'org-indent-mode-hook
+            (lambda () (diminish 'org-indent-mode)))
+  (diminish 'visual-line-mode)
+  (diminish 'org-src-mode "OS")
 #+END_SRC
 
 *** Activate filladapt-mode
