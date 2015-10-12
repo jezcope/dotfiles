@@ -162,6 +162,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
 #+BEGIN_SRC emacs-lisp
   color-theme-darktooth
   powerline
+  diminish
 #+END_SRC
 
 **** Text/document editing
