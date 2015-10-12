@@ -7,6 +7,8 @@ let mapleader = ","
 
 nmap s :open duckduckgo 
 nmap S :tabopen duckduckgo 
+nmap <Leader>s :open shef 
+nmap <Leader>S :tabopen shef 
 
 cmap <C-g> <Esc>
 
