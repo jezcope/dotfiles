@@ -1,14 +1,18 @@
 #!/usr/bin/zsh
 
-if which pacman &> /dev/null; then
-  echo "Performing pacman system upgrade"
-  echo "================================"
-  sudo pacman -Syu
-elif which apt-get &> /dev/null; then
-  echo "\nPerforming apt-get system upgrade"
-  echo "================================"
-  sudo apt-get update
-  sudo apt-get upgrade
+zparseopts -a opts u
+
+if (( ${+opts[(r)-u]} )); then
+  if which pacman &> /dev/null; then
+    echo "Performing pacman system upgrade"
+    echo "================================"
+    sudo pacman -Syu
+  elif which apt-get &> /dev/null; then
+    echo "\nPerforming apt-get system upgrade"
+    echo "================================"
+    sudo apt-get update
+    sudo apt-get upgrade
+  fi
 fi
 
 echo "\nUpdating puppet configuration"
