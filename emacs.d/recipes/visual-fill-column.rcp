@@ -1,0 +1,5 @@
+(:name visual-fill-column
+       :description "Emacs mode for wrapping visual-line-mode buffers at fill-column"
+       :website "https://github.com/joostkremers/visual-fill-column"
+       :type github
+       :pkgname "joostkremers/visual-fill-column")
