@@ -147,6 +147,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   rainbow-mode
   unbound
   writeroom-mode
+  beacon
 #+END_SRC
 
 **** Auto complete mode
@@ -666,6 +667,11 @@ This doesn't work as I want it to right now - needs reworking.
   (setq deft-directory (expand-file-name "Notes/Reference" jc/dropbox-location))
 #+END_SRC
 
+*** Beacon
+
+#+BEGIN_SRC emacs-lisp
+  (beacon-mode 1)
+#+END_SRC
 ** Key bindings
 
 *** Set print screen key to paste from X clipboard
