@@ -8,7 +8,7 @@ if (( ${+opts[(r)-u]} )); then
     echo "================================"
     sudo pacman -Syu
   elif which apt-get &> /dev/null; then
-    echo "\nPerforming apt-get system upgrade"
+    echo "Performing apt-get system upgrade"
     echo "================================"
     sudo apt-get update
     sudo apt-get upgrade
