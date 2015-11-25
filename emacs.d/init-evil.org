@@ -23,10 +23,10 @@
 ** Leader
 
 #+BEGIN_SRC emacs-lisp
-  (setq evil-leader/leader ",")
+  (setq evil-leader/leader "<SPC>")
 
   (evil-leader/set-key
-    "C" 'org-capture
+    "c" 'org-capture
     "a" 'org-agenda
     "l" 'jc/launcher-hydra/body
     "f" 'jc/file-hydra/body)
