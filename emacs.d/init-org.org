@@ -581,7 +581,10 @@ Disable strike-through formatting because I don't use it and it messes up ~table
 * Export
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-export-backends '(ascii beamer html icalendar latex md odt gfm))
+  (setq org-export-backends '(ascii beamer html icalendar latex md odt gfm)
+
+        org-export-with-toc nil
+        org-export-with-section-numbers nil)
 #+END_SRC
 
 ** LaTeX/PDF
