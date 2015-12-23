@@ -148,6 +148,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   unbound
   writeroom-mode
   beacon
+  guide-key
 #+END_SRC
 
 **** Auto complete mode
@@ -673,6 +674,18 @@ This doesn't work as I want it to right now - needs reworking.
   (beacon-mode 1)
 #+END_SRC
 ** Key bindings
+*** Guide key for reminders of key chord completions
+
+#+BEGIN_SRC emacs-lisp
+  (require 'guide-key)
+  (setq guide-key/guide-key-sequence
+        '("C-x")
+
+        guide-key/recursive-key-sequence-flag t
+        guide-key/popup-window-position 'bottom
+        guide-key/idle-delay 0.5)
+  (guide-key-mode 1)
+#+END_SRC
 
 *** Set print screen key to paste from X clipboard
 
