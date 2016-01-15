@@ -1,0 +1,6 @@
+#!/bin/sh
+
+TMUX=$(which tmux)
+SESSION=default
+
+$TMUX new-session -s $SESSION || $TMUX attach-session -t $SESSION
