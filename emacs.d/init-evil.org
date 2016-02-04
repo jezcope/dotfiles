@@ -29,7 +29,10 @@
     "c" 'org-capture
     "a" 'org-agenda
     "l" 'jc/launcher-hydra/body
-    "f" 'jc/file-hydra/body)
+    "f" 'jc/file-hydra/body
+    "i" 'helm-semantic-or-imenu
+    "I" 'helm-imenu-in-all-buffers
+    )
 
   (global-evil-leader-mode 1)
 #+END_SRC
