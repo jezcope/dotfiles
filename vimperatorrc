@@ -16,6 +16,7 @@ command pintab js getBrowser().pinTab(getBrowser().mCurrentTab);
 map <Leader>p :pintab<CR>
 
 map <Leader>c :open https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1<CR>
+map <Leader>C :tabopen https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1<CR>
 
 source! ~/.vimperatorrc.local
 
