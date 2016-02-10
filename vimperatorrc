@@ -12,8 +12,11 @@ nmap <Leader>S :tabopen shef
 
 cmap <C-g> <Esc>
 
-command pintab js getBrowser().pinTab(getBrowser().mCurrentTab);
+command -description "Pin tab to browser window" pintab js getBrowser().pinTab(getBrowser().mCurrentTab);
 map <Leader>p :pintab<CR>
+
+command -description "Add current page to Buffer app" bufferadd js content.location.href='https://bufferapp.com/add?url='+encodeURIComponent(content.location.href)+'&text='+encodeURIComponent(content.document.title);
+map <Leader>b :bufferadd<CR>
 
 map <Leader>c :open https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1<CR>
 map <Leader>C :tabopen https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1<CR>
