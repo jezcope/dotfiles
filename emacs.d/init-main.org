@@ -260,6 +260,37 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
         initial-buffer-choice t)
 #+END_SRC
 
+*** Correctly set GPG/SSH agent info
+
+Solution adapted from [[http://whatthefuck.computer/blog/2015/05/20/re-agent/][Ryan Rix's blog]]
+
+#+BEGIN_SRC emacs-lisp
+  (setq jc/gpg-env (expand-file-name "~/.gnupg/gpg-agent.env"))
+
+  ;; Only run when gpg environment file available (i.e. GPG <= 2.0)
+  (if (file-readable-p jc/gpg-env)
+      (progn
+        (defun jc/re-agent ()
+          "Load your gpg-agent.env file in to the environment
+
+  This is extra useful if you use gpg-agent with --enable-ssh-support"
+          (with-temp-buffer
+            (insert-file-contents jc/gpg-env)
+            (goto-char (point-min))
+            (setq case-replace nil)
+            (replace-regexp "\\(.*\\)=\\(.*\\)" "(setenv \"\\1\" \"\\2\")")
+            (eval-buffer))
+          (getenv "GPG_AGENT_INFO"))
+
+        (run-with-idle-timer 60 t 'jc/re-agent)
+        (jc/re-agent)
+        )
+
+    ;; GPG 2.1+ uses a standard location
+    (setenv "SSH_AUTH_SOCK" "~/.gnupg/S.gpg-agent.ssh")
+    )
+#+END_SRC
+
 *** Fonts
 
 Set default fonts in order of preference:
