@@ -30,6 +30,7 @@
     "a" 'org-agenda
     "l" 'jc/launcher-hydra/body
     "f" 'jc/file-hydra/body
+    "t" 'jc/toggle-hydra/body
     "i" 'helm-semantic-or-imenu
     "I" 'helm-imenu-in-all-buffers
     )
@@ -41,12 +42,12 @@
 
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key
-    ",i" 'evilnc-comment-or-uncomment-lines
-    ",l" 'evilnc-quick-comment-or-uncomment-to-the-line
-    ",y" 'evilnc-copy-and-comment-lines
-    ",p" 'evilnc-comment-or-uncomment-paragraphs
-    ",r" 'comment-or-uncomment-region
-    ",v" 'evilnc-toggle-invert-comment-line-by-line)
+    "/i" 'evilnc-comment-or-uncomment-lines
+    "/l" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "/y" 'evilnc-copy-and-comment-lines
+    "/p" 'evilnc-comment-or-uncomment-paragraphs
+    "/r" 'comment-or-uncomment-region
+    "/v" 'evilnc-toggle-invert-comment-line-by-line)
 #+END_SRC
 
 ** Mode-specific stuff
