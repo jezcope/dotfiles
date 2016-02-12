@@ -342,7 +342,11 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "Up",    function () awful.util.spawn("mpc play") end),
     awful.key({ modkey, "Control" }, "Down",  function () awful.util.spawn("mpc pause") end),
     awful.key({ modkey, "Control" }, "Left",  function () awful.util.spawn("mpc prev") end),
-    awful.key({ modkey, "Control" }, "Right", function () awful.util.spawn("mpc next") end)
+    awful.key({ modkey, "Control" }, "Right", function () awful.util.spawn("mpc next") end),
+
+    -- Screen backlight
+    awful.key({ }, "XF86MonBrightnessUp",     function () awful.util.spawn("xbacklight + 5") end),
+    awful.key({ }, "XF86MonBrightnessDown",   function () awful.util.spawn("xbacklight - 5") end)
 )
 
 clientkeys = awful.util.table.join(
