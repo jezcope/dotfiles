@@ -67,7 +67,7 @@
 (defun org-subtask-reset ()
   (when (member org-state org-done-keywords) ;; org-state dynamically bound in org.el/org-todo
     (org-reset-subtask-state-maybe)
-    (org-update-statistics-cookies t)))))
+    (org-update-statistics-cookies t)))
 
 (add-hook 'org-after-todo-state-change-hook 'org-subtask-reset)
 
