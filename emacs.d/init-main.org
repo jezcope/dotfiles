@@ -995,6 +995,14 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
 #+BEGIN_SRC emacs-lisp
   (setq js-indent-level 2)
 #+END_SRC
+
+**** ESS (R/Splus/etc)
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'auto-mode-alist
+               '("\\.R\\'" . R-mode))
+#+END_SRC
+
 *** Mail editing
 
 #+BEGIN_SRC emacs-lisp
