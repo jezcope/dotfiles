@@ -178,6 +178,12 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   auctex
 #+END_SRC
 
+**** Org-mode extras
+
+#+BEGIN_SRC emacs-lisp
+  org-reveal
+#+END_SRC
+
 **** Programming languages and similar
 
 #+BEGIN_SRC emacs-lisp
