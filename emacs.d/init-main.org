@@ -728,6 +728,14 @@ This doesn't work as I want it to right now - needs reworking.
     (guide-key/add-local-guide-key-sequence "C-c C-x")
     (guide-key/add-local-highlight-command-regexp "org-"))
   (add-hook 'org-mode-hook 'jc/org-mode-guide-key-setup)
+
+  (defun jc/markdown-mode-guide-key-setup ()
+    (guide-key/add-local-guide-key-sequence "C-c")
+    (guide-key/add-local-guide-key-sequence "C-c C-x")
+    (guide-key/add-local-guide-key-sequence "C-c C-a")
+    (guide-key/add-local-highlight-command-regexp "markdown-")
+    (guide-key/add-local-highlight-command-regexp "pandoc-"))
+  (add-hook 'markdown-mode-hook 'jc/markdown-mode-guide-key-setup)
 #+END_SRC
 
 *** Set print screen key to paste from X clipboard
