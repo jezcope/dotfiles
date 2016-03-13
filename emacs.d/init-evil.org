@@ -14,7 +14,7 @@
 #+BEGIN_SRC emacs-lisp
   (defun jc/save-current ()
     (interactive)
-    (unless (null buffer-file-name)
+    (if (jc/buffer-visiting-real-file-p)
       (save-buffer)))
 
   (add-hook 'evil-insert-state-exit-hook #'jc/save-current)

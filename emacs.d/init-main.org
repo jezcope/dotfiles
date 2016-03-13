@@ -395,11 +395,15 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 *** Enable automatic saving of buffers
 
 #+BEGIN_SRC emacs-lisp
+  (defun jc/buffer-visiting-real-file-p ()
+    (not (or (null buffer-file-name)
+             (string-match "\\*scratch\\*" buffer-file-name))))
+
   (defun jc/save-everything-no-prompt ()
     (interactive)
     (let ((buffer-list-update-hook nil))
       (cl-letf (((symbol-function 'message) #'ignore))
-        (save-some-buffers t nil))))
+        (save-some-buffers t 'jc/buffer-visiting-real-file-p))))
 
   ;(add-hook 'buffer-list-update-hook 'jc/save-everything-no-prompt)
 
