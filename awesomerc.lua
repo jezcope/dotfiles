@@ -150,7 +150,7 @@ cpulayout:set_left(5)
 vicious.register(cpuwidget, vicious.widgets.cpu, "$1")
 
 -- Create a textclock widget
-mytextclock = awful.widget.textclock()
+mytextclock = awful.widget.textclock("%a %d %b %H:%M", 1)
 
 if localprefs.battery ~= "NONE" then
    batwidget = wibox.widget.textbox()
