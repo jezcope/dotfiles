@@ -1225,6 +1225,14 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
       (find-file path)))
 #+END_SRC
 
+
+#+BEGIN_SRC emacs-lisp
+  (defhydra jc/blogging-hydra ()
+    "blogging"
+    ("s" jc/new-scratch-blog-post "new scratch blog post")
+    ("d" jc/update-created-date "update created date")
+    )
+#+END_SRC
 ** Load local settings
 
 The ~t~ argument ensures no error is thrown if the file doesn't exist.
