@@ -720,7 +720,7 @@ This doesn't work as I want it to right now - needs reworking.
 #+BEGIN_SRC emacs-lisp
   (require 'guide-key)
   (setq guide-key/guide-key-sequence
-        '("C-x" "SPC" "SPC ,")
+        '("C-x" "SPC" "SPC ," "C-c p")
 
         guide-key/recursive-key-sequence-flag t
         guide-key/popup-window-position 'bottom
