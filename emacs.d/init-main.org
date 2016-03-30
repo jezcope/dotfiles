@@ -1204,6 +1204,35 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
     (add-hook hook
               (lambda () (local-set-key (kbd "C-c j b d") 'jc/update-created-date))))
 #+END_SRC
+
+*** Quickly create a new scratch blog post
+
+#+BEGIN_SRC emacs-lisp
+  (defcustom jc/blog-draft-location
+    (expand-file-name "Notes/00Pending/Blog drafts" jc/dropbox-location)
+    "Location to put new blog drafts")
+
+  (defun jc/get-scratch-blog-post-filename (n suffix)
+    (let* ((filename (format "scratch-%02d.%s" n suffix))
+           (path (expand-file-name filename jc/blog-draft-location)))
+      (if (file-exists-p path)
+          (jc/get-scratch-blog-post-filename (1+ n) suffix)
+        path)))
+
+  (defun jc/new-scratch-blog-post ()
+    (interactive)
+    (let ((path (jc/get-scratch-blog-post-filename 1 "md")))
+      (find-file path)))
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp
+  (defhydra jc/blogging-hydra ()
+    "blogging"
+    ("s" jc/new-scratch-blog-post "new scratch blog post")
+    ("d" jc/update-created-date "update created date")
+    )
+#+END_SRC
 ** Load local settings
 
 The ~t~ argument ensures no error is thrown if the file doesn't exist.
