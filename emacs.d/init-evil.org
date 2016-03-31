@@ -58,3 +58,24 @@
 #+BEGIN_SRC emacs-lisp
   (evil-define-key 'normal message-mode-map "^" 'message-beginning-of-line)
 #+END_SRC
+
+*** Org
+
+**** Switch to insert state after certain commands
+
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'org
+    (dolist (hook '(org-capture-mode-hook
+                    org-insert-heading-hook
+                    ))
+      (add-hook hook 'evil-insert-state)))
+#+END_SRC
+
+*** Magit
+
+**** Switch to insert state after certain commands
+
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'git-commit
+    (add-hook 'git-commit-mode-hook 'evil-insert-state))
+#+END_SRC
