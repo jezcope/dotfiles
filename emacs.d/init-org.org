@@ -133,11 +133,12 @@
   
         org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "ONHOLD(h)" "WAITING(w)" "MONITOR(m)" "|" "CANCELED(c)"))
+          (sequence "ONHOLD(h)" "DELEGATED(l)" "WAITING(w)" "MONITOR(m)" "|" "CANCELED(c)"))
         
         org-todo-keyword-faces
         '(("NEXT" . "red")
           ("ONHOLD" . org-agenda-dimmed-todo-face)
+          ("DELEGATED" . "yellow")
           ("WAITING" . "yellow")
           ("MONITOR" . "yellow")
           ("CANCELLED" . "goldenrod")
@@ -532,9 +533,14 @@ And now add some of my own based on the above...
                  (org-agenda-skip-function '(or (jc/skip-projects)
                                                 (jc/skip-future-tasks-with-inheritance)))
                  ))
-          (todo "WAITING"
-                ((org-agenda-overriding-header "Waiting for (deadline passed)")
+          (todo "WAITING|DELEGATED"
+                ((org-agenda-overriding-header "Waiting for/delegated (deadline passed)")
                  (org-agenda-skip-function '(or (jc/skip-if-deadline-not-passed)
+                                                (jc/skip-future-tasks-with-inheritance)))
+                 ))
+          (todo "DELEGATED"
+                ((org-agenda-overriding-header "Delegated")
+                 (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
                                                 (jc/skip-future-tasks-with-inheritance)))
                  ))
           (todo "WAITING"
