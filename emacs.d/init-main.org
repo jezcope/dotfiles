@@ -810,14 +810,21 @@ These functions are required for some of the above.
 
 #+BEGIN_SRC emacs-lisp
   (define-key global-map (kbd "C-c f")
-    (defhydra jc/file-hydra (:exit t :columns 3)
-      "files"
-      ("i" (find-file org-default-notes-file) "inbox")
-      ("l" (find-file jc/logbook-file) "logbook")
-      ("c" (find-file jc/agenda-file-calendar) "calendar")
-      ("w" (find-file jc/agenda-file-work) "work projects")
-      ("'" org-cycle-agenda-files "org agenda files")
-      ("," org-refile-goto-last-stored "last refile")
+    (defhydra jc/file-hydra (:exit t :columns 3 :hint nil)
+      "
+  ^Projects^     ^Logbooks^     ^Org^
+  ^^^^^^^^-----------------------------------------
+  _p_: personal  _l_: personal  _'_: cycle agendas
+  _w_: work      _L_: work      _,_; last refile
+  _i_: inbox"
+      ("i" (find-file org-default-notes-file))
+      ("p" (find-file jc/agenda-file-personal))
+      ("w" (find-file jc/agenda-file-work))
+      ("l" (find-file jc/logbook-file))
+      ("L" (find-file jc/logbook-file-work))
+      ("'" org-cycle-agenda-files :exit nil)
+      ("," org-refile-goto-last-stored)
+      ("c" (find-file jc/agenda-file-calendar))
       ))
 #+END_SRC
 
