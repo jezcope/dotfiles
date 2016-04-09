@@ -96,8 +96,14 @@
                                  entry
                                  (file+datetree+prompt ,jc/logbook-file)
                                  "* %?")
-                                )
-        )
+                                ("w" "Work logbook entry"
+                                 entry
+                                 (file+datetree jc/logbook-file-work)
+                                 "* %?")
+                                ("W" "Logbook entry (date prompt)"
+                                 entry
+                                 (file+datetree+prompt jc/logbook-file-work)
+                                 "* %?")))
 #+END_SRC
 
 * Refile

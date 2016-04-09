@@ -67,8 +67,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
         jc/agenda-file-calendar (expand-file-name "~/calendar.org")
 
         jc/logbook-file (expand-file-name "logbook.org" org-directory)
-        )
-
+        jc/logbook-file-work (expand-file-name "logbook-work.org" org-directory))
 #+END_SRC
 
 ** Install packages via el-get
