@@ -136,22 +136,30 @@
 
 #+BEGIN_SRC emacs-lisp
   (setq org-log-into-drawer t
+
+        jc/todo-keywords
+        '("TODO(t) READY(r) NEXT(n) DOING(o) | DONE(d)"
+          "ONHOLD(h) AGENDA(a) DELEGATED(l) WAITING(w) MONITOR(m) | CANCELED(c)")
   
         org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-          (sequence "ONHOLD(h)" "DELEGATED(l)" "WAITING(w)" "MONITOR(m)" "|" "CANCELED(c)"))
-        
+        (mapcar (lambda (kw) (cons `sequence (split-string kw)))
+                jc/todo-keywords)
+
         org-todo-keyword-faces
-        '(("NEXT" . "red")
-          ("ONHOLD" . org-agenda-dimmed-todo-face)
-          ("DELEGATED" . "yellow")
-          ("WAITING" . "yellow")
-          ("MONITOR" . "yellow")
-          ("CANCELLED" . "goldenrod")
-          )
-  
-        org-enforce-todo-dependencies t
-        )
+        '(("TODO"      . "red")
+          ("READY"     . "orange red")
+          ("NEXT"      . "gold")
+          ("DOING"     . "yellow")
+          ("DONE"      . "forest green")
+
+          ("ONHOLD"    . org-agenda-dimmed-todo-face)
+          ("AGENDA"    . "deep sky blue")
+          ("DELEGATED" . "steel blue")
+          ("WAITING"   . "goldenrod")
+          ("MONITOR"   . "red")
+          ("CANCELLED" . "dark green"))
+
+        org-enforce-todo-dependencies t)
 #+END_SRC
 
 ** Additional checklist features
@@ -530,38 +538,36 @@ And now add some of my own based on the above...
 
 #+BEGIN_SRC emacs-lisp
   (setq jc/org-agenda-task-cmds
-        '(
+        '((todo "DOING"
+                ((org-agenda-overriding-header "Tasks in progress")))
           (todo "NEXT"
                 ((org-agenda-overriding-header "Things to do next")))
+          (todo "READY"
+                ((org-agenda-overriding-header "Things ready to do")))
           (todo "TODO"
                 ((org-agenda-overriding-header "Things to do")
                  (org-agenda-dim-blocked-tasks 'invisible)
                  (org-agenda-skip-function '(or (jc/skip-projects)
-                                                (jc/skip-future-tasks-with-inheritance)))
-                 ))
+                                                (jc/skip-future-tasks-with-inheritance)))))
           (todo "WAITING|DELEGATED"
                 ((org-agenda-overriding-header "Waiting for/delegated (deadline passed)")
                  (org-agenda-skip-function '(or (jc/skip-if-deadline-not-passed)
-                                                (jc/skip-future-tasks-with-inheritance)))
-                 ))
+                                                (jc/skip-future-tasks-with-inheritance)))))
           (todo "DELEGATED"
                 ((org-agenda-overriding-header "Delegated")
                  (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
-                                                (jc/skip-future-tasks-with-inheritance)))
-                 ))
+                                                (jc/skip-future-tasks-with-inheritance)))))
           (todo "WAITING"
                 ((org-agenda-overriding-header "Waiting for")
                  (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
-                                                (jc/skip-future-tasks-with-inheritance)))
-                 ))
+                                                (jc/skip-future-tasks-with-inheritance)))))
           (todo "MONITOR"
                 ((org-agenda-overriding-header "Monitor")))
           (todo "ONHOLD"
                 ((org-agenda-overriding-header "On hold")))
           (todo "TODO"
                 ((org-agenda-overriding-header "Stuck or complete projects")
-                 (org-agenda-skip-function 'bh/skip-non-stuck-projects)))
-          )
+                 (org-agenda-skip-function 'bh/skip-non-stuck-projects))))
         
         org-agenda-custom-commands
         `(("p" "Personal tasks" ,jc/org-agenda-task-cmds
@@ -571,12 +577,9 @@ And now add some of my own based on the above...
                     `((tags-todo "atwork/!TODO"
                                 ((org-agenda-files `(,jc/agenda-file-personal))
                                  (org-agenda-overriding-header "Personal tasks at work")))))
-           ((org-agenda-files `(,jc/agenda-file-work)))
-           )
-          )
-        
-        org-agenda-tags-todo-honor-ignore-options t
-        )
+           ((org-agenda-files `(,jc/agenda-file-work)))))
+
+        org-agenda-tags-todo-honor-ignore-options t)
 #+END_SRC
 
 * Markup
