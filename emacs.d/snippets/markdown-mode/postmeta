@@ -4,10 +4,11 @@
 # --
 ---
 title: "${1:Title}"
+${2:teaser: "${3:Teaser}"}
 kind: article
-created_at: ${2:`(format-time-string "%c")`}
+created_at: ${4:`(format-time-string "%c")`}
 tags:
-- $3
+- $5
 ---
 
 $0
