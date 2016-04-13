@@ -600,6 +600,10 @@ Disable strike-through formatting because I don't use it and it messes up ~table
 
         org-export-with-toc nil
         org-export-with-section-numbers nil)
+
+  (dolist (backend org-export-backends)
+    (ignore-errors
+      (require (make-symbol (concat "ox-" (symbol-name backend))))))
 #+END_SRC
 
 ** LaTeX/PDF
@@ -680,9 +684,9 @@ Disable strike-through formatting because I don't use it and it messes up ~table
 * Mobile
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-mobile-files `(org-agenda-files
-                           ,(expand-file-name "someday.org" org-directory)
-                           ,(expand-file-name "people-agendas.org" org-directory)))
+  (setq org-mobile-files (list org-agenda-files
+                               (mapcar (lambda (f) (expand-file-name f org-directory))
+                                       '("someday.org" "logbook.org" "logbook-work.org"))))
 
   ;; (when (boundp 'focus-in-hook)
   ;;   (add-hook 'focus-in-hook 'org-mobile-pull))
