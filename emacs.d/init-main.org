@@ -358,7 +358,7 @@ Make some faces fixed pitch (mostly to fix vertical alignment issues):
 
 #+BEGIN_SRC emacs-lisp
   (eval-after-load 'org-indent
-    '(set-face-attribute 'org-indent nil :inherit '(fixed-pitch)))
+    '(set-face-attribute 'org-indent nil :inherit '(fixed-pitch org-hide)))
   (add-hook 'after-init-hook
             (lambda ()
               (set-face-attribute 'org-table nil :inherit '(fixed-pitch))
