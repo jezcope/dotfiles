@@ -667,7 +667,7 @@ Disable strike-through formatting because I don't use it and it messes up ~table
    '((emacs-lisp . t)
      (ruby . t)
      (python . t)
-     (sh . t)
+     (shell . t)
      (ditaa . t)))
 #+END_SRC
 
