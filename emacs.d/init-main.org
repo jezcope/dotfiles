@@ -157,7 +157,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   auto-complete
   ac-python
   auto-complete-latex
-  auto-complete-ruby
 #+END_SRC
 
 **** Appearance
