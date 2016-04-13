@@ -449,8 +449,9 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
             (lambda () (diminish 'buffer-face-mode)))
   (add-hook 'org-indent-mode-hook
             (lambda () (diminish 'org-indent-mode)))
+  (with-eval-after-load 'org-src
+    (diminish 'org-src-mode "OS"))
   (diminish 'visual-line-mode)
-  (diminish 'org-src-mode "OS")
 #+END_SRC
 
 *** Activate filladapt-mode
