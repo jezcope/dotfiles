@@ -1,0 +1,6 @@
+(:name filladapt
+       :description "Filladapt enhances the behavior of Emacs' fill functions by guessing the proper fill prefix in many contexts. Emacs has a built-in adaptive fill mode but Filladapt is much better."
+       :website "http://www.wonderworks.com/"
+       :type github
+       :pkgname "emacsorphanage/filladapt"
+       :load "filladapt.el")
