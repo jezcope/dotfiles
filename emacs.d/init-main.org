@@ -146,12 +146,10 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   rainbow-delimiters
 #+END_SRC
 
-**** Auto complete mode
+**** Auto-completion
 
 #+BEGIN_SRC emacs-lisp
-  auto-complete
-  ac-python
-  auto-complete-latex
+  company-mode
 #+END_SRC
 
 **** Appearance
@@ -547,12 +545,10 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
                      newline-mark)))
 #+END_SRC
 
-*** Auto complete mode
+*** Company mode
 
 #+BEGIN_SRC emacs-lisp
-  (setq ac-dictionary-directories '("~/.emacs.d/dict"))
-  (require 'auto-complete-config)
-  (ac-config-default)
+  (global-company-mode 1)
 #+END_SRC
 
 *** Activate and configure Helm
