@@ -1,0 +1,9 @@
+(:name ess
+       :description "Emacs Speaks Statistics: statistical programming within Emacs"
+       :type elpa
+       :website "http://ess.r-project.org/"
+       :load "ess-autoloads.el"
+       :prepare (progn
+                  (autoload 'R-mode "ess-site" nil t)
+                  (autoload 'Rd-mode "ess-site" nil t)
+                  (autoload 'Rnw-mode "ess-site" nil t)))
