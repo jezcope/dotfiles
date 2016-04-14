@@ -33,8 +33,9 @@
     "f" 'jc/file-hydra/body
     "t" 'jc/toggle-hydra/body
     "i" 'helm-semantic-or-imenu
-    "I" 'helm-imenu-in-all-buffers
-    )
+    "I" 'helm-imenu-in-all-buffers)
+  (evil-leader/set-key-for-mode 'org-mode
+    "r" 'jc/org-refile-hydra/body)
 
   (global-evil-leader-mode 1)
 #+END_SRC

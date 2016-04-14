@@ -119,6 +119,47 @@
           )
         )
 #+END_SRC
+
+** Refile to datetree
+
+Based on code from [[http://emacs.stackexchange.com/questions/10597/how-to-refile-into-a-datetree][org mode - How to refile into a datetree - Emacs Stack Exchange]] by user ~ericstokes~.
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-refile-to-datetree (&optional prompt-for-date file)
+    "Refile a subtree to a datetree corresponding to it's timestamp.
+
+  The current time is used if the entry has no timestamp. If FILE
+  is nil, refile in the current file."
+    (interactive "Pf")
+    (let* ((datetree-date (if prompt-for-date (org-read-date)
+                            (or (org-entry-get nil "TIMESTAMP" t)
+                                (org-read-date t nil "now"))))
+           (date (org-date-to-gregorian datetree-date)))
+      (save-excursion
+        (org-cut-subtree)
+        (let ((target-buffer (if file (find-file-noselect file)
+                               (current-buffer))))
+          (with-current-buffer target-buffer
+            (org-datetree-find-date-create date)
+            (org-narrow-to-subtree)
+            (show-subtree)
+            (org-end-of-subtree t)
+            (newline)
+            (goto-char (point-max))
+            (org-paste-subtree 4)
+            (widen))))))
+
+  (defhydra jc/org-refile-hydra (:columns 2 :exit t)
+    "refile"
+    ("lp" (jc/org-refile-to-datetree nil jc/logbook-file) "logbook")
+    ("LP" (jc/org-refile-to-datetree t jc/logbook-file) "logbook (w. prompt)")
+    ("lw" (jc/org-refile-to-datetree nil jc/logbook-file-work) "work logbook")
+    ("LW" (jc/org-refile-to-datetree t jc/logbook-file-work) "work logbook (w. prompt)")
+    ("r" org-refile "refile"))
+  (define-key org-mode-map (kbd "C-c r") 'jc/org-refile-hydra/body)
+#+END_SRC
+
+
 * Archive
 
 #+BEGIN_SRC emacs-lisp
