@@ -107,12 +107,9 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   sunrise-commander
   sunrise-x-loop
   sunrise-x-checkpoints
-  sunrise-x-tree
   magit
   mu4e
   erc
-  twittering-mode
-  ;ecb
 #+END_SRC
 
 **** Global customizations
@@ -130,11 +127,9 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   helm-projectile
   projectile
   hydra
-  ;; popwin
   mmm-mode
   filladapt
   lorem-ipsum
-  multiple-cursors
   adaptive-wrap
   dropdown-list
   expand-region
@@ -143,7 +138,6 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   avy
   ace-window
   ace-link
-  linum-relative
   rainbow-mode
   unbound
   writeroom-mode
@@ -541,14 +535,6 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
             '(lambda ()
                (if mmm-mode
                    (mmm-parse-region yas-snippet-beg yas-snippet-end))))
-#+END_SRC
-
-*** Activate multiple-cursors
-
-#+BEGIN_SRC emacs-lisp
-  (require 'multiple-cursors)
-  
-  (global-set-key (kbd "<C-M-return>") 'mc/edit-ends-of-lines)
 #+END_SRC
 
 *** Customise whitespace-mode
@@ -986,12 +972,13 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
 **** Ruby
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.thor\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Thorfile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Gemfile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Guardfile\\'" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Rules\\'" . ruby-mode))
+  (nconc auto-mode-alist
+         '(("\\.thor\\'" . ruby-mode)
+           ("\\.gemspec\\'" . ruby-mode)
+           ("Thorfile\\'" . ruby-mode)
+           ("Gemfile\\'" . ruby-mode)
+           ("Guardfile\\'" . ruby-mode)
+           ("Rules\\'" . ruby-mode)))
 #+END_SRC
 
 **** Shell scripts
