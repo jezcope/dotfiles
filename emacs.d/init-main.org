@@ -798,7 +798,7 @@ These functions are required for some of the above.
 
 #+BEGIN_SRC emacs-lisp
   (define-key global-map (kbd "C-c f")
-    (defhydra jc/file-hydra (:exit t :columns 3 :hint nil)
+    (defhydra jc/file-hydra (:exit t :columns 3 :hint none)
       "
   ^Projects^     ^Logbooks^     ^Org^
   ^^^^^^^^-----------------------------------------
