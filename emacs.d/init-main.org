@@ -143,6 +143,7 @@ Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to inst
   writeroom-mode
   beacon
   guide-key
+  rainbow-delimiters
 #+END_SRC
 
 **** Auto complete mode
@@ -945,7 +946,9 @@ Overall setup:
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'lisp-mode-hook 'show-paren-mode)
+  (dolist (hook '(lisp-mode-hook emacs-lisp-mode-hook))
+    (dolist (func '(show-paren-mode rainbow-delimiters-mode))
+      (add-hook hook func)))
 #+END_SRC
 
 ***** Useful functions for customising emacs
