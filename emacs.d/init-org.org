@@ -764,7 +764,7 @@ Disable strike-through formatting because I don't use it and it messes up ~table
 * Additional features (not already loaded)
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path (expand-file-name "lisp/org" dotfiles-dir))
+  (add-to-list 'load-path (expand-file-name "lisp/org" user-emacs-directory))
   
   (let ((packages '(;; Built-in packages (from contrib)
                     org-bbdb

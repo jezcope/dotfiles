@@ -53,7 +53,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
 *** Set load-path
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'load-path "~/.emacs.d/lisp")
+  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 #+END_SRC
 
 *** File locations
@@ -72,140 +72,11 @@ Enable menu bar on Mac, as it doesn't make any difference:
         custom-theme-directory (expand-file-name "~/.emacs.d/themes"))
 #+END_SRC
 
-** Install packages via el-get
-
-*** Path for custom recipes
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'el-get-recipe-path "~/.emacs.d/recipes")
-#+END_SRC
-
-*** Set up for ELPA packages
-
-Create ~package-user-dir~ if it doesn't exist already.  el-get will fail to install any packages from elpa otherwise.
-
-#+BEGIN_SRC emacs-lisp
-  (make-directory package-user-dir t)
-#+END_SRC
-
-*** Packages to install
-
-#+BEGIN_SRC emacs-lisp
-  (setq my-packages
-         '(
-#+END_SRC
-
-**** Basics
-
-#+BEGIN_SRC emacs-lisp
-  el-get
-  package
-  org-mode
-  dash
-#+END_SRC
-
-**** Applications
-
-#+BEGIN_SRC emacs-lisp
-  sunrise-commander
-  sunrise-x-loop
-  sunrise-x-checkpoints
-  magit
-  mu4e
-  erc
-#+END_SRC
-
-**** Global customizations
-
-#+BEGIN_SRC emacs-lisp
-  evil
-  evil-numbers
-  evil-surround
-  evil-leader
-  evil-nerd-commenter
-  deft-turbo
-  yasnippet
-  helm
-  helm-swoop
-  helm-projectile
-  projectile
-  hydra
-  mmm-mode
-  filladapt
-  lorem-ipsum
-  adaptive-wrap
-  dropdown-list
-  expand-region
-  change-inner
-  buffer-move
-  avy
-  ace-window
-  ace-link
-  rainbow-mode
-  unbound
-  writeroom-mode
-  beacon
-  guide-key
-  rainbow-delimiters
-#+END_SRC
-
-**** Auto-completion
-
-#+BEGIN_SRC emacs-lisp
-  company-mode
-#+END_SRC
-
-**** Appearance
-
-#+BEGIN_SRC emacs-lisp
-  color-theme-darktooth
-  powerline
-  diminish
-#+END_SRC
-
-**** Text/document editing
-
-#+BEGIN_SRC emacs-lisp
-  markdown-mode
-  pandoc-mode
-  criticmarkup-emacs
-  emmet-mode ;; from local recipe
-  auctex
-#+END_SRC
-
-**** Org-mode extras
-
-#+BEGIN_SRC emacs-lisp
-  org-reveal
-#+END_SRC
-
-**** Programming languages and similar
-
-#+BEGIN_SRC emacs-lisp
-  ruby-mode
-  yaml-mode
-  coffee-mode
-  haml-mode
-  scss-mode
-  lua-mode
-  abc-mode
-  graphviz-dot-mode
-  ess ; S/R and related languages
-  puppet-mode
-  web-mode
-#+END_SRC
-
-*** And finally, install everything
-
-#+BEGIN_SRC emacs-lisp
-  ))
-
-  (el-get 'sync my-packages)
-#+END_SRC
-
 ** Require some key utilities
 
 #+BEGIN_SRC emacs-lisp
   (require 'dash)
+  (require 'cl)
 #+END_SRC
 
 ** Additional setup files
@@ -379,7 +250,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 
 #+BEGIN_SRC emacs-lisp
   (setq jc/autosave-directory
-        (expand-file-name "../.autosave" dotfiles-dir))
+        (expand-file-name "../.autosave" user-emacs-directory))
   (setq backup-directory-alist
         `((".*" . ,jc/autosave-directory))
         auto-save-file-name-transforms
@@ -460,7 +331,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 #+BEGIN_SRC emacs-lisp
   (require 'yasnippet)
   (setq yas-snippet-dirs
-        (-insert-at 1 (expand-file-name "snippets-local" dotfiles-dir) yas-snippet-dirs))
+        (-insert-at 1 (expand-file-name "snippets-local" user-emacs-directory) yas-snippet-dirs))
 
   (yas-global-mode 1)
   (add-hook 'wl-draft-mode-hook 'yas-minor-mode-on)
@@ -485,10 +356,8 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
               (cdr (assoc result rmap))))
         nil))
 
-  (require 'dropdown-list)
   (setq yas-also-indent-first-line t
         yas-prompt-functions '(shk-yas/helm-prompt
-                               yas-dropdown-prompt
                                yas-x-prompt
                                yas-ido-prompt
                                yas-completing-prompt
@@ -973,13 +842,13 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
 **** Ruby
 
 #+BEGIN_SRC emacs-lisp
-  (nconc auto-mode-alist
-         '(("\\.thor\\'" . ruby-mode)
-           ("\\.gemspec\\'" . ruby-mode)
-           ("Thorfile\\'" . ruby-mode)
-           ("Gemfile\\'" . ruby-mode)
-           ("Guardfile\\'" . ruby-mode)
-           ("Rules\\'" . ruby-mode)))
+  ;; (nconc auto-mode-alist
+  ;;        '(("\\.thor\\'" . ruby-mode)
+  ;;          ("\\.gemspec\\'" . ruby-mode)
+  ;;          ("Thorfile\\'" . ruby-mode)
+  ;;          ("Gemfile\\'" . ruby-mode)
+  ;;          ("Guardfile\\'" . ruby-mode)
+  ;;          ("Rules\\'" . ruby-mode)))
 #+END_SRC
 
 **** Shell scripts
@@ -1084,7 +953,7 @@ If the homebrew version of coreutils is installed under Mac, use that:
 *** Mu4e
 
 #+BEGIN_SRC emacs-lisp
-  (when (file-exists-p (expand-file-name "init-mu4e.org" dotfiles-dir))
+  (when (file-exists-p (expand-file-name "init-mu4e.org" user-emacs-directory))
     (jc/require-org-file "init-mu4e.org"))
 
   (add-hook 'message-mode-hook 'flyspell-mode)
@@ -1233,7 +1102,7 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
 The ~t~ argument ensures no error is thrown if the file doesn't exist.
 
 #+BEGIN_SRC emacs-lisp
-  (when (file-exists-p (expand-file-name "init-local.org" dotfiles-dir))
+  (when (file-exists-p (expand-file-name "init-local.org" user-emacs-directory))
     (jc/require-org-file "init-local.org"))
   
   (load "local.el" t)
