@@ -50,6 +50,9 @@ if [[ -z "$rvm_path" ]]; then
   fi
 fi
 
+# Cask for emacs packages
+export path=(~/.cask/bin $path)
+
 TEXMFHOME=~/.texmf:~/Dropbox/TeX
 export TEXMFHOME
 
