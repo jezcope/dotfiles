@@ -420,6 +420,8 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 
 #+BEGIN_SRC emacs-lisp
   (global-company-mode 1)
+
+  (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
 #+END_SRC
 
 *** Activate and configure Helm
@@ -463,43 +465,6 @@ This doesn't work as I want it to right now - needs reworking.
   
   ;; (setq jc/clipboard-to-kill-ring-timer
   ;;       (run-with-timer 0.5 0.5 'jc/clipboard-to-kill-ring))
-#+END_SRC
-
-*** Fix popup windows with popwin.el                             :disabled:
-
-#+BEGIN_SRC emacs-lisp :tangle no
-  (require 'popwin)
-
-  (global-set-key (kbd "C-z") popwin:keymap)
-
-  (setq popwin:special-display-config
-        '(("*Miniedit Help*" :noselect t)
-          help-mode
-          (completion-list-mode :noselect t)
-          (compilation-mode :noselect t)
-          (grep-mode :noselect t)
-          (occur-mode :noselect t)
-          ("*Pp Macroexpand Output*" :noselect t)
-          "*Shell Command Output*"
-          "*vc-diff*"
-          "*vc-change-log*"
-          (" *undo-tree*" :width 60 :position right)
-          ("^\\*anything.*\\*$" :regexp t)
-          "*slime-apropos*"
-          "*slime-macroexpansion*"
-          "*slime-description*"
-          ("*slime-compilation*" :noselect t)
-          "*slime-xref*"
-          (sldb-mode :stick t)
-          slime-repl-mode
-          slime-connection-list-mode
-          (magit-status-mode :width 100 :position right)
-          ("^\\*Org Src.*" :regexp t)
-          (apropos-mode :width 70 :position left)
-          ))
-
-  (popwin-mode 1)
-
 #+END_SRC
 
 *** Configure expand-region and change-inner
@@ -953,10 +918,13 @@ If the homebrew version of coreutils is installed under Mac, use that:
 *** Mu4e
 
 #+BEGIN_SRC emacs-lisp
-  (when (file-exists-p (expand-file-name "init-mu4e.org" user-emacs-directory))
-    (jc/require-org-file "init-mu4e.org"))
+  (use-package mu4e
+    :commands (mu4e)
+    :config
+    (when (file-exists-p (expand-file-name "init-mu4e.org" user-emacs-directory))
+      (jc/require-org-file "init-mu4e.org"))
 
-  (add-hook 'message-mode-hook 'flyspell-mode)
+    (add-hook 'message-mode-hook 'flyspell-mode))
 #+END_SRC
 
 *** Magit
