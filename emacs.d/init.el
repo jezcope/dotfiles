@@ -10,6 +10,10 @@
 (cask-initialize)
 (require 'use-package)
 
+(use-package pallet
+  :config
+  (pallet-mode t))
+
 ;; Add ~/.emacs.d/elpa if it doesn't exist
 ;; (make-directory (expand-file-name "elpa" user-emacs-directory) t)
 
