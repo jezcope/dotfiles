@@ -2,7 +2,7 @@
 (source gnu)
 (source melpa)
 (source org)
-(source joseito "http://joseito.republika.pl/sunrise-commander/")
+(source SC)
 
 (depends-on "use-package")
 
