@@ -5,6 +5,7 @@
 
 (depends-on "ace-link")
 (depends-on "ace-window")
+(depends-on "airline-themes")
 (depends-on "avy")
 (depends-on "beacon")
 (depends-on "company")

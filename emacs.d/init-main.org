@@ -301,8 +301,18 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
        (set-face-foreground 'hydra-face-amaranth
                             (if (display-graphic-p) "#AF3A03" "color-130"))))
 
-  (setq powerline-default-separator 'wave)
-  (powerline-default-theme)
+  (use-package airline-themes
+    :init
+    (setq powerline-default-separator           'wave
+          airline-utf-glyph-separator-left      #xe0b0
+          airline-utf-glyph-separator-right     #xe0b2
+          airline-utf-glyph-subseparator-left   #xe0b1
+          airline-utf-glyph-subseparator-right  #xe0b3
+          airline-utf-glyph-branch              #xe0a0
+          airline-utf-glyph-readonly            #xe0a2
+          airline-utf-glyph-linenumber          #xe0a1)
+    :config
+    (load-theme 'airline-distinguished))
 
   (with-eval-after-load 'helm-mode
     (diminish 'helm-mode))
