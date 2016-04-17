@@ -7,6 +7,9 @@ if [[ $PLATFORM = 'Darwin' ]]; then
   path=(/usr/local/texlive/2013/bin/universal-darwin $path)
 fi
 
+# Cask for emacs packages
+path=(~/.cask/bin $path)
+
 export PATH
 
 # Local Variables:
