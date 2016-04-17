@@ -612,6 +612,7 @@ This one toggles some minor modes.  Also inspired by [[http://endlessparentheses
       ("c" column-number-mode "col num")
       ("l" line-number-mode "line num")
       ("f" auto-fill-mode "auto fill")
+      ("r" writeroom-mode "writeroom")
       ("v" variable-pitch-mode "var pitch")
       ("w" visual-line-mode "vis line")
       ("W" whitespace-mode "whitespace")))
