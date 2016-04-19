@@ -594,7 +594,7 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
       ("C" mu4e-compose-new "compose")
       ("i" (mu4e~headers-jump-to-maildir "/INBOX") "inbox")
       ("f" sunrise "sunrise")
-      ))
+      ("p" helm-package "install packages")))
 #+END_SRC
 
 This one toggles some minor modes.  Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
