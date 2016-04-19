@@ -532,12 +532,6 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "C-c p") 'jc/projectile-hydra/body)
 #+END_SRC
 
-*** Deft (for quick reference)
-
-#+BEGIN_SRC emacs-lisp
-  (setq deft-directory (expand-file-name "Notes/Reference" jc/dropbox-location))
-#+END_SRC
-
 *** Beacon
 
 #+BEGIN_SRC emacs-lisp

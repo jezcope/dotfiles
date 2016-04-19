@@ -748,17 +748,18 @@ Disable strike-through formatting because I don't use it and it messes up ~table
   (define-key org-mode-map (kbd "C-c m") 'org-contacts-view-send-email)
 #+END_SRC
 
-* Org Velocity
+* Rifle
 
 #+BEGIN_SRC emacs-lisp
-  (require 'org-velocity)
-  
-  (setq org-velocity-bucket
-        (expand-file-name "Notes/Reference/snippets.org" jc/dropbox-location)
-  
-        org-velocity-always-use-bucket t)
-  
-  (global-set-key (kbd "C-c v") 'org-velocity-read)
+  (defhydra jc/rifle-hydra (:exit t)
+    "Org Rifle"
+    ("r" helm-org-rifle "agenda files")
+    ("b" helm-org-rifle-current-buffer "current buffer")
+    ("f" (helm-org-rifle-files (list (expand-file-name "Notes/reference.org" jc/dropbox-location))) "reference notes")
+    ("l" (helm-org-rifle-files (list jc/logbook-file)) "logbook")
+    ("L" (helm-org-rifle-files (list jc/logbook-file-work)) "logbook"))
+
+  (evil-leader/set-key "or" 'jc/rifle-hydra/body)
 #+END_SRC
 
 * Additional features (not already loaded)
