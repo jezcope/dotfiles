@@ -542,7 +542,7 @@ This doesn't work as I want it to right now - needs reworking.
 
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
-    :commands (rainbow-mode rainbow-turn-on))
+    :commands (rainbow-mode))
 #+END_SRC
 ** Key bindings
 *** Guide key for reminders of key chord completions
@@ -740,7 +740,7 @@ Overall setup:
 
 #+BEGIN_SRC emacs-lisp
   (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'sgml-mode-hook 'rainbow-turn-on)
+  (add-hook 'sgml-mode-hook 'rainbow-mode)
 #+END_SRC
 
 ***** Configure emmet-mode
@@ -752,7 +752,7 @@ Overall setup:
 **** CSS
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'css-mode-hook 'rainbow-turn-on)
+  (add-hook 'css-mode-hook 'rainbow-mode)
 #+END_SRC
 
 **** TeX
@@ -770,7 +770,7 @@ Overall setup:
 **** Haml/Sass
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'scss-mode-hook 'rainbow-turn-on)
+  (add-hook 'scss-mode-hook 'rainbow-mode)
   (setq scss-compile-at-save nil)
 #+END_SRC
 
