@@ -26,6 +26,7 @@
 (depends-on "helm-package")
 (depends-on "helm-projectile")
 (depends-on "helm-swoop")
+(depends-on "htmlize")
 (depends-on "hydra")
 (depends-on "magit")
 (depends-on "markdown-mode")
