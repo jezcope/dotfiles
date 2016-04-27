@@ -537,6 +537,13 @@ This doesn't work as I want it to right now - needs reworking.
 #+BEGIN_SRC emacs-lisp
   (beacon-mode 1)
 #+END_SRC
+
+*** Rainbow mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-mode
+    :commands (rainbow-mode rainbow-turn-on))
+#+END_SRC
 ** Key bindings
 *** Guide key for reminders of key chord completions
 
