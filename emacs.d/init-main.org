@@ -809,6 +809,16 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
       (message "No face at %d" pos))))
 #+END_SRC
 
+**** Python
+
+#+BEGIN_SRC emacs-lisp
+  (use-package virtualenvwrapper
+    :config
+    (venv-initialize-interactive-shells)
+    (venv-initialize-eshell)
+    (venv-set-location "~/.miniconda3/envs"))
+#+END_SRC
+
 **** Ruby
 
 #+BEGIN_SRC emacs-lisp

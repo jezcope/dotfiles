@@ -10,6 +10,11 @@ fi
 # Cask for emacs packages
 path=(~/.cask/bin $path)
 
+# Miniconda for python
+if [[ -d ~/.miniconda/bin ]]; then
+  path=(~/.miniconda/bin $path)
+fi
+
 export PATH
 
 # Local Variables:

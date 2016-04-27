@@ -45,6 +45,7 @@
 (depends-on "sunrise-x-loop")
 (depends-on "unbound")
 (depends-on "use-package")
+(depends-on "virtualenvwrapper")
 (depends-on "web-mode")
 (depends-on "writeroom-mode")
 (depends-on "yaml-mode")
