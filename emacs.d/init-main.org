@@ -544,6 +544,15 @@ This doesn't work as I want it to right now - needs reworking.
   (use-package rainbow-mode
     :commands (rainbow-mode))
 #+END_SRC
+
+*** Winner mode
+
+Lets you use =C-c <left>= and =C-c <right>= to undo and redo window configuration changes
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'after-init-hook 'winner-mode)
+#+END_SRC
+
 ** Key bindings
 *** Guide key for reminders of key chord completions
 
