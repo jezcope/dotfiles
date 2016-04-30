@@ -20,6 +20,7 @@
 (depends-on "evil-leader")
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-surround")
+(depends-on "git-timemachine")
 (depends-on "guide-key")
 (depends-on "haml-mode")
 (depends-on "helm")
