@@ -36,7 +36,7 @@ import XMonad.Actions.CycleWS
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "gnome-terminal"
+myTerminal      = "sakura"
  
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -85,7 +85,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["Home", "Work 1", "Work 2", "Files", "Misc", "Sys", "Win"]
+myWorkspaces    = map show [1..7]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -104,7 +104,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
  
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    , ((modm              , xK_r     ), spawn "gmrun")
  
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -173,8 +173,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_z     ), spawn "xscreensaver-command -lock")
 
     -- Next/previous WS
-    , ((modm              , xK_Page_Down), nextWS)
-    , ((modm              , xK_Page_Up), prevWS)
+    , ((modm              , xK_Right), nextWS)
+    , ((modm              , xK_Left), prevWS)
     ]
     ++
  
