@@ -1,6 +1,28 @@
 #!/usr/bin/zsh
 
+set -e
+
 zparseopts -a opts u
+
+update_git_repo() {
+  local repo=$1
+
+  cd $repo
+
+  if ! (git diff-files --quiet --ignore-submodules -- && git diff-index --cached --quiet HEAD --ignore-submodules --); then
+    echo "Saving uncommitted changes in $repo..."
+    stash=$(git stash create "Uncommitted changes on box-update")
+    git reset --hard HEAD
+  fi
+
+  echo "Updating $repo..."
+  git pull && git submodule update
+
+  if [[ -n "$stash" ]]; then
+    echo "Reapplying saved changes..."
+    git stash apply "$stash"
+  fi
+}
 
 if (( ${+opts[(r)-u]} )); then
   if which pacman &> /dev/null; then
@@ -17,11 +39,11 @@ fi
 
 echo "\nUpdating puppet configuration"
 echo "============================="
-(cd /etc/box-config && git pull)
+update_git_repo /etc/box-config
 
 echo "\nUpdating dotfiles"
 echo "================="
-(cd ~/.dotfiles && git pull && git submodule update)
+update_git_repo ~/.dotfiles
 
 echo "\nApplying updated puppet configuration"
 echo "====================================="
