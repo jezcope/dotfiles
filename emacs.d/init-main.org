@@ -180,29 +180,27 @@ Set default fonts in order of preference:
          "Ubuntu Mono"
          "Menlo"
          "Monaco"
-         "fixed"
-         )
+         "fixed")
 
         jc/font-variable
         (jc/first-available-font
          "Input Sans Condensed"
          "Droid Sans"
          "Ubuntu Sans"
-         "sans"
-         )
-        )
+         "sans"))
 
   (set-face-attribute 'default nil
-                      :family jc/font-fixed
                       :height 110
                       :weight 'light
-                      )
+                      :inherit '(fixed-pitch))
+
+  (set-face-attribute 'fixed-pitch nil
+                      :family jc/font-fixed)
 
   (set-face-attribute 'variable-pitch nil
                       :family jc/font-variable
                       :height 110
-                      :weight 'light
-                      )
+                      :weight 'light)
 #+END_SRC
 
 Make some modes variable pitch by default:
