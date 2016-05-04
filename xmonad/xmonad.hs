@@ -85,7 +85,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = map show [1..7]
+myWorkspaces    = map show [1..8]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -173,8 +173,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_z     ), spawn "xscreensaver-command -lock")
 
     -- Next/previous WS
-    , ((modm              , xK_Right), nextWS)
-    , ((modm              , xK_Left), prevWS)
+    , ((modm              , xK_Right ), nextWS)
+    , ((modm              , xK_Left  ), prevWS)
+    , ((modm              , xK_o     ), nextScreen)
+    , ((modm .|. shiftMask, xK_o     ), shiftNextScreen)
     ]
     ++
  
@@ -185,17 +187,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-shift-[1..9], Move client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_8]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
  
     --
-    -- Arrange screens {8,*9*,0} where *9* is the primary display
-    -- mod-{8,9,0}, Switch to physical/Xinerama screens
-    -- mod-shift-{8,9,0}, Move client to screen
+    -- Arrange screens {*9*,0} where *9* is the primary display
+    -- mod-{9,0}, Switch to physical/Xinerama screens
+    -- mod-shift-{9,0}, Move client to screen
     --
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_9, xK_8, xK_0] [0..]
+        | (key, sc) <- zip [xK_9, xK_0] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
  
  
