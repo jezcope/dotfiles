@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
 
-set -e
+#set -ex
 
 zparseopts -a opts u
 
@@ -8,6 +8,15 @@ update_git_repo() {
   local repo=$1
 
   cd $repo
+
+  git remote update
+  
+  local=$(git rev-parse @)
+  remote=$(git rev-parse @{u})
+  if [[ $local = $remote ]]; then
+    echo "Already up to date"
+    return 1
+  fi
 
   if ! (git diff-files --quiet --ignore-submodules -- && git diff-index --cached --quiet HEAD --ignore-submodules --); then
     echo "Saving uncommitted changes in $repo..."
@@ -35,16 +44,20 @@ if (( ${+opts[(r)-u]} )); then
     sudo apt-get update
     sudo apt-get upgrade
   fi
+  echo
 fi
 
-echo "\nUpdating puppet configuration"
+echo "Updating puppet configuration"
 echo "============================="
 update_git_repo /etc/box-config
+puppet_updated=$status
 
 echo "\nUpdating dotfiles"
 echo "================="
 update_git_repo ~/.dotfiles
 
-echo "\nApplying updated puppet configuration"
-echo "====================================="
-box-config apply
+if (( $puppet_updated == 0 )); then
+  echo "\nApplying updated puppet configuration"
+  echo "====================================="
+  box-config apply
+fi
