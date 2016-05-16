@@ -190,12 +190,14 @@ Set default fonts in order of preference:
          "sans"))
 
   (set-face-attribute 'default nil
+                      :family jc/font-fixed
                       :height 110
-                      :weight 'light
-                      :inherit '(fixed-pitch))
+                      :weight 'light)
 
   (set-face-attribute 'fixed-pitch nil
-                      :family jc/font-fixed)
+                      :family jc/font-fixed
+                      :height 110
+                      :weight 'light)
 
   (set-face-attribute 'variable-pitch nil
                       :family jc/font-variable
