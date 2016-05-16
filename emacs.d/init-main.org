@@ -643,8 +643,6 @@ These functions are required for some of the above.
         (ansi-term jc/zsh-location "ansi-term[zsh]")
         (let ((shell-file-name jc/zsh-location))
         (shell "shell[zsh]"))))
-
-  (autoload 'mu4e~headers-jump-to-maildir "mu4e.el")
 #+END_SRC
 
 *** Shortcuts to commonly used files
@@ -957,7 +955,7 @@ If the homebrew version of coreutils is installed under Mac, use that:
 
 #+BEGIN_SRC emacs-lisp
   (use-package mu4e
-    :commands (mu4e)
+    :commands (mu4e mu4e~headers-jump-to-maildir)
     :config
     (when (file-exists-p (expand-file-name "init-mu4e.org" user-emacs-directory))
       (jc/require-org-file "init-mu4e.org"))
