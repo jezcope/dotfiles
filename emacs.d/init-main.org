@@ -793,6 +793,13 @@ Overall setup:
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 #+END_SRC
+
+**** PDF
+
+#+BEGIN_SRC emacs-lisp
+  (pdf-tools-install)
+#+END_SRC
+
 *** Programming languages
 **** Lisp
 
