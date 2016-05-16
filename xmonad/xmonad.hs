@@ -14,7 +14,7 @@
 --
 -- http://www.haskell.org/haskellwiki/Xmonad/Notable_changes_since_0.8
 --
- 
+
 import XMonad
 import Control.Monad
 import Data.Monoid
@@ -23,6 +23,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+import XMonad.Config.Mate
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
@@ -104,7 +105,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
  
     -- launch gmrun
-    , ((modm              , xK_r     ), spawn "gmrun")
+    , ((modm              , xK_r     ), mateRun)
  
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -170,7 +171,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Lock the screen
-    , ((modm .|. shiftMask, xK_z     ), spawn "xscreensaver-command -lock")
+    -- , ((modm .|. shiftMask, xK_z     ), spawn "xscreensaver-command -lock")
 
     -- Next/previous WS
     , ((modm              , xK_Right ), nextWS)
@@ -357,7 +358,7 @@ myLogHook = takeTopFocus >> setWMName "LG3D"
 -- hook by combining it with ewmhDesktopsStartup.
 --
 myStartupHook = return ()
- 
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
  
@@ -371,7 +372,7 @@ main = xmonad =<< (xmobar $ ewmh $ defaults)
 --
 -- No need to modify this.
 --
-defaults = defaultConfig {
+defaults = mateConfig {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
