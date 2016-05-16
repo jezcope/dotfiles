@@ -722,6 +722,25 @@ Disable strike-through formatting because I don't use it and it messes up ~table
   
 #+END_SRC
 
+** Utilities for editing source blocks
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-split-src-block-before-line ()
+    (interactive)
+    (let ((block-info (org-babel-get-src-block-info)))
+      (if (null block-info)
+          (message "Not in SRC block")
+        (beginning-of-line)
+        (insert "#+END_SRC\n\n#+BEGIN_SRC " (car block-info) "\n"))))
+
+  (defhydra jc/org-source-hydra (:exit t)
+    "org-source"
+    ("s" jc/org-split-src-block-before-line "split SRC"))
+
+  (evil-leader/set-key-for-mode 'org-mode
+    "s" 'jc/org-source-hydra/body)
+#+END_SRC
+
 * Mobile
 
 #+BEGIN_SRC emacs-lisp
