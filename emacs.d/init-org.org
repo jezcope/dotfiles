@@ -157,6 +157,7 @@ Based on code from [[http://emacs.stackexchange.com/questions/10597/how-to-refil
     ("LW" (jc/org-refile-to-datetree t jc/logbook-file-work) "work logbook (w. prompt)")
     ("r" org-refile "refile"))
   (define-key org-mode-map (kbd "C-c r") 'jc/org-refile-hydra/body)
+  (evil-leader/set-key "or" 'jc/org-refile-hydra/body)
 #+END_SRC
 
 
@@ -778,7 +779,7 @@ Disable strike-through formatting because I don't use it and it messes up ~table
     ("l" (helm-org-rifle-files (list jc/logbook-file)) "logbook")
     ("L" (helm-org-rifle-files (list jc/logbook-file-work)) "logbook"))
 
-  (evil-leader/set-key "or" 'jc/rifle-hydra/body)
+  (evil-leader/set-key "oR" 'jc/rifle-hydra/body)
 #+END_SRC
 
 * Additional features (not already loaded)
