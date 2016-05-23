@@ -18,8 +18,14 @@ map <Leader>p :pintab<CR>
 command -description "Add current page to Buffer app" bufferadd js content.location.href='https://bufferapp.com/add?url='+encodeURIComponent(content.location.href)+'&text='+encodeURIComponent(content.document.title);
 map <Leader>b :bufferadd<CR>
 
-command -description "Capture link to emacs with org-protocol" orglink js content.location.href='org-protocol://store-link?url='+encodeURIComponent(content.location.href)+'&title='+encodeURIComponent(content.document.title)
-map <Leader>ol :orglink<CR>
+command -description "Capture link to emacs with org-protocol" orglink js content.location.href='org-protocol://store-link://'+encodeURIComponent(content.location.href)+'/'+encodeURIComponent(content.document.title)
+map <Leader>el :orglink<CR>
+
+command -description "Open source in emacs" emacssrc js content.location.href='org-protocol://open-source://'+encodeURIComponent(content.location.href)
+map <Leader>es :emacssrc<CR>
+
+command -description "Capture current page to org" orgcap js content.location.href='org-protocol://capture://'+encodeURIComponent(content.location.href)+'/'+encodeURIComponent(content.document.title)+'/'+encodeURIComponent(window.getSelection())
+map <Leader>ec :orgcap<CR>
 
 map <Leader>c :open https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1<CR>
 map <Leader>C :tabopen https://mail.google.com/mail/?ui=2&view=cm&fs=1&tf=1&shva=1<CR>
