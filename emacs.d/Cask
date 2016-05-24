@@ -36,6 +36,7 @@
 (depends-on "markdown-mode")
 (depends-on "mmm-mode")
 (depends-on "org-plus-contrib")
+(depends-on "ox-reveal")
 (depends-on "pallet")
 (depends-on "pandoc-mode")
 (depends-on "pdf-tools")
