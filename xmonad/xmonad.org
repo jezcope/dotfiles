@@ -8,26 +8,9 @@ Just run:
   xmonad --recompile
 #+END_SRC
 
-* Initial dump of entire configuration
+* Imports
 
 #+BEGIN_SRC haskell
-  --
-  -- xmonad example config file for xmonad-0.9
-  --
-  -- A template showing all available configuration hooks,
-  -- and how to override the defaults in your own xmonad.hs conf file.
-  --
-  -- Normally, you'd only override those defaults you care about.
-  --
-  -- NOTE: Those updating from earlier xmonad versions, who use
-  -- EwmhDesktops, safeSpawn, WindowGo, or the simple-status-bar
-  -- setup functions (dzen, xmobar) probably need to change
-  -- xmonad.hs, please see the notes below, or the following
-  -- link for more details:
-  --
-  -- http://www.haskell.org/haskellwiki/Xmonad/Notable_changes_since_0.8
-  --
-
   import XMonad
   import Control.Monad
   import Data.Monoid
@@ -46,7 +29,11 @@ Just run:
   import XMonad.Layout.ThreeColumns
   import XMonad.Layout.LayoutHints
   import XMonad.Actions.CycleWS
+#+END_SRC
 
+* Useful variables (used later)
+
+#+BEGIN_SRC haskell
   -- The preferred terminal program, which is used in a binding below and by
   -- certain contrib modules.
   --
@@ -105,7 +92,11 @@ Just run:
   --
   myNormalBorderColor  = "#333333"
   myFocusedBorderColor = "#ffaa00"
- 
+#+END_SRC
+
+* Key bindings
+
+#+BEGIN_SRC haskell
   ------------------------------------------------------------------------
   -- Key bindings. Add, modify or remove key bindings here.
   --
@@ -213,8 +204,11 @@ Just run:
       [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
           | (key, sc) <- zip [xK_9, xK_0] [0..]
           , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
- 
- 
+#+END_SRC
+
+* Mouse bindings
+
+#+BEGIN_SRC haskell
   ------------------------------------------------------------------------
   -- Mouse bindings: default actions bound to mouse events
   --
@@ -235,7 +229,11 @@ Just run:
       , ((modm, button4), (\w -> nextWS))
       , ((modm, button5), (\w -> prevWS))
       ]
- 
+#+END_SRC
+
+* Layouts
+
+#+BEGIN_SRC haskell
   ------------------------------------------------------------------------
   -- Layouts:
  
@@ -268,7 +266,11 @@ Just run:
  
       -- Percent of screen to increment by when resizing panes
       delta   = 3/100
- 
+#+END_SRC
+
+* Window rules
+
+#+BEGIN_SRC haskell
   ------------------------------------------------------------------------
   -- Window rules:
  
@@ -301,7 +303,11 @@ Just run:
   avoidMaster = W.modify' $ \c -> case c of
        W.Stack t [] (r:rs) ->  W.Stack t [r] rs
        otherwise           -> c
- 
+#+END_SRC
+
+* Event handling
+
+#+BEGIN_SRC haskell
   ------------------------------------------------------------------------
   -- Event handling
  
