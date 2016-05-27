@@ -872,6 +872,12 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
                '("\\.R\\'" . R-mode))
 #+END_SRC
 
+**** VimL
+
+#+BEGIN_SRC emacs-lisp
+  (use-package vimrc-mode)
+#+END_SRC
+
 *** Mail editing
 
 #+BEGIN_SRC emacs-lisp
