@@ -251,12 +251,13 @@ Just run:
   -- The available layouts.  Note that each layout is separated by |||,
   -- which denotes layout choice.
   --
-  myLayout = layoutHints $ avoidStruts (tiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+  myLayout = layoutHints $ avoidStruts (tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
     where
       -- default tiling algorithm partitions the screen into two panes
       tiled   = Tall nmaster delta ratio
       threeCol = ThreeCol nmaster delta ratio
       threeColMid = ThreeColMid nmaster delta ratio
+      hTiled = Mirror tiled
  
       -- The default number of windows in the master pane
       nmaster = 1

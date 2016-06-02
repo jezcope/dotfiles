@@ -1,20 +1,3 @@
---
--- xmonad example config file for xmonad-0.9
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
--- NOTE: Those updating from earlier xmonad versions, who use
--- EwmhDesktops, safeSpawn, WindowGo, or the simple-status-bar
--- setup functions (dzen, xmobar) probably need to change
--- xmonad.hs, please see the notes below, or the following
--- link for more details:
---
--- http://www.haskell.org/haskellwiki/Xmonad/Notable_changes_since_0.8
---
-
 import XMonad
 import Control.Monad
 import Data.Monoid
@@ -92,7 +75,7 @@ myWorkspaces    = map show [1..8]
 --
 myNormalBorderColor  = "#333333"
 myFocusedBorderColor = "#ffaa00"
- 
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -200,8 +183,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_9, xK_0] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
- 
- 
+
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
@@ -222,7 +204,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, button4), (\w -> nextWS))
     , ((modm, button5), (\w -> prevWS))
     ]
- 
+
 ------------------------------------------------------------------------
 -- Layouts:
  
@@ -240,12 +222,13 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = layoutHints $ avoidStruts (tiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+myLayout = layoutHints $ avoidStruts (tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
     threeCol = ThreeCol nmaster delta ratio
     threeColMid = ThreeColMid nmaster delta ratio
+    hTiled = Mirror tiled
  
     -- The default number of windows in the master pane
     nmaster = 1
@@ -255,7 +238,7 @@ myLayout = layoutHints $ avoidStruts (tiled ||| threeCol ||| threeColMid ||| sim
  
     -- Percent of screen to increment by when resizing panes
     delta   = 3/100
- 
+
 ------------------------------------------------------------------------
 -- Window rules:
  
@@ -288,7 +271,7 @@ avoidMaster :: W.StackSet i l a s sd -> W.StackSet i l a s sd
 avoidMaster = W.modify' $ \c -> case c of
      W.Stack t [] (r:rs) ->  W.Stack t [r] rs
      otherwise           -> c
- 
+
 ------------------------------------------------------------------------
 -- Event handling
  
