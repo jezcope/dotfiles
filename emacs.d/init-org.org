@@ -799,7 +799,7 @@ Disable strike-through formatting because I don't use it and it messes up ~table
                     org-protocol
                     org-rmail
                     org-w3m
-                    org-wl
+                    org-mu4e
                     ;; Custom packages
                     org-subtask-reset
                     )))
