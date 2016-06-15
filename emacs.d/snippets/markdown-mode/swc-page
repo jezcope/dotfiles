@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: SWC/DC - page metadata
+# key: swc
+# --
+---
+layout: page
+title: ${1:Discussion}
+permalink: ${3:/${2:discuss}/}
+---
+$0
