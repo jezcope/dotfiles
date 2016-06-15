@@ -28,7 +28,7 @@ myFocusFollowsMouse = True
  
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 2
+myBorderWidth   = 1
  
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -74,7 +74,7 @@ myWorkspaces    = map show [1..8]
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#333333"
-myFocusedBorderColor = "#ffaa00"
+myFocusedBorderColor = "#3366ff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
