@@ -11,6 +11,7 @@
 (depends-on "company")
 (depends-on "company-jedi")
 (depends-on "company-lua")
+(depends-on "crux")
 (depends-on "darktooth-theme")
 (depends-on "diminish")
 (depends-on "emmet-mode")

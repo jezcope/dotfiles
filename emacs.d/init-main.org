@@ -116,6 +116,13 @@ Enable menu bar on Mac, as it doesn't make any difference:
         )
 #+END_SRC
 
+*** Useful utilities
+
+#+BEGIN_SRC emacs-lisp
+  (use-package crux
+    :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)))
+#+END_SRC
+
 *** Evil
 
 #+BEGIN_SRC emacs-lisp
