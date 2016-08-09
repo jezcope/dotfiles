@@ -11,8 +11,8 @@ fi
 path=(~/.cask/bin $path)
 
 # Miniconda for python
-if [[ -d ~/.miniconda/bin ]]; then
-  path=(~/.miniconda/bin $path)
+if [[ -d ~/miniconda3/bin ]]; then
+  path=(~/miniconda3/bin $path)
 fi
 
 export PATH
