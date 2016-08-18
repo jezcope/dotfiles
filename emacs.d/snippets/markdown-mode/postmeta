@@ -1,14 +1,17 @@
 # -*- mode: snippet -*-
 # name: Blog post metadata
 # key: postmeta
+# expand-env: ((yas-indent-line 'fixed))
 # --
 ---
 title: "${1:Title}"
-${2:teaser: "${3:Teaser}"}
-kind: article
-created_at: ${4:`(format-time-string "%c")`}
+slug: ${2:${1:$(replace-regexp-in-string "[^a-z]+" "-" (downcase yas-text))}}
+date: ${3:`(format-time-string "%FT%T%z")`}
+draft: true
+type: post
 tags:
-- $5
+- $4
+description: "${5:Description}"
 ---
 
 $0
