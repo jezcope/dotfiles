@@ -1,0 +1,5 @@
+* Set dropbox location
+
+#+BEGIN_SRC emacs-lisp
+  (setq jc/dropbox-location "/store/media/jez/Dropbox")
+#+END_SRC
