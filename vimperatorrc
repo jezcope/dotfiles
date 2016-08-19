@@ -5,6 +5,7 @@ set toolbars+=nonavigation
 
 let mapleader = ","
 
+set defsearch=duckduckgo
 nmap s :open duckduckgo 
 nmap S :tabopen duckduckgo 
 nmap <Leader>s :open shef 

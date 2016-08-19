@@ -45,7 +45,7 @@ Just run:
  
   -- Width of the window border in pixels.
   --
-  myBorderWidth   = 2
+  myBorderWidth   = 1
  
   -- modMask lets you specify which modkey you want to use. The default
   -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -91,7 +91,7 @@ Just run:
   -- Border colors for unfocused and focused windows, respectively.
   --
   myNormalBorderColor  = "#333333"
-  myFocusedBorderColor = "#ffaa00"
+  myFocusedBorderColor = "#3366ff"
 #+END_SRC
 
 * Key bindings
@@ -388,7 +388,7 @@ Just run:
  
   -- Run xmonad with the settings you specify. No need to modify this.
   --
-  main = xmonad =<< (xmobar $ ewmh $ defaults)
+  main = xmonad $ ewmh defaults
  
   -- A structure containing your configuration settings, overriding
   -- fields in the default config. Any you don't override, will

@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: SWC/DC - section metadata
+# key: swc
+# --
+---
+title: "${1:Title of the section}"
+teaching: ${2:Time in minutes}
+exercises: ${3:Time in minutes}
+questions:
+- "${4:TODO: add questions}"
+objectives:
+- "${5:TODO: add objectives}"
+keypoints:
+- "${6:TODO: add key points}"
+---
+$0
