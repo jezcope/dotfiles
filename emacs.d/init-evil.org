@@ -31,9 +31,11 @@
     "a" 'org-agenda
     "l" 'jc/launcher-hydra/body
     "f" 'jc/file-hydra/body
+    "F" 'jc/find-files-hydra/body
     "t" 'jc/toggle-hydra/body
     "i" 'helm-semantic-or-imenu
     "I" 'helm-imenu-in-all-buffers)
+
   (evil-leader/set-key-for-mode 'org-mode
     "r" 'jc/org-refile-hydra/body)
 

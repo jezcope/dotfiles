@@ -681,8 +681,13 @@ These functions are required for some of the above.
       ("L" (jc/find-file-and-goto-end jc/logbook-file-work))
       ("'" org-cycle-agenda-files :exit nil)
       ("," org-refile-goto-last-stored)
-      ("c" (find-file jc/agenda-file-calendar))
-      ))
+      ("c" (find-file jc/agenda-file-calendar))))
+
+  (define-key global-map (kbd "C-c F")
+    (defhydra jc/find-files-hydra (:color blue)
+      ("h" (helm-find-files-1 "~/") "home")
+      ("d" (helm-find-files-1 (concat jc/dropbox-location "/")) "dropbox")
+      ("n" (helm-find-files-1 (concat jc/dropbox-location "/Notes/")) "notes")))
 #+END_SRC
 
 *** Special keys on keyboards that have them
