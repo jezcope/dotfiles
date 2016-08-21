@@ -6,7 +6,7 @@
         org-export-backends '(ascii html icalendar latex md odt)
         org-use-fast-tag-selection 'auto
         org-time-stamp-custom-formats '("<%a %e %b %Y>" . "<%a %e %b %Y %H:%M>")
-        )
+        org-tags-column 0)
 
   (add-hook 'org-mode-hook 'turn-off-filladapt-mode)
   (add-hook 'org-mode-hook 'visual-line-mode)
