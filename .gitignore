@@ -15,6 +15,7 @@ pentadactyl/info/default/register-ring
 /emacs.d/ac-comphist.dat
 /emacs.d/image-dired
 /emacs.d/init-local.org
+/emacs.d/init-local-pre.org
 /emacs.d/bbdb
 /texmf/ls-R
 /emacs.d/el-get-local.el
