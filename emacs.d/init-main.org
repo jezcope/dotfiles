@@ -686,8 +686,9 @@ These functions are required for some of the above.
   (define-key global-map (kbd "C-c F")
     (defhydra jc/find-files-hydra (:color blue)
       ("h" (helm-find-files-1 "~/") "home")
-      ("d" (helm-find-files-1 (concat jc/dropbox-location "/")) "dropbox")
-      ("n" (helm-find-files-1 (concat jc/dropbox-location "/Notes/")) "notes")))
+      ("d" (helm-find-files-1 (expand-file-name "./" jc/dropbox-location)) "dropbox")
+      ("n" (helm-find-files-1 (expand-file-name "Notes/" jc/dropbox-location)) "notes")
+      ("b" (helm-find-files-1 (expand-file-name "Notes/00Pending/Blog drafts/" jc/dropbox-location)) "blog drafts")))
 #+END_SRC
 
 *** Special keys on keyboards that have them
