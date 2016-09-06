@@ -614,12 +614,19 @@ And now add some of my own based on the above...
         org-agenda-custom-commands
         `(("p" "Personal tasks" ,jc/org-agenda-task-cmds
            ((org-agenda-files `(,jc/agenda-file-personal))))
-          ("w" "Work tasks" 
+          ("w" . "Work tasks")
+          ("ww" "Work kanban"
            ,(append jc/org-agenda-task-cmds
                     `((tags-todo "atwork/!TODO"
                                 ((org-agenda-files `(,jc/agenda-file-personal))
                                  (org-agenda-overriding-header "Personal tasks at work")))))
-           ((org-agenda-files `(,jc/agenda-file-work)))))
+           ((org-agenda-files `(,jc/agenda-file-work))))
+          ("wc" "Contexts"
+           ((tags-todo "+email")
+            (tags-todo "+web")
+            (tags-todo "+writing")
+            (tags-todo "+reading"))
+           ((org-agenda-files (list ,jc/agenda-file-work)))))
 
         org-agenda-tags-todo-honor-ignore-options t)
 #+END_SRC
