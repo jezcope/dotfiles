@@ -5,6 +5,7 @@
 
 (depends-on "ace-link")
 (depends-on "ace-window")
+(depends-on "adaptive-wrap")
 (depends-on "airline-themes")
 (depends-on "async")
 (depends-on "avy")
