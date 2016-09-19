@@ -298,7 +298,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 *** Choose appearance
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'darktooth t)
+  (load-theme 'railscast t)
   (eval-after-load 'hydra
     '(progn
        (set-face-foreground 'hydra-face-red

@@ -11,6 +11,7 @@
 (depends-on "avy")
 (depends-on "beacon")
 (depends-on "cask")
+(depends-on "color-theme-modern")
 (depends-on "company")
 (depends-on "company-jedi")
 (depends-on "company-lua")
