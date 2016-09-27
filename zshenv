@@ -31,11 +31,10 @@ if [[ -s ${GPG_ENV} ]]; then
   export SSH_AGENT_PID
 else
   # GnuPG version 2.1+
-  gpg-connect-agent /bye 2> /dev/null # Ensure agent running
-  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
 fi
 export GPG_TTY=$(tty)
-gpg-connect-agent UPDATESTARTUPTTY /bye > /dev/null 2>&1
+echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1
 
 # Source local rvm config
 if [[ -s "$HOME/.rvmrc" ]]; then
