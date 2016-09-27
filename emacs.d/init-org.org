@@ -711,6 +711,15 @@ Disable strike-through formatting because I don't use it and it messes up ~table
   (org-add-link-type "inline" nil 'jc/org-export-inline-link)
   (org-add-link-type "expanded" nil 'jc/org-export-expanded-link)
 #+END_SRC
+
+** Export to kill ring
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/org-export-gfm-to-kill-ring (beg end)
+    (interactive "r")
+    (kill-new (org-export-string-as (buffer-substring beg end) 'gfm)))
+#+END_SRC
+
 * Babel
 
 #+BEGIN_SRC emacs-lisp
