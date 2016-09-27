@@ -51,6 +51,7 @@
 (depends-on "mmm-mode")
 (depends-on "org")
 (depends-on "org-plus-contrib")
+(depends-on "ox-pandoc")
 (depends-on "ox-reveal")
 (depends-on "package-build")
 (depends-on "pallet")
