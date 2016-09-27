@@ -19,6 +19,7 @@
 (depends-on "darktooth-theme")
 (depends-on "dash")
 (depends-on "diminish")
+(depends-on "dockerfile-mode")
 (depends-on "emmet-mode")
 (depends-on "erc")
 (depends-on "ess")
