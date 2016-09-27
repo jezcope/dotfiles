@@ -1,0 +1,13 @@
+# key: systemd
+# name: systemd service unit
+# --
+[Unit]
+Description=$1
+
+[Service]
+Type=${2:oneshot}
+ExecStart=$3
+WorkingDirectory=$4
+
+[Install]
+WantedBy=${5:default.target}

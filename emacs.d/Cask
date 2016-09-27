@@ -68,6 +68,7 @@
 (depends-on "sunrise-commander")
 (depends-on "sunrise-x-checkpoints")
 (depends-on "sunrise-x-loop")
+(depends-on "systemd")
 (depends-on "toml-mode")
 (depends-on "unbound")
 (depends-on "use-package")
