@@ -511,6 +511,16 @@ This doesn't work as I want it to right now - needs reworking.
   (global-set-key (kbd "M-z") 'zap-up-to-char)
 #+END_SRC
 
+*** Flycheck mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :init
+    (add-hook 'python-mode-hook 'flycheck-mode)
+
+    :commands (flycheck-mode))
+#+END_SRC
+
 *** Projectile
 
 #+BEGIN_SRC emacs-lisp

@@ -28,6 +28,7 @@
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-surround")
 (depends-on "f")
+(depends-on "flycheck")
 (depends-on "git-commit")
 (depends-on "git-timemachine")
 (depends-on "guide-key")
