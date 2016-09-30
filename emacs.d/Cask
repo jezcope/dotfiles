@@ -30,6 +30,7 @@
 (depends-on "f")
 (depends-on "git-commit")
 (depends-on "git-timemachine")
+(depends-on "go-mode")
 (depends-on "guide-key")
 (depends-on "haml-mode")
 (depends-on "haskell-mode")
