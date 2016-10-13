@@ -47,10 +47,10 @@ Enable menu bar on Mac, as it doesn't make any difference:
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'exec-path "/usr/local/bin")
-  
+
   (if (eq system-type 'darwin)
       (add-to-list 'exec-path "/usr/local/texlive/2013/bin/universal-darwin" t))
-  
+
   (setenv "PATH" (mapconcat 'identity exec-path ":"))
 #+END_SRC
 
@@ -100,20 +100,20 @@ Enable menu bar on Mac, as it doesn't make any difference:
         tab-stop-list (loop for n from 2 below 80 by 2 collect n)
         ispell-dictionary "british"
         )
-  
+
   (setq-default tab-width 2
                 indent-tabs-mode nil)
-  
+
   ;; Allow narrow-to-region (which is disabled by default)
   (put 'narrow-to-region 'disabled nil)
-  
+
   ;; Auto-revert all buffers by default
   (global-auto-revert-mode)
-  
+
   ;; Show date/time in modeline
   (setq display-time-day-and-date t)
   (display-time-mode 1)
-  
+
   ;; Make sure authinfo is encrypted
   (setq auth-sources '("~/.authinfo.gpg")
         auth-source-gpg-encrypt-to '("j.cope@erambler.co.uk")
@@ -376,7 +376,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 
 #+BEGIN_SRC emacs-lisp
   (require 'mmm-auto)
-  
+
   (setq mmm-global-mode 'maybe)
 #+END_SRC
 
@@ -534,7 +534,7 @@ This doesn't work as I want it to right now - needs reworking.
   ;;   (let ((clipboard (x-get-clipboard)))
   ;;     (when (not (string= clipboard (car kill-ring)))
   ;;       (kill-new (x-get-clipboard)))))
-  
+
   ;; (setq jc/clipboard-to-kill-ring-timer
   ;;       (run-with-timer 0.5 0.5 'jc/clipboard-to-kill-ring))
 #+END_SRC
@@ -543,7 +543,7 @@ This doesn't work as I want it to right now - needs reworking.
 
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-=") 'er/expand-region)
-  
+
   (global-set-key (kbd "M-i") 'change-inner)
   (global-set-key (kbd "M-o") 'change-outer)
 #+END_SRC
@@ -553,7 +553,7 @@ This doesn't work as I want it to right now - needs reworking.
 #+BEGIN_SRC emacs-lisp
   (autoload 'zap-up-to-char "misc"
     "Kill up to, but not including ARGth occurrence of CHAR.
-  
+
   \(fn arg char)"
     'interactive)
   (global-set-key (kbd "M-z") 'zap-up-to-char)
@@ -752,7 +752,7 @@ These functions are required for some of the above.
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<XF86Search>") 'ido-switch-buffer)
   (global-set-key (kbd "<S-XF86Search>") 'ido-find-file)
-  
+
   (global-set-key (kbd "<XF86Favorites>") 'execute-extended-command)
   (global-set-key (kbd "<menu>") 'execute-extended-command)
   (global-set-key (kbd "<S-XF86Favorites>") 'eval-expression)
@@ -1018,11 +1018,11 @@ If the homebrew version of coreutils is installed under Mac, use that:
         (start-process "sunrise external viewer" "*sunrise external viewer*"
                        shell-file-name shell-command-switch
                        (format "%s \"%s\"" jc/sunrise-external-viewer file)))))
-  
+
   (setq jc/sunrise-external-viewer
         (cond ((eq system-type 'darwin) "open")
               (t "xdg-open")))
-  
+
   (eval-after-load 'sunrise-commander
     '(define-key sr-mode-map (kbd "<C-return>") 'jc/sunrise-display-external))
 #+END_SRC
@@ -1132,7 +1132,7 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
               (setq answer (+ (expt 10 field-width) answer)))
             (replace-match (format (concat "%0" (int-to-string field-width) "d")
                                    answer)))))))
-  
+
   (global-set-key (kbd "C-c C-=") 'my-increment-number-decimal)
 #+END_SRC
 
@@ -1190,7 +1190,7 @@ The ~t~ argument ensures no error is thrown if the file doesn't exist.
 #+BEGIN_SRC emacs-lisp
   (when (file-exists-p (expand-file-name "init-local.org" user-emacs-directory))
     (jc/require-org-file "init-local.org"))
-  
+
   (load "local.el" t)
 #+END_SRC
 
