@@ -325,8 +325,6 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     :config
     (load-theme 'airline-distinguished))
 
-  (with-eval-after-load 'helm-mode
-    (diminish 'helm-mode))
   (with-eval-after-load 'yasnippet
     (diminish 'yas-minor-mode))
   (diminish 'undo-tree-mode)
@@ -358,31 +356,10 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
   (yas-global-mode 1)
   (add-hook 'wl-draft-mode-hook 'yas-minor-mode-on)
 
-  (defun shk-yas/helm-prompt (prompt choices &optional display-fn)
-      "Use helm to select a snippet. Put this into `yas-prompt-functions.'"
-      (interactive)
-      (setq display-fn (or display-fn 'identity))
-      (if (require 'helm-config)
-          (let (tmpsource cands result rmap)
-            (setq cands (mapcar (lambda (x) (funcall display-fn x)) choices))
-            (setq rmap (mapcar (lambda (x) (cons (funcall display-fn x) x)) choices))
-            (setq tmpsource
-                  (list
-                   (cons 'name prompt)
-                   (cons 'candidates cands)
-                   '(action . (("Expand" . (lambda (selection) selection))))
-                   ))
-            (setq result (helm-other-buffer '(tmpsource) "*helm-select-yasnippet"))
-            (if (null result)
-                (signal 'quit "user quit!")
-              (cdr (assoc result rmap))))
-        nil))
-
   (setq yas-also-indent-first-line t
-        yas-prompt-functions '(shk-yas/helm-prompt
+        yas-prompt-functions '(yas-completing-prompt
                                yas-x-prompt
                                yas-ido-prompt
-                               yas-completing-prompt
                                yas-no-prompt))
 #+END_SRC
 
@@ -448,26 +425,97 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi))))
 #+END_SRC
 
-*** Activate and configure Helm
+*** Configure ivy and counsel
 
-Set global helm-mode and some specific key bindings.
 #+BEGIN_SRC emacs-lisp
-  (require 'helm-config)
+  (use-package ivy :ensure t
+    :diminish ivy-mode
+    :init (setq projectile-completion-system 'ivy)
+    :bind
+    (:map ivy-mode-map ("C-'" . ivy-avy))
+    :config
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-height 13)
+    (setq ivy-initial-inputs-alist nil)
+    (setq ivy-count-format "%d/%d ")
+    (setq ivy-virtual-abbreviate 'full) ; Show the full virtual file paths
+    (setq ivy-extra-directories '("./")) ; default value: ("../" "./")
+    (setq ivy-wrap t)
+    (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                                  (counsel-ag . ivy--regex-plus)
+                                  (counsel-grep-or-swiper . ivy--regex-plus)
+                                  (t . ivy--regex-fuzzy))))
 
-  (helm-mode 1)
+  (use-package counsel-projectile :ensure t
+    :bind* (("C-c p p" . counsel-projectile))
+    :init
+    (setq counsel-projectile-drop-to-switch-project-binding "C-c s p")
+    (counsel-projectile-on))
 
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "C-x b") 'helm-mini)
-  (global-set-key (kbd "C-s") 'helm-swoop)
-#+END_SRC
+  (use-package counsel :ensure t
+    :bind*
+    (("M-x" . counsel-M-x)
+     ("M-y" . counsel-yank-pop)
+     ("C-c d d" . counsel-descbinds)
+     ("C-c s s" . counsel-ag)
+     ("C-c s d" . counsel-ag-projectile)
+     ("C-x C-f" . counsel-find-file)
+     ("C-x r f" . counsel-recentf)
+     ("C-c g g" . counsel-git)
+     ("C-c g G" . counsel-git-grep)
+     ("C-x l" . counsel-locate)
+     ("C-c g s" . counsel-grep-or-swiper)
+     ("C-c C-r" . ivy-resume)
+     ("C-c i m" . counsel-imenu)
+     ("C-c i M" . ivy-imenu-anywhere)
+     ("C-c d s" . describe-symbol)
+     :map ivy-minibuffer-map
+     ("M-y" . ivy-next-line-and-call))
 
-Enable fuzzy matching in some useful places.
-#+BEGIN_SRC emacs-lisp
-  (setq helm-M-x-fuzzy-match t
-        helm-buffers-fuzzy-matching t
-        helm-recentf-fuzzy-match t)
+    :config
+    (defun reloading (cmd)
+      (lambda (x)
+        (funcall cmd x)
+        (ivy--reset-state ivy-last)))
+    (defun given-file (cmd prompt) ; needs lexical-binding
+      (lambda (source)
+        (let ((target
+           (let ((enable-recursive-minibuffers t))
+             (read-file-name
+          (format "%s %s to:" prompt source)))))
+      (funcall cmd source target 1))))
+    (defun confirm-delete-file (x)
+      (dired-delete-file x 'confirm-each-subdirectory))
+
+    (ivy-add-actions
+     'counsel-find-file
+     `(("c" ,(given-file #'copy-file "Copy") "copy")
+       ("d" ,(reloading #'confirm-delete-file) "delete")
+       ("m" ,(reloading (given-file #'rename-file "Move")) "move")))
+    (ivy-add-actions
+     'counsel-projectile-find-file
+     `(("c" ,(given-file #'copy-file "Copy") "copy")
+       ("d" ,(reloading #'confirm-delete-file) "delete")
+       ("m" ,(reloading (given-file #'rename-file "Move")) "move")
+       ("b" counsel-find-file-cd-bookmark-action "cd bookmark")))
+
+    ;; to make counsel-ag search the root projectile directory.
+    (defun counsel-ag-projectile ()
+      (interactive)
+      (counsel-ag nil (projectile-project-root)))
+
+    (setq counsel-find-file-at-point t)
+    ;; ignore . files or temporary files
+    (setq counsel-find-file-ignore-regexp
+      (concat
+       ;; File names beginning with # or .
+       "\\(?:\\`[#.]\\)"
+       ;; File names ending with # or ~
+       "\\|\\(?:\\`.+?[#~]\\'\\)")))
+
+  (use-package swiper :ensure t
+    :bind (("C-s" . swiper)))
 #+END_SRC
 
 *** Use kill ring as X clipboard history                     :experimental:
@@ -527,10 +575,9 @@ This doesn't work as I want it to right now - needs reworking.
   (setq projectile-mode-line '(:eval
                                (format " P[%s]"
                                        (projectile-project-name)))
-        projectile-completion-system 'helm)
+        projectile-completion-system 'ivy)
 
   (projectile-global-mode)
-  (helm-projectile-on)
 
   ;; Taken from http://oremacs.com/2015/07/20/hydra-columns/
   (defhydra jc/projectile-hydra (:color blue :columns 4)
@@ -633,8 +680,7 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
       ("m" mu4e "mu4e")
       ("C" mu4e-compose-new "compose")
       ("i" (mu4e~headers-jump-to-maildir "/INBOX") "inbox")
-      ("f" sunrise "sunrise")
-      ("p" helm-package "install packages")))
+      ("f" sunrise "sunrise")))
 #+END_SRC
 
 This one toggles some minor modes.  Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
@@ -695,10 +741,10 @@ These functions are required for some of the above.
 
   (define-key global-map (kbd "C-c F")
     (defhydra jc/find-files-hydra (:color blue)
-      ("h" (helm-find-files-1 "~/") "home")
-      ("d" (helm-find-files-1 (expand-file-name "./" jc/dropbox-location)) "dropbox")
-      ("n" (helm-find-files-1 (expand-file-name "Notes/" jc/dropbox-location)) "notes")
-      ("b" (helm-find-files-1 (expand-file-name "Notes/00Pending/Blog drafts/" jc/dropbox-location)) "blog drafts")))
+      ("h" (counsel-find-file "~/") "home")
+      ("d" (counsel-find-file (expand-file-name "./" jc/dropbox-location)) "dropbox")
+      ("n" (counsel-find-file (expand-file-name "Notes/" jc/dropbox-location)) "notes")
+      ("b" (counsel-find-file (expand-file-name "Notes/00Pending/Blog drafts/" jc/dropbox-location)) "blog drafts")))
 #+END_SRC
 
 *** Special keys on keyboards that have them
