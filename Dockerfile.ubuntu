@@ -1,0 +1,7 @@
+FROM ubuntu:latest
+
+RUN echo 'Acquire::http { Proxy "http://172.17.0.1:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+RUN apt-get -y update && apt-get -y install software-properties-common && apt-add-repository ppa:ansible/ansible && \
+    apt-get -y update && apt-get -y install ansible python-apt
+
+CMD ansible /ansible/local.yaml
