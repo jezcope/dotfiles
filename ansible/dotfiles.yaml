@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  tasks:
+    - name: update dotfiles repository
+      git: repo=https://github.com/jezcope/dotfiles.git dest=/home/jez/.dotfiles
+    - name: fix ownership of .dotfiles
+      file: path=/home/jez/.dotfiles owner=jez group=jez state=directory recurse=yes

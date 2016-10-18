@@ -35,3 +35,4 @@ pentadactyl/info/default/register-ring
 /emacs.d/.cask/
 /emacs.d/.python-environments/
 emacs.d/abbrev_defs
+*.retry
