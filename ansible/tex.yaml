@@ -1,0 +1,10 @@
+---
+- name: install texlive
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - texlive
+    - texlive-latex-extra
+    - texlive-xetex
+    - texlive-science
+    - texinfo
+    - latexmk

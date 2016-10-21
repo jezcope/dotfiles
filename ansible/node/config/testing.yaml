@@ -1,3 +1,5 @@
 ---
 - debug: msg="Hello from your test config"
 - include: graphical.yaml
+- include: scientific.yaml
+- include: webdev.yaml

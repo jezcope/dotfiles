@@ -24,12 +24,15 @@
 - name: install shell and utilities
   apt: pkg={{ item }} state=latest
   with_items:
+    - sudo
     - zsh
     - tmux
     - unzip
     - unison
     - apg                       # password generator
     - mc                        # Midnight Commander
+    - desktop-file-utils
+    - apt-transport-https
 - name: install gnupg and tools
   apt: pkg={{ item }} state=latest
   with_items:
@@ -85,9 +88,6 @@
     - winbind
     - exfat-utils
     - exfat-fuse
-- name: install texlive
-  apt: pkg={{ item }} state=latest
-  with_items: [texlive, texlive-latex-extra, texlive-xetex, texlive-science, texinfo, latexmk]
 - name: install other utilities
   apt: pkg={{ item }} state=latest
   with_items:

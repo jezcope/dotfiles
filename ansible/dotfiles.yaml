@@ -1,7 +1,45 @@
 ---
-- hosts: localhost
-  tasks:
-    - name: update dotfiles repository
-      git: repo=https://github.com/jezcope/dotfiles.git dest=/home/jez/.dotfiles
-    - name: fix ownership of .dotfiles
-      file: path=/home/jez/.dotfiles owner=jez group=jez state=directory recurse=yes
+- name: update dotfiles repository
+  git: repo=https://github.com/jezcope/dotfiles.git dest={{ dotfiles }}
+  become_user: "{{ box_user }}"
+  become: true
+- name: fix ownership of .dotfiles
+  file: path={{ dotfiles }} owner={{ box_user }} group={{ box_group }} state=directory recurse=yes
+- name: create required directories
+  file: name={{ box_home }}/{{ item }} state=directory recurse=yes owner={{ box_user }} group={{ box_group }}
+  with_items:
+    - .gnupg
+    - bin
+    - .config/awesome
+    - .config/systemd/user
+    - .local/share/applications
+- name: link ~/.*
+  file: name={{ box_home }}/.{{ item }} src={{ dotfiles }}/{{ item }} state=link owner={{ box_user }} group={{ box_group }}
+  with_items: ['zshrc', 'zshenv', 'zshenv.path', 'zsh',
+               'vimrc', 'vim', 'emacs.d',
+               'pentadactyl', 'pentadactylrc',
+               'vimperatorrc', 'vimperator',
+               'xmonad', 'gitconfig',
+               'gitignore.global', 'htmltidy.conf', 'ackrc', 'keysnail.js']
+- name: link *.desktop
+  file: name={{ box_home }}/.local/share/applications/{{ item }} src={{ dotfiles }}/applications/{{ item }} state=link owner={{ box_user }} group={{ box_group }}
+  with_items:
+    - org-protocol.desktop
+  register: desktopdb
+- name: link other config files
+  file: name={{ box_home }}/{{ item.value }} src={{ dotfiles }}/{{ item.key }} state=link owner={{ box_user }} group={{ box_group }}
+  with_dict:
+    gpg.conf: .gnupg/gpg.conf
+    gpg-agent.conf: .gnupg/gpg-agent.conf
+    dirmngr.conf: .gnupg/dirmngr.conf
+    scdaemon.conf: .gnupg/scdaemon.conf
+    certs: .gnupg/certs
+    awesomerc.lua: .config/awesome/rc.lua
+    texmf: texmf
+    sharedbin: bin/shared
+- name: create awesome prefs file if missing
+  copy: dest={{ box_home }}/.config/awesome/localprefs.lua src={{ dotfiles }}/awesome_localprefs_example.lua
+  when: not ("{{ box_home }}/.config/awesome/localprefs.lua"|exists)
+- name: 'update desktop database (TODO: convert this to a handler instead?)'
+  command: /usr/bin/update-desktop-database {{ box_home }}/.local/share/applications
+  when: desktopdb|changed

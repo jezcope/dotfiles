@@ -9,20 +9,23 @@
     box_group: jez
     box_home: "/home/{{ box_user }}"
 
+    dotfiles: "{{ box_home }}/.dotfiles"
+
     tmux_status_style: "bg=green,fg=black"
 
   tasks:
     - name: update apt cache
       apt: update_cache=true
-    - name: check for test environment
-      set_fact:
-        node_config: node/config/testing.yaml
-        node_vars: node/vars/testing.yaml
-      when: testing|default(false)
+    # - name: check for test environment
+    #   set_fact:
+    #     node_config: node/config/testing.yaml
+    #     node_vars: node/vars/testing.yaml
+    #   when: testing|default(false)
     - debug: msg="{{node_config}}"
     - name: include node-specific variables
       include: "{{ node_vars }}"
       when: node_vars|is_file
     - include: base.yaml
+    - include: dotfiles.yaml
     - name: include node-specific config
       include: "{{ node_config }}"

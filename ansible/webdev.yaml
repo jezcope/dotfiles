@@ -1,0 +1,14 @@
+---
+- name: install web development packages
+  apt: name={{ item }} state=installed
+  with_items:
+    - mysql-client
+    - mysql-server
+    # - docker-engine # TODO: reenable docker
+    - nodejs
+    - npm
+    - ruby-haml
+    - hugo
+- name: link nodejs to node
+  file: name=/usr/bin/node src=/usr/bin/nodejs state=link
+  when: ansible_os_family == "Debian"
