@@ -21,9 +21,9 @@
     #     node_config: node/config/testing.yaml
     #     node_vars: node/vars/testing.yaml
     #   when: testing|default(false)
-    - debug: msg="{{node_config}}"
+    - debug: msg="{{node_config}}; {{node_vars}}"
     - name: include node-specific variables
-      include: "{{ node_vars }}"
+      include_vars: "{{ node_vars }}"
       when: node_vars|is_file
     - include: base.yaml
     - include: dotfiles.yaml
