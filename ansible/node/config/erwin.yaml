@@ -1,2 +1,5 @@
 ---
-- debug: msg="Hello world!"
+- include: graphical.yaml
+- include: webdev.yaml
+- include: scientific.yaml
+- include: tex.yaml
