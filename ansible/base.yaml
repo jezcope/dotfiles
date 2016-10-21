@@ -2,8 +2,10 @@
 # We need this for ansible_lsb facts later
 - name: ensure lsb-release is installed
   apt: pkg=lsb-release state=latest
+  register: lsb_release
 - name: reload facts
   setup:
+  when: lsb_release|changed
 
 # Set up user and group
 - name: ensure group exists
@@ -17,8 +19,9 @@
     repo: "deb http://ftp.uk.debian.org/debian/ {{ ansible_lsb.codename }} non-free contrib"
     filename: debian-extra
   when: ansible_lsb.id == "Debian"
+  register: last_repo
 - apt: update_cache=true
-  when: ansible_lsb.id == "Debian"
+  when: (ansible_lsb.id == "Debian") and (last_repo|changed)
 
 # Install base required packages
 - name: install shell and utilities
