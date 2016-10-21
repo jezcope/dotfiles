@@ -4,6 +4,8 @@
   become_user: "{{ box_user }}"
   become: true
   ignore_errors: true
+- name: set dotfiles repository push url
+  git_config: name=remote.origin.pushurl value=git@github.com:jezcope/dotfiles.git repo={{ dotfiles}} scope=local
 - name: fix ownership of .dotfiles
   file: path={{ dotfiles }} owner={{ box_user }} group={{ box_group }} state=directory recurse=yes
 - name: create required directories
