@@ -3,6 +3,7 @@
   git: repo=https://github.com/jezcope/dotfiles.git dest={{ dotfiles }}
   become_user: "{{ box_user }}"
   become: true
+  ignore_errors: true
 - name: fix ownership of .dotfiles
   file: path={{ dotfiles }} owner={{ box_user }} group={{ box_group }} state=directory recurse=yes
 - name: create required directories
