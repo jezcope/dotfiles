@@ -1,10 +1,21 @@
 ---
+- name: set variables
+  set_fact: docker_distcodename={{ (ansible_lsb.codename == "sid")|ternary("stretch", ansible_lsb.codename) }}
+- name: add docker repository key
+  apt_key: id=58118E89F3A912897C070ADBF76221572C52609D keyserver=hkp://p80.pool.sks-keyservers.net:80 state=present
+- name: add docker repository
+  apt_repository:
+    repo: "deb https://apt.dockerproject.org/repo {{ ansible_distribution|lower }}-{{ docker_distcodename }} main"
+    filename: docker
+  register: last_repo
+- apt: update_cache=yes
+  when: last_repo|changed
 - name: install web development packages
   apt: name={{ item }} state=installed
   with_items:
     - mysql-client
     - mysql-server
-    # - docker-engine # TODO: reenable docker
+    - docker-engine
     - nodejs
     - npm
     - ruby-haml
