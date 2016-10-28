@@ -1,4 +1,3 @@
-;; -*- mode: emacs-lisp; -*-
 (source SC)
 (source gnu)
 (source melpa)
@@ -84,6 +83,7 @@
 (depends-on "vimrc-mode")
 (depends-on "virtualenvwrapper")
 (depends-on "visual-fill-column")
+(depends-on "wc-mode")
 (depends-on "web-mode")
 (depends-on "with-editor")
 (depends-on "writeroom-mode")
