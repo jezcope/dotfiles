@@ -445,7 +445,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
                                   (counsel-ag . ivy--regex-plus)
                                   (counsel-grep-or-swiper . ivy--regex-plus)
-                                  (t . ivy--regex-fuzzy))))
+                                  (t . ivy--regex-plus))))
 
   (use-package counsel-projectile :ensure t
     :bind* (("C-c p p" . counsel-projectile))
