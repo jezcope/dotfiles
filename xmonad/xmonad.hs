@@ -150,9 +150,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
-    -- Toggle showing docks
-    , ((modm              , xK_b     ), sendMessage ToggleStruts)
-
     -- Lock the screen
     -- , ((modm .|. shiftMask, xK_z     ), spawn "xscreensaver-command -lock")
 
