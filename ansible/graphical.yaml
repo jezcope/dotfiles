@@ -81,3 +81,5 @@
     - libpng-dev
     - libpoppler-glib-dev
     - libpoppler-private-dev
+- name: install screenshot tools
+  apt: pkg=shutter state=latest
