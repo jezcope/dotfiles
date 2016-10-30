@@ -445,7 +445,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
                                   (counsel-ag . ivy--regex-plus)
                                   (counsel-grep-or-swiper . ivy--regex-plus)
-                                  (t . ivy--regex-fuzzy))))
+                                  (t . ivy--regex-plus))))
 
   (use-package counsel-projectile :ensure t
     :bind* (("C-c p p" . counsel-projectile))
@@ -678,7 +678,8 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
       ("g" magit-status "magit status")
       ("t" jc/ansi-term-with-zsh "terminal")
       ("m" mu4e "mu4e")
-      ("C" mu4e-compose-new "compose")
+      ("b" mu4e-headers-search-bookmark "mu4e bookmarks")
+      ("c" mu4e-compose-new "compose")
       ("i" (mu4e~headers-jump-to-maildir "/INBOX") "inbox")
       ("f" sunrise "sunrise")))
 #+END_SRC
