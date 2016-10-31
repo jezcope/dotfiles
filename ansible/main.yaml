@@ -15,13 +15,13 @@
 
   tasks:
     - name: update apt cache
-      apt: update_cache=true
     # - name: check for test environment
     #   set_fact:
     #     node_config: node/config/testing.yaml
     #     node_vars: node/vars/testing.yaml
     #   when: testing|default(false)
     - debug: msg="{{node_config}}; {{node_vars}}"
+      apt: update_cache=yes cache_valid_time=86400 # update at most once a day
     - name: include node-specific variables
       include_vars: "{{ node_vars }}"
       when: node_vars|is_file
