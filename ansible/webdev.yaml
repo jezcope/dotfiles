@@ -10,6 +10,13 @@
   register: last_repo
 - apt: update_cache=yes
   when: last_repo|changed
+- name: check if nodejs-legacy is installed
+  command: dpkg-query -s nodejs-legacy
+  register: nodejs_legacy_check
+  ignore_errors: true
+- name: remove /usr/bin/node symlink if manually created
+  file: name=/usr/bin/node state=absent
+  when: nodejs_legacy_check.rc == 1
 - name: install web development packages
   apt: name={{ item }} state=installed
   with_items:
@@ -17,9 +24,7 @@
     - mysql-server
     - docker-engine
     - nodejs
+    - nodejs-legacy
     - npm
     - ruby-haml
     - hugo
-- name: link nodejs to node
-  file: name=/usr/bin/node src=/usr/bin/nodejs state=link
-  when: ansible_os_family == "Debian"
