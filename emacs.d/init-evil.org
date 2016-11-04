@@ -30,6 +30,7 @@
     "c" 'org-capture
     "a" 'org-agenda
     "l" 'jc/launcher-hydra/body
+    "j" 'jump-to-register
     "f" 'jc/file-hydra/body
     "F" 'jc/find-files-hydra/body
     "t" 'jc/toggle-hydra/body

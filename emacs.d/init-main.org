@@ -464,7 +464,6 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
      ("C-x r f" . counsel-recentf)
      ("C-c g g" . counsel-git)
      ("C-c g G" . counsel-git-grep)
-     ("C-x l" . counsel-locate)
      ("C-c g s" . counsel-grep-or-swiper)
      ("C-c C-r" . ivy-resume)
      ("C-c i m" . counsel-imenu)
@@ -673,7 +672,7 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
   (define-key ctl-x-map "l"
     (defhydra jc/launcher-hydra (:exit t)
       "launch"
-      ("d" deft "deft")
+      ("d" jc/dashboard "dashboard")
       ("e" ecb-activate "ecb")
       ("g" magit-status "magit status")
       ("t" jc/ansi-term-with-zsh "terminal")
@@ -714,6 +713,25 @@ These functions are required for some of the above.
         (ansi-term jc/zsh-location "ansi-term[zsh]")
         (let ((shell-file-name jc/zsh-location))
         (shell "shell[zsh]"))))
+
+  (defun jc/dashboard ()
+    "Open up a productivity dashboard"
+    (interactive)
+
+    (window-configuration-to-register ? )
+
+    (mu4e-update-index)
+
+    (delete-other-windows)
+    (org-agenda nil "ww")
+
+    (other-window 1)
+    (mu4e-headers-search (mu4e-get-bookmark-query ?y))
+
+    (split-window-below)
+    (other-window 1)
+    (find-file org-default-notes-file)
+    (other-window -1))
 #+END_SRC
 
 *** Shortcuts to commonly used files
