@@ -46,3 +46,7 @@
 - name: 'update desktop database (TODO: convert this to a handler instead?)'
   command: /usr/bin/update-desktop-database {{ box_home }}/.local/share/applications
   when: desktopdb|changed
+- name: template out config files
+  template: src=templates/{{ item.key }} dest={{ box_home }}/{{ item.value }}
+  with_dict:
+    tmux.conf: .tmux.conf
