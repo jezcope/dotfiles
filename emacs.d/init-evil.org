@@ -20,6 +20,11 @@
   (add-hook 'evil-insert-state-exit-hook #'jc/save-current)
 #+END_SRC
 
+*** Modes that should be in emacs state
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'evil-emacs-state-modes 'twittering-mode)
+#+END_SRC
 ** Leader
 
 #+BEGIN_SRC emacs-lisp
