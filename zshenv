@@ -34,7 +34,11 @@ if [[ -z ${SSH_CONNECTION} ]]; then
     export SSH_AGENT_PID
   else
     # GnuPG version 2.1+
-    export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
+    if gpgconf --list-dirs | grep agent-ssh-socket > /dev/null; then
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    else
+      export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
+    fi
   fi
   export GPG_TTY=$(tty)
   echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1
