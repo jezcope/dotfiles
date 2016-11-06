@@ -18,7 +18,6 @@
       apt: update_cache=yes cache_valid_time=86400 # update at most once a day
     - name: include node-specific variables
       include_vars: "{{ node_vars }}"
-      when: node_vars|is_file
     - include: base.yaml
     - include: dotfiles.yaml
     - name: include node-specific config
