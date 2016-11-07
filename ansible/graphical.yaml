@@ -25,24 +25,16 @@
     - libreoffice
     - libreoffice-gtk
     - abiword
-- name: add dropbox repository key
-  apt_key: id=1C61A2656FB57B7E4DE0F4C1FC918B335044912E keyserver=pgp.mit.edu state=present
-- name: add dropbox repository
-  apt_repository:
-    repo: "deb http://linux.dropbox.com/{{ ansible_lsb.id|lower }} {{ (ansible_distribution == 'Ubuntu') | ternary(ansible_lsb.codename, 'jessie') }} main"
-    filename: dropbox
-  register: last_repo
-- apt: update_cache=true
-  when: last_repo|changed
 - name: install file management tools
   apt: pkg={{ item }} state=latest
   with_items:
     - unison-gtk
     - python-gpgme
-    - dropbox
     - caja
     - atril
     - filezilla
+- name: install dropbox
+  apt: deb=https://www.dropbox.com/download?dl=packages/{{ansible_distribution|lower}}/dropbox_2015.10.28_amd64.deb
 - name: install software development tools
   apt: pkg={{ item }} state=latest
   with_items:

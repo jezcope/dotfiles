@@ -1,6 +1,6 @@
 ---
 - name: set variables
-  set_fact: docker_distcodename={{ (ansible_lsb.codename == "sid")|ternary("stretch", ansible_lsb.codename) }}
+  set_fact: 'docker_distcodename={{ {"Ubuntu": "xenial", "Debian": "stretch"}[ansible_distribution] }}'
 - name: add docker repository key
   apt_key: id=58118E89F3A912897C070ADBF76221572C52609D keyserver=hkp://p80.pool.sks-keyservers.net:80 state=present
 - name: add docker repository
@@ -10,6 +10,7 @@
   register: last_repo
 - apt: update_cache=yes
   when: last_repo|changed
+
 - name: check if nodejs-legacy is installed
   command: dpkg-query -s nodejs-legacy
   register: nodejs_legacy_check
@@ -17,6 +18,7 @@
 - name: remove /usr/bin/node symlink if manually created
   file: name=/usr/bin/node state=absent
   when: nodejs_legacy_check.rc == 1
+
 - name: install web development packages
   apt: name={{ item }} state=installed
   with_items:
