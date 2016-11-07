@@ -24,7 +24,6 @@ fi
 
 if [[ -z ${SSH_CONNECTION} ]]; then
   # Don't clobber forwarded SSH agent stuff
-  # TODO: this is a blunt instrument and needs improving
   local GPG_ENV=~/.gnupg/gpg-agent.env
   if [[ -s ${GPG_ENV} ]]; then
     # GnuPG version 2.0
@@ -34,11 +33,13 @@ if [[ -z ${SSH_CONNECTION} ]]; then
     export SSH_AGENT_PID
   else
     # GnuPG version 2.1+
-    if gpgconf --list-dirs | grep agent-ssh-socket > /dev/null; then
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-    else
-      export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh
-    fi
+    # if gpgconf --list-dirs | grep agent-ssh-socket > /dev/null; then
+    case $(gpgconf --list-dirs) in
+      *agent-ssh-socket*)
+        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) ;;
+      *)
+        export SSH_AUTH_SOCK=~/.gnupg/S.gpg-agent.ssh ;;
+    esac
   fi
   export GPG_TTY=$(tty)
   echo "UPDATESTARTUPTTY" | gpg-connect-agent > /dev/null 2>&1
