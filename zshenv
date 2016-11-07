@@ -66,7 +66,7 @@ if [[ -n "$EMACS" ]]; then # If we're running a terminal inside emacs
   export EDITOR=$(which emacsclient)
 else
   export EDITOR="$(which emacsclient) -t"
-  export ALTERNATE_EDITOR=$(which emacs-terminal.sh)
+  export ALTERNATE_EDITOR=$(which vim)
 fi
 
 if [[ -s "$HOME/.zshenv.local" ]]; then
