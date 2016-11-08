@@ -30,3 +30,8 @@
     - npm
     - ruby-haml
     - hugo
+
+- name: install useful npm modules
+  npm: name={{ item }} global=yes
+  with_items:
+    - json
