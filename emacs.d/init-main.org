@@ -784,13 +784,7 @@ These functions are required for some of the above.
   (define-key 'iso-transl-ctl-x-8-map "l" [?£])
 #+END_SRC
 
-*** ~avy~ and ~ace-*~
-
-Overall setup:
-
-#+BEGIN_SRC emacs-lisp
-  (setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
-#+END_SRC
+*** ~ace-*~
 
 ~ace-link~:
 

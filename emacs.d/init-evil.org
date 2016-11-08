@@ -48,6 +48,19 @@
   (global-evil-leader-mode 1)
 #+END_SRC
 
+** Avy
+
+#+BEGIN_SRC emacs-lisp
+  (use-package avy
+    :config
+    (setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
+    (defhydra jc/avy-hydra ()
+      ("w" evil-avy-goto-word-1 "goto word"))
+
+    (define-key evil-motion-state-map (kbd "zw") 'evil-avy-goto-word-1)
+    (evil-leader/set-key "w" 'jc/avy-hydra/body))
+#+END_SRC
+
 ** Nerd commenter
 
 #+BEGIN_SRC emacs-lisp
