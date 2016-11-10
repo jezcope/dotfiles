@@ -897,9 +897,16 @@ These functions are required for some of the above.
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
-  (dolist (hook '(lisp-mode-hook emacs-lisp-mode-hook))
-    (dolist (func '(show-paren-mode rainbow-delimiters-mode))
+  (dolist (hook '(lisp-mode-hook
+                  emacs-lisp-mode-hook))
+    (dolist (func '(show-paren-mode
+                    rainbow-delimiters-mode))
       (add-hook hook func)))
+
+  (use-package nameless-mode
+    :init (add-hook 'emacs-lisp-mode-hook 'nameless-mode)
+    :bind (:map nameless-mode-map
+                ("_" . nameless-insert-name-or-self-insert)))
 #+END_SRC
 
 ***** Useful functions for customising emacs
