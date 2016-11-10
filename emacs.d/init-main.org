@@ -125,6 +125,10 @@ Enable menu bar on Mac, as it doesn't make any difference:
 #+BEGIN_SRC emacs-lisp
   (use-package crux
     :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)))
+
+  (use-package dropbox-conflicts
+    :config
+    (dropbox-conflicts-mode))
 #+END_SRC
 
 *** Evil
@@ -784,13 +788,7 @@ These functions are required for some of the above.
   (define-key 'iso-transl-ctl-x-8-map "l" [?£])
 #+END_SRC
 
-*** ~avy~ and ~ace-*~
-
-Overall setup:
-
-#+BEGIN_SRC emacs-lisp
-  (setq avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n))
-#+END_SRC
+*** ~ace-*~
 
 ~ace-link~:
 
@@ -899,9 +897,16 @@ Overall setup:
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
-  (dolist (hook '(lisp-mode-hook emacs-lisp-mode-hook))
-    (dolist (func '(show-paren-mode rainbow-delimiters-mode))
+  (dolist (hook '(lisp-mode-hook
+                  emacs-lisp-mode-hook))
+    (dolist (func '(show-paren-mode
+                    rainbow-delimiters-mode))
       (add-hook hook func)))
+
+  (use-package nameless-mode
+    :init (add-hook 'emacs-lisp-mode-hook 'nameless-mode)
+    :bind (:map nameless-mode-map
+                ("_" . nameless-insert-name-or-self-insert)))
 #+END_SRC
 
 ***** Useful functions for customising emacs

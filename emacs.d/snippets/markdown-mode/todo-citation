@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: TODO: citation
+# key: T
+# --
+***TODO: ${1:citation - } $2***$0
