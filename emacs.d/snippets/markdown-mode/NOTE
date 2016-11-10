@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: NOTE
+# key: N
+# --
+***NOTE: $1***$0
