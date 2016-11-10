@@ -125,6 +125,10 @@ Enable menu bar on Mac, as it doesn't make any difference:
 #+BEGIN_SRC emacs-lisp
   (use-package crux
     :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)))
+
+  (use-package dropbox-conflicts
+    :config
+    (dropbox-conflicts-mode))
 #+END_SRC
 
 *** Evil

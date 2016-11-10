@@ -22,6 +22,7 @@
 (depends-on "dash")
 (depends-on "diminish")
 (depends-on "dockerfile-mode")
+(depends-on "dropbox-conflicts" :git "https://github.com/jezcope/dropbox-conflicts-el.git")
 (depends-on "emmet-mode")
 (depends-on "erc")
 (depends-on "ess")
