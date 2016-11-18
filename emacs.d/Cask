@@ -47,6 +47,7 @@
 (depends-on "htmlize")
 (depends-on "hydra")
 (depends-on "ivy")
+(depends-on "ivy-hydra")
 (depends-on "jedi-core")
 (depends-on "jinja2-mode")
 (depends-on "julia-mode")

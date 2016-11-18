@@ -451,11 +451,11 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
                                   (counsel-grep-or-swiper . ivy--regex-plus)
                                   (t . ivy--regex-plus))))
 
-  (use-package counsel-projectile :ensure t
-    :bind* (("C-c p p" . counsel-projectile))
-    :init
-    (setq counsel-projectile-drop-to-switch-project-binding "C-c s p")
-    (counsel-projectile-on))
+  ;; (use-package counsel-projectile :ensure t
+  ;;   :bind* (("C-c p p" . counsel-projectile))
+  ;;   :init
+  ;;   (setq counsel-projectile-drop-to-switch-project-binding "C-c s p")
+  ;;   (counsel-projectile-on))
 
   (use-package counsel :ensure t
     :bind*
@@ -473,6 +473,8 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
      ("C-c i m" . counsel-imenu)
      ("C-c i M" . ivy-imenu-anywhere)
      ("C-c d s" . describe-symbol)
+     ("C-h f" . counsel-describe-function)
+     ("C-h v" . counsel-describe-variable)
      :map ivy-minibuffer-map
      ("M-y" . ivy-next-line-and-call))
 
@@ -580,27 +582,31 @@ This doesn't work as I want it to right now - needs reworking.
                                        (projectile-project-name)))
         projectile-completion-system 'ivy)
 
-  (projectile-global-mode)
-
-  ;; Taken from http://oremacs.com/2015/07/20/hydra-columns/
+  ;; Adapted from http://oremacs.com/2015/07/20/hydra-columns/
   (defhydra jc/projectile-hydra (:color blue :columns 4)
     "Projectile"
-    ("a" projectile-ag "ag")
-    ("b" projectile-switch-to-buffer "switch to buffer")
-    ("c" projectile-invalidate-cache "cache clear")
-    ("d" projectile-find-dir "dir")
-    ("s-f" projectile-find-file "file")
-    ("ff" projectile-find-file-dwim "file dwim")
-    ("fd" projectile-find-file-in-directory "file curr dir")
+    ("a" counsel-ag-projectile "ag")
+    ("b" counsel-projectile-switch-to-buffer "switch to buffer")
+    ("c" projectile-compile-project "compile")
+    ("d" counsel-projectile-find-dir "dir")
+    ("f" counsel-projectile-find-file "file")
     ("g" ggtags-update-tags "update gtags")
-    ("i" projectile-ibuffer "Ibuffer")
+    ("i" projectile-invalidate-cache "cache clear")
     ("K" projectile-kill-buffers "Kill all buffers")
     ("o" projectile-multi-occur "multi-occur")
-    ("p" projectile-switch-project "switch")
-    ("r" projectile-recentf "recent file")
-    ("x" projectile-remove-known-project "remove known")
-    ("X" projectile-cleanup-known-projects "cleanup non-existing")
+    ("p" counsel-projectile-switch-project "switch")
+    ("P" projectile-test-project "test")
+    ("r" projectile-remove-known-project "remove known")
+    ("R" projectile-cleanup-known-projects "cleanup non-existing")
+    ("ss" counsel-ag-projectile "ag")
+    ("sg" projectile-grep "grep")
+    ("v" projectile-vc "version control")
+    ("V" projectile-browse-dirty-projects "dirty")
+    ("xe" projectile-run-eshell "eshell")
+    ("xs" projectile-run-shell "shell")
+    ("xt" projectile-run-term "terminal")
     ("z" projectile-cache-current-file "cache current")
+    ("!" projectile-run-shell-command-in-root "shell command")
     ("q" nil "cancel"))
   (global-unset-key (kbd "C-c p"))
   (global-set-key (kbd "C-c p") 'jc/projectile-hydra/body)
