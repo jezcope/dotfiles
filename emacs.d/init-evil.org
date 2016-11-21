@@ -24,6 +24,7 @@
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'evil-emacs-state-modes 'twittering-mode)
+  (add-to-list 'evil-emacs-state-modes 'erc-mode)
 #+END_SRC
 ** Leader
 
