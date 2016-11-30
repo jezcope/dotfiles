@@ -834,7 +834,7 @@ These functions are required for some of the above.
     (add-to-list 'auto-mode-alist `(,ext . markdown-mode)))
 
   (dolist (func '(flyspell-mode visual-line-mode adaptive-wrap-prefix-mode
-                  orgstruct++-mode outline-mode
+                  orgstruct++-mode outline-minor-mode
                   (lambda ()
                     (setq orgstruct-heading-prefix-regexp "#\\+")
                     (pandoc-mode 1))))
