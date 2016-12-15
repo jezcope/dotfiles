@@ -13,7 +13,7 @@ local user_color='green'; [ $UID -eq 0 ] && user_color='red'
 local return_status="%{$fg_bold[red]%}%(?..%?)%{$reset_color%}"
 
 PROMPT='(!%{$fg[blue]%}%!%{$reset_color%}) %D{%d-%m-%Y %X} %{$fg[$user_color]%}%~%{$reset_color%} [$(vi_mode_prompt_info)${return_status}$(quilt_prompt_info)$(git_prompt_info)$(git_prompt_status)%{$reset_color%}]
-%{$fg[$user_color]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$reset_color%}%(!.#.>) '
+%{$fg[$user_color]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %{$reset_color%}%(!.#.%%) '
 PROMPT2='%{$fg[red]%}\ %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" "
