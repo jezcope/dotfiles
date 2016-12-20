@@ -23,8 +23,11 @@
 *** Modes that should be in emacs state
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'evil-emacs-state-modes 'twittering-mode)
-  (add-to-list 'evil-emacs-state-modes 'erc-mode)
+  (setq evil-emacs-state-modes
+        (-distinct (append evil-emacs-state-modes
+                           '(twittering-mode
+                             twittering-edit-mode
+                             erc-mode))))
 #+END_SRC
 ** Leader
 
