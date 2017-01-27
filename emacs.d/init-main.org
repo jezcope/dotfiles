@@ -689,7 +689,9 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
       ("b" mu4e-headers-search-bookmark "mu4e bookmarks")
       ("c" mu4e-compose-new "compose")
       ("i" (mu4e~headers-jump-to-maildir "/INBOX") "inbox")
-      ("f" sunrise "sunrise")))
+      ("f" sunrise "sunrise")
+      ("b" compile "compile")
+      ("B" (compile compile-command) "compile (no prompt)")))
 #+END_SRC
 
 This one toggles some minor modes.  Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
@@ -829,6 +831,8 @@ These functions are required for some of the above.
 **** Markdown
 
 #+BEGIN_SRC emacs-lisp
+  (setq markdown-list-indent-width 2)
+
   (dolist (ext '("\\.markdown\\'" "\\.md\\'"))
     (add-to-list 'auto-mode-alist `(,ext . markdown-mode)))
 
