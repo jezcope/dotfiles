@@ -842,6 +842,12 @@ These functions are required for some of the above.
                     (pandoc-mode 1))))
     (add-hook 'markdown-mode-hook func)
     (add-hook 'gfm-mode-hook func))
+
+  (defun jc/force-insert-state (&rest args)
+    (message "force-insert-state")
+    (evil-insert-state nil))
+
+  (advice-add 'markdown-insert-header :after #'jc/force-insert-state)
 #+END_SRC
 
 **** HTML/XML/etc
