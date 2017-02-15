@@ -424,8 +424,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
   (use-package company
     :diminish company-mode
     :config
-    (global-company-mode 1)
-    (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi))))
+    (global-company-mode 1))
 #+END_SRC
 
 *** Configure ivy and counsel
