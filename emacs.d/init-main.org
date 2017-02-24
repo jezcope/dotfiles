@@ -424,8 +424,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
   (use-package company
     :diminish company-mode
     :config
-    (global-company-mode 1)
-    (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi))))
+    (global-company-mode 1))
 #+END_SRC
 
 *** Configure ivy and counsel
@@ -689,7 +688,9 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
       ("b" mu4e-headers-search-bookmark "mu4e bookmarks")
       ("c" mu4e-compose-new "compose")
       ("i" (mu4e~headers-jump-to-maildir "/INBOX") "inbox")
-      ("f" sunrise "sunrise")))
+      ("f" sunrise "sunrise")
+      ("b" compile "compile")
+      ("B" (compile compile-command) "compile (no prompt)")))
 #+END_SRC
 
 This one toggles some minor modes.  Also inspired by [[http://endlessparentheses.com/the-toggle-map-and-wizardry.html][Endless Parentheses]].
@@ -829,6 +830,8 @@ These functions are required for some of the above.
 **** Markdown
 
 #+BEGIN_SRC emacs-lisp
+  (setq markdown-list-indent-width 2)
+
   (dolist (ext '("\\.markdown\\'" "\\.md\\'"))
     (add-to-list 'auto-mode-alist `(,ext . markdown-mode)))
 
@@ -839,6 +842,12 @@ These functions are required for some of the above.
                     (pandoc-mode 1))))
     (add-hook 'markdown-mode-hook func)
     (add-hook 'gfm-mode-hook func))
+
+  (defun jc/force-insert-state (&rest args)
+    (message "force-insert-state")
+    (evil-insert-state nil))
+
+  (advice-add 'markdown-insert-header :after #'jc/force-insert-state)
 #+END_SRC
 
 **** HTML/XML/etc
