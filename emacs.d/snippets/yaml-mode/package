@@ -1,0 +1,10 @@
+# key: pkg
+# name: Install package
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))# key: pkg
+# name: Install package
+# expand-env: ((yas-indent-line (quote fixed)) (yas-wrap-around-region (quote nil)))
+# --
+- name: ${1:install ${2:...}}
+  ${3:apt}: pkg=${4:{{ item }}} state=${5:latest}${6: more options}
+  ${7:with_items:
+    - }

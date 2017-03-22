@@ -815,5 +815,5 @@ Disable strike-through formatting because I don't use it and it messes up ~table
                     org-subtask-reset
                     )))
     (dolist (p packages)
-      (require p)))
+      (require p nil t)))
 #+END_SRC

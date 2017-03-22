@@ -2,4 +2,4 @@
 # name: TODO
 # key: T
 # --
-***TODO: $1***$0
+***TODO${1:$(when (> (length yas-text) 0) ": ")}$1***$0
