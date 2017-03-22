@@ -116,7 +116,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
 
   ;; Make sure authinfo is encrypted
   (setq auth-sources '("~/.authinfo.gpg")
-        auth-source-gpg-encrypt-to '("0x12B6176DDF10B093"))
+        auth-source-gpg-encrypt-to '("0x9857C05DD62B0987"))
 #+END_SRC
 
 *** Useful utilities
