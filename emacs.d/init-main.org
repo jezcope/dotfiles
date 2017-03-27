@@ -1112,17 +1112,28 @@ Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
 
 ** Blogging helpers
 
-*** Update ~created_at~ date/time
+*** Update post date
+
+Hugo uses a metadata line of the following form to specify the date a post is published:
+
+#+BEGIN_SRC yaml
+date: 2017-03-26T17:56:32+01:00
+#+END_SRC
+
+This function finds that metadata line and updates it to the current time.
 
 #+BEGIN_SRC emacs-lisp
   (defun jc/update-created-date ()
     (interactive)
     (save-excursion
       (goto-char 0)
-      (when (re-search-forward "^created_at: ")
-        (kill-line)
-        (insert-string (format-time-string "%c"))))
-    )
+      (when (re-search-forward "^date: ")
+        (let* ((time-regex "+\\([[:digit:]]\\{2\\}\\)\\([[:digit:]]\\{2\\}\\)$")
+               ;; NB: format-time-string doesn't include a colon in the timezone offset
+               (date (replace-regexp-in-string time-regex "+\\1:\\2"
+                                              (format-time-string "%FT%T%z"))))
+          (kill-line)
+          (insert-string date)))))
 
   (dolist (hook '(markdown-mode-hook gfm-mode-hook yaml-mode-hook))
     (add-hook hook
