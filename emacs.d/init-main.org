@@ -168,11 +168,20 @@ Solution adapted from [[http://whatthefuck.computer/blog/2015/05/20/re-agent/][R
           (getenv "GPG_AGENT_INFO"))
 
         (run-with-idle-timer 60 t 'jc/re-agent)
-        (jc/re-agent)
-        )
+        (jc/re-agent))
 
-    ;; GPG 2.1+ uses a standard location
-    (setenv "SSH_AUTH_SOCK" "~/.gnupg/S.gpg-agent.ssh")
+    ;; GPG 2.1+ uses a standard location:
+    ;; /run/user/{uid}/gnupg/S.gpg-agent.ssh if possible
+    ;; or
+    ;; ~/.gnupg/S.gpg-agent.ssh if /run/user/{uid} doesn't exist
+    (setenv "SSH_AUTH_SOCK" )
+
+    (let* ((run-user-uid (format "/run/user/%d" (user-uid)))
+           (ssh-auth-sock (concat (if (file-directory-p run-user-uid)
+                                      (concat run-user-uid "/gnupg")
+                                    "~/.gnupg")
+                                  "/S.gpg-agent.ssh")))
+      (setenv "SSH_AUTH_SOCK" ssh-auth-sock))
     (setenv "SSH_AGENT_PID"))
 #+END_SRC
 
