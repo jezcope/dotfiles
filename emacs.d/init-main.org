@@ -1127,17 +1127,34 @@ This function finds that metadata line and updates it to the current time.
     (interactive)
     (save-excursion
       (goto-char 0)
-      (when (re-search-forward "^date: ")
+      (if (re-search-forward "^date: " nil t)
         (let* ((time-regex "+\\([[:digit:]]\\{2\\}\\)\\([[:digit:]]\\{2\\}\\)$")
-               ;; NB: format-time-string doesn't include a colon in the timezone offset
+               ;; NB: format-time-string doesn't include a colon in the timezone offset,
+               ;;     which confuses Hugo
                (date (replace-regexp-in-string time-regex "+\\1:\\2"
                                               (format-time-string "%FT%T%z"))))
           (kill-line)
-          (insert-string date)))))
+          (insert-string date))
 
-  (dolist (hook '(markdown-mode-hook gfm-mode-hook yaml-mode-hook))
-    (add-hook hook
-              (lambda () (local-set-key (kbd "C-c j b d") 'jc/update-created-date))))
+        ;; if re-search-forward fails:
+        (message "Hugo metadata not found"))))
+#+END_SRC
+
+*** Toggle draft status
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/toggle-blog-draft-status ()
+    (interactive)
+    (save-excursion
+      (goto-char 0)
+      (if (re-search-forward "^draft: ?" nil t)
+        (let* ((old-status (buffer-substring (point) (line-end-position)))
+               (new-status (if (equal old-status "true") "false" "true")))
+          (delete-region (point) (line-end-position))
+          (insert new-status))
+
+        ;; if re-search-forward fails:
+        (message "Hugo metadata not found"))))
 #+END_SRC
 
 *** Quickly create a new scratch blog post
@@ -1160,14 +1177,16 @@ This function finds that metadata line and updates it to the current time.
       (find-file path)))
 #+END_SRC
 
+*** Key bindings for blogging helpers
 
 #+BEGIN_SRC emacs-lisp
-  (defhydra jc/blogging-hydra ()
+  (defhydra jc/blogging-hydra (:exit t)
     "blogging"
-    ("s" jc/new-scratch-blog-post "new scratch blog post")
-    ("d" jc/update-created-date "update created date")
-    )
+    ("s" jc/new-scratch-blog-post     "new scratch blog post")
+    ("c" jc/update-created-date       "update created date" :exit nil)
+    ("d" jc/toggle-blog-draft-status  "toggle draft status" :exit nil))
 #+END_SRC
+
 ** Load local settings
 
 The ~t~ argument ensures no error is thrown if the file doesn't exist.
