@@ -623,6 +623,7 @@ Thanks to suggestions on [[http://endlessparentheses.com/launcher-keymap-for-sta
       ("c" mu4e-compose-new "compose")
       ("i" (mu4e~headers-jump-to-maildir "/INBOX") "inbox")
       ("f" sunrise "sunrise")
+      ("w" browse-url-at-point "browse URL at point")
       ("b" compile "compile")
       ("B" (compile compile-command) "compile (no prompt)")))
 #+END_SRC
