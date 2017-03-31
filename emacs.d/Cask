@@ -9,6 +9,7 @@
 (depends-on "airline-themes")
 (depends-on "async")
 (depends-on "avy")
+(depends-on "base16-theme")
 (depends-on "beacon")
 (depends-on "cask")
 (depends-on "centered-cursor-mode")
