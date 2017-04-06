@@ -1150,7 +1150,8 @@ This function finds that metadata line and updates it to the current time.
         (let* ((old-status (buffer-substring (point) (line-end-position)))
                (new-status (if (equal old-status "true") "false" "true")))
           (delete-region (point) (line-end-position))
-          (insert new-status))
+          (insert new-status)
+          (save-buffer))
 
         ;; if re-search-forward fails:
         (message "Hugo metadata not found"))))
