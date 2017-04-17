@@ -10,6 +10,12 @@ fi
 # Cask for emacs packages
 path=(~/.cask/bin $path)
 
+# Source rvm if it seems to be installed (i.e. $rvm_path set)
+if [[ -n "$rvm_path" ]]; then
+  source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
+  PATH=$PATH:$rvm_path/bin # Add RVM to PATH for scripting
+fi
+
 # Set up pyenv
 PYENV_ROOT=~/.pyenv
 if [[ -d $PYENV_ROOT ]]; then

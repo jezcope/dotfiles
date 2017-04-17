@@ -76,12 +76,6 @@ fi
 # Create $GOPATH if it doesn't exist
 mkdir -p $GOPATH
 
-# Source rvm if it seems to be installed (i.e. $rvm_path set)
-if [[ -n "$rvm_path" ]]; then
-  source "$rvm_path/scripts/rvm"  # This loads RVM into a shell session.
-  PATH=$PATH:$rvm_path/bin # Add RVM to PATH for scripting
-fi
-
 if ! setopt | grep login >/dev/null; then
   source ~/.zshenv.path
 fi
