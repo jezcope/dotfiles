@@ -885,8 +885,14 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
   (use-package virtualenvwrapper
     :config
     (venv-initialize-interactive-shells)
-    (venv-initialize-eshell)
-    (venv-set-location "~/.miniconda3/envs"))
+    (venv-initialize-eshell))
+
+  (use-package company-jedi
+    :commands (company-jedi)
+    :init
+    (add-hook 'python-mode-hook
+              (lambda ()
+                (add-to-list 'company-backends 'company-jedi))))
 #+END_SRC
 
 **** Ruby
