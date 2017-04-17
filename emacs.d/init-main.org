@@ -195,8 +195,8 @@ Set default fonts in order of preference:
 
   (setq jc/font-fixed
         (jc/first-available-font
-         "Input Mono Compressed"
          "Inconsolata"
+         "Input Mono Compressed"
          "Droid Sans Mono"
          "Ubuntu Mono"
          "Menlo"
@@ -205,8 +205,9 @@ Set default fonts in order of preference:
 
         jc/font-variable
         (jc/first-available-font
-         "Input Sans Condensed"
+         "Roboto"
          "Droid Sans"
+         "Input Sans Condensed"
          "Ubuntu Sans"
          "sans"))
 
@@ -231,7 +232,6 @@ Make some modes variable pitch by default:
 #+BEGIN_SRC emacs-lisp
   (dolist (hook '(
                org-mode-hook
-               python-mode-hook
                markdown-mode-hook
                TeX-mode-hook
                message-mode-hook
