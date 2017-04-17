@@ -308,7 +308,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 *** Choose appearance
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'base16-gruvbox-dark-medium t)
+  (load-theme 'base16-monokai t)
   (eval-after-load 'hydra
     '(progn
        (set-face-foreground 'hydra-face-red
