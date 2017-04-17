@@ -10,10 +10,17 @@ fi
 # Cask for emacs packages
 path=(~/.cask/bin $path)
 
-# Miniconda for python
-if [[ -d ~/miniconda3/bin ]]; then
-  path=(~/miniconda3/bin $path)
+# Set up pyenv
+PYENV_ROOT=~/.pyenv
+if [[ -d $PYENV_ROOT ]]; then
+  export PYENV_ROOT
+
+  path=($PYENV_ROOT/bin $path)
+  export PATH
+
+  eval "$(pyenv init -)"
 fi
+
 
 export PATH
 
