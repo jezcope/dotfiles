@@ -1021,7 +1021,13 @@ If the homebrew version of coreutils is installed under Mac, use that:
 *** Magit
 
 #+BEGIN_SRC emacs-lisp
-  (setq magit-push-always-verify nil)
+  (use-package magit
+    :config
+    (setq magit-push-always-verify nil))
+
+  (use-package magithub
+    :after magit
+    :config (magithub-feature-autoinject t))
 #+END_SRC
 
 *** Spelling
