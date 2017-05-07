@@ -53,7 +53,7 @@ endif
 
 " GTK+ specific stuff
 if has("gui_gtk")
-  set guifont=Input\ Mono\ Compressed\ 11
+  set guifont=Inconsolata\ 12
   set nomousehide " Disable mousehide to workaround an xmonad bug
 endif
 
