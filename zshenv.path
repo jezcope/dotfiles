@@ -27,6 +27,15 @@ if [[ -d $PYENV_ROOT ]]; then
   eval "$(pyenv init -)"
 fi
 
+# Set up virtualenvwrapper
+if which virtualenvwrapper.sh > /dev/null; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  export PROJECT_HOME=$HOME/Projects
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+
+  source virtualenvwrapper.sh
+fi
+
 
 export PATH
 

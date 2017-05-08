@@ -1,0 +1,81 @@
+# -*- mode: snippet -*-
+# name: ProjectLite definition (markdown)
+# key: projectlite
+# --
+---
+title: $1
+subtitle: Project Definition
+author: ${2:Jez Cope}
+---
+
+Version: 1  
+Date: ${3:`(format-time-string "%e %b %Y")`}
+
+$0This project is about changing this by looking at that and doing the
+other.
+
+## Project Outline ##
+
+### Background and Why the Project Needs Doing ###
+
+Something or other isn’t working well and so-and-so asked us to sort it
+out.
+
+### Scope ###
+
+-   We’ll be doing this for so-and-so.
+-   We won’t be doing that.
+
+### Objectives ###
+
+-   Produce a widget.
+-   Train the users in using it.
+
+### Strategy ###
+
+1.  The team will discuss with users what they’d like, and review what
+    is available off the shelf.
+2.  We’ll then agree exactly what we’re going to deliver.
+3.  CiCS will then do whatever and the users will test it.
+4.  The users will sort out how their processes will need to change and
+    we’ll all agree a time for go-live.
+
+### Costs ###
+
+The software is likely to be open source but we’ll probably need a
+server, though a virtual server may do.
+
+### Concerns and Risks ###
+
+This project depends on some other thing being completed on time.
+
+The suppliers are unreliable.
+
+There is a deadline of whenever and timescales are tight. If necessary
+we can drop whatever and maybe pick it up after go-live.
+
+## Who is Involved ##
+
+Sponsor:
+
+Project Manager:
+
+Customers:
+
+Technical:
+
+Roll-out:
+
+Other interested parties:
+
+## Project Schedule ##
+
+| Phase                                         | Start | End | Done? | Resource needs |
+|-----------------------------------------------+-------+-----+-------+----------------|
+| 1\. Review the state of play and agree a spec |       |     |       |                |
+| 2\. Do the work                               |       |     |       |                |
+| 3\. Create documentation                      |       |     |       |                |
+| 4\. Rollout and handover                      |       |     |       |                |
+
+
+
