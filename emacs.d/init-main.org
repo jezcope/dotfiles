@@ -571,7 +571,9 @@ Lets you use =C-c <left>= and =C-c <right>= to undo and redo window configuratio
 #+BEGIN_SRC emacs-lisp
   (require 'guide-key)
   (setq guide-key/guide-key-sequence
-        '("C-x" "SPC" "SPC ," "C-c p")
+        '("C-x" "C-c"   ;; general bindings
+          "SPC" "SPC ," ;; evil-leader
+          )
 
         guide-key/recursive-key-sequence-flag t
         guide-key/popup-window-position 'bottom
