@@ -97,9 +97,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
         scroll-bar-mode nil
         indent-tabs-mode nil
         standard-indent 2
-        tab-stop-list (loop for n from 2 below 80 by 2 collect n)
-        ispell-dictionary "british"
-        )
+        tab-stop-list (loop for n from 2 below 80 by 2 collect n))
 
   (setq-default tab-width 2
                 indent-tabs-mode nil)
@@ -1040,6 +1038,18 @@ If the homebrew version of coreutils is installed under Mac, use that:
 #+END_SRC
 
 *** Spelling
+
+#+BEGIN_SRC emacs-lisp
+  (defalias 'jc/first-executable
+    (apply-partially #'seq-some #'executable-find)
+    "Return the first found executable in $PATH")
+
+  (setq ispell-dictionary "british"
+        ispell-program-name (jc/first-executable
+                             '("hunspell"
+                               "aspell"
+                               "ispell")))
+#+END_SRC
 
 **** Jump to previous error
 
