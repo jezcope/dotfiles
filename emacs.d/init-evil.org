@@ -35,7 +35,8 @@
   (setq evil-leader/leader "<SPC>")
 
   (evil-leader/set-key
-    "b" 'jc/blogging-hydra/body
+    "b" 'helm-mini
+    "B" 'jc/blogging-hydra/body
     "c" 'org-capture
     "a" 'org-agenda
     "l" 'jc/launcher-hydra/body
