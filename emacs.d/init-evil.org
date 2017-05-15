@@ -35,7 +35,7 @@
   (setq evil-leader/leader "<SPC>")
 
   (evil-leader/set-key
-    "b" 'helm-mini
+    "b" 'ivy-switch-buffer
     "B" 'jc/blogging-hydra/body
     "c" 'org-capture
     "a" 'org-agenda
@@ -44,8 +44,7 @@
     "f" 'jc/file-hydra/body
     "F" 'jc/find-files-hydra/body
     "t" 'jc/toggle-hydra/body
-    "i" 'helm-semantic-or-imenu
-    "I" 'helm-imenu-in-all-buffers)
+    "i" 'counsel-imenu)
 
   (evil-leader/set-key-for-mode 'org-mode
     "r" 'jc/org-refile-hydra/body)

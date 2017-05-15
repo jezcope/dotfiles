@@ -439,29 +439,101 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (global-company-mode 1))
 #+END_SRC
 
-*** Configure helm
+*** Configure ivy and counsel
 
 #+BEGIN_SRC emacs-lisp
-  (use-package helm
-    :demand
-    :diminish helm-mode
+  (use-package ivy :ensure t
+    :diminish ivy-mode
+    :init (setq projectile-completion-system 'ivy)
     :bind
-    (("M-x" . helm-M-x)
-     ("C-x C-f" . helm-find-files)
-     ("C-x b" . helm-mini)
-     ("M-y" . helm-show-kill-ring)))
+    (:map ivy-mode-map ("C-'" . ivy-avy))
+    :config
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-height 13)
+    (setq ivy-initial-inputs-alist nil)
+    (setq ivy-count-format "%d/%d ")
+    (setq ivy-virtual-abbreviate 'full) ; Show the full virtual file paths
+    (setq ivy-extra-directories '("./")) ; default value: ("../" "./")
+    (setq ivy-wrap t)
+    (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                                  (counsel-ag . ivy--regex-plus)
+                                  (counsel-grep-or-swiper . ivy--regex-plus)
+                                  (t . ivy--regex-plus)))
+    (define-key counsel-find-file-map (kbd "<left>") 'counsel-up-directory))
 
-  (add-hook 'after-init-hook
-            (lambda () (helm-mode 1)))
+  (use-package counsel-projectile :ensure t
+    ;; :bind* (("C-c p p" . counsel-projectile))
+    :init
+    (setq counsel-projectile-drop-to-switch-project-binding "C-c s p")
+    (counsel-projectile-on))
 
-  (use-package helm-swoop
-    :bind
-    (("C-s" . helm-swoop)))
+  (use-package counsel :ensure t
+    :bind*
+    (("M-x"     . counsel-M-x)
+     ("M-y"     . counsel-yank-pop)
+     ("C-c d d" . counsel-descbinds)
+     ("C-c a"   . counsel-ag)
+     ("C-c s s" . counsel-ag)
+     ("C-c s d" . counsel-ag-projectile)
+     ("C-x C-f" . counsel-find-file)
+     ("C-x r f" . counsel-recentf)
+     ("C-c g g" . counsel-git)
+     ("C-c g G" . counsel-git-grep)
+     ("C-c g s" . counsel-grep-or-swiper)
+     ("C-c C-r" . ivy-resume)
+     ("C-c i m" . counsel-imenu)
+     ("C-c i M" . ivy-imenu-anywhere)
+     ("C-c d s" . describe-symbol)
+     ("C-h f"   . counsel-describe-function)
+     ("C-h v"   . counsel-describe-variable)
+     :map ivy-minibuffer-map
+     ("M-y"     . ivy-next-line-and-call))
 
-  (use-package helm-projectile)
+    :config
+    (defun reloading (cmd)
+      (lambda (x)
+        (funcall cmd x)
+        (ivy--reset-state ivy-last)))
+    (defun given-file (cmd prompt) ; needs lexical-binding
+      (lambda (source)
+        (let ((target
+           (let ((enable-recursive-minibuffers t))
+             (read-file-name
+          (format "%s %s to:" prompt source)))))
+      (funcall cmd source target 1))))
+    (defun confirm-delete-file (x)
+      (dired-delete-file x 'confirm-each-subdirectory))
+
+    (ivy-add-actions
+     'counsel-find-file
+     `(("d" ,(reloading #'confirm-delete-file) "delete")
+       ("m" ,(reloading (given-file #'rename-file "Move")) "move")))
+    (ivy-add-actions
+     'counsel-projectile-find-file
+     `(("d" ,(reloading #'confirm-delete-file) "delete")
+       ("m" ,(reloading (given-file #'rename-file "Move")) "move")
+       ("b" counsel-find-file-cd-bookmark-action "cd bookmark")))
+
+    ;; to make counsel-ag search the root projectile directory.
+    (defun counsel-ag-projectile ()
+      (interactive)
+      (counsel-ag nil (projectile-project-root)))
+
+    (setq counsel-find-file-at-point t)
+    ;; ignore . files or temporary files
+    (setq counsel-find-file-ignore-regexp
+      (concat
+       ;; File names beginning with # or .
+       "\\(?:\\`[#.]\\)"
+       ;; File names ending with # or ~
+       "\\|\\(?:\\`.+?[#~]\\'\\)")))
+
+  (use-package swiper :ensure t
+    :bind (("C-s" . swiper)))
 #+END_SRC
 
-*** Use kill ring as X clipboard history :experimental:
+*** Use kill ring as X clipboard history                     :experimental:
 
 This should ensure the X clipboard contents isn't lost during normal editing.
 
@@ -517,26 +589,27 @@ This doesn't work as I want it to right now - needs reworking.
 #+BEGIN_SRC emacs-lisp
   (setq projectile-mode-line '(:eval
                                (format " P[%s]"
-                                       (projectile-project-name))))
+                                       (projectile-project-name)))
+        projectile-completion-system 'ivy)
 
   ;; Adapted from http://oremacs.com/2015/07/20/hydra-columns/
   (defhydra jc/projectile-hydra (:color blue :columns 4)
     "Projectile"
-    ("a" helm-projectile-ag "ag")
-    ("b" helm-projectile-switch-to-buffer "switch to buffer")
+    ("a" counsel-ag-projectile "ag")
+    ("b" counsel-projectile-switch-to-buffer "switch to buffer")
     ("c" projectile-compile-project "compile")
-    ("d" helm-projectile-find-dir "dir")
-    ("f" helm-projectile-find-file "file")
+    ("d" counsel-projectile-find-dir "dir")
+    ("f" counsel-projectile-find-file "file")
     ("g" ggtags-update-tags "update gtags")
     ("i" projectile-invalidate-cache "cache clear")
     ("K" projectile-kill-buffers "Kill all buffers")
     ("o" projectile-multi-occur "multi-occur")
-    ("p" helm-projectile-switch-project "switch")
+    ("p" counsel-projectile-switch-project "switch")
     ("P" projectile-test-project "test")
     ("r" projectile-remove-known-project "remove known")
     ("R" projectile-cleanup-known-projects "cleanup non-existing")
-    ("ss" helm-projectile-ag "ag")
-    ("sg" helm-projectile-grep "grep")
+    ("ss" counsel-ag-projectile "ag")
+    ("sg" projectile-grep "grep")
     ("v" projectile-vc "version control")
     ("V" projectile-browse-dirty-projects "dirty")
     ("xe" projectile-run-eshell "eshell")
