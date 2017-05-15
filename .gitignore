@@ -36,3 +36,4 @@ pentadactyl/info/default/register-ring
 /emacs.d/.python-environments/
 emacs.d/abbrev_defs
 *.retry
+/emacs.d/.persistent-scratch

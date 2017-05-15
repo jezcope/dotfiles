@@ -126,6 +126,12 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (use-package dropbox-conflicts
     :config
     (dropbox-conflicts-mode))
+
+  (use-package persistent-scratch
+    :config
+    (ignore-errors
+      (persistent-scratch-restore))
+    (persistent-scratch-autosave-mode 1))
 #+END_SRC
 
 *** Evil
