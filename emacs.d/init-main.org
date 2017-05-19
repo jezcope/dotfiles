@@ -129,16 +129,16 @@ Enable menu bar on Mac, as it doesn't make any difference:
 
   (use-package persistent-scratch
     :config
-    (ignore-errors
-      (persistent-scratch-restore))
     (persistent-scratch-autosave-mode 1))
 #+END_SRC
 
 *** Evil
 
 #+BEGIN_SRC emacs-lisp
-  (jc/require-org-file "init-evil.org")
-  (evil-mode 1)
+  (use-package evil
+    :config
+    (jc/require-org-file "init-evil.org")
+    (evil-mode 1))
 #+END_SRC
 
 *** Initial buffer
@@ -327,29 +327,14 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
        (set-face-foreground 'hydra-face-amaranth
                             (if (display-graphic-p) "#AF3A03" "color-130"))))
 
-  (use-package airline-themes
-    :init
-    (setq powerline-default-separator           'wave
-          airline-utf-glyph-separator-left      #xe0b0
-          airline-utf-glyph-separator-right     #xe0b2
-          airline-utf-glyph-subseparator-left   #xe0b1
-          airline-utf-glyph-subseparator-right  #xe0b3
-          airline-utf-glyph-branch              #xe0a0
-          airline-utf-glyph-readonly            #xe0a2
-          airline-utf-glyph-linenumber          #xe0a1)
+  (use-package spaceline
+    :after evil)
+  (use-package spaceline-all-the-icons
+    :after spaceline
     :config
-    (load-theme 'airline-base16-gui-dark))
-
-  (with-eval-after-load 'yasnippet
-    (diminish 'yas-minor-mode))
-  (diminish 'undo-tree-mode)
-  (add-hook 'buffer-face-mode-hook
-            (lambda () (diminish 'buffer-face-mode)))
-  (add-hook 'org-indent-mode-hook
-            (lambda () (diminish 'org-indent-mode)))
-  (with-eval-after-load 'org-src
-    (diminish 'org-src-mode "OS"))
-  (diminish 'visual-line-mode)
+    (setq spaceline-all-the-icons-separator-type 'cup
+          spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
+    (spaceline-all-the-icons-theme))
 #+END_SRC
 
 *** Activate filladapt-mode

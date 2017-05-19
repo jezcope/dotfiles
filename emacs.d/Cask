@@ -84,6 +84,8 @@
 (depends-on "s")
 (depends-on "scss-mode")
 (depends-on "seq")
+(depends-on "spaceline")
+(depends-on "spaceline-all-the-icons")
 (depends-on "sunrise-commander")
 (depends-on "sunrise-x-checkpoints")
 (depends-on "sunrise-x-loop")
