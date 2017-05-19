@@ -446,7 +446,8 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     :diminish ivy-mode
     :init (setq projectile-completion-system 'ivy)
     :bind
-    (:map ivy-mode-map ("C-'" . ivy-avy))
+    (:map ivy-mode-map
+     ("C-'" . ivy-avy))
     :config
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t
@@ -460,9 +461,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
                                   (counsel-ag             . ivy--regex-plus)
                                   (counsel-grep-or-swiper . ivy--regex-plus)
                                   (t                      . ivy--regex-ignore-order))
-          ivy-format-function #'ivy-format-function-arrow)
-
-    (define-key counsel-find-file-map (kbd "<left>") 'counsel-up-directory))
+          ivy-format-function #'ivy-format-function-arrow))
 
   (use-package counsel-projectile :ensure t
     ;; :bind* (("C-c p p" . counsel-projectile))
@@ -490,7 +489,10 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
      ("C-h f"   . counsel-describe-function)
      ("C-h v"   . counsel-describe-variable)
      :map ivy-minibuffer-map
-     ("M-y"     . ivy-next-line-and-call))
+     ("M-y"     . ivy-next-line-and-call)
+     :map counsel-find-file-map
+     ("<left>"  . counsel-up-directory)
+     ("<right>" . ivy-alt-done))
 
     :config
     ;; TODO: This should maybe be a macro?
