@@ -449,17 +449,19 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (:map ivy-mode-map ("C-'" . ivy-avy))
     :config
     (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-height 13)
-    (setq ivy-initial-inputs-alist nil)
-    (setq ivy-count-format "%d/%d ")
-    (setq ivy-virtual-abbreviate 'full) ; Show the full virtual file paths
-    (setq ivy-extra-directories '("./")) ; default value: ("../" "./")
-    (setq ivy-wrap t)
-    (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                                  (counsel-ag . ivy--regex-plus)
+    (setq ivy-use-virtual-buffers t
+          ivy-height 28
+          ivy-initial-inputs-alist nil
+          ivy-count-format "%d/%d "
+          ivy-virtual-abbreviate 'full ; Show the full virtual file path
+          ivy-extra-directories '("./") ; default value: ("../" "./")
+          ivy-wrap t
+          ivy-re-builders-alist '((swiper                 . ivy--regex-plus)
+                                  (counsel-ag             . ivy--regex-plus)
                                   (counsel-grep-or-swiper . ivy--regex-plus)
-                                  (t . ivy--regex-plus)))
+                                  (t                      . ivy--regex-ignore-order))
+          ivy-format-function #'ivy-format-function-arrow)
+
     (define-key counsel-find-file-map (kbd "<left>") 'counsel-up-directory))
 
   (use-package counsel-projectile :ensure t
@@ -491,6 +493,8 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
      ("M-y"     . ivy-next-line-and-call))
 
     :config
+    ;; TODO: This should maybe be a macro?
+    ;; `cmd` isn't in scope when the lambda is executed
     (defun reloading (cmd)
       (lambda (x)
         (funcall cmd x)
