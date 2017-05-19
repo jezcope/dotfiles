@@ -78,6 +78,7 @@
 (depends-on "projectile")
 (depends-on "puppet-mode")
 (depends-on "pytest")
+(depends-on "python-mode")
 (depends-on "rainbow-delimiters")
 (depends-on "rainbow-mode")
 (depends-on "ruby-mode")
