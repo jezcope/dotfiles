@@ -940,6 +940,9 @@ These functions are required for some of the above.
     :init (add-hook 'emacs-lisp-mode-hook 'nameless-mode)
     :bind (:map nameless-mode-map
                 ("_" . nameless-insert-name-or-self-insert)))
+
+  (use-package cask
+    :mode ("/Cask\\'" . emacs-lisp-mode))
 #+END_SRC
 
 ***** Useful functions for customising emacs
