@@ -27,7 +27,8 @@
         (-distinct (append evil-emacs-state-modes
                            '(twittering-mode
                              twittering-edit-mode
-                             erc-mode))))
+                             erc-mode
+                             neotree-mode))))
 #+END_SRC
 ** Leader
 
@@ -44,7 +45,8 @@
     "f" 'jc/file-hydra/body
     "F" 'jc/find-files-hydra/body
     "t" 'jc/toggle-hydra/body
-    "i" 'counsel-imenu)
+    "i" 'counsel-imenu
+    "n" 'neotree-show)
 
   (evil-leader/set-key-for-mode 'org-mode
     "r" 'jc/org-refile-hydra/body)
@@ -83,6 +85,14 @@
   (global-evil-surround-mode)
 #+END_SRC
 
+** Evil snipe
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-snipe :demand
+    :config
+    (setq evil-snipe-scope 'visible)
+    (evil-snipe-mode 1))
+#+END_SRC
 ** Mode-specific stuff
 
 *** Mu4e

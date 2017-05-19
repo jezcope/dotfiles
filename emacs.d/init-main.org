@@ -1108,7 +1108,7 @@ If the homebrew version of coreutils is installed under Mac, use that:
     (add-hook 'message-mode-hook 'flyspell-mode))
 #+END_SRC
 
-*** Magit
+*** git
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit
@@ -1118,6 +1118,10 @@ If the homebrew version of coreutils is installed under Mac, use that:
   (use-package magithub
     :after magit
     :config (magithub-feature-autoinject t))
+
+  (use-package git-gutter-fringe
+    :demand
+    :config (global-git-gutter-mode 1))
 #+END_SRC
 
 *** Spelling
@@ -1180,6 +1184,15 @@ If the homebrew version of coreutils is installed under Mac, use that:
 
   (eval-after-load 'flyspell
     #'(define-key flyspell-mode-map (kbd "C-,") #'flyspell-goto-previous-error))
+#+END_SRC
+
+*** NeoTree
+
+#+BEGIN_SRC emacs-lisp
+  (use-package neotree
+    :init
+    (setq neo-theme 'icons)
+    :commands (neotree neotree-show))
 #+END_SRC
 ** Extra functions
 
