@@ -337,6 +337,21 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (spaceline-all-the-icons-theme))
 #+END_SRC
 
+Fix for [[https://github.com/belak/base16-emacs/issues/4][this base16-emacs issue]]:
+
+#+BEGIN_SRC emacs-lisp
+  (setq ansi-term-color-vector
+        [term
+         term-color-black
+         term-color-red
+         term-color-green
+         term-color-yellow
+         term-color-blue
+         term-color-magenta
+         term-color-cyan
+         term-color-white])
+#+END_SRC
+
 *** Activate filladapt-mode
 
 #+BEGIN_SRC emacs-lisp
