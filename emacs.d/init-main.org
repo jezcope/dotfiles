@@ -76,17 +76,15 @@ Enable menu bar on Mac, as it doesn't make any difference:
         custom-theme-directory (expand-file-name "~/.emacs.d/themes"))
 #+END_SRC
 
-** Require some key utilities
+** Emacs-lisp libraries
 
 #+BEGIN_SRC emacs-lisp
-  (require 'dash)
   (require 'cl)
-#+END_SRC
 
-** Additional setup files
-
-#+BEGIN_SRC emacs-lisp
-  (jc/require-org-file "init-org.org")
+  (use-package dash)
+  (use-package s)
+  (use-package add-hooks
+    :ensure)
 #+END_SRC
 
 ** Global setup
@@ -115,199 +113,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
   ;; Make sure authinfo is encrypted
   (setq auth-sources '("~/.authinfo.gpg")
         auth-source-gpg-encrypt-to '("0x9857C05DD62B0987"))
-#+END_SRC
-
-*** Useful utilities
-
-#+BEGIN_SRC emacs-lisp
-  (use-package crux
-    :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)))
-
-  (use-package dropbox-conflicts
-    :config
-    (dropbox-conflicts-mode))
-
-  (use-package persistent-scratch
-    :config
-    (persistent-scratch-autosave-mode 1))
-#+END_SRC
-
-*** Evil
-
-#+BEGIN_SRC emacs-lisp
-  (use-package evil
-    :config
-    (jc/require-org-file "init-evil.org")
-    (evil-mode 1))
-#+END_SRC
-
-*** Initial buffer
-
-#+BEGIN_SRC emacs-lisp
-  (setq initial-scratch-message "* Scratch\n\n# This buffer is for notes you don't want to save, and for Lisp evaluation.\n\n#+BEGIN_SRC emacs-lisp\n\n#+END_SRC\n"
-        initial-major-mode 'org-mode
-        initial-buffer-choice t)
-#+END_SRC
-
-*** Correctly set GPG/SSH agent info
-
-Solution adapted from [[http://whatthefuck.computer/blog/2015/05/20/re-agent/][Ryan Rix's blog]]
-
-#+BEGIN_SRC emacs-lisp
-  (setq jc/gpg-env (expand-file-name "~/.gnupg/gpg-agent.env"))
-
-  ;; Only run when gpg environment file available (i.e. GPG <= 2.0)
-  (if (file-readable-p jc/gpg-env)
-      (progn
-        (defun jc/re-agent ()
-          "Load your gpg-agent.env file in to the environment
-
-  This is extra useful if you use gpg-agent with --enable-ssh-support"
-          (with-temp-buffer
-            (insert-file-contents jc/gpg-env)
-            (goto-char (point-min))
-            (setq case-replace nil)
-            (replace-regexp "\\(.*\\)=\\(.*\\)" "(setenv \"\\1\" \"\\2\")")
-            (eval-buffer))
-          (getenv "GPG_AGENT_INFO"))
-
-        (run-with-idle-timer 60 t 'jc/re-agent)
-        (jc/re-agent))
-
-    ;; GPG 2.1+ uses a standard location:
-    ;; /run/user/{uid}/gnupg/S.gpg-agent.ssh if possible
-    ;; or
-    ;; ~/.gnupg/S.gpg-agent.ssh if /run/user/{uid} doesn't exist
-    (let* ((run-user-uid (format "/run/user/%d" (user-uid)))
-           (ssh-auth-sock (concat (if (file-directory-p run-user-uid)
-                                      (concat run-user-uid "/gnupg")
-                                    "~/.gnupg")
-                                  "/S.gpg-agent.ssh")))
-      (setenv "SSH_AUTH_SOCK" ssh-auth-sock))
-    (setenv "SSH_AGENT_PID"))
-#+END_SRC
-
-*** Fonts
-
-Set default fonts in order of preference:
-
-#+BEGIN_SRC emacs-lisp
-  (defun jc/first-available-font (&rest stack)
-    (loop for f in stack
-          if (member f (font-family-list))
-          do (return f)))
-
-  (setq jc/font-fixed
-        (jc/first-available-font
-         "Inconsolata"
-         "Input Mono Compressed"
-         "Droid Sans Mono"
-         "Ubuntu Mono"
-         "Menlo"
-         "Monaco"
-         "fixed")
-
-        jc/font-variable
-        (jc/first-available-font
-         "TeX Gyre Pagella"
-         "Roboto"
-         "Droid Sans"
-         "Input Sans Condensed"
-         "Ubuntu Sans"
-         "sans"))
-
-  (set-face-attribute 'default nil
-                      :family jc/font-fixed
-                      :height 110
-                      :weight 'light)
-
-  (set-face-attribute 'fixed-pitch nil
-                      :family jc/font-fixed
-                      :height 110
-                      :weight 'light)
-
-  (set-face-attribute 'variable-pitch nil
-                      :family jc/font-variable
-                      :height 110
-                      :weight 'light)
-#+END_SRC
-
-Make some modes variable pitch by default:
-
-#+BEGIN_SRC emacs-lisp
-  (dolist (hook '(
-               org-mode-hook
-               markdown-mode-hook
-               TeX-mode-hook
-               message-mode-hook
-               mu4e-view-mode-hook
-               ))
-    (add-hook hook 'variable-pitch-mode))
-#+END_SRC
-
-Make some faces fixed pitch (mostly to fix vertical alignment issues):
-
-#+BEGIN_SRC emacs-lisp
-  (eval-after-load 'org-indent
-    '(set-face-attribute 'org-indent nil :inherit '(fixed-pitch org-hide)))
-  (add-hook 'after-init-hook
-            (lambda ()
-              (set-face-attribute 'org-table nil :inherit '(fixed-pitch))
-              (set-face-attribute 'org-formula nil :inherit '(fixed-pitch))
-              (set-face-attribute 'org-block nil :inherit '(fixed-pitch))))
-#+END_SRC
-
-*** Editing preferences
-
-#+BEGIN_SRC emacs-lisp
-  (setq sentence-end-double-space nil)
-#+END_SRC
-
-*** Configure how to make buffer titles unique
-
-This adds (to the filename) enough of the path after a vertical bar to make the title unique.
-
-#+BEGIN_SRC emacs-lisp
-  (require 'uniquify)
-  (setq uniquify-buffer-name-style 'post-forward)
-#+END_SRC
-
-*** Save backups and autosaves somewhere more sensible
-
-#+BEGIN_SRC emacs-lisp
-  (setq jc/autosave-directory
-        (expand-file-name "../.autosave" user-emacs-directory))
-  (setq backup-directory-alist
-        `((".*" . ,jc/autosave-directory))
-        auto-save-file-name-transforms
-        `((".*" ,jc/autosave-directory t)))
-#+END_SRC
-
-*** Enable automatic saving of buffers
-
-#+BEGIN_SRC emacs-lisp
-  (defun jc/buffer-visiting-real-file-p ()
-    (not (or (null buffer-file-name)
-             (string-match "\\*scratch\\*" buffer-file-name))))
-
-  (defun jc/save-everything-no-prompt ()
-    (interactive)
-    (let ((buffer-list-update-hook nil))
-      (cl-letf (((symbol-function 'message) #'ignore))
-        (save-some-buffers t 'jc/buffer-visiting-real-file-p))))
-
-  ;(add-hook 'buffer-list-update-hook 'jc/save-everything-no-prompt)
-
-  ;; If we're in emacs ≥24.4 save everything on focus-out too
-  (if (fboundp 'handle-focus-out)
-      (add-hook 'focus-out-hook 'jc/save-everything-no-prompt))
-#+END_SRC
-
-*** Don't query about running processes on exit
-
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'comint-exec-hook 
-        (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
 #+END_SRC
 
 *** Appearance
@@ -381,6 +186,191 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (spaceline-all-the-icons-theme))
 #+END_SRC
 
+**** Fonts
+
+Set default fonts in order of preference:
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/first-available-font (&rest stack)
+    (loop for f in stack
+          if (member f (font-family-list))
+          do (return f)))
+
+  (setq jc/font-fixed
+        (jc/first-available-font
+         "Inconsolata"
+         "Input Mono Compressed"
+         "Droid Sans Mono"
+         "Ubuntu Mono"
+         "Menlo"
+         "Monaco"
+         "fixed")
+
+        jc/font-variable
+        (jc/first-available-font
+         "TeX Gyre Pagella"
+         "Roboto"
+         "Droid Sans"
+         "Input Sans Condensed"
+         "Ubuntu Sans"
+         "sans"))
+
+  (set-face-attribute 'default nil
+                      :family jc/font-fixed
+                      :height 110
+                      :weight 'light)
+
+  (set-face-attribute 'fixed-pitch nil
+                      :family jc/font-fixed
+                      :height 110
+                      :weight 'light)
+
+  (set-face-attribute 'variable-pitch nil
+                      :family jc/font-variable
+                      :height 110
+                      :weight 'light)
+#+END_SRC
+
+Make some modes variable pitch by default:
+
+#+BEGIN_SRC emacs-lisp
+  (dolist (hook '(
+               org-mode-hook
+               markdown-mode-hook
+               TeX-mode-hook
+               message-mode-hook
+               mu4e-view-mode-hook
+               ))
+    (add-hook hook 'variable-pitch-mode))
+#+END_SRC
+
+Make some faces fixed pitch (mostly to fix vertical alignment issues):
+
+#+BEGIN_SRC emacs-lisp
+  (eval-after-load 'org-indent
+    '(set-face-attribute 'org-indent nil :inherit '(fixed-pitch org-hide)))
+  (add-hook 'after-init-hook
+            (lambda ()
+              (set-face-attribute 'org-table nil :inherit '(fixed-pitch))
+              (set-face-attribute 'org-formula nil :inherit '(fixed-pitch))
+              (set-face-attribute 'org-block nil :inherit '(fixed-pitch))))
+#+END_SRC
+
+*** Initial buffer
+
+#+BEGIN_SRC emacs-lisp
+  (setq initial-scratch-message "* Scratch\n\n# This buffer is for notes you don't want to save, and for Lisp evaluation.\n\n#+BEGIN_SRC emacs-lisp\n\n#+END_SRC\n"
+        initial-major-mode 'org-mode
+        initial-buffer-choice t)
+#+END_SRC
+
+*** Useful utilities
+
+#+BEGIN_SRC emacs-lisp
+  (use-package crux
+    :bind (([remap move-beginning-of-line] . crux-move-beginning-of-line)))
+
+  (use-package dropbox-conflicts
+    :config
+    (dropbox-conflicts-mode))
+
+  (use-package persistent-scratch
+    :config
+    (persistent-scratch-autosave-mode 1))
+#+END_SRC
+
+*** Correctly set GPG/SSH agent info
+
+Solution adapted from [[http://whatthefuck.computer/blog/2015/05/20/re-agent/][Ryan Rix's blog]]
+
+#+BEGIN_SRC emacs-lisp
+  (setq jc/gpg-env (expand-file-name "~/.gnupg/gpg-agent.env"))
+
+  ;; Only run when gpg environment file available (i.e. GPG <= 2.0)
+  (if (file-readable-p jc/gpg-env)
+      (progn
+        (defun jc/re-agent ()
+          "Load your gpg-agent.env file in to the environment
+
+  This is extra useful if you use gpg-agent with --enable-ssh-support"
+          (with-temp-buffer
+            (insert-file-contents jc/gpg-env)
+            (goto-char (point-min))
+            (setq case-replace nil)
+            (replace-regexp "\\(.*\\)=\\(.*\\)" "(setenv \"\\1\" \"\\2\")")
+            (eval-buffer))
+          (getenv "GPG_AGENT_INFO"))
+
+        (run-with-idle-timer 60 t 'jc/re-agent)
+        (jc/re-agent))
+
+    ;; GPG 2.1+ uses a standard location:
+    ;; /run/user/{uid}/gnupg/S.gpg-agent.ssh if possible
+    ;; or
+    ;; ~/.gnupg/S.gpg-agent.ssh if /run/user/{uid} doesn't exist
+    (let* ((run-user-uid (format "/run/user/%d" (user-uid)))
+           (ssh-auth-sock (concat (if (file-directory-p run-user-uid)
+                                      (concat run-user-uid "/gnupg")
+                                    "~/.gnupg")
+                                  "/S.gpg-agent.ssh")))
+      (setenv "SSH_AUTH_SOCK" ssh-auth-sock))
+    (setenv "SSH_AGENT_PID"))
+#+END_SRC
+
+*** Editing preferences
+
+#+BEGIN_SRC emacs-lisp
+  (setq sentence-end-double-space nil)
+#+END_SRC
+
+*** Configure how to make buffer titles unique
+
+This adds (to the filename) enough of the path after a vertical bar to make the title unique.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package uniquify
+    :config
+    (setq uniquify-buffer-name-style 'post-forward))
+#+END_SRC
+
+*** Save backups and autosaves somewhere more sensible
+
+#+BEGIN_SRC emacs-lisp
+  (setq jc/autosave-directory
+        (expand-file-name "../.autosave" user-emacs-directory))
+  (setq backup-directory-alist
+        `((".*" . ,jc/autosave-directory))
+        auto-save-file-name-transforms
+        `((".*" ,jc/autosave-directory t)))
+#+END_SRC
+
+*** Enable automatic saving of buffers
+
+#+BEGIN_SRC emacs-lisp
+  (defun jc/buffer-visiting-real-file-p ()
+    (not (or (null buffer-file-name)
+             (string-match "\\*scratch\\*" buffer-file-name))))
+
+  (defun jc/save-everything-no-prompt ()
+    (interactive)
+    (let ((buffer-list-update-hook nil))
+      (cl-letf (((symbol-function 'message) #'ignore))
+        (save-some-buffers t 'jc/buffer-visiting-real-file-p))))
+
+  ;(add-hook 'buffer-list-update-hook 'jc/save-everything-no-prompt)
+
+  ;; If we're in emacs ≥24.4 save everything on focus-out too
+  (if (fboundp 'handle-focus-out)
+      (add-hook 'focus-out-hook 'jc/save-everything-no-prompt))
+#+END_SRC
+
+*** Don't query about running processes on exit
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'comint-exec-hook 
+        (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
+#+END_SRC
+
 *** Activate filladapt-mode
 
 #+BEGIN_SRC emacs-lisp
@@ -393,18 +383,17 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 *** Activate yasnippet
 
 #+BEGIN_SRC emacs-lisp
-  (require 'yasnippet)
-  (setq yas-snippet-dirs
-        (-insert-at 1 (expand-file-name "snippets-local" user-emacs-directory) yas-snippet-dirs))
+  (use-package yasnippet
+    :config
+    (setq yas-snippet-dirs
+          (-insert-at 1 (expand-file-name "snippets-local" user-emacs-directory) yas-snippet-dirs)
+          yas-also-indent-first-line t
+          yas-prompt-functions '(yas-completing-prompt
+                                 yas-x-prompt
+                                 yas-ido-prompt
+                                 yas-no-prompt))
 
-  (yas-global-mode 1)
-  (add-hook 'wl-draft-mode-hook 'yas-minor-mode-on)
-
-  (setq yas-also-indent-first-line t
-        yas-prompt-functions '(yas-completing-prompt
-                               yas-x-prompt
-                               yas-ido-prompt
-                               yas-no-prompt))
+    (yas-global-mode 1))
 #+END_SRC
 
 **** Disable in some modes
@@ -419,9 +408,9 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 =mmm-mode= allows multiple major modes to be active in different regions of a single buffer.n
 
 #+BEGIN_SRC emacs-lisp
-  (require 'mmm-auto)
-
-  (setq mmm-global-mode 'maybe)
+  (use-package mmm-auto
+    :config
+    (setq mmm-global-mode 'maybe))
 #+END_SRC
 
 **** Detect YAML front matter in some files
@@ -688,30 +677,31 @@ Lets you use =C-c <left>= and =C-c <right>= to undo and redo window configuratio
 *** Guide key for reminders of key chord completions
 
 #+BEGIN_SRC emacs-lisp
-  (require 'guide-key)
-  (setq guide-key/guide-key-sequence
-        '("C-x" "C-c"   ;; general bindings
-          "SPC" "SPC ," ;; evil-leader
-          )
+  (use-package guide-key
+    :config
+    (setq guide-key/guide-key-sequence
+          '("C-x" "C-c"   ;; general bindings
+            "SPC" "SPC ," ;; evil-leader
+            )
 
-        guide-key/recursive-key-sequence-flag t
-        guide-key/popup-window-position 'bottom
-        guide-key/idle-delay 0.5)
-  (guide-key-mode 1)
+          guide-key/recursive-key-sequence-flag t
+          guide-key/popup-window-position 'bottom
+          guide-key/idle-delay 0.5)
+    (guide-key-mode 1)
 
-  (defun jc/org-mode-guide-key-setup ()
-    (guide-key/add-local-guide-key-sequence "C-c")
-    (guide-key/add-local-guide-key-sequence "C-c C-x")
-    (guide-key/add-local-highlight-command-regexp "org-"))
-  (add-hook 'org-mode-hook 'jc/org-mode-guide-key-setup)
+    (defun jc/org-mode-guide-key-setup ()
+      (guide-key/add-local-guide-key-sequence "C-c")
+      (guide-key/add-local-guide-key-sequence "C-c C-x")
+      (guide-key/add-local-highlight-command-regexp "org-"))
+    (add-hook 'org-mode-hook 'jc/org-mode-guide-key-setup)
 
-  (defun jc/markdown-mode-guide-key-setup ()
-    (guide-key/add-local-guide-key-sequence "C-c")
-    (guide-key/add-local-guide-key-sequence "C-c C-x")
-    (guide-key/add-local-guide-key-sequence "C-c C-a")
-    (guide-key/add-local-highlight-command-regexp "markdown-")
-    (guide-key/add-local-highlight-command-regexp "pandoc-"))
-  (add-hook 'markdown-mode-hook 'jc/markdown-mode-guide-key-setup)
+    (defun jc/markdown-mode-guide-key-setup ()
+      (guide-key/add-local-guide-key-sequence "C-c")
+      (guide-key/add-local-guide-key-sequence "C-c C-x")
+      (guide-key/add-local-guide-key-sequence "C-c C-a")
+      (guide-key/add-local-highlight-command-regexp "markdown-")
+      (guide-key/add-local-highlight-command-regexp "pandoc-"))
+    (add-hook 'markdown-mode-hook 'jc/markdown-mode-guide-key-setup))
 #+END_SRC
 
 *** Set print screen key to paste from X clipboard
@@ -885,27 +875,40 @@ These functions are required for some of the above.
 
 *** Text/documents
 
+**** Org
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :config (jc/require-org-file "init-org.org"))
+#+END_SRC
+
 **** Markdown
 
 #+BEGIN_SRC emacs-lisp
-  (setq markdown-list-indent-width 2)
-
-  (dolist (ext '("\\.markdown\\'" "\\.md\\'"))
-    (add-to-list 'auto-mode-alist `(,ext . markdown-mode)))
-
-  (dolist (func '(flyspell-mode visual-line-mode adaptive-wrap-prefix-mode
-                  orgstruct++-mode outline-minor-mode
-                  (lambda ()
-                    (setq orgstruct-heading-prefix-regexp "#\\+")
-                    (pandoc-mode 1))))
-    (add-hook 'markdown-mode-hook func)
-    (add-hook 'gfm-mode-hook func))
-
   (defun jc/force-insert-state (&rest args)
     (message "force-insert-state")
     (evil-insert-state nil))
 
-  (advice-add 'markdown-insert-header :after #'jc/force-insert-state)
+  (use-package markdown-mode
+    :mode ("\\.markdown\\'" "\\.md\\'")
+    :config
+    (defun jc/markdown-configure ()
+      (setq orgstruct-heading-prefix-regexp "#\\+")
+      (pandoc-mode 1))
+
+    (setq markdown-list-indent-width 2
+          jc/markdown-minor-modes
+          '(flyspell-mode
+            visual-line-mode
+            adaptive-wrap-prefix-mode
+            orgstruct++-mode
+            outline-minor-mode
+            jc/markdown-configure))
+
+    (add-hooks-pair jc/markdown-minor-modes
+                    '(markdown-mode-hook gfm-mode-hook))
+
+    (advice-add 'markdown-insert-header :after #'jc/force-insert-state))
 #+END_SRC
 
 **** HTML/XML/etc
@@ -949,14 +952,14 @@ These functions are required for some of the above.
 **** Web templating
 
 #+BEGIN_SRC emacs-lisp
-  (require 'web-mode)
-  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (use-package web-mode
+    :mode ("\\.phtml\\'"
+           "\\.tpl\\.php\\'"
+           "\\.[agj]sp\\'"
+           "\\.as[cp]x\\'"
+           "\\.erb\\'"
+           "\\.mustache\\'"
+           "\\.djhtml\\'"))
 #+END_SRC
 
 **** PDF
@@ -969,11 +972,8 @@ These functions are required for some of the above.
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
-  (dolist (hook '(lisp-mode-hook
-                  emacs-lisp-mode-hook))
-    (dolist (func '(show-paren-mode
-                    rainbow-delimiters-mode))
-      (add-hook hook func)))
+  (add-hooks-pair '(lisp-mode-hook emacs-lisp-mode-hook)
+                  '(show-paren-mode rainbow-delimiters-mode))
 
   (use-package nameless-mode
     :init (add-hook 'emacs-lisp-mode-hook 'nameless-mode)
@@ -1024,13 +1024,13 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
 **** Ruby
 
 #+BEGIN_SRC emacs-lisp
-  ;; (nconc auto-mode-alist
-  ;;        '(("\\.thor\\'" . ruby-mode)
-  ;;          ("\\.gemspec\\'" . ruby-mode)
-  ;;          ("Thorfile\\'" . ruby-mode)
-  ;;          ("Gemfile\\'" . ruby-mode)
-  ;;          ("Guardfile\\'" . ruby-mode)
-  ;;          ("Rules\\'" . ruby-mode)))
+  (nconc auto-mode-alist
+         '(("\\.thor\\'" . ruby-mode)
+           ("\\.gemspec\\'" . ruby-mode)
+           ("Thorfile\\'" . ruby-mode)
+           ("Gemfile\\'" . ruby-mode)
+           ("Guardfile\\'" . ruby-mode)
+           ("Rules\\'" . ruby-mode)))
 #+END_SRC
 
 **** Shell scripts
@@ -1049,8 +1049,9 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
 **** ESS (R/Splus/etc)
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'auto-mode-alist
-               '("\\.R\\'" . R-mode))
+  (use-package ess
+    :mode ("\\.R\\'" . R-mode)
+    :interpreter ("R" . R-mode))
 #+END_SRC
 
 **** VimL
@@ -1066,8 +1067,16 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
   (add-hook 'mail-mode-hook 'visual-line-mode)
 #+END_SRC
 
-
 ** Applications
+
+*** Evil
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil
+    :config
+    (jc/require-org-file "init-evil.org")
+    (evil-mode 1))
+#+END_SRC
 
 *** Emacs Code Browser
 
