@@ -24,11 +24,13 @@
 
 #+BEGIN_SRC emacs-lisp
   (setq evil-emacs-state-modes
-        (-distinct (append evil-emacs-state-modes
-                           '(twittering-mode
-                             twittering-edit-mode
-                             erc-mode
-                             neotree-mode))))
+        (-distinct
+         (append evil-emacs-state-modes
+                 '(term-mode
+                   twittering-mode
+                   twittering-edit-mode
+                   erc-mode
+                   neotree-mode))))
 #+END_SRC
 ** Leader
 
