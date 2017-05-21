@@ -38,3 +38,4 @@ emacs.d/abbrev_defs
 *.retry
 /emacs.d/.persistent-scratch
 /emacs.d/eshell
+/emacs.d/magithub
