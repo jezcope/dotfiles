@@ -1,5 +1,12 @@
 * Evil mode configuration
 
+
+Set =lexical-binding=:
+
+#+BEGIN_SRC emacs-lisp
+  ;; -*- lexical-binding: t; -*-
+#+END_SRC
+
 ** Basic setup
 
 #+BEGIN_SRC emacs-lisp

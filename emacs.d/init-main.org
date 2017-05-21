@@ -4,6 +4,12 @@
 
 ** Pre-setup
 
+Set =lexical-binding=:
+
+#+BEGIN_SRC emacs-lisp
+  ;; -*- lexical-binding: t; -*-
+#+END_SRC
+
 *** Load customisations
 
 #+BEGIN_SRC emacs-lisp
