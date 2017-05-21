@@ -34,3 +34,5 @@
      insteadOf = gh:
 [url "git@gitlab.com:"]
   insteadOf = gl:
+[github]
+	user = jezcope
