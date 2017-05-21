@@ -617,39 +617,42 @@ This doesn't work as I want it to right now - needs reworking.
 *** Projectile
 
 #+BEGIN_SRC emacs-lisp
-  (setq projectile-mode-line '(:eval
-                               (format " P[%s]"
-                                       (projectile-project-name)))
-        projectile-completion-system 'ivy)
+  (use-package projectile
+    :config
+    (setq projectile-mode-line '(:eval
+                                 (format " P[%s]"
+                                         (projectile-project-name)))
+          projectile-completion-system 'ivy)
 
-  ;; Adapted from http://oremacs.com/2015/07/20/hydra-columns/
-  (defhydra jc/projectile-hydra (:color blue :columns 4)
-    "Projectile"
-    ("a" counsel-ag-projectile "ag")
-    ("b" counsel-projectile-switch-to-buffer "switch to buffer")
-    ("c" projectile-compile-project "compile")
-    ("d" counsel-projectile-find-dir "dir")
-    ("f" counsel-projectile-find-file "file")
-    ("g" ggtags-update-tags "update gtags")
-    ("i" projectile-invalidate-cache "cache clear")
-    ("K" projectile-kill-buffers "Kill all buffers")
-    ("o" projectile-multi-occur "multi-occur")
-    ("p" counsel-projectile-switch-project "switch")
-    ("P" projectile-test-project "test")
-    ("r" projectile-remove-known-project "remove known")
-    ("R" projectile-cleanup-known-projects "cleanup non-existing")
-    ("ss" counsel-ag-projectile "ag")
-    ("sg" projectile-grep "grep")
-    ("v" projectile-vc "version control")
-    ("V" projectile-browse-dirty-projects "dirty")
-    ("xe" projectile-run-eshell "eshell")
-    ("xs" projectile-run-shell "shell")
-    ("xt" projectile-run-term "terminal")
-    ("z" projectile-cache-current-file "cache current")
-    ("!" projectile-run-shell-command-in-root "shell command")
-    ("q" nil "cancel"))
-  (global-unset-key (kbd "C-c p"))
-  (global-set-key (kbd "C-c p") 'jc/projectile-hydra/body)
+    ;; Adapted from http://oremacs.com/2015/07/20/hydra-columns/
+    (defhydra jc/projectile-hydra (:color blue :columns 4)
+      "Projectile"
+      ("a" counsel-ag-projectile "ag")
+      ("n" neotree-projectile-action "neotree")
+      ("b" counsel-projectile-switch-to-buffer "switch to buffer")
+      ("c" projectile-compile-project "compile")
+      ("d" counsel-projectile-find-dir "dir")
+      ("f" counsel-projectile-find-file "file")
+      ("g" ggtags-update-tags "update gtags")
+      ("i" projectile-invalidate-cache "cache clear")
+      ("K" projectile-kill-buffers "Kill all buffers")
+      ("o" projectile-multi-occur "multi-occur")
+      ("p" counsel-projectile-switch-project "switch")
+      ("P" projectile-test-project "test")
+      ("r" projectile-remove-known-project "remove known")
+      ("R" projectile-cleanup-known-projects "cleanup non-existing")
+      ("ss" counsel-ag-projectile "ag")
+      ("sg" projectile-grep "grep")
+      ("v" projectile-vc "version control")
+      ("V" projectile-browse-dirty-projects "dirty")
+      ("xe" projectile-run-eshell "eshell")
+      ("xs" projectile-run-shell "shell")
+      ("xt" projectile-run-term "terminal")
+      ("z" projectile-cache-current-file "cache current")
+      ("!" projectile-run-shell-command-in-root "shell command")
+      ("q" nil "cancel"))
+    (global-unset-key (kbd "C-c p"))
+    (global-set-key (kbd "C-c p") 'jc/projectile-hydra/body))
 #+END_SRC
 
 *** Beacon
