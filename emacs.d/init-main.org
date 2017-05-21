@@ -310,22 +310,66 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
         (lambda () (set-process-query-on-exit-flag (get-buffer-process (current-buffer)) nil)))
 #+END_SRC
 
-*** Choose appearance
+*** Appearance
 
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'base16-monokai t)
-  (eval-after-load 'hydra
-    '(progn
-       (set-face-foreground 'hydra-face-red
-                            (if (display-graphic-p) "#FB4933" "color-167"))
-       (set-face-foreground 'hydra-face-blue
-                            (if (display-graphic-p) "#83A598" "color-109"))
-       (set-face-foreground 'hydra-face-pink
-                            (if (display-graphic-p) "#D3869B" "color-175"))
-       (set-face-foreground 'hydra-face-teal
-                            (if (display-graphic-p) "#8EC07C" "color-108"))
-       (set-face-foreground 'hydra-face-amaranth
-                            (if (display-graphic-p) "#AF3A03" "color-130"))))
+  (defun jc/base16-themes ()
+    (seq-map (lambda (symb)
+               (intern (seq-subseq (symbol-name symb) 7)))
+             (seq-filter (lambda (symb)
+                           (s-starts-with-p "base16-"
+                                            (symbol-name symb)))
+             (custom-available-themes))))
+
+  (defun jc/load-base16-theme (theme)
+    (interactive
+     (list
+      (intern (completing-read "base16 theme: "
+                               (mapcar 'symbol-name
+                                       (jc/base16-themes))))))
+
+    (setq jc/base16-theme (symbol-name theme))
+
+    (load-theme (intern (s-concat "base16-" jc/base16-theme)) t)
+    (setq jc/base16-colors (symbol-value
+                            (intern
+                             (s-concat "base16-"
+                                       jc/base16-theme
+                                       "-colors"))))
+
+    (setq ansi-term-color-vector
+          [term
+           term-color-black
+           term-color-red
+           term-color-green
+           term-color-yellow
+           term-color-blue
+           term-color-magenta
+           term-color-cyan
+           term-color-white])
+
+    (with-eval-after-load 'hydra
+      (set-face-foreground 'hydra-face-red
+                           (plist-get jc/base16-colors :base09))
+      (set-face-foreground 'hydra-face-blue
+                           (plist-get jc/base16-colors :base0C))
+      (set-face-foreground 'hydra-face-pink
+                           (plist-get jc/base16-colors :base0D))
+      (set-face-foreground 'hydra-face-teal
+                           (plist-get jc/base16-colors :base0E))
+      (set-face-foreground 'hydra-face-amaranth
+                           (plist-get jc/base16-colors :base0A)))
+
+    (with-eval-after-load 'evil
+      ;; Set the cursor color based on the evil state
+      (setq evil-emacs-state-cursor   `(,(plist-get jc/base16-colors :base0D) box)
+            evil-insert-state-cursor  `(,(plist-get jc/base16-colors :base0D) bar)
+            evil-motion-state-cursor  `(,(plist-get jc/base16-colors :base0E) box)
+            evil-normal-state-cursor  `(,(plist-get jc/base16-colors :base0B) box)
+            evil-replace-state-cursor `(,(plist-get jc/base16-colors :base08) bar)
+            evil-visual-state-cursor  `(,(plist-get jc/base16-colors :base09) box))))
+
+  (jc/load-base16-theme 'atelier-forest)
 
   (use-package spaceline
     :after evil)
@@ -335,21 +379,6 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (setq spaceline-all-the-icons-separator-type 'cup
           spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
     (spaceline-all-the-icons-theme))
-#+END_SRC
-
-Fix for [[https://github.com/belak/base16-emacs/issues/4][this base16-emacs issue]]:
-
-#+BEGIN_SRC emacs-lisp
-  (setq ansi-term-color-vector
-        [term
-         term-color-black
-         term-color-red
-         term-color-green
-         term-color-yellow
-         term-color-blue
-         term-color-magenta
-         term-color-cyan
-         term-color-white])
 #+END_SRC
 
 *** Activate filladapt-mode
