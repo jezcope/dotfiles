@@ -80,6 +80,7 @@
 (depends-on "pytest")
 (depends-on "python-mode")
 (depends-on "rainbow-delimiters")
+(depends-on "rainbow-identifiers")
 (depends-on "rainbow-mode")
 (depends-on "ruby-mode")
 (depends-on "s")

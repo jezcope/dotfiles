@@ -634,11 +634,17 @@ This doesn't work as I want it to right now - needs reworking.
   (beacon-mode 1)
 #+END_SRC
 
-*** Rainbow mode
+*** Utility modes
 
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode
     :commands (rainbow-mode))
+
+  (use-package rainbow-delimiters-mode
+    :commands (rainbow-delimiters-mode))
+
+  (use-package rainbow-identifiers-mode
+    :commands (rainbow-identifiers-mode))
 #+END_SRC
 
 *** Winner mode
@@ -724,6 +730,8 @@ This one toggles some minor modes.  Also inspired by [[http://endlessparentheses
       ("l" line-number-mode "line num")
       ("f" auto-fill-mode "auto fill")
       ("r" writeroom-mode "writeroom")
+      ("d" rainbow-delimiters-mode "rainbow delimiters")
+      ("i" rainbow-identifiers-mode "rainbow identifiers")
       ("v" variable-pitch-mode "var pitch")
       ("w" visual-line-mode "vis line")
       ("W" whitespace-mode "whitespace")))
