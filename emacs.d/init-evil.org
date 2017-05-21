@@ -55,7 +55,8 @@ Set =lexical-binding=:
     "F" 'jc/find-files-hydra/body
     "t" 'jc/toggle-hydra/body
     "i" 'counsel-imenu
-    "n" 'neotree-show)
+    "n" 'neotree-show
+    "p" 'jc/projectile-hydra/body)
 
   (evil-leader/set-key-for-mode 'org-mode
     "r" 'jc/org-refile-hydra/body)
