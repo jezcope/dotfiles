@@ -561,6 +561,10 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 
   (use-package swiper :ensure t
     :bind (("C-s" . swiper)))
+
+  (use-package all-the-icons-ivy
+    :config
+    (all-the-icons-ivy-setup))
 #+END_SRC
 
 *** Use kill ring as X clipboard history                     :experimental:
@@ -1118,6 +1122,11 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
 #+BEGIN_SRC emacs-lisp
   (setq dired-omit-files "^\\."
         dired-listing-switches "-alh")
+
+  (use-package all-the-icons-dired
+    :commands all-the-icons-dired-mode
+    :init
+    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 #+END_SRC
 
 If the homebrew version of coreutils is installed under Mac, use that:

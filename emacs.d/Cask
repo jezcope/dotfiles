@@ -9,6 +9,8 @@
 (depends-on "add-hooks")
 (depends-on "airline-themes")
 (depends-on "all-the-icons")
+(depends-on "all-the-icons-dired")
+(depends-on "all-the-icons-ivy")
 (depends-on "async")
 (depends-on "avy")
 (depends-on "base16-theme")
