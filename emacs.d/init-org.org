@@ -732,10 +732,11 @@ Disable strike-through formatting because I don't use it and it messes up ~table
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
-     (ruby . t)
-     (python . t)
-     (shell . t)
-     (ditaa . t)))
+     (ruby       . t)
+     (python     . t)
+     (shell      . t)
+     (http       . t)
+     (ditaa      . t)))
 #+END_SRC
 
 ** Don't ask before evaluating some languages
