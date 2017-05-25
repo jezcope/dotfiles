@@ -76,6 +76,7 @@
 (depends-on "pandoc-mode")
 (depends-on "pdf-tools")
 (depends-on "persistent-scratch")
+(depends-on "persp-mode")
 (depends-on "php-mode")
 (depends-on "popup")
 (depends-on "powerline")
