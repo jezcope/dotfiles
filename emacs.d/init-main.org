@@ -187,7 +187,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (use-package spaceline-all-the-icons
     :after spaceline
     :config
-    (setq spaceline-all-the-icons-separator-type 'cup
+    (setq spaceline-all-the-icons-separator-type 'arrow
           spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
     (spaceline-all-the-icons-theme))
 #+END_SRC
