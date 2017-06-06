@@ -39,3 +39,5 @@ emacs.d/abbrev_defs
 /emacs.d/.persistent-scratch
 /emacs.d/eshell
 /emacs.d/magithub
+/emacs.d/network-security.data
+/emacs.d/persp-confs
