@@ -1023,7 +1023,9 @@ These functions are required for some of the above.
            "\\.as[cp]x\\'"
            "\\.erb\\'"
            "\\.mustache\\'"
-           "\\.djhtml\\'"))
+           "\\.djhtml\\'")
+    :config
+    (add-hook 'web-mode-hook 'emmet-mode))
 #+END_SRC
 
 **** PDF
