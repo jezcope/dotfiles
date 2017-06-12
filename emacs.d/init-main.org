@@ -969,8 +969,7 @@ These functions are required for some of the above.
             outline-minor-mode
             jc/markdown-configure))
 
-    (add-hooks-pair jc/markdown-minor-modes
-                    '(markdown-mode-hook gfm-mode-hook))
+    (add-hooks-pair '(markdown-mode-hook gfm-mode-hook) jc/markdown-minor-modes)
 
     (advice-add 'markdown-insert-header :after #'jc/force-insert-state))
 #+END_SRC
