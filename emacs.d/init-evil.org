@@ -103,6 +103,13 @@ Set =lexical-binding=:
     (setq evil-snipe-scope 'visible)
     (evil-snipe-mode 1))
 #+END_SRC
+
+** Evil goggles
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-goggles
+    :config (evil-goggles-mode))
+#+END_SRC
 ** Mode-specific stuff
 
 *** Mu4e

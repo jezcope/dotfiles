@@ -35,6 +35,7 @@
 (depends-on "erc")
 (depends-on "ess")
 (depends-on "evil")
+(depends-on "evil-goggles")
 (depends-on "evil-leader")
 (depends-on "evil-nerd-commenter")
 (depends-on "evil-snipe")
