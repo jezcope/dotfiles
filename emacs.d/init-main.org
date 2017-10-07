@@ -709,11 +709,11 @@ This doesn't work as I want it to right now - needs reworking.
     (defhydra jc/window-hydra (:hint nil)
       "
   current perspective: %`persp-last-persp-name
-  ^perspectives^   ^windows^           ^split^
-  ^^^^^^-------------------------------------------------
-  _n_: next        _o_: next           _%_: horizontally
-  _p_: previous    _O_: previous       _\"_: vertically
-  _w_: select      _J_: jump
+  ^perspectives^   ^windows^           ^split^            ^buffers^
+  ^^^^^^-------------------------------------------------------------------------
+  _n_: next        _o_: next           _%_: horizontally  _b_: switch buffer
+  _p_: previous    _O_: previous       _\"_: vertically    _a_: add to persp
+  _w_: select      _J_: jump                            _k_: remove from persp
   _c_: create      _0_: delete
   _C_: copy        _1_: delete others
   "
@@ -728,7 +728,10 @@ This doesn't work as I want it to right now - needs reworking.
       ("0" delete-window)
       ("1" delete-other-windows)
       ("%" split-window-horizontally)
-      ("\"" split-window-vertically))
+      ("\"" split-window-vertically)
+      ("b" ivy-switch-buffer)
+      ("a" persp-add-buffer)
+      ("k" persp-remove-buffer))
 
     (with-eval-after-load 'evil
       (define-key evil-normal-state-map "`" #'jc/window-hydra/body))
