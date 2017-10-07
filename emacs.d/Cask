@@ -59,6 +59,7 @@
 (depends-on "ivy-hydra")
 (depends-on "jedi-core")
 (depends-on "jinja2-mode")
+(depends-on "js2-mode")
 (depends-on "julia-mode")
 (depends-on "less-css-mode")
 (depends-on "lua-mode")
