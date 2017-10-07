@@ -33,6 +33,7 @@
 (depends-on "dropbox-conflicts" :git "https://github.com/jezcope/dropbox-conflicts-el.git")
 (depends-on "editorconfig")
 (depends-on "emmet-mode")
+(depends-on "emojify")
 (depends-on "erc")
 (depends-on "ess")
 (depends-on "evil")
