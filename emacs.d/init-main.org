@@ -1260,6 +1260,8 @@ If the homebrew version of coreutils is installed under Mac, use that:
   (use-package git-gutter-fringe
     :demand
     :config (global-git-gutter-mode 1))
+
+  (setq vc-follow-symlinks t)
 #+END_SRC
 
 *** Spelling
