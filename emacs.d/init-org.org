@@ -23,8 +23,11 @@ Set =lexical-binding=:
 * Bullets
 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'org-mode-hook 'org-bullets-mode)
-  (setq org-bullets-bullet-list '("◉" "○" "●" "►" "•"))
+  (use-package org-bullets
+    :commands org-bullets-mode
+    :init
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+    (setq org-bullets-bullet-list '("◉" "○" "●" "►" "•")))
 #+END_SRC
 
 * File locations
