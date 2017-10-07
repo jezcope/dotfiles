@@ -73,6 +73,7 @@
 (depends-on "nlinum-relative")
 (depends-on "ob-http")
 (depends-on "org")
+(depends-on "org-bullets")
 (depends-on "org-plus-contrib")
 (depends-on "ox-pandoc")
 (depends-on "ox-reveal")
