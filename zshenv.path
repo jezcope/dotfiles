@@ -1,4 +1,4 @@
-path=($HOME/bin $HOME/bin/shared $path)
+path=($HOME/.local/bin $HOME/bin $HOME/bin/shared $path)
 
 if [[ $PLATFORM = 'Darwin' ]]; then
   path=(/usr/local/sbin ~/Scripts /usr/local/bin $path)
