@@ -16,17 +16,6 @@ if [[ -n "$rvm_path" ]]; then
   PATH=$PATH:$rvm_path/bin # Add RVM to PATH for scripting
 fi
 
-# Set up pyenv
-PYENV_ROOT=~/.pyenv
-if [[ -d $PYENV_ROOT ]]; then
-  export PYENV_ROOT
-
-  path=($PYENV_ROOT/bin $path)
-  export PATH
-
-  eval "$(pyenv init -)"
-fi
-
 # Set up virtualenvwrapper
 if which virtualenvwrapper.sh > /dev/null; then
   export WORKON_HOME=$HOME/.virtualenvs
