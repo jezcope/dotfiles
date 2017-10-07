@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: FontAwesome icon
+# key: fa
+# --
+<i class="fa fa-$1" aria-hidden="true"></i>$0

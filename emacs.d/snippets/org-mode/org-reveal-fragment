@@ -1,0 +1,5 @@
+# key: frag
+# name: org-reveal fragment
+# --
+#+ATTR_REVEAL: :frag ${1:t}
+$0
