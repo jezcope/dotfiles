@@ -1133,6 +1133,15 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
   (use-package vimrc-mode)
 #+END_SRC
 
+*** Data/config languages
+
+**** TOML
+
+#+BEGIN_SRC emacs-lisp
+  (use-package toml-mode
+    :mode "Pipfile\\'")
+#+END_SRC
+
 *** Mail editing
 
 #+BEGIN_SRC emacs-lisp
