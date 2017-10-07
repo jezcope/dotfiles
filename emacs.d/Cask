@@ -82,6 +82,7 @@
 (depends-on "package-build")
 (depends-on "pallet")
 (depends-on "pandoc-mode")
+(depends-on "paredit")
 (depends-on "pdf-tools")
 (depends-on "persistent-scratch")
 (depends-on "persp-mode")
