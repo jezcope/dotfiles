@@ -67,6 +67,8 @@
 (depends-on "monokai-theme")
 (depends-on "nameless")
 (depends-on "neotree")
+(depends-on "nlinum")
+(depends-on "nlinum-relative")
 (depends-on "ob-http")
 (depends-on "org")
 (depends-on "org-plus-contrib")

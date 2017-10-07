@@ -1316,6 +1316,7 @@ If the homebrew version of coreutils is installed under Mac, use that:
     (setq neo-theme 'icons)
     :commands (neotree neotree-show))
 #+END_SRC
+
 ** Extra functions
 
 *** [[http://www.emacswiki.org/emacs/UnfillParagraph][unfill-paragraph]] function
