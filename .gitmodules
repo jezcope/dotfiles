@@ -7,3 +7,9 @@
 [submodule "boxen"]
 	path = boxen
 	url = git@gitlab.com:jezcope/boxen.git
+[submodule "zsh/omz-custom/plugins/zsh-syntax-highlighting"]
+	path = zsh/omz-custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "zsh/omz-custom/plugins/zsh-autosuggestions"]
+	path = zsh/omz-custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
