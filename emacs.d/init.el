@@ -15,7 +15,9 @@
 
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
+(require 'bind-key)
 
 (use-package pallet
   :config
