@@ -7,9 +7,10 @@ ZSH_CUSTOM=$HOME/.zsh/omz-custom
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator battery background_jobs history time)
+POWERLEVEL9K_MODE='awesome-fontconfig'
 
-plugins=(git thor rake virtualenv rvm extract vagrant git-flow archlinux zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git thor rake virtualenv rvm extract vagrant docker git-flow archlinux zsh-autosuggestions zsh-syntax-highlighting)
 
 # Platform-specific sections
 if [[ $PLATFORM = 'Darwin' ]]; then
