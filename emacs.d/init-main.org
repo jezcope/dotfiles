@@ -1038,6 +1038,18 @@ These functions are required for some of the above.
 #+END_SRC
 
 *** Programming languages
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+    :config
+    (require 'lsp-flycheck))
+
+  (use-package company-lsp
+    :functions company-lsp
+    :init
+    (add-to-list 'company-backends 'company-lsp))
+#+END_SRC
+
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
@@ -1081,6 +1093,13 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
     :config
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell))
+
+  (use-package lsp-python
+    :functions lsp-python-enable
+    :init
+    (add-hooks-pair 'python-mode-hook
+                    '(lsp-python-enable
+                      eldoc-mode)))
 #+END_SRC
 
 **** Ruby
