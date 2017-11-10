@@ -204,8 +204,8 @@ Set default fonts in order of preference:
 
   (setq jc/font-fixed
         (jc/first-available-font
-         "Inconsolata"
          "Input Mono Compressed"
+         "Inconsolata"
          "Droid Sans Mono"
          "Ubuntu Mono"
          "Menlo"
@@ -214,21 +214,22 @@ Set default fonts in order of preference:
 
         jc/font-variable
         (jc/first-available-font
+         "Input Sans Narrow"
+         "Input Sans Condensed"
          "TeX Gyre Pagella"
          "Roboto"
          "Droid Sans"
-         "Input Sans Condensed"
          "Ubuntu Sans"
          "sans"))
 
   (set-face-attribute 'default nil
                       :family jc/font-fixed
-                      :height 110
+                      :height 100
                       :weight 'light)
 
   (set-face-attribute 'fixed-pitch nil
                       :family jc/font-fixed
-                      :height 110
+                      :height 100
                       :weight 'light)
 
   (set-face-attribute 'variable-pitch nil
