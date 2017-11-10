@@ -1081,13 +1081,6 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
     :config
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell))
-
-  (use-package company-jedi
-    :commands (company-jedi)
-    :init
-    (add-hook 'python-mode-hook
-              (lambda ()
-                (add-to-list 'company-backends 'company-jedi))))
 #+END_SRC
 
 **** Ruby
