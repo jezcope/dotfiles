@@ -4,7 +4,11 @@ PLATFORM=$(uname -s)
 
 ZSH=$HOME/.zsh/oh-my-zsh
 ZSH_CUSTOM=$HOME/.zsh/omz-custom
-ZSH_THEME="jez"
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+
 plugins=(git thor rake virtualenv rvm extract vagrant git-flow archlinux zsh-autosuggestions zsh-syntax-highlighting)
 
 # Platform-specific sections
