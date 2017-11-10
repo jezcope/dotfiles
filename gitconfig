@@ -36,3 +36,5 @@
   insteadOf = gl:
 [github]
 	user = jezcope
+[fetch]
+	recurseSubmodules = true
