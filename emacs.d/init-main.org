@@ -515,9 +515,10 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
      ("C-h v"   . counsel-describe-variable)
      :map ivy-minibuffer-map
      ("M-y"     . ivy-next-line-and-call)
-     :map counsel-find-file-map
      ("<left>"  . counsel-up-directory)
-     ("<right>" . ivy-alt-done))
+     ("<right>" . ivy-alt-done)
+     :map org-mode-map
+     ("C-c C-j" . counsel-org-goto)
 
     :config
     ;; TODO: This should maybe be a macro?
