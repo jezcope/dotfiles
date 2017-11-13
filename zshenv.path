@@ -25,6 +25,8 @@ if which virtualenvwrapper.sh > /dev/null; then
   source virtualenvwrapper.sh
 fi
 
+# Go path
+path=($GOPATH/bin $path)
 
 export PATH
 
