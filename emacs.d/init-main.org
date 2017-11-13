@@ -518,7 +518,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
      ("<left>"  . counsel-up-directory)
      ("<right>" . ivy-alt-done)
      :map org-mode-map
-     ("C-c C-j" . counsel-org-goto)
+     ("C-c C-j" . counsel-org-goto))
 
     :config
     ;; TODO: This should maybe be a macro?
