@@ -530,10 +530,10 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (defun given-file (cmd prompt) ; needs lexical-binding
       (lambda (source)
         (let ((target
-           (let ((enable-recursive-minibuffers t))
-             (read-file-name
-          (format "%s %s to:" prompt source)))))
-      (funcall cmd source target 1))))
+               (let ((enable-recursive-minibuffers t))
+                 (read-file-name
+                  (format "%s %s to:" prompt source)))))
+          (funcall cmd source target 1))))
     (defun confirm-delete-file (x)
       (dired-delete-file x 'confirm-each-subdirectory))
 
@@ -555,11 +555,11 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (setq counsel-find-file-at-point t)
     ;; ignore . files or temporary files
     (setq counsel-find-file-ignore-regexp
-      (concat
-       ;; File names beginning with # or .
-       "\\(?:\\`[#.]\\)"
-       ;; File names ending with # or ~
-       "\\|\\(?:\\`.+?[#~]\\'\\)")))
+          (concat
+           ;; File names beginning with # or .
+           "\\(?:\\`[#.]\\)"
+           ;; File names ending with # or ~
+           "\\|\\(?:\\`.+?[#~]\\'\\)")))
 
   (use-package swiper :ensure t
     :bind (("C-s" . swiper)))
