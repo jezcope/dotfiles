@@ -1054,8 +1054,11 @@ These functions are required for some of the above.
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
-  (add-hooks-pair '(lisp-mode-hook emacs-lisp-mode-hook)
-                  '(show-paren-mode rainbow-delimiters-mode))
+  (add-hooks-pair '(lisp-mode-hook
+                    emacs-lisp-mode-hook)
+                  '(show-paren-mode
+                    rainbow-delimiters-mode
+                    aggressive-indent-mode))
 
   (use-package nameless-mode
     :init (add-hook 'emacs-lisp-mode-hook 'nameless-mode)

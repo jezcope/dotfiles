@@ -7,6 +7,7 @@
 (depends-on "ace-window")
 (depends-on "adaptive-wrap")
 (depends-on "add-hooks")
+(depends-on "aggressive-indent")
 (depends-on "airline-themes")
 (depends-on "all-the-icons")
 (depends-on "all-the-icons-dired")
