@@ -99,6 +99,7 @@
 (depends-on "rainbow-identifiers")
 (depends-on "rainbow-mode")
 (depends-on "ruby-mode")
+(depends-on "rust-mode")
 (depends-on "s")
 (depends-on "scss-mode")
 (depends-on "seq")
