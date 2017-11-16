@@ -6,7 +6,7 @@
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "boxen"]
 	path = boxen
-	url = git@gitlab.com:jezcope/boxen.git
+	url = git@github.com:jezcope/boxen.git
 [submodule "zsh/omz-custom/plugins/zsh-syntax-highlighting"]
 	path = zsh/omz-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
