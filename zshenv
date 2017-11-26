@@ -22,6 +22,10 @@ else
   BUNDLE_WITHOUT=darwin_only
 fi
 
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+
 if [[ -z ${SSH_CONNECTION} ]]; then
   # Don't clobber forwarded SSH agent stuff
   local GPG_ENV=~/.gnupg/gpg-agent.env
