@@ -5,16 +5,13 @@
 # --
 ---
 title: "${1:Title}"
-description: |
-  ${2:Description}
+description: "${2:Description}"
 slug: ${3:${1:$(replace-regexp-in-string "[^a-z]+" "-" (downcase yas-text))}}
 date: ${4:`(replace-regexp-in-string "\\([+-][[:digit:]][[:digit:]]\\)\\([[:digit:]][[:digit:]]\\)" "\\1:\\2" (format-time-string "%FT%T%z"))`}
-draft: true
 type: post
-topics:
-- $5
 tags:
-- $6
+- draft
+- $5
 ---
 
 $0
