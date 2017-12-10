@@ -20,6 +20,7 @@
 (depends-on "centered-cursor-mode")
 (depends-on "clojure-mode")
 (depends-on "cm-mode")
+(depends-on "coconut-mode" :git "https://github.com/NickSeagull/coconut-mode.git")
 (depends-on "color-theme-modern")
 (depends-on "company")
 (depends-on "company-lsp")
