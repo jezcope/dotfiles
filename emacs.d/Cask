@@ -41,6 +41,7 @@
 (depends-on "evil-goggles")
 (depends-on "evil-leader")
 (depends-on "evil-nerd-commenter")
+(depends-on "evil-numbers")
 (depends-on "evil-snipe")
 (depends-on "evil-surround")
 (depends-on "f")
