@@ -1270,10 +1270,6 @@ If the homebrew version of coreutils is installed under Mac, use that:
     :config
     (setq magit-push-always-verify nil))
 
-  (use-package magithub
-    :after magit
-    :config (magithub-feature-autoinject t))
-
   (use-package git-gutter-fringe
     :demand
     :config (global-git-gutter-mode 1))
