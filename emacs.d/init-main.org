@@ -459,9 +459,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 
 #+BEGIN_SRC emacs-lisp
   (use-package company
-    :diminish company-mode
-    :config
-    (global-company-mode 1))
+    :diminish company-mode)
 #+END_SRC
 
 *** Configure ivy and counsel
@@ -1041,23 +1039,13 @@ These functions are required for some of the above.
 
 *** Programming languages
 
-#+BEGIN_SRC emacs-lisp
-  (use-package lsp-mode
-    :config
-    (require 'lsp-flycheck))
-
-  (use-package company-lsp
-    :functions company-lsp
-    :init
-    (add-to-list 'company-backends 'company-lsp))
-#+END_SRC
-
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
   (add-hooks-pair '(lisp-mode-hook
                     emacs-lisp-mode-hook)
-                  '(show-paren-mode
+                  '(company-mode
+                    show-paren-mode
                     rainbow-delimiters-mode
                     aggressive-indent-mode))
 
@@ -1098,13 +1086,6 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
     :config
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell))
-
-  (use-package lsp-python
-    :functions lsp-python-enable
-    :init
-    (add-hooks-pair 'python-mode-hook
-                    '(lsp-python-enable
-                      eldoc-mode)))
 #+END_SRC
 
 **** Ruby
