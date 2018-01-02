@@ -1140,6 +1140,7 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
 
 #+BEGIN_SRC emacs-lisp
   (use-package ess
+    :functions ess-noweb-mode
     :mode ("\\.R\\'" . R-mode)
     :interpreter ("R" . R-mode))
 #+END_SRC
