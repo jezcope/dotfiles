@@ -1092,6 +1092,9 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
     :config
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell))
+
+  (add-hook 'python-mode-hook (lambda ()
+                                (set-variable 'evil-shift-width 4 t)))
 #+END_SRC
 
 **** Ruby
