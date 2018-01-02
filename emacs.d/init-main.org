@@ -202,39 +202,45 @@ Set default fonts in order of preference:
           if (member f (font-family-list))
           do (return f)))
 
-  (setq jc/font-fixed
-        (jc/first-available-font
-         "Input Mono Compressed"
-         "Inconsolata"
-         "Droid Sans Mono"
-         "Ubuntu Mono"
-         "Menlo"
-         "Monaco"
-         "fixed")
+  (let ((w (display-pixel-width)))
+    (setq jc/font-fixed
+          (jc/first-available-font
+           (cond ((<= w 1400) "Input Mono Compressed")
+                 (t "Input Mono Narrow"))
+           "Inconsolata"
+           "Droid Sans Mono"
+           "Ubuntu Mono"
+           "Menlo"
+           "Monaco"
+           "fixed")
 
-        jc/font-variable
-        (jc/first-available-font
-         "Input Sans Narrow"
-         "Input Sans Condensed"
-         "TeX Gyre Pagella"
-         "Roboto"
-         "Droid Sans"
-         "Ubuntu Sans"
-         "sans"))
+          jc/font-variable
+          (jc/first-available-font
+           "Input Sans Narrow"
+           "Input Sans Condensed"
+           "TeX Gyre Pagella"
+           "Roboto"
+           "Droid Sans"
+           "Ubuntu Sans"
+           "sans")
+
+          jc/font-size
+          (cond ((<= w 1400) 100)
+                (t           110))))
 
   (set-face-attribute 'default nil
                       :family jc/font-fixed
-                      :height 100
-                      :weight 'light)
+                      :height jc/font-size
+                      :weight 'normal)
 
   (set-face-attribute 'fixed-pitch nil
                       :family jc/font-fixed
-                      :height 100
-                      :weight 'light)
+                      :height jc/font-size
+                      :weight 'normal)
 
   (set-face-attribute 'variable-pitch nil
                       :family jc/font-variable
-                      :height 110
+                      :height jc/font-size
                       :weight 'light)
 #+END_SRC
 
