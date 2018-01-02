@@ -180,7 +180,7 @@ Enable menu bar on Mac, as it doesn't make any difference:
             evil-replace-state-cursor `(,(plist-get jc/base16-colors :base08) bar)
             evil-visual-state-cursor  `(,(plist-get jc/base16-colors :base09) box))))
 
-  (jc/load-base16-theme 'atelier-forest)
+  (load-theme 'atom-one-dark)
 
   (use-package spaceline
     :after evil)
@@ -202,39 +202,45 @@ Set default fonts in order of preference:
           if (member f (font-family-list))
           do (return f)))
 
-  (setq jc/font-fixed
-        (jc/first-available-font
-         "Input Mono Compressed"
-         "Inconsolata"
-         "Droid Sans Mono"
-         "Ubuntu Mono"
-         "Menlo"
-         "Monaco"
-         "fixed")
+  (let ((w (display-pixel-width)))
+    (setq jc/font-fixed
+          (jc/first-available-font
+           (cond ((<= w 1400) "Input Mono Compressed")
+                 (t "Input Mono Narrow"))
+           "Inconsolata"
+           "Droid Sans Mono"
+           "Ubuntu Mono"
+           "Menlo"
+           "Monaco"
+           "fixed")
 
-        jc/font-variable
-        (jc/first-available-font
-         "Input Sans Narrow"
-         "Input Sans Condensed"
-         "TeX Gyre Pagella"
-         "Roboto"
-         "Droid Sans"
-         "Ubuntu Sans"
-         "sans"))
+          jc/font-variable
+          (jc/first-available-font
+           "Input Sans Narrow"
+           "Input Sans Condensed"
+           "TeX Gyre Pagella"
+           "Roboto"
+           "Droid Sans"
+           "Ubuntu Sans"
+           "sans")
+
+          jc/font-size
+          (cond ((<= w 1400) 100)
+                (t           110))))
 
   (set-face-attribute 'default nil
                       :family jc/font-fixed
-                      :height 100
-                      :weight 'light)
+                      :height jc/font-size
+                      :weight 'normal)
 
   (set-face-attribute 'fixed-pitch nil
                       :family jc/font-fixed
-                      :height 100
-                      :weight 'light)
+                      :height jc/font-size
+                      :weight 'normal)
 
   (set-face-attribute 'variable-pitch nil
                       :family jc/font-variable
-                      :height 110
+                      :height jc/font-size
                       :weight 'light)
 #+END_SRC
 
@@ -459,9 +465,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
 
 #+BEGIN_SRC emacs-lisp
   (use-package company
-    :diminish company-mode
-    :config
-    (global-company-mode 1))
+    :diminish company-mode)
 #+END_SRC
 
 *** Configure ivy and counsel
@@ -1041,23 +1045,13 @@ These functions are required for some of the above.
 
 *** Programming languages
 
-#+BEGIN_SRC emacs-lisp
-  (use-package lsp-mode
-    :config
-    (require 'lsp-flycheck))
-
-  (use-package company-lsp
-    :functions company-lsp
-    :init
-    (add-to-list 'company-backends 'company-lsp))
-#+END_SRC
-
 **** Lisp
 
 #+BEGIN_SRC emacs-lisp
   (add-hooks-pair '(lisp-mode-hook
                     emacs-lisp-mode-hook)
-                  '(show-paren-mode
+                  '(company-mode
+                    show-paren-mode
                     rainbow-delimiters-mode
                     aggressive-indent-mode))
 
@@ -1099,12 +1093,8 @@ This one obtained from [[http://stackoverflow.com/questions/1242352/get-font-fac
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell))
 
-  (use-package lsp-python
-    :functions lsp-python-enable
-    :init
-    (add-hooks-pair 'python-mode-hook
-                    '(lsp-python-enable
-                      eldoc-mode)))
+  (add-hook 'python-mode-hook (lambda ()
+                                (set-variable 'evil-shift-width 4 t)))
 #+END_SRC
 
 **** Ruby
