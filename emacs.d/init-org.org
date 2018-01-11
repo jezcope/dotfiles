@@ -776,16 +776,6 @@ Disable strike-through formatting because I don't use it and it messes up ~table
      (ditaa      . t)))
 #+END_SRC
 
-** Don't ask before evaluating some languages
-
-#+BEGIN_SRC emacs-lisp
-  (defun jc/org-confirm-babel-evaluate (lang body)
-    (not (string= lang "ditaa")))
-  
-  (setq org-confirm-babel-evaluate 'jc/org-confirm-babel-evaluate)
-  
-#+END_SRC
-
 ** Utilities for editing source blocks
 
 #+BEGIN_SRC emacs-lisp
