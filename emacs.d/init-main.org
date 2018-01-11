@@ -711,7 +711,7 @@ This doesn't work as I want it to right now - needs reworking.
                       (persp-window-switch . nil)
                       (persp-frame-switch  . nil)))))
 
-    (defhydra jc/window-hydra (:hint nil)
+    (defhydra jc/window-hydra (:hint nil :exit t)
       "
   current perspective: %`persp-last-persp-name
   ^perspectives^   ^windows^           ^split^            ^buffers^
@@ -725,8 +725,8 @@ This doesn't work as I want it to right now - needs reworking.
       ("n" persp-next)
       ("p" persp-prev)
       ("w" persp-switch)
-      ("c" persp-add-new :exit t)
-      ("C" persp-copy :exit t)
+      ("c" persp-add-new)
+      ("C" persp-copy)
       ("o" other-window)
       ("O" (other-window -1))
       ("J" ace-window)
