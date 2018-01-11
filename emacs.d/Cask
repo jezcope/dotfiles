@@ -54,6 +54,7 @@
 (depends-on "guide-key")
 (depends-on "haml-mode")
 (depends-on "haskell-mode")
+(depends-on "helpful")
 (depends-on "htmlize")
 (depends-on "hydra")
 (depends-on "ivy")
