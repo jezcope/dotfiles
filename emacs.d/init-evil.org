@@ -37,7 +37,8 @@ Set =lexical-binding=:
                    twittering-mode
                    twittering-edit-mode
                    erc-mode
-                   neotree-mode))))
+                   neotree-mode
+                   helpful-mode))))
 #+END_SRC
 ** Leader
 
