@@ -650,9 +650,7 @@ Disable strike-through formatting because I don't use it and it messes up ~table
                              ("/" italic)
                              ("_" underline)
                              ("=" org-verbatim verbatim)
-                             ("~" org-code verbatim))
-
-        org-hide-emphasis-markers t)
+                             ("~" org-code verbatim)))
 #+END_SRC
 * Export
 
