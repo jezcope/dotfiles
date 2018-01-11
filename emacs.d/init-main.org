@@ -72,7 +72,6 @@ Enable menu bar on Mac, as it doesn't make any difference:
   (setq org-directory (expand-file-name "Notes/Todo" jc/dropbox-location)
         org-default-notes-file (expand-file-name "Notes/Inbox/_Inbox.txt" jc/dropbox-location)
 
-        jc/agenda-file-work (expand-file-name "work.org" org-directory)
         jc/agenda-file-personal (expand-file-name "personal.org" org-directory)
         jc/agenda-file-calendar (expand-file-name "~/calendar.org")
 

@@ -35,8 +35,11 @@ Set =lexical-binding=:
 #+BEGIN_SRC emacs-lisp
   (setq org-mobile-inbox-for-pull org-default-notes-file
         org-mobile-directory (expand-file-name "Apps/MobileOrg" jc/dropbox-location)
-        org-agenda-files `(,jc/agenda-file-work ,jc/agenda-file-personal)
-        )
+        org-agenda-files (list jc/agenda-file-personal))
+
+  (if (boundp 'jc/agenda-file-work)
+      (add-to-list 'org-agenda-files jc/agenda-file-work)
+    (message "jc/agenda-file-work not set"))
 
   (if (file-exists-p jc/agenda-file-calendar)
       (add-to-list 'org-agenda-files jc/agenda-file-calendar))
@@ -198,10 +201,13 @@ Based on code from [[http://emacs.stackexchange.com/questions/10597/how-to-refil
                 jc/todo-keywords)
 
         org-todo-keyword-faces
-        '(("TODO"      . "red")
+        '(("TODO"      . "grey")
           ("READY"     . "orange red")
           ("NEXT"      . "gold")
-          ("DOING"     . "yellow")
+          ("COOL"      . "steel blue")
+          ("WARM"      . "orange red")
+          ("HOT"       . "gold")
+          ("DOING"     . "firebrick1")
           ("DONE"      . "forest green")
 
           ("ONHOLD"    . org-agenda-dimmed-todo-face)
@@ -620,16 +626,45 @@ And now add some of my own based on the above...
           (todo "TODO"
                 ((org-agenda-overriding-header "Stuck or complete projects")
                  (org-agenda-skip-function 'bh/skip-non-stuck-projects))))
-        
+
         org-agenda-custom-commands
         `(("p" "Personal tasks" ,jc/org-agenda-task-cmds
+
            ((org-agenda-files `(,jc/agenda-file-personal))))
           ("w" . "Work tasks")
           ("ww" "Work kanban"
-           ,(append jc/org-agenda-task-cmds
-                    `((tags-todo "atwork/!TODO"
-                                ((org-agenda-files `(,jc/agenda-file-personal))
-                                 (org-agenda-overriding-header "Personal tasks at work")))))
+           ((todo "DOING"
+                  ((org-agenda-overriding-header "Tasks in progress")))
+            (todo "HOT"
+                  ((org-agenda-overriding-header "Hot (5)")))
+            (todo "WARM"
+                  ((org-agenda-overriding-header "Warm (8)")))
+            (todo "COOL"
+                  ((org-agenda-overriding-header "Cool (15)")))
+            (todo "TODO"
+                  ((org-agenda-overriding-header "Things to do")
+                   (org-agenda-dim-blocked-tasks 'invisible)
+                   (org-agenda-skip-function '(or (jc/skip-projects)
+                                                  (jc/skip-future-tasks-with-inheritance)))))
+            (todo "WAITING|DELEGATED"
+                  ((org-agenda-overriding-header "Waiting for/delegated (deadline passed)")
+                   (org-agenda-skip-function '(or (jc/skip-if-deadline-not-passed)
+                                                  (jc/skip-future-tasks-with-inheritance)))))
+            (todo "DELEGATED"
+                  ((org-agenda-overriding-header "Delegated")
+                   (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
+                                                  (jc/skip-future-tasks-with-inheritance)))))
+            (todo "WAITING"
+                  ((org-agenda-overriding-header "Waiting for")
+                   (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
+                                                  (jc/skip-future-tasks-with-inheritance)))))
+            (todo "MONITOR"
+                  ((org-agenda-overriding-header "Monitor")))
+            (todo "ONHOLD"
+                  ((org-agenda-overriding-header "On hold")))
+            (todo "TODO"
+                  ((org-agenda-overriding-header "Stuck or complete projects")
+                   (org-agenda-skip-function 'bh/skip-non-stuck-projects))))
            ((org-agenda-files `(,jc/agenda-file-work))))
           ("wc" "Contexts"
            ((tags-todo "+email")
