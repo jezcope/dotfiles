@@ -670,7 +670,8 @@ And now add some of my own based on the above...
            ((tags-todo "+email")
             (tags-todo "+web")
             (tags-todo "+writing")
-            (tags-todo "+reading"))
+            (tags-todo "+reading")
+            (tags-todo "+wfh"))
            ((org-agenda-files (list ,jc/agenda-file-work)))))
 
         org-agenda-tags-todo-honor-ignore-options t)
