@@ -117,8 +117,8 @@ Set =lexical-binding=:
   (use-package evil-numbers
     :commands (evil-numbers/inc-at-pt evil-numbers/dec-at-pt)
     :bind (:map evil-normal-state-map
-                ("C-c +" . 'evil-numbers/inc-at-pt)
-                ("C-c -" . 'evil-numbers/dec-at-pt)))
+                ("C-c +" . evil-numbers/inc-at-pt)
+                ("C-c -" . evil-numbers/dec-at-pt)))
 #+END_SRC
 
 ** Mode-specific stuff
