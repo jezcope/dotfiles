@@ -192,6 +192,8 @@ Enable menu bar on Mac, as it doesn't make any difference:
     (setq spaceline-all-the-icons-separator-type 'arrow
           spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
     (spaceline-all-the-icons-theme))
+
+  (global-hl-line-mode 1)
 #+END_SRC
 
 **** Fonts
