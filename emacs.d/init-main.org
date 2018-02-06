@@ -179,7 +179,10 @@ Enable menu bar on Mac, as it doesn't make any difference:
             evil-replace-state-cursor `(,(plist-get jc/base16-colors :base08) bar)
             evil-visual-state-cursor  `(,(plist-get jc/base16-colors :base09) box))))
 
-  (load-theme 'atom-one-dark)
+  ;; (load-theme 'atom-one-dark)
+  (use-package xresources-theme
+    :config
+    (load-theme 'xresources))
 
   (use-package spaceline
     :after evil)

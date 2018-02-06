@@ -120,5 +120,6 @@
 (depends-on "wgrep")
 (depends-on "with-editor")
 (depends-on "writeroom-mode")
+(depends-on "xresources-theme")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
