@@ -502,7 +502,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     (("M-x"     . counsel-M-x)
      ("M-y"     . counsel-yank-pop)
      ("C-c d d" . counsel-descbinds)
-     ("C-c a"   . counsel-ag)
+     ("C-c C-s" . counsel-ag)
      ("C-c s s" . counsel-ag)
      ("C-c s d" . counsel-ag-projectile)
      ("C-x C-f" . counsel-find-file)
