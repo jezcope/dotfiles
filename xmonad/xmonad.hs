@@ -2,6 +2,7 @@ import XMonad
 import Control.Monad
 import Data.Monoid
 import System.Exit
+import Data.Function ((&))
  
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -15,7 +16,10 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.LayoutHints
+import XMonad.Layout.Spacing
 import XMonad.Actions.CycleWS
+
+import Colors
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -26,9 +30,8 @@ myTerminal      = "sakura"
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
  
--- Width of the window border in pixels.
---
-myBorderWidth   = 1
+myBorderWidth   = 2
+myWindowSpacing = 10
  
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -73,8 +76,8 @@ myWorkspaces    = map show [1..8]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#333333"
-myFocusedBorderColor = "#3366ff"
+myNormalBorderColor  = walColor "color0"
+myFocusedBorderColor = walColor "color4"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -85,7 +88,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
  
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    , ((modm,               xK_p     ), spawn "rofi -show drun")
  
     -- launch gmrun
     , ((modm              , xK_r     ), mateRun)
@@ -100,16 +103,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
  
     -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
+    -- , ((modm,               xK_n     ), refresh)
  
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
+
+    , ((modm .|. shiftMask, xK_Tab   ), spawn "rofi -show window")
  
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
+    , ((modm,               xK_t     ), windows W.focusDown)
  
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ((modm,               xK_n     ), windows W.focusUp  )
  
     -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
@@ -130,7 +135,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_l     ), sendMessage Expand)
  
     -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+    , ((modm .|. shiftMask, xK_t     ), withFocused $ windows . W.sink)
  
     -- Increment the number of windows in the master area
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
@@ -219,7 +224,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = layoutHints $ avoidStruts (tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+myLayout =
+    avoidStruts (tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+    & layoutHints
+    & spacingWithEdge myWindowSpacing
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
@@ -281,7 +289,7 @@ avoidMaster = W.modify' $ \c -> case c of
 -- It will add EWMH event handling to your custom event hooks by
 -- combining them with ewmhDesktopsEventHook.
 --
-myEventHook = mempty
+myEventHook = docksEventHook
 
 -- Hacky focus fix from http://mth.io/posts/xmonad-java-focus/
 local_atom_WM_TAKE_FOCUS ::
@@ -337,7 +345,7 @@ myLogHook = takeTopFocus >> setWMName "LG3D"
 -- It will add initialization of EWMH support to your custom startup
 -- hook by combining it with ewmhDesktopsStartup.
 --
-myStartupHook = return ()
+myStartupHook = docksStartupHook
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -358,8 +366,6 @@ defaults = mateConfig {
         focusFollowsMouse  = myFocusFollowsMouse,
         borderWidth        = myBorderWidth,
         modMask            = myModMask,
-        -- numlockMask deprecated in 0.9.1
-        -- numlockMask        = myNumlockMask,
         workspaces         = myWorkspaces,
         normalBorderColor  = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
