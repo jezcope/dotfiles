@@ -109,6 +109,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
     , ((modm .|. shiftMask, xK_Tab   ), spawn "rofi -show window")
+
+    -- Lock the screen
+    , ((modm,               xK_l     ), spawn "mate-screensaver-command -l")
  
     -- Move focus to the next window
     , ((modm,               xK_t     ), windows W.focusDown)
