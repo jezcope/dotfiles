@@ -622,10 +622,7 @@ And now add some of my own based on the above...
           (todo "MONITOR"
                 ((org-agenda-overriding-header "Monitor")))
           (todo "ONHOLD"
-                ((org-agenda-overriding-header "On hold")))
-          (todo "TODO"
-                ((org-agenda-overriding-header "Stuck or complete projects")
-                 (org-agenda-skip-function 'bh/skip-non-stuck-projects))))
+                ((org-agenda-overriding-header "On hold"))))
 
         org-agenda-custom-commands
         `(("p" "Personal tasks" ,jc/org-agenda-task-cmds
@@ -635,6 +632,10 @@ And now add some of my own based on the above...
           ("ww" "Work kanban"
            ((todo "DOING"
                   ((org-agenda-overriding-header "Tasks in progress")))
+            (todo "WAITING"
+                  ((org-agenda-overriding-header "Waiting for")
+                   (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
+                                                  (jc/skip-future-tasks-with-inheritance)))))
             (todo "HOT"
                   ((org-agenda-overriding-header "Hot (5)")))
             (todo "WARM"
@@ -666,6 +667,16 @@ And now add some of my own based on the above...
                   ((org-agenda-overriding-header "Stuck or complete projects")
                    (org-agenda-skip-function 'bh/skip-non-stuck-projects))))
            ((org-agenda-files `(,jc/agenda-file-work))))
+          ("wp" "Projects"
+           ((todo "WIP"
+                  ((org-agenda-overriding-header "WIP")))
+            (todo "WIP"
+                  ((org-agenda-overriding-header "Stuck or complete projects")
+                   (org-agenda-skip-function 'bh/skip-non-stuck-projects)))
+            (todo "ACCEPTED"
+                  ((org-agenda-overriding-header "Accepted")))
+            (todo "BACKLOG"
+                  ((org-agenda-overriding-header "Backlog")))))
           ("wc" "Contexts"
            ((tags-todo "+email")
             (tags-todo "+web")
