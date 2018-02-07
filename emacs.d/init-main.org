@@ -209,8 +209,7 @@ Set default fonts in order of preference:
   (let ((w (display-pixel-width)))
     (setq jc/font-fixed
           (jc/first-available-font
-           (cond ((<= w 1400) "Input Mono Compressed")
-                 (t "Input Mono Narrow"))
+           "Input Mono Narrow"
            "Inconsolata"
            "Droid Sans Mono"
            "Ubuntu Mono"
@@ -229,7 +228,7 @@ Set default fonts in order of preference:
            "sans")
 
           jc/font-size
-          (cond ((<= w 1400) 100)
+          (cond ((<= w 1400) 80)
                 (t           110))))
 
   (set-face-attribute 'default nil
