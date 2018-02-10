@@ -14,10 +14,10 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
-import XMonad.Layout.ThreeColumns
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
+import XMonad.Layout.NoBorders
 import XMonad.Actions.CycleWS
 
 import Colors
@@ -133,15 +133,16 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------------------------------------------------------
 -- Layouts:
 myLayout =
-    avoidStruts (spiral ratio ||| spiralWithDir South CCW ratio ||| tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+    ((avoidStruts (sp ||| spccw ||| tiled ||| hTiled ||| simpleTabbed ||| Full)
+     & spacingWithEdge myWindowSpacing)
+    ||| noBorders Full)
     & layoutHints
-    & spacingWithEdge myWindowSpacing
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
-    threeCol = ThreeCol nmaster delta ratio
-    threeColMid = ThreeColMid nmaster delta ratio
     hTiled = Mirror tiled
+    sp = spiral (16/9)
+    spccw = spiralWithDir South CCW ratio
  
     -- The default number of windows in the master pane
     nmaster = 1
