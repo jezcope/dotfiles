@@ -19,6 +19,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
 import XMonad.Layout.NoBorders
 import XMonad.Actions.CycleWS
+import XMonad.Util.Cursor
 
 import Colors
 
@@ -218,11 +219,13 @@ takeTopFocus =
  
 ------------------------------------------------------------------------
 -- Status bars and logging
-myLogHook = takeTopFocus >> setWMName "LG3D"
+myLogHook = takeTopFocus
  
 ------------------------------------------------------------------------
 -- Startup hook
 myStartupHook = docksStartupHook
+  >> setDefaultCursor xC_left_ptr
+  >> setWMName "LG3D"
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
