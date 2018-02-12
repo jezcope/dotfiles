@@ -632,6 +632,10 @@ And now add some of my own based on the above...
           ("ww" "Work kanban"
            ((todo "DOING"
                   ((org-agenda-overriding-header "Tasks in progress")))
+            (todo "WAITING|DELEGATED"
+                  ((org-agenda-overriding-header "Waiting for/delegated (deadline passed)")
+                   (org-agenda-skip-function '(or (jc/skip-if-deadline-not-passed)
+                                                  (jc/skip-future-tasks-with-inheritance)))))
             (todo "WAITING"
                   ((org-agenda-overriding-header "Waiting for")
                    (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
@@ -647,16 +651,8 @@ And now add some of my own based on the above...
                    (org-agenda-dim-blocked-tasks 'invisible)
                    (org-agenda-skip-function '(or (jc/skip-projects)
                                                   (jc/skip-future-tasks-with-inheritance)))))
-            (todo "WAITING|DELEGATED"
-                  ((org-agenda-overriding-header "Waiting for/delegated (deadline passed)")
-                   (org-agenda-skip-function '(or (jc/skip-if-deadline-not-passed)
-                                                  (jc/skip-future-tasks-with-inheritance)))))
             (todo "DELEGATED"
                   ((org-agenda-overriding-header "Delegated")
-                   (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
-                                                  (jc/skip-future-tasks-with-inheritance)))))
-            (todo "WAITING"
-                  ((org-agenda-overriding-header "Waiting for")
                    (org-agenda-skip-function '(or (jc/skip-if-deadline-passed)
                                                   (jc/skip-future-tasks-with-inheritance)))))
             (todo "MONITOR"
@@ -688,6 +684,15 @@ And now add some of my own based on the above...
         org-agenda-tags-todo-honor-ignore-options t)
 #+END_SRC
 
+
+** Stuck projects
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-stuck-projects '("/+WIP"
+                             ("TODO" "COOL" "WARM" "HOT" "DOING")
+                             ("delegated")
+                             ""))
+#+END_SRC
 * Markup
 
 Disable strike-through formatting because I don't use it and it messes up ~table.el~ formatting.
