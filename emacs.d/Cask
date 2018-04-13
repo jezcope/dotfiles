@@ -110,7 +110,6 @@
 (depends-on "toml-mode")
 (depends-on "traad")
 (depends-on "twittering-mode")
-(depends-on "unbound")
 (depends-on "use-package")
 (depends-on "vimrc-mode")
 (depends-on "virtualenvwrapper")

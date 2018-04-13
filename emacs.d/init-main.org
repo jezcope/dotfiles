@@ -499,7 +499,7 @@ This adds (to the filename) enough of the path after a vertical bar to make the 
     ;; :bind* (("C-c p p" . counsel-projectile))
     :init
     (setq counsel-projectile-drop-to-switch-project-binding "C-c s p")
-    (counsel-projectile-on))
+    (counsel-projectile-mode))
 
   (use-package counsel :ensure t
     :bind*

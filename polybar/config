@@ -14,6 +14,22 @@ foreground-alt = ${xrdb:color7:#222}
 primary = ${xrdb:color1:#222}
 secondary = ${xrdb:color2:#222}
 alert = ${xrdb:color3:#222}
+color0 = ${xrdb:color0:#222}
+color1 = ${xrdb:color1:#222}
+color2 = ${xrdb:color2:#222}
+color3 = ${xrdb:color3:#222}
+color4 = ${xrdb:color4:#222}
+color5 = ${xrdb:color5:#222}
+color6 = ${xrdb:color6:#222}
+color7 = ${xrdb:color7:#222}
+color8 = ${xrdb:color8:#222}
+color9 = ${xrdb:color9:#222}
+color10 = ${xrdb:color10:#222}
+color11 = ${xrdb:color11:#222}
+color12 = ${xrdb:color12:#222}
+color13 = ${xrdb:color13:#222}
+color14 = ${xrdb:color14:#222}
+color15 = ${xrdb:color15:#222}
 
 [bar/main]
 monitor = ${env:MONITOR:eDP1}
@@ -43,9 +59,9 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = 
-modules-center = xwindow
-modules-right = filesystem xbacklight xkeyboard memory cpu battery temperature date powermenu
+modules-left = workspaces xwindow
+modules-center = date
+modules-right = filesystem xbacklight xkeyboard memory cpu battery temperature wlan powermenu
 
 tray-position = right
 tray-padding = 2
@@ -70,21 +86,23 @@ cursor-scroll = ns-resize
 type = internal/xwindow
 label = %title:0:30:...%
 
+label-underline = ${colors.color9}
+
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-prefix = "K "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.color3}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${colors.color3}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${colors.color3}
+label-indicator-underline = ${colors.color3}
 
 [module/filesystem]
 type = internal/fs
@@ -114,6 +132,14 @@ label-urgent-padding = 2
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
+
+[module/workspaces]
+type = internal/xworkspaces
+
+label-active-padding = 1
+label-active-foreground = ${colors.background}
+label-active-background = ${colors.color9}
+label-occupied-underline = ${colors.color9}
 
 [module/i3]
 type = internal/i3
@@ -189,7 +215,7 @@ type = internal/cpu
 interval = 2
 format-prefix = "C "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ${colors.color4}
 label = %percentage:2%%
 
 [module/memory]
@@ -197,16 +223,16 @@ type = internal/memory
 interval = 2
 format-prefix = "M "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ${colors.color5}
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected-underline = ${colors.color6}
 label-connected = %essid%
 
 ; format-disconnected =
@@ -250,7 +276,7 @@ time-alt = %H:%M:%S
 
 format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ${colors.color8}
 
 label = %date% %time%
 
@@ -315,7 +341,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.color7}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 

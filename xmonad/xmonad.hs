@@ -14,142 +14,65 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
-import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Gaps
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.Spacing
+import XMonad.Layout.Spiral
+import XMonad.Layout.NoBorders
 import XMonad.Actions.CycleWS
+import XMonad.Util.Cursor
+import XMonad.Util.EZConfig
 
 import Colors
 
--- The preferred terminal program, which is used in a binding below and by
--- certain contrib modules.
---
 myTerminal      = "sakura"
+myLockCommand   = "mate-screensaver-command -l"
  
--- Whether focus follows the mouse pointer.
-myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
  
 myBorderWidth   = 2
 myWindowSpacing = 10
  
--- modMask lets you specify which modkey you want to use. The default
--- is mod1Mask ("left alt").  You may also consider using mod3Mask
--- ("right alt"), which does not conflict with emacs keybindings. The
--- "windows key" is usually mod4Mask.
---
 myModMask       = mod4Mask
  
--- NOTE: from 0.9.1 on numlock mask is set automatically. The numlockMask
--- setting should be removed from configs.
---
--- You can safely remove this even on earlier xmonad versions unless you
--- need to set it to something other than the default mod2Mask, (e.g. OSX).
---
--- The mask for the numlock key. Numlock status is "masked" from the
--- current modifier status, so the keybindings will work with numlock on or
--- off. You may need to change this on some systems.
---
--- You can find the numlock modifier by running "xmodmap" and looking for a
--- modifier with Num_Lock bound to it:
---
--- > $ xmodmap | grep Num
--- > mod2        Num_Lock (0x4d)
---
--- Set numlockMask = 0 if you don't have a numlock key, or want to treat
--- numlock status separately.
---
--- myNumlockMask   = mod2Mask -- deprecated in xmonad-0.9.1
-------------------------------------------------------------
- 
- 
--- The default number of workspaces (virtual screens) and their names.
--- By default we use numeric strings, but any string may be used as a
--- workspace name. The number of workspaces is determined by the length
--- of this list.
---
--- A tagging example:
---
--- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
---
 myWorkspaces    = map show [1..8]
+-- A tagging example:
+-- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
  
--- Border colors for unfocused and focused windows, respectively.
---
 myNormalBorderColor  = walColor "color0"
 myFocusedBorderColor = walColor "color4"
 
-------------------------------------------------------------------------
--- Key bindings. Add, modify or remove key bindings here.
---
+myKeys' =
+  [ ("M-S-<Return>", spawn myTerminal)
+  , ("M-r",          spawn "rofi -show drun")
+  , ("M-S-r",        spawn "gmrun")
+
+  , ("M-S-c",        kill)
+  , ("M-<Space>",    sendMessage NextLayout)
+  -- , ("M-S-<Space>",  setLayout $ XMonad.layoutHook defaults)
+  , ("M-l",          spawn myLockCommand)
+  ]
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
-    -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
- 
-    -- launch dmenu
-    , ((modm,               xK_r     ), spawn "rofi -show drun")
- 
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_r     ), spawn "gmrun")
- 
-    -- close focused window
-    , ((modm .|. shiftMask, xK_c     ), kill)
- 
-     -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
- 
-    --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
- 
-    -- Resize viewed windows to the correct size
-    -- , ((modm,               xK_n     ), refresh)
- 
-    -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
-
-    , ((modm .|. shiftMask, xK_Tab   ), spawn "rofi -show window")
-
-    -- Lock the screen
-    , ((modm,               xK_l     ), spawn "mate-screensaver-command -l")
- 
-    -- Move focus to the next window
+    [ ((modm,               xK_Tab   ), windows W.focusDown)
     , ((modm,               xK_t     ), windows W.focusDown)
- 
-    -- Move focus to the previous window
     , ((modm,               xK_n     ), windows W.focusUp  )
- 
-    -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
  
-    -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
- 
-    -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
- 
-    -- Swap the focused window with the previous window
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
  
-    -- Shrink the master area
     , ((modm .|. shiftMask, xK_h     ), sendMessage Shrink)
- 
-    -- Expand the master area
     , ((modm .|. shiftMask, xK_l     ), sendMessage Expand)
+    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
+    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
  
     -- Push window back into tiling
     , ((modm .|. shiftMask, xK_t     ), withFocused $ windows . W.sink)
  
-    -- Increment the number of windows in the master area
-    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
- 
-    -- Deincrement the number of windows in the master area
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
  
     -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-
     , ((modm              , xK_b     ), sendMessage ToggleStruts)
  
     -- Quit xmonad
@@ -212,31 +135,18 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
 ------------------------------------------------------------------------
 -- Layouts:
- 
--- You can specify and transform your layouts by modifying these values.
--- If you change layout bindings be sure to use 'mod-shift-space' after
--- restarting (with 'mod-q') to reset your layout state to the new
--- defaults, as xmonad preserves your old layout settings by default.
---
--- * NOTE: XMonad.Hooks.EwmhDesktops users must remove the obsolete
--- ewmhDesktopsLayout modifier from layoutHook. It no longer exists.
--- Instead use the 'ewmh' function from that module to modify your
--- defaultConfig as a whole. (See also logHook, handleEventHook, and
--- startupHook ewmh notes.)
---
--- The available layouts.  Note that each layout is separated by |||,
--- which denotes layout choice.
---
 myLayout =
-    avoidStruts (tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+    ((avoidStruts (sp ||| spccw ||| tiled ||| hTiled ||| simpleTabbed ||| Full ||| writeroom)
+     & spacingWithEdge myWindowSpacing)
+    ||| noBorders Full)
     & layoutHints
-    & spacingWithEdge myWindowSpacing
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
-    threeCol = ThreeCol nmaster delta ratio
-    threeColMid = ThreeColMid nmaster delta ratio
     hTiled = Mirror tiled
+    sp = spiral (16/9)
+    spccw = spiralWithDir South CCW ratio
+    writeroom = Full & gaps [(L, 576), (R, 576)]
  
     -- The default number of windows in the master pane
     nmaster = 1
@@ -250,11 +160,6 @@ myLayout =
 ------------------------------------------------------------------------
 -- Window rules:
  
--- Execute arbitrary actions and WindowSet manipulations when managing
--- a new window. You can use this to, for example, always float a
--- particular program, or have a client always appear on a particular
--- workspace.
---
 -- To find the property name associated with a program, use
 -- > xprop | grep WM_CLASS
 -- and click on the client you're interested in.
@@ -274,11 +179,11 @@ myManageHook = composeAll
     , resource  =? "Do"             --> doIgnore
     , className =? "Pidgin"         --> doFloat
     , fmap not isDialog             --> doF avoidMaster]
-
-avoidMaster :: W.StackSet i l a s sd -> W.StackSet i l a s sd
-avoidMaster = W.modify' $ \c -> case c of
-     W.Stack t [] (r:rs) ->  W.Stack t [r] rs
-     otherwise           -> c
+  where
+    avoidMaster :: W.StackSet i l a s sd -> W.StackSet i l a s sd
+    avoidMaster = W.modify' $ \c -> case c of
+        W.Stack t [] (r:rs) ->  W.Stack t [r] rs
+        otherwise           -> c
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -295,14 +200,10 @@ avoidMaster = W.modify' $ \c -> case c of
 myEventHook = docksEventHook
 
 -- Hacky focus fix from http://mth.io/posts/xmonad-java-focus/
-local_atom_WM_TAKE_FOCUS ::
-  X Atom
-local_atom_WM_TAKE_FOCUS =
-  getAtom "WM_TAKE_FOCUS"
+local_atom_WM_TAKE_FOCUS :: X Atom
+local_atom_WM_TAKE_FOCUS = getAtom "WM_TAKE_FOCUS"
 
-takeFocusX ::
-  Window
-  -> X ()
+takeFocusX :: Window -> X ()
 takeFocusX w =
   withWindowSet . const $ do
     dpy <- asks display
@@ -315,54 +216,25 @@ takeFocusX w =
           setClientMessageEvent ev w wmprot 32 wmtakef currentTime
           sendEvent dpy w False noEventMask ev
 
-takeTopFocus ::
-  X ()
+takeTopFocus :: X ()
 takeTopFocus =
   withWindowSet $ maybe (setFocusX =<< asks theRoot) takeFocusX . W.peek
  
 ------------------------------------------------------------------------
 -- Status bars and logging
- 
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
---
--- * NOTE: EwmhDesktops users should use the 'ewmh' function from
--- XMonad.Hooks.EwmhDesktops to modify their defaultConfig as a whole.
--- It will add EWMH logHook actions to your custom log hook by
--- combining it with ewmhDesktopsLogHook.
---
-myLogHook = takeTopFocus >> setWMName "LG3D"
+myLogHook = takeTopFocus
  
 ------------------------------------------------------------------------
 -- Startup hook
- 
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
---
--- * NOTE: EwmhDesktops users should use the 'ewmh' function from
--- XMonad.Hooks.EwmhDesktops to modify their defaultConfig as a whole.
--- It will add initialization of EWMH support to your custom startup
--- hook by combining it with ewmhDesktopsStartup.
---
 myStartupHook = docksStartupHook
+  >> setDefaultCursor xC_left_ptr
+  >> setWMName "LG3D"
 
-------------------------------------------------------------------------
--- Now run xmonad with all the defaults we set up.
- 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad $ ewmh defaults
+main = ewmh defaults
+       & xmonad
  
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will
--- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
 defaults = mateConfig {
       -- simple stuff
         terminal           = myTerminal,
@@ -384,3 +256,4 @@ defaults = mateConfig {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
+  `additionalKeysP` myKeys'
