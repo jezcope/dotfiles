@@ -84,39 +84,39 @@ Set =lexical-binding=:
 * Capture
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-capture-templates `(
-                                ("t" "Todo"
-                                 entry
-                                 (file "")
-                                 "* TODO %?")
-                                ("n" "Note"
-                                 entry
-                                 (file "")
-                                 "* %?")
-                                ("d" "CPD log"
-                                 entry
-                                 (file+datetree+prompt ,(expand-file-name "CPD/CPD log.org" jc/dropbox-location))
-                                 "* %? %^{Type}p %^{PlannedTime}p %^{ActualTime}p\n\n** Goals\n\n** Outcomes\n\n** Actions\n\n** Notes\n")
-                                ("m" "Meeting notes"
-                                 entry
-                                 (file+datetree ,(expand-file-name "meeting-notes.org" org-directory))
-                                 "* %?")
-                                ("l" "Logbook entry"
-                                 entry
-                                 (file+datetree ,jc/logbook-file)
-                                 "* %?")
-                                ("L" "Logbook entry (date prompt)"
-                                 entry
-                                 (file+datetree+prompt ,jc/logbook-file)
-                                 "* %?")
-                                ("w" "Work logbook entry"
-                                 entry
-                                 (file+datetree jc/logbook-file-work)
-                                 "* %?")
-                                ("W" "Logbook entry (date prompt)"
-                                 entry
-                                 (file+datetree+prompt jc/logbook-file-work)
-                                 "* %?")))
+  (setq org-capture-templates
+        `(("t" "Todo"
+           entry
+           (file "")
+           "* TODO %?")
+          ("n" "Note"
+           entry
+           (file "")
+           "* %?")
+          ("d" "CPD log"
+           entry
+           (file+datetree+prompt ,(expand-file-name "CPD/CPD log.org" jc/dropbox-location))
+           "* %? %^{Type}p %^{PlannedTime}p %^{ActualTime}p\n\n** Goals\n\n** Outcomes\n\n** Actions\n\n** Notes\n")
+          ("m" "Meeting notes"
+           entry
+           (file+datetree ,(expand-file-name "meeting-notes.org" org-directory))
+           "* %?")
+          ("l" "Logbook entry"
+           entry
+           (file+datetree ,jc/logbook-file)
+           "* %?")
+          ("L" "Logbook entry (date prompt)"
+           entry
+           (file+datetree+prompt ,jc/logbook-file)
+           "* %?")
+          ("w" "Work logbook entry"
+           entry
+           (file+datetree jc/logbook-file-work)
+           "* %?")
+          ("W" "Logbook entry (date prompt)"
+           entry
+           (file+datetree+prompt jc/logbook-file-work)
+           "* %?")))
 #+END_SRC
 
 * Refile
