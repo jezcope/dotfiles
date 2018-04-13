@@ -14,16 +14,19 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Tabbed
+import XMonad.Layout.Gaps
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
 import XMonad.Layout.NoBorders
 import XMonad.Actions.CycleWS
 import XMonad.Util.Cursor
+import XMonad.Util.EZConfig
 
 import Colors
 
 myTerminal      = "sakura"
+myLockCommand   = "mate-screensaver-command -l"
  
 myFocusFollowsMouse = True
  
@@ -39,21 +42,20 @@ myWorkspaces    = map show [1..8]
 myNormalBorderColor  = walColor "color0"
 myFocusedBorderColor = walColor "color4"
 
+myKeys' =
+  [ ("M-S-<Return>", spawn myTerminal)
+  , ("M-r",          spawn "rofi -show drun")
+  , ("M-S-r",        spawn "gmrun")
+
+  , ("M-S-c",        kill)
+  , ("M-<Space>",    sendMessage NextLayout)
+  -- , ("M-S-<Space>",  setLayout $ XMonad.layoutHook defaults)
+  , ("M-l",          spawn myLockCommand)
+  ]
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    , ((modm,               xK_r     ), spawn "rofi -show drun")
-    , ((modm .|. shiftMask, xK_r     ), spawn "gmrun")
- 
-    , ((modm .|. shiftMask, xK_c     ), kill)
-    , ((modm,               xK_space ), sendMessage NextLayout)
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-
-    , ((modm,               xK_l     ), spawn "mate-screensaver-command -l")
- 
-    , ((modm .|. shiftMask, xK_Tab   ), spawn "rofi -show window")
+    [ ((modm,               xK_Tab   ), windows W.focusDown)
     , ((modm,               xK_t     ), windows W.focusDown)
-    , ((modm,               xK_Tab   ), windows W.focusDown)
     , ((modm,               xK_n     ), windows W.focusUp  )
     , ((modm,               xK_m     ), windows W.focusMaster  )
  
@@ -134,7 +136,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------------------------------------------------------
 -- Layouts:
 myLayout =
-    ((avoidStruts (sp ||| spccw ||| tiled ||| hTiled ||| simpleTabbed ||| Full)
+    ((avoidStruts (sp ||| spccw ||| tiled ||| hTiled ||| simpleTabbed ||| Full ||| writeroom)
      & spacingWithEdge myWindowSpacing)
     ||| noBorders Full)
     & layoutHints
@@ -144,6 +146,7 @@ myLayout =
     hTiled = Mirror tiled
     sp = spiral (16/9)
     spccw = spiralWithDir South CCW ratio
+    writeroom = Full & gaps [(L, 576), (R, 576)]
  
     -- The default number of windows in the master pane
     nmaster = 1
@@ -232,12 +235,6 @@ myStartupHook = docksStartupHook
 main = ewmh defaults
        & xmonad
  
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will
--- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
 defaults = mateConfig {
       -- simple stuff
         terminal           = myTerminal,
@@ -259,3 +256,4 @@ defaults = mateConfig {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
+  `additionalKeysP` myKeys'
