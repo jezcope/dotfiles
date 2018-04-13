@@ -17,6 +17,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.Spacing
+import XMonad.Layout.Spiral
 import XMonad.Actions.CycleWS
 
 import Colors
@@ -228,7 +229,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- which denotes layout choice.
 --
 myLayout =
-    avoidStruts (tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
+    avoidStruts (spiral ratio ||| spiralWithDir South CCW ratio ||| tiled ||| hTiled ||| threeCol ||| threeColMid ||| simpleTabbed ||| Full)
     & layoutHints
     & spacingWithEdge myWindowSpacing
   where
