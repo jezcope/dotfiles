@@ -69,10 +69,11 @@ Enable menu bar on Mac, as it doesn't make any difference:
 *** File locations
 
 #+BEGIN_SRC emacs-lisp
-  (setq org-directory (expand-file-name "Notes/Todo" jc/dropbox-location)
-        org-default-notes-file (expand-file-name "Notes/Inbox/_Inbox.txt" jc/dropbox-location)
+  (setq org-directory (expand-file-name "~/Notes/Todo")
+        org-default-notes-file (expand-file-name "inbox.org" org-directory)
 
         jc/agenda-file-personal (expand-file-name "personal.org" org-directory)
+        jc/agenda-file-work (expand-file-name "work.org" org-directory)
         jc/agenda-file-calendar (expand-file-name "~/calendar.org")
 
         jc/logbook-file (expand-file-name "logbook.org" org-directory)
