@@ -30,6 +30,7 @@
 (depends-on "dash")
 (depends-on "diminish")
 (depends-on "dockerfile-mode")
+(depends-on "doom-themes")
 (depends-on "editorconfig")
 (depends-on "emmet-mode")
 (depends-on "emojify")
