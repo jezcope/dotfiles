@@ -85,36 +85,22 @@ Set =lexical-binding=:
 
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
-        `(("t" "Todo"
-           entry
+        `(("t" "Todo" entry
            (file "")
            "* TODO %?")
-          ("n" "Note"
-           entry
+          ("n" "Note" entry
            (file "")
            "* %?")
-          ("d" "CPD log"
-           entry
-           (file+datetree+prompt ,(expand-file-name "CPD/CPD log.org" jc/dropbox-location))
-           "* %? %^{Type}p %^{PlannedTime}p %^{ActualTime}p\n\n** Goals\n\n** Outcomes\n\n** Actions\n\n** Notes\n")
-          ("m" "Meeting notes"
-           entry
-           (file+datetree ,(expand-file-name "meeting-notes.org" org-directory))
-           "* %?")
-          ("l" "Logbook entry"
-           entry
+          ("l" "Logbook entry" entry
            (file+datetree ,jc/logbook-file)
            "* %?")
-          ("L" "Logbook entry (date prompt)"
-           entry
+          ("L" "Logbook entry (date prompt)" entry
            (file+datetree+prompt ,jc/logbook-file)
            "* %?")
-          ("w" "Work logbook entry"
-           entry
+          ("w" "Work logbook entry" entry
            (file+datetree jc/logbook-file-work)
            "* %?")
-          ("W" "Logbook entry (date prompt)"
-           entry
+          ("W" "Logbook entry (date prompt)" entry
            (file+datetree+prompt jc/logbook-file-work)
            "* %?")))
 #+END_SRC
@@ -193,22 +179,26 @@ Based on code from [[http://emacs.stackexchange.com/questions/10597/how-to-refil
   (setq org-log-into-drawer t
 
         jc/todo-keywords
-        '("TODO(t) READY(r) NEXT(n) DOING(o) | DONE(d)"
-          "ONHOLD(h) AGENDA(a) DELEGATED(l) WAITING(w) MONITOR(m) | CANCELED(c)")
-  
+        '("TODO(t) COOL(c) WARM(w) HOT(h) DOING(o!) | DONE(d!) DROPPED(x@)"
+          "WAITING(a@) DELEGATED(l@) MONITOR(m) | ONHOLD(H)"
+          "BACKLOG(B) READY(R) WIP(W!) | COMPLETE(D!)")
         org-todo-keywords
         (mapcar (lambda (kw) (cons `sequence (split-string kw)))
                 jc/todo-keywords)
 
         org-todo-keyword-faces
         '(("TODO"      . "grey")
-          ("READY"     . "orange red")
           ("NEXT"      . "gold")
           ("COOL"      . "steel blue")
           ("WARM"      . "orange red")
           ("HOT"       . "gold")
           ("DOING"     . "firebrick1")
           ("DONE"      . "forest green")
+
+          ("BACKLOG"   . (:background "steel blue" :foreground "white"))
+          ("READY"     . (:background "dark red" :foreground "white"))
+          ("WIP"       . (:background "gold" :foreground "black"))
+          ("COMPLETE"  . (:background "forest green" :foreground "white"))
 
           ("ONHOLD"    . org-agenda-dimmed-todo-face)
           ("AGENDA"    . "deep sky blue")
@@ -666,10 +656,11 @@ And now add some of my own based on the above...
           ("wp" "Projects"
            ((todo "WIP"
                   ((org-agenda-overriding-header "Stuck or complete projects")))
-            (todo "ACCEPTED"
-                  ((org-agenda-overriding-header "Accepted")))
+            (todo "READY"
+                  ((org-agenda-overriding-header "Ready")))
             (todo "BACKLOG"
-                  ((org-agenda-overriding-header "Backlog")))))
+                  ((org-agenda-overriding-header "Backlog"))))
+           ((org-agenda-files (list ,jc/agenda-file-work))))
           ("wc" "Contexts"
            ((tags-todo "+email")
             (tags-todo "+web")
