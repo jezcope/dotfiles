@@ -565,7 +565,7 @@ And now add some of my own based on the above...
     (let ((deadline (org-entry-get (point) "DEADLINE")))
       (and deadline
            (time-less-p (apply 'encode-time (org-parse-time-string deadline)) (current-time)))))
-  
+
   (defun jc/skip-if-deadline-passed ()
     "Skip any task with a deadline in the past"
     (save-restriction
@@ -573,12 +573,28 @@ And now add some of my own based on the above...
       (let ((next-heading (save-excursion (or (outline-next-heading) (point-max)))))
         (when (jc/deadline-passed)
           next-heading))))
-   
+
   (defun jc/skip-if-deadline-not-passed ()
-      (save-restriction
+    (save-restriction
       (widen)
       (let ((next-heading (save-excursion (or (outline-next-heading) (point-max)))))
         (unless (jc/deadline-passed)
+          next-heading))))
+
+  (defun jc/deadline-within (seconds)
+    (let ((deadline (org-entry-get (point) "DEADLINE")))
+      (and deadline
+           (time-less-p (current-time)
+                        (apply 'encode-time (org-parse-time-string deadline)))
+           (time-less-p (apply 'encode-time (org-parse-time-string deadline))
+                        (time-add (current-time) seconds)))))
+
+  (defun jc/skip-if-deadline-within (seconds)
+    "Skip any task with a deadline sooner than seconds away"
+    (save-restriction
+      (widen)
+      (let ((next-heading (save-excursion (or (outline-next-heading) (point-max)))))
+        (when (not (jc/deadline-within seconds))
           next-heading))))
 #+END_SRC
 
@@ -620,11 +636,16 @@ And now add some of my own based on the above...
            ((org-agenda-files `(,jc/agenda-file-personal))))
           ("w" . "Work tasks")
           ("ww" "Work kanban"
-           ((todo "DOING"
-                  ((org-agenda-overriding-header "Tasks in progress")))
-            (todo "WAITING|DELEGATED"
-                  ((org-agenda-overriding-header "Waiting for/delegated (deadline passed)")
+           ((todo "TODO|COOL|WARM|HOT|DOING|WAITING"
+                  ((org-agenda-overriding-header "Overdue")
                    (org-agenda-skip-function '(or (jc/skip-if-deadline-not-passed)
+                                                  (jc/skip-future-tasks-with-inheritance)))))
+            (tags-todo "+TODO=\"DOING\"-delegated"
+                       ((org-agenda-overriding-header "In progress")
+                        (org-agenda-skip-function 'jc/skip-projects)))
+            (todo "TODO|COOL|WARM|HOT|DOING|WAITING"
+                  ((org-agenda-overriding-header "Due in the next 7 days")
+                   (org-agenda-skip-function '(or (jc/skip-if-deadline-within (days-to-time 7))
                                                   (jc/skip-future-tasks-with-inheritance)))))
             (todo "WAITING"
                   ((org-agenda-overriding-header "Waiting for")
@@ -649,7 +670,7 @@ And now add some of my own based on the above...
                   ((org-agenda-overriding-header "Monitor")))
             (todo "ONHOLD"
                   ((org-agenda-overriding-header "On hold")))
-            (todo "TODO"
+            (todo "TODO|DOING"
                   ((org-agenda-overriding-header "Stuck or complete projects")
                    (org-agenda-skip-function 'bh/skip-non-stuck-projects))))
            ((org-agenda-files `(,jc/agenda-file-work))))
