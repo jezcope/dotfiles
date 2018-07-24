@@ -90,6 +90,9 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# lock the screen
+bindsym $mod+l --release exec "mate-screensaver-command -l"
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
