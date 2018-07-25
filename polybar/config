@@ -136,10 +136,10 @@ label-empty-padding = 2
 [module/workspaces]
 type = internal/xworkspaces
 
-label-active-padding = 1
+label-empty = " %name% "
+label-active = " %name% "
 label-active-foreground = ${colors.background}
 label-active-background = ${colors.color9}
-label-occupied-underline = ${colors.color9}
 
 [module/i3]
 type = internal/i3
