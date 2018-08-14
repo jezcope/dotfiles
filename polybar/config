@@ -120,6 +120,7 @@ type = internal/bspwm
 
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
+label-focused-foreground = ${colors.background}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 1
 
@@ -158,6 +159,7 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-foreground = ${module/bspwm.label-focused-foreground}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
@@ -168,6 +170,7 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
+label-visible-foreground = ${self.label-focused-foreground}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
