@@ -44,7 +44,7 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size = 3
 line-color = #f00
 
 ;border-size = 4
@@ -121,7 +121,7 @@ type = internal/bspwm
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-foreground = ${colors.background}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.color7}
 label-focused-padding = 1
 
 label-occupied = %index%
@@ -171,7 +171,7 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
 label-visible-foreground = ${self.label-focused-foreground}
-label-visible-underline = ${self.label-focused-underline}
+label-visible-underline = ${self.label-focused-background}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
