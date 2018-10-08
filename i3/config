@@ -193,14 +193,16 @@ gaps inner 10
 # it fails to get colors from Xresources for some reason.
 set_from_resource $fg i3wm.color0 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
-set_from_resource $foc i3wm.color5 #f0f0f0
-set_from_resource $unf i3wm.color1 #f0f0f0
-set_from_resource $fin i3wm.color1 #f0f0f0
+set_from_resource $foc i3wm.color4 #f0f0f0
+# set_from_resource $unf i3wm.color1 #f0f0f0
+# set_from_resource $fin i3wm.color1 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
 client.focused          $foc    $foc    $fg  $foc      $foc
-client.focused_inactive $fin    $fin    $fg  $fin      $fin
-client.unfocused        $unf    $unf    $fg  $unf      $unf
+# client.focused_inactive $fin    $fin    $fg  $fin      $fin
+client.focused_inactive $fg     $fg     $foc $fg       $fg
+# client.unfocused        $unf    $unf    $fg  $unf      $unf
+client.unfocused        $fg     $fg     $foc $fg       $fg
 client.urgent           $bg     $bg     $fg  $bg       $bg
 client.placeholder      $bg     $bg     $fg  $bg       $bg
 
