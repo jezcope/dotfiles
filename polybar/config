@@ -62,7 +62,7 @@ font-2 = "Input Mono Compressed:pixelsize=10;1"
 
 modules-left = i3 xwindow
 modules-center = date
-modules-right = filesystem xbacklight xkeyboard memory cpu battery temperature wlan powermenu
+modules-right = xbacklight filesystem xkeyboard memory cpu battery temperature wlan powermenu
 
 tray-position = right
 tray-padding = 2
@@ -75,8 +75,8 @@ cursor-scroll = ns-resize
 [bar/aux]
 inherit = bar/main
 modules-left = xwindow
-modules-center =
-modules-right = date
+modules-center = date
+modules-right = xbacklight
 tray-position = 
 
 [module/xwindow]
