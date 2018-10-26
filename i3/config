@@ -118,6 +118,8 @@ bindsym $mod+0 workspace $ws10
 
 bindsym --whole-window $mod+button4 workspace prev
 bindsym --whole-window $mod+button5 workspace next
+bindsym --whole-window $mod+Prior workspace prev
+bindsym --whole-window $mod+Next workspace next
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
