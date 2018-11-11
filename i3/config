@@ -103,6 +103,7 @@ bindsym $mod+a focus parent
 
 # lock the screen
 bindsym $mod+l --release exec "mate-screensaver-command -l"
+bindsym $mod+Shift+l --release exec "mate-screensaver-command -l && systemctl suspend"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
