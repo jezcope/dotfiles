@@ -641,7 +641,6 @@ This doesn't work as I want it to right now - needs reworking.
     ;; Adapted from http://oremacs.com/2015/07/20/hydra-columns/
     (defhydra jc/projectile-hydra (:color blue :columns 4)
       "Projectile"
-      ("a" counsel-ag-projectile "ag")
       ("n" neotree-projectile-action "neotree")
       ("b" counsel-projectile-switch-to-buffer "switch to buffer")
       ("c" projectile-compile-project "compile")
@@ -655,7 +654,9 @@ This doesn't work as I want it to right now - needs reworking.
       ("P" projectile-test-project "test")
       ("r" projectile-remove-known-project "remove known")
       ("R" projectile-cleanup-known-projects "cleanup non-existing")
-      ("ss" counsel-ag-projectile "ag")
+      ("ss" counsel-projectile-rg "ripgrep")
+      ("sr" counsel-projectile-rg "ripgrep")
+      ("sa" counsel-ag-projectile "ag")
       ("sg" projectile-grep "grep")
       ("v" projectile-vc "version control")
       ("V" projectile-browse-dirty-projects "dirty")
