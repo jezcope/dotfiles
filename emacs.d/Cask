@@ -17,6 +17,7 @@
 (depends-on "auctex")
 (depends-on "auctex-latexmk")
 (depends-on "avy")
+(depends-on "base16-theme")
 (depends-on "beacon")
 (depends-on "cask")
 (depends-on "centered-cursor-mode")
