@@ -293,6 +293,11 @@ Make some faces fixed pitch (mostly to fix vertical alignment issues):
   (use-package persistent-scratch
     :config
     (persistent-scratch-autosave-mode 1))
+
+  (use-package editorconfig
+    :ensure t
+    :config
+    (editorconfig-mode 1))
 #+END_SRC
 
 *** Correctly set GPG/SSH agent info
