@@ -194,11 +194,15 @@ gaps inner 10
 # from the generated scheme.
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources for some reason.
-set_from_resource $fg i3wm.color0 #f0f0f0
-set_from_resource $bg i3wm.color2 #f0f0f0
-set_from_resource $foc i3wm.color4 #f0f0f0
+# set_from_resource $fg i3wm.color0 #f0f0f0
+# set_from_resource $bg i3wm.color2 #f0f0f0
+# set_from_resource $foc i3wm.color4 #f0f0f0
 # set_from_resource $unf i3wm.color1 #f0f0f0
 # set_from_resource $fin i3wm.color1 #f0f0f0
+
+set $foc #fe8019
+set $bg #fabd2f
+set $fg #282828
 
 # class                 border  backgr. text indicator child_border
 client.focused          $foc    $foc    $fg  $foc      $foc
