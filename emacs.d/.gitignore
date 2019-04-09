@@ -16,3 +16,4 @@ bookmarks
 init-*.el
 session.*
 emojis
+transient
