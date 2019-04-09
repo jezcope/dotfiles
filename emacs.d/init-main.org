@@ -973,30 +973,29 @@ These functions are required for some of the above.
 **** Markdown
 
 #+BEGIN_SRC emacs-lisp
-    (defun jc/force-insert-state (&rest args)
-      (message "force-insert-state")
-      (evil-insert-state nil))
+  (defun jc/force-insert-state (&rest args)
+    (message "force-insert-state")
+    (evil-insert-state nil))
 
-    (use-package markdown-mode
-      :mode ("\\.markdown\\'" "\\.md\\'")
-      :config
-      (defun jc/markdown-configure ()
-        (setq orgstruct-heading-prefix-regexp "#\\+")
-        (pandoc-mode 1))
+  (use-package markdown-mode
+    :mode ("\\.markdown\\'" "\\.md\\'")
+    :config
+    (defun jc/markdown-configure ()
+      (markdown-toggle-url-hiding 1)
+      (pandoc-mode 1))
 
-      (setq markdown-list-indent-width 2
-            jc/markdown-minor-modes
-            '(flyspell-mode
-              visual-line-mode
-              adaptive-wrap-prefix-mode
-              orgstruct++-mode
-              outline-minor-mode
-              jc/markdown-configure))
+    (setq markdown-list-indent-width 2
+          jc/markdown-minor-modes
+          '(flyspell-mode
+            visual-line-mode
+            adaptive-wrap-prefix-mode
+            outline-minor-mode
+            jc/markdown-configure))
 
-      (add-hooks-pair '(markdown-mode-hook gfm-mode-hook)
-                      jc/markdown-minor-modes)
+    (add-hooks-pair '(markdown-mode-hook gfm-mode-hook)
+                    jc/markdown-minor-modes)
 
-      (advice-add 'markdown-insert-header :after #'jc/force-insert-state))
+    (advice-add 'markdown-insert-header :after #'jc/force-insert-state))
 #+END_SRC
 
 **** HTML/XML/etc
