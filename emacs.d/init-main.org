@@ -1289,6 +1289,15 @@ If the homebrew version of coreutils is installed under Mac, use that:
     (apply-partially #'seq-some #'executable-find)
     "Return the first found executable in $PATH")
 
+  (add-to-list 'ispell-local-dictionary-alist '("british"
+                                                "[[:alpha:]]"
+                                                "[^[:alpha:]]"
+                                                "[']"
+                                                t
+                                                ("-d" "en_GB-large")
+                                                nil
+                                                utf-8))
+
   (setq ispell-dictionary "british"
         ispell-program-name (jc/first-executable
                              '("hunspell"
